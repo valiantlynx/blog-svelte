@@ -1,15 +1,20 @@
-import { serializeNonPOJOs } from '$lib/utils/api';
+import { serializeNonPOJOs, getImageURL } from '$lib/utils/api';
 
 export const load = async (event) => {
-	const slug = event.params['tag'];
+	const id = event.params['tag'];
 
 	// you can also fetch all records at once via getFullList
 	const blogs = await event.locals.pb.collection('blogs').getFullList({
-		sort: '-created',
-		filter: `tags?="${slug}"`
+		sort: '-created', 	
+		expand: ['tags, author']
 	});
-
+	
+	blogs.forEach((blog) => {
+		blog.image = getImageURL(blog.collectionId, blog.id, blog.image, 'thumb=200x200');
+	} );
+	const tag = await event.locals.pb.collection('valiantlynx_tags').getOne(id, {});
 	return {
-		blogs: serializeNonPOJOs(blogs)
+		blogs: serializeNonPOJOs(blogs),
+		tag: serializeNonPOJOs(tag)
 	};
 };

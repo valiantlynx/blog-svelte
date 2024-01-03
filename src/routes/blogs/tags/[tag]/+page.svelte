@@ -3,7 +3,9 @@
 	import BlogCards from '$lib/components/BlogCards.svelte';
 	export let data;
 
-	console.log(data);
+	const tag = data.tag;
+
+	console.log("data",data.blogs);
 </script>
 
 <div class="w-full mt-4 flex flex-wrap -m-4 p-10 items-center">
@@ -17,14 +19,14 @@
 <div class="w-full mt-4 flex flex-wrap -m-4 p-10 items-center">
 	<h2 class="text-3xl font-bold w-full ">All Blogs</h2>
 
-		{#each data.items as blog}
+		{#each data.blogs as blog}
 		<BlogCards blog={blog} />
 		{/each}
 </div>
 
 
 <svelte:head>
-	<title>{blog.title} | valiantlynx</title>
+	<title>{tag} | valiantlynx</title>
 	<!-- Canonical Link -->
 	<link rel="canonical" href="https://{$page.data.siteName}/" />
 	<!-- Author Meta Tag -->
@@ -37,15 +39,15 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<meta
 		name="description"
-		content={blog.summary}
+		content="blogs containing the {tag} tag in valiantlynx.com" 
 		/>
 			<!-- Keywords Meta Tag -->
-	<meta name="keywords" content="{blog.tags.map((tag) => tag)}" />
+	<meta name="keywords" content="blogs containing the {tag} tag in valiantlynx.com" />
 
 	<meta name="mobile-web-app-capable" content="yes" />
 
 	<!-- Open Graph Meta Tags (for social media sharing) -->
-	<meta property="og:title" content={blog.title} />
+	<meta property="og:title" content={tag} />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={$page.url.origin} />
@@ -54,13 +56,12 @@
 	<meta property="og:site_name" content={$page.data.siteName} />
 
 	<!-- Twitter Meta Tags (for social media sharing) -->
-	<meta name="twitter:card" content={blog.image} />
-	<meta name="twitter:title" content={blog.title} />
-	<meta name="twitter:description" content={blog.summary} />
+	<meta name="twitter:title" content={tag} />
+	<meta name="twitter:description" content="blogs containing the {tag} tag in valiantlynx.com"  />
 	<!--meta name="twitter:image" content="/twitter-image.png" /-->
 
 	<!-- Google / Search Engine Tags -->
-	<meta itemprop="name" content={blog.title}/>
+	<meta itemprop="name" content={tag}/>
 
 	<!-- Facebook Meta Tags (for social media sharing) -->
 	<meta property="fb:app_id" content={$page.data.siteName} />
@@ -70,9 +71,9 @@
 	<meta property="article:publisher" content={$page.data.siteName} />
 	<meta property="article:author" content={$page.data.siteName} />
 	<meta property="article:section" content={$page.data.siteName} />
-	{#each blog.tags as tag}
+
 <meta property="article:tag" content={tag} />
-	{/each}
+
 	<meta property="article:published_time" content={$page.data.siteName} />
 	<meta property="article:modified_time" content={$page.data.siteName} />
 	<meta property="article:author:first_name" content={$page.data.siteName} />
@@ -80,8 +81,8 @@
 	<meta property="article:author:username" content={$page.data.siteName} />
 
 	<!-- Schema.org Meta Tags (for SEO) -->
-	<meta itemprop="headline" content={blog.title} />
-	<meta itemprop="description" content={blog.summary} />
+	<meta itemprop="headline" content={tag} />
+	<meta itemprop="description" content="blogs containing the {tag} tag in valiantlynx.com"  />
 	<!--meta itemprop="image" content="/twitter-image.png" /-->
 
 	{#if $page.data.sites}
