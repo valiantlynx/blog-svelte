@@ -7,9 +7,6 @@ export const load = async (event) => {
 		expand: ['author', 'tags']
 	});
 	blog.image = getImageURL(blog.collectionId, blog.id, blog.image, 'thumb=200x200');
-
-	console.log("blog", blog.author);
-
 	return {
 		blog: serializeNonPOJOs(blog)
 	};
