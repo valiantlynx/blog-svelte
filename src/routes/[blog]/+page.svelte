@@ -5,6 +5,7 @@
     import { pb } from '$lib/utils/api';
     import toast from 'svelte-french-toast';
     import Chat from '$lib/components/Chat.svelte';
+	import Share from '$lib/components/share/Share.svelte';
 
     const blog = $page.data.blog;
 
@@ -98,7 +99,14 @@
 		{/each}
 	</div>
   
+	<Share
+	title={blog.title + ' ' +blog.expand?.author?.username + ' ' + $page.url.hostname}
+	url={$page.url.href}
+	image={blog?.image}
+	text={`${blog.title} ${$page.params.chapterid} ${$page.data.siteName}, read ${blog.title} ${$page.params.chapterid} free online, high quality`}
+	hashtags={blog?.expand?.tags.map((tag) => tag.name)}
 
+/>	
     <!-- Chat Component -->
     <Chat class="mt-8" />
 </div>
@@ -129,7 +137,7 @@
 
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={$page.url.origin} />
-	<!--meta property="og:image" content="/twitter-image.png" /-->
+	<meta property="og:image" content={blog?.image}/>
 	<meta property="og:image:alt" content="{$page.data.siteName} Logo" />
 	<meta property="og:site_name" content={$page.data.siteName} />
 
@@ -137,12 +145,13 @@
 	<meta name="twitter:card" content={blog.image} />
 	<meta name="twitter:title" content={blog.title} />
 	<meta name="twitter:description" content={blog.summary} />
-	<!--meta name="twitter:image" content="/twitter-image.png" /-->
+	<meta name="twitter:image" content={blog?.image} />
 
 	<!-- Google / Search Engine Tags -->
 	<meta itemprop="name" content={blog.title}/>
 
 	<!-- Facebook Meta Tags (for social media sharing) -->
+	<meta property="fb:image" content={blog.image} />
 	<meta property="fb:app_id" content={$page.data.siteName} />
 	<meta property="fb:admins" content={$page.data.siteName} />
 	<meta property="fb:page_id" content={$page.data.siteName} />
@@ -162,7 +171,7 @@
 	<!-- Schema.org Meta Tags (for SEO) -->
 	<meta itemprop="headline" content={blog.title} />
 	<meta itemprop="description" content={blog.summary} />
-	<!--meta itemprop="image" content="/twitter-image.png" /-->
+	<meta itemprop="image" content={blog?.image} />
 
 	{#if $page.data.sites}
 		<!-- clarity there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead-->
