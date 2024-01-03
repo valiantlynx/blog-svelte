@@ -52,19 +52,19 @@ export const actions = {
 				};
 			}
 		} catch (err) {
-			 // Handle not found error specifically
-            if (err.status === 404) {
-                // If like record not found, create a new like
-                const data = {
-                    userId: userId,
-                    contentType: 'blog',
-                    contentId: contentId
-                };
-                await locals.pb.collection('valiantlynx_likes').create(data);
-            } else {
-                // Other errors
-                throw error(err.status, err.message);
-            }
+			// Handle not found error specifically
+			if (err.status === 404) {
+				// If like record not found, create a new like
+				const data = {
+					userId: userId,
+					contentType: 'blog',
+					contentId: contentId
+				};
+				await locals.pb.collection('valiantlynx_likes').create(data);
+			} else {
+				// Other errors
+				throw error(err.status, err.message);
+			}
 			console.log('err', err);
 			if (err.data?.data?.identity?.message) {
 				throw error(err.status, `Your email ${err.data?.data?.identity?.message}`);
