@@ -6,12 +6,14 @@ export const load = async (event) => {
 	// you can also fetch all records at once via getFullList
 	const blogs = await event.locals.pb.collection('blogs').getFullList({
 		sort: '-created', 	
-		expand: ['tags, author']
+		expand: ['tags, author'],
+		filter: `tags~"${id}"`
 	});
-	
+
 	blogs.forEach((blog) => {
 		blog.image = getImageURL(blog.collectionId, blog.id, blog.image, 'thumb=200x200');
 	} );
+
 	const tag = await event.locals.pb.collection('valiantlynx_tags').getOne(id, {});
 	return {
 		blogs: serializeNonPOJOs(blogs),
