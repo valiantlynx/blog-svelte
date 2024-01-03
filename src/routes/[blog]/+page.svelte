@@ -72,7 +72,7 @@
 	<div class="flex flex-wrap mt-8">
 		{#each blog?.expand?.tags as tag}
 		<a
-			href="/blogs/tags/{tag.name}"
+			href="/blogs/tags/{tag.id}"
 			class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-full mr-2 mb-2"
 		>
 			{tag.name}

@@ -1,8 +1,6 @@
 <script>
     import { page } from '$app/stores';
 	export let data;
-
-	console.log(data.tags.map((tag) => tag.name));
 </script>
 
 <div class="container mx-auto px-4 md:px-8 lg:px-12 py-4 md:py-8 lg:py-12">
@@ -10,7 +8,7 @@
 	<div class="flex flex-wrap mt-8">
 		{#each data.tags as tag}
 		<a
-			href="/blogs/tags/{tag.name}"
+			href="/blogs/tags/{tag.id}"
 			class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-full mr-2 mb-2"
 		>
 			{tag.name}

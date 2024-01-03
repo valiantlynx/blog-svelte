@@ -4,11 +4,12 @@ export const load = async (event) => {
 	const slug = event.params['tag'];
 
 	// you can also fetch all records at once via getFullList
-	const tags = await pb.collection('valiantlynx_tags').getFullList({
+	const blogs = await event.locals.pb.collection('blogs').getFullList({
 		sort: '-created',
-		filter: `name="${slug}"`
+		filter: `tags?="${slug}"`
 	});
+
 	return {
-		tags: serializeNonPOJOs(tags)
+		blogs: serializeNonPOJOs(blogs)
 	};
 };
