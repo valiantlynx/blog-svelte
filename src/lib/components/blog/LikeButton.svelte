@@ -23,9 +23,11 @@ async function getRecords(){
 onMount(async ()=>{
 	pb.collection('valiantlynx_likes').subscribe('*',async (e)=>{
     blogLikes = await getRecords();
+	isLiked = blogLikes.some(like => like.userId === $page.data.user?.id);
 })
     blogLikes = await getRecords();
-	console.log("blogLikes",blogLikes);
+	isLiked = blogLikes.some(like => like.userId === $page.data.user?.id);
+
 })
 
 onDestroy(()=>{
