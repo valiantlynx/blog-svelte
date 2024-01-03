@@ -17,8 +17,7 @@
 
 
 <div class="w-full mt-4 flex flex-wrap -m-4 p-10 items-center">
-	<h2 class="text-3xl font-bold w-full ">All Blogs</h2>
-
+	<h2 class="text-3xl font-bold w-full ">All Blogs with tag: <p class="text-accent text-3xl">{tag.name}</p></h2>
 		{#each data.blogs as blog}
 		<BlogCards blog={blog} />
 		{/each}
