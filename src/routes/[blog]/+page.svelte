@@ -103,7 +103,7 @@
 	title={blog.title + ' ' +blog.expand?.author?.username + ' ' + $page.url.hostname}
 	url={$page.url.href}
 	image={blog?.image}
-	text={`${blog.title} ${$page.params.chapterid} ${$page.data.siteName}, read ${blog.title} ${$page.params.chapterid} free online, high quality`}
+	text={`read ${blog.title} ${$page.params.chapterid} free online, high quality`}
 	hashtags={blog?.expand?.tags.map((tag) => tag.name)}
 
 />	
