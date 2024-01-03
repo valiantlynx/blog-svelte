@@ -4,6 +4,42 @@
     import { pb } from '$lib/utils/api';
     import toast from 'svelte-french-toast';
     import Chat from '$lib/components/Chat.svelte';
+	import { onMount } from 'svelte';
+
+    let isLiked = false;
+    let likesCount = 0; // Assuming you have a way to count likes
+
+    onMount(async () => {
+        // Check if the user has liked this post already
+        if ($page.data.user) {
+            const response = await pb.records.get('likes', blog.id); // Assuming 'likes' is your collection and blog.id is the id of the blog
+            isLiked = response.some(like => like.userId === $page.data.user.id);
+        }
+
+        // Get total number of likes for the blog
+        // Adjust the query according to your PocketBase setup
+        const likesResponse = await pb.records.getList('likes', 1, 100, { filter: `blogId='${blog.id}'` });
+        likesCount = likesResponse.total;
+    });
+
+    const toggleLike = async () => {
+        if ($page.data.user) {
+            if (isLiked) {
+                // Code to remove like from PocketBase
+                isLiked = false;
+                likesCount--;
+                // Add your logic to remove the like from PocketBase
+            } else {
+                // Code to add like to PocketBase
+                isLiked = true;
+                likesCount++;
+                // Add your logic to record the like in PocketBase
+            }
+        } else {
+            // Redirect to login if not logged in
+            window.location.href = '/login';
+        }
+    };
 
     const blog = $page.data.blog;
 
@@ -27,21 +63,45 @@
 
 <!-- Blog Container -->
 <div class="container mx-auto px-4 md:px-8 lg:px-12 py-4 md:py-8 lg:py-12">
-    <!-- Blog Header -->
-    <div class="mb-8">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">{blog?.title}</h1>
-        <div class="flex flex-col md:flex-row md:items-center text-sm text-gray-600">
-            <p>By: {blog?.expand?.author.username}</p>
-            <p class="md:ml-4">Published: {blog?.created}</p>
-            <p class="md:ml-4">Updated: {blog?.updated}</p>
+<!-- Blog Header -->
+<div class="mb-8">
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{blog?.title}</h1>
+    
+    <div class="flex items-center gap-4 mb-4">
+        <!-- Author Avatar -->
+        <div class="shrink-0">
+            <img src={blog.expand?.author.avatar ? `https://animevariant.fly.dev/api/files/${blog.expand?.author?.collectionId}/${blog.expand?.author?.id}/${blog.expand?.author?.avatar}`: 'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=' + blog.expand?.author?.username} alt={"Author" + blog.expand?.author?.username} class="w-12 h-12 rounded-full shadow-lg"/>
+        </div>
+
+        <!-- Author & Metadata -->
+        <div class="flex flex-col md:flex-row gap-2 md:gap-4 text-sm ">
+            <p class="font-semibold">By: {blog?.expand?.author.username}</p>
+            <p>Published: {new Date(blog?.created).toLocaleDateString()}</p>
+            <p>Updated: {new Date(blog?.updated).toLocaleDateString()}</p>
         </div>
     </div>
+
+<!-- Interactive Like Button -->
+<button class="btn btn-outline btn-primary btn-sm flex items-center gap-2" on:click={toggleLike}>
+    <i class="material-icons">{isLiked ? 'thumb_up' : 'thumb_up_off_alt'}</i>
+    {isLiked ? 'Liked' : 'Like this Post'}
+    <span class="ml-2">({likesCount})</span>
+</button>
+
+    <!-- Animated Scroll Down Indicator (Optional) -->
+    <div class="animate-bounce mt-4 flex">
+      
+        <span class="text-xs flex mt-1">Scroll to read</span>
+		<i class="material-icons text-lg ">expand_more</i>
+    </div>
+</div>
+
 
     <!-- Blog Image -->
     <img src={blog?.image} alt={blog?.title} class="w-full h-auto rounded-lg mb-6" />
 
     <!-- Blog Content -->
-    <div class="text-gray-800">
+    <div class="text-base-content">
 		{#if $page.data.user}
 		{#if $page.data.user.id === blog.author}
 		<ValiantRichText
@@ -73,7 +133,7 @@
 		{#each blog?.expand?.tags as tag}
 		<a
 			href="/blogs/tags/{tag.id}"
-			class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-full mr-2 mb-2"
+			class="bg-base-200 hover:bg-base-300 font-semibold py-2 px-4 rounded-full mr-2 mb-2"
 		>
 			{tag.name}
 		</a>
