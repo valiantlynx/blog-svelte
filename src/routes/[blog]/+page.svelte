@@ -1,47 +1,68 @@
 <script>
+	import {onMount,onDestroy} from 'svelte';
     import { page } from '$app/stores';
+	import { enhance } from '$app/forms';
     import { ValiantRichText, getData } from '@valiantlynx/svelte-rich-text';
     import { pb } from '$lib/utils/api';
     import toast from 'svelte-french-toast';
     import Chat from '$lib/components/Chat.svelte';
-	import { onMount } from 'svelte';
-
-    let isLiked = false;
-    let likesCount = 0; // Assuming you have a way to count likes
-
-    onMount(async () => {
-        // Check if the user has liked this post already
-        if ($page.data.user) {
-            const response = await pb.records.get('likes', blog.id); // Assuming 'likes' is your collection and blog.id is the id of the blog
-            isLiked = response.some(like => like.userId === $page.data.user.id);
-        }
-
-        // Get total number of likes for the blog
-        // Adjust the query according to your PocketBase setup
-        const likesResponse = await pb.records.getList('likes', 1, 100, { filter: `blogId='${blog.id}'` });
-        likesCount = likesResponse.total;
-    });
-
-    const toggleLike = async () => {
-        if ($page.data.user) {
-            if (isLiked) {
-                // Code to remove like from PocketBase
-                isLiked = false;
-                likesCount--;
-                // Add your logic to remove the like from PocketBase
-            } else {
-                // Code to add like to PocketBase
-                isLiked = true;
-                likesCount++;
-                // Add your logic to record the like in PocketBase
-            }
-        } else {
-            // Redirect to login if not logged in
-            window.location.href = '/login';
-        }
-    };
 
     const blog = $page.data.blog;
+    let isLiked = false;
+
+	let blogLikes = [];
+
+async function getRecords(){
+    const records = await pb.collection('valiantlynx_likes').getFullList(200,{
+		sort:'-created',
+		filter:`contentId='${blog.id}'`
+	})
+    return records
+}
+
+
+
+onMount(async ()=>{
+	pb.collection('valiantlynx_likes').subscribe('*',async (e)=>{
+    blogLikes = await getRecords();
+})
+    blogLikes = await getRecords();
+	console.log("blogLikes",blogLikes);
+})
+
+onDestroy(()=>{
+    pb.collection('valiantlynx_likes').unsubscribe('*');
+})
+
+
+	let loading = false;
+
+	const submitLike = () => {
+		loading = true;
+		if ($page.data.user) {
+
+		return async ({ result, update }) => {
+			switch (result.type) {
+				case 'success':
+					await update();
+					toast.success(result.data.message);
+					break;
+				case 'invalid':
+					toast.error('could not like this blog');
+					await update();
+					break;
+				case 'error':
+					toast.error(result.error.message);
+					break;
+				default:
+					await update();
+			}
+			loading = false;
+		};
+	} else {
+		toast.error('Please login to like this post');
+	}
+	};
 
     const saveData = (data) => {
         try {
@@ -56,9 +77,15 @@
             toast.error('Something went wrong please try again');
         }
     };
-
-	console.log(blog);
 </script>
+
+{#each blogLikes?? [] as record}
+<div class="post">
+	<div class="post-header">
+		<h3> {`${record.contentId}`}</h3>
+	</div>
+</div>
+{/each}
 
 
 <!-- Blog Container -->
@@ -81,12 +108,16 @@
         </div>
     </div>
 
-<!-- Interactive Like Button -->
-<button class="btn btn-outline btn-primary btn-sm flex items-center gap-2" on:click={toggleLike}>
-    <i class="material-icons">{isLiked ? 'thumb_up' : 'thumb_up_off_alt'}</i>
-    {isLiked ? 'Liked' : 'Like this Post'}
-    <span class="ml-2">({likesCount})</span>
-</button>
+<!-- Like Button and Form -->
+<form use:enhance={submitLike} action="?/toggleLike" method="POST">
+    <input type="hidden" name="blogId" value={blog.id} />
+    <input type="hidden" name="userId" value={$page.data.user?.id} />
+    <button class="btn btn-outline btn-primary btn-sm flex items-center gap-2">
+        <i class="material-icons">{isLiked ? 'thumb_up' : 'thumb_up_off_alt'}</i>
+        {isLiked ? 'Liked' : 'Like this Post'}
+        <span class="ml-2">({blogLikes.length})</span>
+    </button>
+</form>
 
     <!-- Animated Scroll Down Indicator (Optional) -->
     <div class="animate-bounce mt-4 flex">
