@@ -200,47 +200,6 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<meta name="mobile-web-app-capable" content="yes" />
 
-	<!-- Open Graph Meta Tags (for social media sharing) -->
-	<meta property="og:title" content={$page.data.siteName} />
-
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content={$page.url.origin} />
-	<!--meta property="og:image" content="/twitter-image.png" /-->
-	<meta property="og:image:alt" content="{$page.data.siteName} Logo" />
-	<meta property="og:site_name" content={$page.data.siteName} />
-
-	<!-- Twitter Meta Tags (for social media sharing) -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={$page.data.siteName} />
-	<meta name="twitter:description" content="Drivstoffpriser på nett - {$page.url.href}" />
-	<!--meta name="twitter:image" content="/twitter-image.png" /-->
-
-	<!-- Google / Search Engine Tags -->
-	<meta itemprop="name" content={$page.data.siteName} />
-
-	<!-- Facebook Meta Tags (for social media sharing) -->
-	<meta property="fb:app_id" content={$page.data.siteName} />
-	<meta property="fb:admins" content={$page.data.siteName} />
-	<meta property="fb:page_id" content={$page.data.siteName} />
-	<meta property="fb:site_name" content={$page.data.siteName} />
-	<meta property="article:publisher" content={$page.data.siteName} />
-	<meta property="article:author" content={$page.data.siteName} />
-	<meta property="article:section" content={$page.data.siteName} />
-	<meta property="article:tag" content={$page.data.siteName} />
-	<meta property="article:published_time" content={$page.data.siteName} />
-	<meta property="article:modified_time" content={$page.data.siteName} />
-	<meta property="article:expiration_time" content={$page.data.siteName} />
-	<meta property="article:author:first_name" content={$page.data.siteName} />
-	<meta property="article:author:last_name" content={$page.data.siteName} />
-	<meta property="article:author:username" content={$page.data.siteName} />
-
-	<!-- Schema.org Meta Tags (for SEO) -->
-	<meta itemprop="headline" content={$page.data.siteName} />
-	<meta itemprop="description" content="Drivstoffpriser på nett - {$page.data.siteName}" />
-	<!--meta itemprop="image" content="/twitter-image.png" /-->
-	<!-- Keywords Meta Tag -->
-	<meta name="keywords" content="{import.meta.env.VITE_SITE_TAGS} {$page.data.siteName}" />
-
 	{#if $page.data.sites}
 		<!-- clarity there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead-->
 		{@html `<script type="text/javascript">
