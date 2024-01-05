@@ -1,7 +1,7 @@
 import { pb, getImageURL } from './api';
 
 // function that generates the manga pages for the sitemap
-export const genMangaPosts = async (page: number, origin: string) => {
+export const genPosts = async (page: number, origin: string) => {
 	const allPosts: any = [];
 
 	// fetch all the blogs	from pocketbase
@@ -27,6 +27,25 @@ export const genMangaPosts = async (page: number, origin: string) => {
 		});
 	} else {
 		console.error('Failed to fetch blogs');
+	}
+
+	// fetch all the projects from pocketbase
+	const projects = await pb.collection('projects_valiantlynx').getFullList({
+		sort: '-created'
+	});
+
+	if (projects) {
+		projects.forEach((project: any) => {
+			const imageUrl = getImageURL(project.collectionId, project.id, project.thumbnail);
+			allPosts.push({
+				url: `/projects/${project.id}`,
+				image: imageUrl,
+				title: project.name,
+				description: project.tagline
+			});
+		});
+	} else {
+		console.error('Failed to fetch projects');
 	}
 
 
@@ -66,7 +85,7 @@ export const render = async (page: number, url: string): Promise<string> =>
     <url>
       <loc>${url}</loc>
     </url>
-    ${await genMangaPosts(page, url).then((mangas) =>
+    ${await genPosts(page, url).then((mangas) =>
 			mangas
 				.map(
 					(manga: { url: string; image: string; title: string; description: string }) =>
@@ -122,7 +141,7 @@ const pingGoogle = async (page: number, url: string) => {
 	const links: any[] = [];
 	const images: any[] = [];
 
-	await genMangaPosts(page, url).then((mangas) => {
+	await genPosts(page, url).then((mangas) => {
 		mangas.map((manga: { url: string; image: string; title: string; description: string }) => {
 			links.push(url + manga.url);
 			images.push(url + manga.image);
