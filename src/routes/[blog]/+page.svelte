@@ -159,8 +159,8 @@
 	<meta property="article:publisher" content={$page.data.siteName} />
 	<meta property="article:author" content={$page.data.siteName} />
 	<meta property="article:section" content={$page.data.siteName} />
-	{#each blog.tags as tag}
-<meta property="article:tag" content={tag.name} />
+	{#each blog?.expand?.tags as tag}
+		<meta property="article:tag" content={tag.name} />
 	{/each}
 	<meta property="article:published_time" content={$page.data.siteName} />
 	<meta property="article:modified_time" content={$page.data.siteName} />
