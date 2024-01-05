@@ -46,7 +46,7 @@ const pingGoogle = async () => {
 	// indexer()
 };
 
-pingGoogle();
+// pingGoogle();
 
 const services = {
 	client_email: 'nuron-nextjs@nuron-nextjs.iam.gserviceaccount.com',
