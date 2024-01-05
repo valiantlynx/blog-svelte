@@ -11,7 +11,7 @@ export const genPosts = async (page: number, origin: string) => {
 	
 	if (blogs) {
 		blogs.forEach((blog: any) => {
-			const imageUrl = getImageURL(blog.collectionId, blog.id, blog.image);
+			const imageUrl = `${origin}/api/${blog.collectionId}/${blog.id}/${blog.image}`;
 			allPosts.push({
 				url: `/blogs/${blog.slug}`,
 				image: imageUrl,
@@ -36,7 +36,7 @@ export const genPosts = async (page: number, origin: string) => {
 
 	if (projects) {
 		projects.forEach((project: any) => {
-			const imageUrl = getImageURL(project.collectionId, project.id, project.thumbnail);
+			const imageUrl = `${origin}/api/${project.collectionId}/${project.id}/${project.thumbnail}`;
 			allPosts.push({
 				url: `/projects/${project.id}`,
 				image: imageUrl,
