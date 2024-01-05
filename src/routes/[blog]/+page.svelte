@@ -128,7 +128,7 @@
 		content={blog.summary}
 		/>
 			<!-- Keywords Meta Tag -->
-	<meta name="keywords" content="{blog.tags.map((tag) => tag)}" />
+	<meta name="keywords" content="{blog?.expand?.tags.map((tag) => tag.name)}" />
 
 	<meta name="mobile-web-app-capable" content="yes" />
 
@@ -160,7 +160,7 @@
 	<meta property="article:author" content={$page.data.siteName} />
 	<meta property="article:section" content={$page.data.siteName} />
 	{#each blog.tags as tag}
-<meta property="article:tag" content={tag} />
+<meta property="article:tag" content={tag.name} />
 	{/each}
 	<meta property="article:published_time" content={$page.data.siteName} />
 	<meta property="article:modified_time" content={$page.data.siteName} />
