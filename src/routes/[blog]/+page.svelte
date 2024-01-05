@@ -100,7 +100,7 @@
 	</div>
   
 	<Share
-	title={blog.title + ' ' +blog.expand?.author?.username + ' ' + $page.url.hostname}
+	title={blog.title + ' ' + blog.expand?.author?.username}
 	url={$page.url.href}
 	image={blog?.image}
 	text={`read ${blog.title} by ${blog.expand?.author?.username} at ${$page.url.hostname} free online, high quality`}
