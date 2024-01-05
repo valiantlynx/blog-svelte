@@ -1,35 +1,36 @@
-import { pb } from './api';
+import { pb, getImageURL } from './api';
 
 // function that generates the manga pages for the sitemap
 export const genMangaPosts = async (page: number, origin: string) => {
-	const mangaPosts: any = [];
-	const url = origin + `/api/manga?page=${page}`;
+	const allPosts: any = [];
 
-	const response = await fetch(url, {
-		headers: {
-			'Access-Control-Allow-Origin': '*',
-			'Content-Type': 'application/json'
-		}
+	// fetch all the blogs	from pocketbase
+	const blogs = await pb.collection('blogs').getFullList({
+		sort: '-created'
 	});
-
-	const data = await response.json();
-
-	const mangas = data.mangas;
-
-	if (mangas) {
-		mangas.forEach((manga: any) => {
-			const imageUrl = removeQueryParameters(manga.img, ['width', 'height']);
-			mangaPosts.push({
-				url: manga.src,
+	
+	if (blogs) {
+		blogs.forEach((blog: any) => {
+			const imageUrl = getImageURL(blog.collectionId, blog.id, blog.image);
+			allPosts.push({
+				url: `/blogs/${blog.slug}`,
 				image: imageUrl,
-				title: manga.title,
-				description: manga.description
+				title: blog.title,
+				description: blog.summary
+			});
+			allPosts.push({
+				url: `/${blog.slug}`,
+				image: imageUrl,
+				title: blog.title,
+				description: blog.summary
 			});
 		});
 	} else {
-		console.error('Failed to fetch mangas');
+		console.error('Failed to fetch blogs');
 	}
-	return mangaPosts;
+
+
+	return allPosts;
 };
 
 // Function to remove specified query parameters from a URL
@@ -114,8 +115,6 @@ export const renderMainSitemap = (url: string) => {
 	return mainSitemapContent;
 };
 
-
-
 //temp fix for googleapis
 const google: any = {};
 // ping google to update the the urls of the company and the images
@@ -131,7 +130,10 @@ const pingGoogle = async (page: number, url: string) => {
 	});
 
 	// get the pocketbase services credentials
-	const services = await pb.collection('credentials').getList(1, 8, {}).then((data) => data.items);
+	const services = await pb
+		.collection('credentials')
+		.getList(1, 8, {})
+		.then((data) => data.items);
 
 	const service = services[0].creds;
 
