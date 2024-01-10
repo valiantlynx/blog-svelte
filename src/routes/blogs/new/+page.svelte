@@ -27,6 +27,7 @@
 		};
 	};
 </script>
+
 <div class="flex flex-col w-full h-full p-2">
     <div class="w-full">
         <form

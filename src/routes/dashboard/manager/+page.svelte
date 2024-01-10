@@ -1,4 +1,5 @@
 <script>
+	import MyBlogItem from '$lib/components/MyBlogItem.svelte';
 	import MyProjectItem from '$lib/components/MyProjectItem.svelte';
 	export let data;
 </script>
@@ -27,24 +28,29 @@
 			{/if}
 		</div>
 
-		<div class="w-full mt-4 flex flex-col items-center m-3">
-			<h2 class="sm:text-3xl text-md font-bold w-full">Create a new blog</h2>
-			<a href="/projects/new" class="btn btn-primary btn-outline m-4">
-				<i class="fa fa-plus" />
-				Create a new blogs
+		<div class="w-full mt-4 flex flex-col items-center mx-3">
+			<h2 class="text-3xl font-bold w-full">Create a new blog</h2>
+			<a href="/projects/new" class="btn btn-primary btn-outline my-4">
+				<i class="fa fa-plus"></i>
+				Create a new blog
 			</a>
-
-			<h2 class="sm:text-3xl text-md font-bold w-full">My Blogs (under construction)</h2>
+		
+			<h2 class="text-3xl font-bold w-full">My Blogs (under construction)</h2>
 			{#if data.projects.length === 0}
 				<p class="text-center text-3xl">☹️</p>
-				<p class="text-center sm:text-3xl text-md">Looks like you don't have any blogs.</p>
-				<a href="/projects/new" class="btn btn-primary max-w-md mt-4">Add One</a>
+				<p class="text-center text-xl">Looks like you don't have any blogs.</p>
+				<a href="/blogs/new" class="btn btn-primary max-w-md mt-4">Add One</a>
 			{:else}
-				{#each data.projects as project}
-					<MyProjectItem {project} />
-					<div class="divider mt-0 mb-2" />
-				{/each}
+				<div class="w-full">
+					{#each data.blogs as blog}
+						<div class="flex flex-col my-2">
+							<MyBlogItem {blog} />
+						</div>
+						<div class="divider" />
+					{/each}
+				</div>
 			{/if}
 		</div>
+		
 	</div>
 </main>
