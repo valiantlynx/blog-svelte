@@ -15,13 +15,15 @@ export const actions = {
 		const formData = await request.formData();
 
 		const thumbnail = formData.get('thumbnail');
-
-		if (thumbnail.size === 0) {
-			formData.delete('thumbnail');
+		// Handle the blog image
+		const image = formData.get('image');
+		if (image.size === 0) {
+			formData.delete('image');
 		}
-		formData.append('user', locals.user.id);
+
+		formData.append('author', locals.user.id);
 		try {
-			await locals.pb.collection('projects_valiantlynx').create(formData);
+			await locals.pb.collection('blogs').create(formData);
 		} catch (err) {
 			console.error('Error: ', err);
 			console.error('err.data: ', err.data);
