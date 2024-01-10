@@ -14,7 +14,6 @@ export const actions = {
 	create: async ({ request, locals }) => {
 		const formData = await request.formData();
 
-		const thumbnail = formData.get('thumbnail');
 		// Handle the blog image
 		const image = formData.get('image');
 		if (image.size === 0) {
@@ -27,15 +26,17 @@ export const actions = {
 		} catch (err) {
 			console.error('Error: ', err);
 			console.error('err.data: ', err.data);
-			if (err.data?.data?.name?.message) {
-				throw error(err.status, `project name cannot be empty: ${err.data?.data?.name?.message}`);
-			} else if (err.data?.data?.tagline?.message) {
+			if (err.data?.data?.title?.message) {
+				throw error(err.status, `Blog title cannot be empty: ${err.data?.data?.title?.message}`);
+			} else if (err.data?.data?.summary?.message) {
 				throw error(
 					err.status,
-					`project tagline cannot be empty: ${err.data?.data?.tagline?.message}`
+					`blog summary cannot be empty: ${err.data?.data?.summary?.message}`
 				);
-			} else if (err.data?.data?.url?.message) {
-				throw error(err.status, `project url cannot be empty: ${err.data?.data?.url?.message}`);
+			} else if (err.data?.data?.slug?.message) {
+				throw error(err.status, `blog slug cannot be empty: ${err.data?.data?.slug?.message}`);
+			} else if (err.data?.data?.alt?.message) {
+				throw error(err.status, `blog alt cannot be empty: ${err.data?.data?.alt?.message}`);
 			} else {
 				throw error(err.status, err.message);
 			}

@@ -44,7 +44,6 @@
             <Input id="summary" label="Summary" disabled={loading} value={$page.form?.data?.summary} errors={$page.form?.errors?.summary}/>
             <Input id="alt" label="Image Alt Text" disabled={loading} value={$page.form?.data?.alt} errors={$page.form?.errors?.alt}/>
             <Input id="slug" label="Slug" disabled={loading} value={$page.form?.data?.slug} errors={$page.form?.errors?.slug}/>
-            <Input id="tags" label="Tags" disabled={loading} value={$page.form?.data?.tags} errors={$page.form?.errors?.tags}/>
 
             <div class="form-control w-full max-w-lg">
                 <label for="image" class="label font-medium pb-1">
