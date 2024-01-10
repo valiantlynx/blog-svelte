@@ -21,6 +21,8 @@ export const actions = {
 		}
 
 		formData.append('author', locals.user.id);
+		formData.append('create', new Date().toISOString());
+		formData.append('tags', await createTags(formData.get('tags'), locals.pb));
 		try {
 			await locals.pb.collection('blogs').create(formData);
 		} catch (err) {
@@ -44,4 +46,21 @@ export const actions = {
 
 		throw redirect(303, '/dashboard/manager');
 	}
+};
+
+
+// function to create a tag record if it doesn't exist already for all tags and return the tag ids
+const createTags = async (tags, pb) => {
+	tags = tags.split(',');
+	console.log('tags: ', tags);
+	const tagIds = [];
+	for (const tag of tags) {
+		let tagId = await pb.collection('tags').findOne({ name: tag });
+		if (!tagId) {
+			tagId = await pb.collection('tags').create({ name: tag });
+		}
+		tagIds.push(tagId);
+	}
+	console.log('tagIds: ', tagIds);
+	return tagIds;
 };
