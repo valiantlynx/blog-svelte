@@ -28,8 +28,6 @@
 		};
 	};
 
-	console.log("blog", blog);
-
 	$: modalOpen = false;
 </script>
 
