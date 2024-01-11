@@ -28,6 +28,7 @@
 		};
 	};
 
+	console.log("blog", blog);
 	$: modalOpen = false;
 </script>
 
@@ -51,7 +52,7 @@
 		<Modal label={blog.id} checked={modalOpen}>
 			<span slot="trigger" class="btn btn-error ml-2">Delete</span>
 			<div slot="heading">
-				<h3 class="text-2xl">Delete {blog.name}</h3>
+				<h3 class="text-2xl">Delete {blog.title}</h3>
 				<p class="text-base font-normal mt-2">
 					Are you sure you want to delete this blog? Once deleted, the blog cannot be
 					restored.
@@ -59,7 +60,7 @@
 			</div>
 			<div slot="actions" class="flex w-full items-center justify-center space-x-2">
 				<label for={blog.id} class="btn btn-outline">Cancel</label>
-				<form action="?/deleteblog" method="POST" use:enhance={submitDeleteBlog}>
+				<form action="?/deleteBlog" method="POST" use:enhance={submitDeleteBlog}>
 					<input type="hidden" name="id" value={blog.id} />
 					<button type="submit" class="btn btn-error" disabled={loading} >Delete</button>
 				</form>

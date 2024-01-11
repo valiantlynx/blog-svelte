@@ -21,8 +21,12 @@ export const actions = {
 		}
 
 		formData.append('author', locals.user.id);
-		formData.append('create', new Date().toISOString());
-		formData.append('tags', await createTags(formData.get('tags'), locals.pb));
+
+		// // set tags to an array of tag ids
+		// const tags = formData.get('tags');
+		// const tagIds = await createTags(tags, locals.pb);
+		// //formData.set('tags', tagIds);
+	
 		try {
 			await locals.pb.collection('blogs').create(formData);
 		} catch (err) {
@@ -51,13 +55,24 @@ export const actions = {
 
 // function to create a tag record if it doesn't exist already for all tags and return the tag ids
 const createTags = async (tags, pb) => {
-	tags = tags.split(',');
-	console.log('tags: ', tags);
+	tags = tags.split(',').map((tag) => tag.trim().toLowerCase())
 	const tagIds = [];
 	for (const tag of tags) {
-		let tagId = await pb.collection('tags').findOne({ name: tag });
+		let tagId;
+		try {
+			const record = await pb.collection('valiantlynx_tags').getFirstListItem(`name="${tag}"`, {});
+			tagId = record?.id;
+		} catch (err) {
+			console.error('Error: ', err);
+		}
+
 		if (!tagId) {
-			tagId = await pb.collection('tags').create({ name: tag });
+			// example create data
+			const data = {
+				"name": tag
+			};
+			const record = await pb.collection('valiantlynx_tags').create(data);
+			tagId = record.id;
 		}
 		tagIds.push(tagId);
 	}

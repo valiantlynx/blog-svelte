@@ -45,20 +45,8 @@
             <Input id="summary" label="Summary" disabled={loading} value={$page.form?.data?.summary} errors={$page.form?.errors?.summary}/>
             <Input id="alt" label="Image Alt Text" disabled={loading} value={$page.form?.data?.alt} errors={$page.form?.errors?.alt}/>
             <Input id="slug" label="Slug" disabled={loading} value={$page.form?.data?.slug} errors={$page.form?.errors?.slug}/>
-            <Input id="tags" label="Tags" disabled={loading} value={$page.form?.data?.tags} errors={$page.form?.errors?.tags}/>
-
-            <div class="form-control w-full max-w-lg">
-                <label for="image" class="label font-medium pb-1">
-                    <span class="label-text">Blog Image</span>
-                </label>
-                <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    class="file-input file-input-bordered file-input-primary w-full max-w-lg"
-                    disabled={loading}
-                />
-            </div>
+			<!-- <Input id="tags" label="Tags" disabled={loading} value={$page.form?.data?.tags} errors={$page.form?.errors?.tags}/> -->
+			<Input id="image" label="Blog Image" type="file" disabled={loading} value={$page.form?.data?.image} errors={$page.form?.errors?.image}/>
             <div class="w-full max-w-lg pt-3">
                 <button type="submit" class="btn btn-primary w-full max-w-lg" disabled={loading}>Create Blog</button>
             </div>

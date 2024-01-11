@@ -30,7 +30,7 @@
 
 		<div class="w-full mt-4 flex flex-col items-center mx-3">
 			<h2 class="text-3xl font-bold w-full">Create a new blog</h2>
-			<a href="/projects/new" class="btn btn-primary btn-outline my-4">
+			<a href="/blogs/new" class="btn btn-primary btn-outline my-4">
 				<i class="fa fa-plus"></i>
 				Create a new blog
 			</a>

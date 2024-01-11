@@ -29,7 +29,8 @@ export const load = ({ locals }) => {
 		try {
 			const blogs = serializeNonPOJOs(
 				await locals.pb.collection('blogs').getFullList(undefined, {
-					filter: `author = "${userId}"`
+					filter: `author = "${userId}"`,
+					sort: '-created'
 				})
 			);
 			return blogs;
