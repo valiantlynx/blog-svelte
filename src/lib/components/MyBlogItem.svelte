@@ -29,6 +29,7 @@
 	};
 
 	console.log("blog", blog);
+
 	$: modalOpen = false;
 </script>
 
@@ -39,7 +40,7 @@
 				src={blog?.image
 					? getImageURL(blog.collectionId, blog.id, blog.image, '80x80')
 					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${blog.title}`}
-				alt="blog thumbnail"
+				alt="{blog.image} blog image"
 			/>
 		</div>
 	</div>
