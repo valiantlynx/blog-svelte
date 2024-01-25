@@ -170,7 +170,6 @@
 
 	<!-- Schema.org Meta Tags (for SEO) -->
 	<meta itemprop="headline" content={blog.title} />
-	<meta itemprop="description" content={blog.summary} />
 	<meta itemprop="image" content={blog?.image} />
 
 	{#if $page.data.sites}
