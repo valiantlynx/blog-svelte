@@ -11,18 +11,18 @@ export const genPosts = async (page: number, origin: string) => {
 
 	if (blogs) {
 		blogs.forEach((blog: any) => {
-			const imageUrl = `${origin}/api/${blog.collectionId}/${blog.id}/${blog.image}`;
+			const imageUrl = `${origin}/api/${blog?.collectionId}/${blog?.id}/${blog?.image}`;
 			allPosts.push({
-				url: `/blogs/${blog.slug}`,
+				url: `/blogs/${blog?.slug}`,
 				image: imageUrl,
-				title: blog.title,
-				description: blog.summary
+				title: blog?.title,
+				description: blog?.summary
 			});
 			allPosts.push({
-				url: `/${blog.slug}`,
+				url: `/${blog?.slug}`,
 				image: imageUrl,
-				title: blog.title,
-				description: blog.summary
+				title: blog?.title,
+				description: blog?.summary
 			});
 		});
 	} else {
