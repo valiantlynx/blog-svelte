@@ -38,7 +38,7 @@ export const load = ({ locals }) => {
 			console.error('Error: ', err);
 			throw error(err.status, err.message);
 		}
-	}
+	};
 
 	return {
 		projects: getUsersProjects(locals.user.id),
