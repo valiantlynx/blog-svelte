@@ -8,7 +8,7 @@ export const genPosts = async (page: number, origin: string) => {
 	const blogs = await pb.collection('blogs').getFullList({
 		sort: '-created'
 	});
-	
+
 	if (blogs) {
 		blogs.forEach((blog: any) => {
 			const imageUrl = `${origin}/api/${blog.collectionId}/${blog.id}/${blog.image}`;
@@ -47,7 +47,6 @@ export const genPosts = async (page: number, origin: string) => {
 	} else {
 		console.error('Failed to fetch projects');
 	}
-
 
 	return allPosts;
 };
