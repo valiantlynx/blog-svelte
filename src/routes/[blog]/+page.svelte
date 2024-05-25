@@ -33,7 +33,7 @@
     <div class="flex items-center gap-4 mb-4">
         <!-- Author Avatar -->
         <div class="shrink-0">
-            <img src={blog.expand?.author.avatar ? `https://animevariant.fly.dev/api/files/${blog.expand?.author?.collectionId}/${blog.expand?.author?.id}/${blog.expand?.author?.avatar}`: 'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=' + blog.expand?.author?.username} alt={"Author" + blog.expand?.author?.username} class="w-12 h-12 rounded-full shadow-lg"/>
+            <img src={blog.expand?.author.avatar ? `https://whalescans.fly.dev/api/files/${blog.expand?.author?.collectionId}/${blog.expand?.author?.id}/${blog.expand?.author?.avatar}`: 'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=' + blog.expand?.author?.username} alt={"Author" + blog.expand?.author?.username} class="w-12 h-12 rounded-full shadow-lg"/>
         </div>
 
         <!-- Author & Metadata -->
