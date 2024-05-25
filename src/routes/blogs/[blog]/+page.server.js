@@ -23,7 +23,6 @@ export const actions = {
 			const existingLike = await locals.pb
 				.collection('valiantlynx_likes')
 				.getFirstListItem(`userId='${userId}' && contentId='${contentId}'`, {});
-
 			if (!existingLike) {
 				// Like
 				const data = {

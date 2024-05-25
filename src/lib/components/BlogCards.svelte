@@ -37,7 +37,7 @@
 				<p class="text-sm mt-2">{blog.summary}</p>
 				<div class="flex items-center justify-between mt-4">
 					<div class="flex items-center">
-						<img src={blog.expand?.author.avatar ? `https://animevariant.fly.dev/api/files/${blog.expand?.author?.collectionId}/${blog.expand?.author?.id}/${blog.expand?.author?.avatar}`: 'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=' + blog.expand?.author?.username} alt={blog.expand?.author?.username} class="w-8 h-8 rounded-full object-cover">
+						<img src={blog.expand?.author.avatar ? `https://whalescans.fly.dev/api/files/${blog.expand?.author?.collectionId}/${blog.expand?.author?.id}/${blog.expand?.author?.avatar}`: 'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=' + blog.expand?.author?.username} alt={blog.expand?.author?.username} class="w-8 h-8 rounded-full object-cover">
 						<a href="/" class="ml-2 text-sm hover:underline hover:text-warning">{blog.expand?.author?.username ? blog.expand?.author?.username : 'anonymous'}</a>
 					</div>
 					<div class="flex items-center">
