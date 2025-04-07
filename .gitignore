@@ -14,3 +14,6 @@ vite.config.ts.timestamp-*
 .vscode
 .dist
 .devcontainer
+yarn.lock
+package-lock.json
+pnpm-lock.json
