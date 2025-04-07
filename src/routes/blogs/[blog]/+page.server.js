@@ -6,7 +6,7 @@ export const load = async (event) => {
 	const blog = await event.locals.pb.collection('blogs').getFirstListItem(`slug="${slug}"`, {
 		expand: ['tags, author']
 	});
-	blog.image = getImageURL(blog.collectionId, blog.id, blog.image, 'thumb=200x200');
+	blog.image = getImageURL(blog?.collectionId, blog?.id, blog?.image, 'thumb=200x200');
 	return {
 		blog: serializeNonPOJOs(blog)
 	};
@@ -23,7 +23,6 @@ export const actions = {
 			const existingLike = await locals.pb
 				.collection('valiantlynx_likes')
 				.getFirstListItem(`userId='${userId}' && contentId='${contentId}'`, {});
-
 			if (!existingLike) {
 				// Like
 				const data = {
