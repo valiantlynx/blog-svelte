@@ -25,8 +25,24 @@ export const load = ({ locals }) => {
 		}
 	};
 
+	const getUsersBlogs = async (userId) => {
+		try {
+			const blogs = serializeNonPOJOs(
+				await locals.pb.collection('blogs').getFullList(undefined, {
+					filter: `author = "${userId}"`,
+					sort: '-created'
+				})
+			);
+			return blogs;
+		} catch (err) {
+			console.error('Error: ', err);
+			throw error(err.status, err.message);
+		}
+	};
+
 	return {
-		projects: getUsersProjects(locals.user.id)
+		projects: getUsersProjects(locals.user.id),
+		blogs: getUsersBlogs(locals.user.id)
 	};
 };
 
@@ -36,6 +52,19 @@ export const actions = {
 
 		try {
 			await locals.pb.collection('projects_valiantlynx').delete(id);
+		} catch (err) {
+			console.error('Error: ', err);
+			throw error(err.status, err.message);
+		}
+		return {
+			success: true
+		};
+	},
+	deleteBlog: async ({ request, locals }) => {
+		const { id } = Object.fromEntries(await request.formData());
+
+		try {
+			await locals.pb.collection('blogs').delete(id);
 		} catch (err) {
 			console.error('Error: ', err);
 			throw error(err.status, err.message);

@@ -52,16 +52,16 @@
       {#each blogs.items as blog}
         <SplideSlide>
           <a 
-          href={`/${blog.slug}`}
+          href={`/${blog?.slug}`}
           class="hover:cursor-pointer hover:underline hover:text-secondary"
           >
           <div class="blog-hero">
             <img src={blog?.image} alt={blog?.alt} />
             <div class=" absolute p-10 bg-secondary text-secondary-content bg-opacity-75 bottom-5 left-5 right-5 rounded-md">
               <h2 class="text-2xl font-bold text-secondary-content">
-              {blog.title}</h2>
+              {blog?.title}</h2>
               <p class="text-base font-normal text-secondary-content my-4">
-                {blog.summary}</p>
+                {blog?.summary}</p>
               <p class="btn btn-primary">Read More</p>
             </div>
           </div>

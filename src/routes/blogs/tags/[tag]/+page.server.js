@@ -11,7 +11,7 @@ export const load = async (event) => {
 	});
 
 	blogs.forEach((blog) => {
-		blog.image = getImageURL(blog.collectionId, blog.id, blog.image, 'thumb=200x200');
+		blog.image = getImageURL(blog?.collectionId, blog?.id, blog?.image, 'thumb=200x200');
 	});
 
 	const tag = await event.locals.pb.collection('valiantlynx_tags').getOne(id, {});
