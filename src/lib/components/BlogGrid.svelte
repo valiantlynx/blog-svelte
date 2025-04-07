@@ -5,7 +5,7 @@
 </script>
 
 <div class="flex flex-wrap">
-	{#each blogs.items as blog (blog.id)}
+	{#each blogs.items as blog (blog?.id)}
 		<BlogCards blog={blog} />
 	{/each}
 </div>

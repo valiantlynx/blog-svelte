@@ -26,7 +26,7 @@ export const actions = {
 		// const tags = formData.get('tags');
 		// const tagIds = await createTags(tags, locals.pb);
 		// //formData.set('tags', tagIds);
-	
+
 		try {
 			await locals.pb.collection('blogs').create(formData);
 		} catch (err) {
@@ -52,10 +52,9 @@ export const actions = {
 	}
 };
 
-
 // function to create a tag record if it doesn't exist already for all tags and return the tag ids
 const createTags = async (tags, pb) => {
-	tags = tags.split(',').map((tag) => tag.trim().toLowerCase())
+	tags = tags.split(',').map((tag) => tag.trim().toLowerCase());
 	const tagIds = [];
 	for (const tag of tags) {
 		let tagId;
@@ -69,7 +68,7 @@ const createTags = async (tags, pb) => {
 		if (!tagId) {
 			// example create data
 			const data = {
-				"name": tag
+				name: tag
 			};
 			const record = await pb.collection('valiantlynx_tags').create(data);
 			tagId = record.id;
