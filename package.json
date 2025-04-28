@@ -29,7 +29,7 @@
 		"@valiantlynx/tailwind-config": "0.0.10",
 		"@valiantlynx/tsconfig": "0.0.25",
 		"autoprefixer": "^10.4.16",
-		"marked": "^12.0.1",
+		"marked": "^15.0.11",
 		"pocketbase": "^0.26.0",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.3.3",
