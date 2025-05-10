@@ -23,7 +23,16 @@
 		</div>
 	</div>
 	<div class="chat-header">
-		{message.expand?.sender.username}
+		{#if messageClass === 'chat-end'}
+			{#if message.expand?.sender.username}
+				{message.expand?.sender.username}
+			{:else}
+				You
+			{/if}
+		{:else}
+			{message.expand?.sender.username}
+		{/if}
+
 		<time class="text-xs opacity-50">{ts.toLocaleTimeString()}</time>
 	</div>
 	<div class="chat-bubble">{@html message.message}</div>
