@@ -37,7 +37,7 @@
 			<div class="flex items-center">
 				<img
 					src={blog?.expand?.author.avatar
-						? `https://whalescans.fly.dev/api/files/${blog?.expand?.author?.collectionId}/${blog?.expand?.author?.id}/${blog?.expand?.author?.avatar}`
+						? `https://animevariant.fly.dev/api/files/${blog?.expand?.author?.collectionId}/${blog?.expand?.author?.id}/${blog?.expand?.author?.avatar}`
 						: 'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=' +
 							blog?.expand?.author?.username}
 					alt={blog?.expand?.author?.username}

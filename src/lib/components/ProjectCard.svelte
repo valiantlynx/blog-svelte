@@ -26,7 +26,7 @@
 			<div class="flex items-center">
 				<img
 					src={project.expand?.user
-						? `https://whalescans.fly.dev/api/files/${project.expand?.user?.collectionId}/${project.expand?.user?.id}/${project.expand?.user?.avatar}?thumb=100x100`
+						? `https://animevariant.fly.dev/api/files/${project.expand?.user?.collectionId}/${project.expand?.user?.id}/${project.expand?.user?.avatar}?thumb=100x100`
 						: '/logo.png'}
 					alt={project.expand?.user?.username}
 					class="w-8 h-8 rounded-full object-cover"

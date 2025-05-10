@@ -35,7 +35,7 @@
 			<div class="shrink-0">
 				<img
 					src={blog?.expand?.author.avatar
-						? `https://whalescans.fly.dev/api/files/${blog?.expand?.author?.collectionId}/${blog?.expand?.author?.id}/${blog?.expand?.author?.avatar}`
+						? `https://animevariant.fly.dev/api/files/${blog?.expand?.author?.collectionId}/${blog?.expand?.author?.id}/${blog?.expand?.author?.avatar}`
 						: 'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=' +
 							blog?.expand?.author?.username}
 					alt={'Author' + blog?.expand?.author?.username}
