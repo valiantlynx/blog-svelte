@@ -53,7 +53,7 @@
 						class="hover:cursor-pointer hover:underline hover:text-secondary"
 					>
 						<div class="blog-hero">
-							<img src={blog?.image} alt={blog?.alt} />
+							<img class="brightness-50" src={blog?.image} alt={blog?.alt} />
 							<div
 								class=" absolute p-10 bg-secondary text-secondary-content bg-opacity-75 bottom-5 left-5 right-5 rounded-md"
 							>
