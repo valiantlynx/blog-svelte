@@ -185,13 +185,12 @@
 	}
 </script>
 
-
 <svelte:head>
 	<title>{$page.data.siteName}</title>
 	<!-- Canonical Link -->
 	<link rel="canonical" href="https://{$page.data.siteName}/" />
 	<!-- Author Meta Tag -->
-	<meta name="author" content="{$page.data.siteName}" />
+	<meta name="author" content={$page.data.siteName} />
 	<!--OWN STUFF-->
 	<link rel="dns-prefetch" href="https://{$page.data.siteName}" />
 
@@ -246,10 +245,8 @@
 	{/if}
 </svelte:head>
 
-
 <Toaster />
 <Nav />
 <slot />
 <Feedback />
 <Footer />
-

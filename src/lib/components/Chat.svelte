@@ -100,14 +100,14 @@
 <div class=" p-4 space-y-4 items-center">
 	<div class=" p-4 space-y-4 border-dashed border-2 border-primary sm:mx-20">
 		<h2 class="text-2xl font-bold mb-4">Join the Discussion</h2>
-	
+
 		<main class="overflow-y-auto" on:scroll={watchScroll}>
 			{#each messages as message (message.id)}
 				<ChatMessage {message} sender={$page.data.user?.username} />
 			{/each}
 			<div class="dummy" bind:this={scrollBottom} />
 		</main>
-	
+
 		{#if !canAutoScroll}
 			<div class="text-center justify-center flex">
 				<button on:click={autoScroll} class="btn btn-secondary">
@@ -118,7 +118,7 @@
 				</button>
 			</div>
 		{/if}
-	
+
 		<div class="border-t border-primary pt-4">
 			<form on:submit|preventDefault={sendMessage} class="space-x-2 flex items-center">
 				<input
@@ -139,4 +139,3 @@
 		</div>
 	</div>
 </div>
-

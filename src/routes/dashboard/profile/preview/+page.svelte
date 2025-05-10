@@ -37,7 +37,8 @@
 					<div class="px-6 py-4">
 						<div class="flex items-center justify-between">
 							<img alt="Profile Avatar" src={avatar} class="rounded-full h-20 w-20 object-cover" />
-							<a class="btn btn-outline btn-accent font-bold" href="/dashboard/profile/edit">Edit</a>
+							<a class="btn btn-outline btn-accent font-bold" href="/dashboard/profile/edit">Edit</a
+							>
 						</div>
 						<div class="text-center mt-6">
 							<h3 class="text-2xl font-semibold text-blueGray-700">

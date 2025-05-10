@@ -130,7 +130,6 @@
 		<select
 			class="select select-bordered select-primary join-item w-1/3"
 			bind:value={selectedOption}
-			
 		>
 			<option value="Blogs">Blogs</option>
 			<option value="Projects">Projects</option>
@@ -140,7 +139,7 @@
 	</div>
 
 	{#if type === 'small'}
-		<SmallSearchResults {searchResults} {handleClick}  />
+		<SmallSearchResults {searchResults} {handleClick} />
 	{:else if type === 'big'}
 		<BigSearchResults {searchResults} {handleClick} />
 	{/if}

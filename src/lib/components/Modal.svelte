@@ -8,7 +8,7 @@
 </label>
 
 <input type="checkbox" id={label} class="modal-toggle" {checked} />
-<label for={label} class="modal modal-bottom sm:modal-middle ">
+<label for={label} class="modal modal-bottom sm:modal-middle">
 	<label for="" class="modal-box">
 		<div class="font-bold text-xl text-center">
 			<slot name="heading" />

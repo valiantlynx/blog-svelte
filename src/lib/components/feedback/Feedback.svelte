@@ -49,10 +49,12 @@
 </script>
 
 <!-- The button to open modal -->
-<label for="feedback" class="fixed right-1 top-1/2 -translate-y-1/2 w-10 h-44 bg-primary hover:bg-secondary text-primary-content z-10 flex flex-col items-center justify-center rounded-md cursor-pointe justify-centerr">
+<label
+	for="feedback"
+	class="fixed right-1 top-1/2 -translate-y-1/2 w-10 h-44 bg-primary hover:bg-secondary text-primary-content z-10 flex flex-col items-center justify-center rounded-md cursor-pointe justify-centerr"
+>
 	<i class="fa fa-comment-alt fa justify-end mb-10" />
 	<p class="-rotate-90 whitespace-nowrap mb-10 text-lg font-bold justify-start">Feedback</p>
-
 </label>
 
 <!-- Put this part before </body> tag -->

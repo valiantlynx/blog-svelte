@@ -2,7 +2,7 @@
 	import MyBlogItem from '$lib/components/MyBlogItem.svelte';
 	import MyProjectItem from '$lib/components/MyProjectItem.svelte';
 	export let data;
-	console.log("data", data);
+	console.log('data', data);
 </script>
 
 <main class="flex flex-col w-full overflow-hidden m-4">
@@ -35,7 +35,7 @@
 				<i class="fa fa-plus"></i>
 				Create a new blog
 			</a>
-		
+
 			<h2 class="text-3xl font-bold w-full">My Blogs (under construction)</h2>
 			{#if data.blogs.length === 0}
 				<p class="text-center text-3xl">☹️</p>
@@ -52,6 +52,5 @@
 				</div>
 			{/if}
 		</div>
-		
 	</div>
 </main>

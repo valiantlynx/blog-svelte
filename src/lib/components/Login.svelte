@@ -1,12 +1,11 @@
 <script>
 	import { enhance } from '$app/forms';
-	import {Input} from '@valiantlynx/svelte-ui';
+	import { Input } from '@valiantlynx/svelte-ui';
 	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
 	import { page } from '$app/stores';
 	import toast from 'svelte-french-toast';
 	let loading = false;
 
-	
 	const submitLogin = () => {
 		loading = true;
 		return async ({ result, update }) => {
@@ -69,7 +68,6 @@
 			<div class="w-full max-w-lg pt-2">
 				<button type="submit" class="btn btn-primary w-full" disabled={loading}>Login</button>
 			</div>
-
 		</form>
 		<center class="text-center my-4"> or </center>
 		<Oauth2 />

@@ -6,7 +6,7 @@
 	export let url = $page.url.origin;
 	export let text = 'Check out this manga website. it tracks your reading progress!';
 	export let hashtags = 'manga';
-	export let image = `${$page.url.origin}/api/logo?width=280&height=280&color=black`
+	export let image = `${$page.url.origin}/api/logo?width=280&height=280&color=black`;
 
 	let twitterUrl;
 	let facebookUrl;
@@ -21,35 +21,31 @@
 
 <div class="flex flex-wrap justify-center py-2 w-full gap-2">
 	<a href={facebookUrl} target="_blank">
-	<ButtonWithIcon>
-		<i slot="icon" class="fa fa-facebook text-blue-600" />
-		
-			Facebook
-		
+		<ButtonWithIcon>
+			<i slot="icon" class="fa fa-facebook text-blue-600" />
 
-	</ButtonWithIcon>
-</a>
+			Facebook
+		</ButtonWithIcon>
+	</a>
 
 	<a href={twitterUrl} target="_blank">
-	<ButtonWithIcon>
-		<i slot="icon" class="fa fa-twitter text-blue-600" />
+		<ButtonWithIcon>
+			<i slot="icon" class="fa fa-twitter text-blue-600" />
 			Twitter
-	</ButtonWithIcon>
-</a>
-<a href={linkedinUrl} target="_blank">
-	<ButtonWithIcon>
-		<i slot="icon" class="fa fa-linkedin text-blue-600" />
-		
+		</ButtonWithIcon>
+	</a>
+	<a href={linkedinUrl} target="_blank">
+		<ButtonWithIcon>
+			<i slot="icon" class="fa fa-linkedin text-blue-600" />
+
 			LinkedIn
-		
-	</ButtonWithIcon>
-</a>
-<a href={emailUrl} target="_blank">
-	<ButtonWithIcon>
-		<i slot="icon" class="fa fa-envelope text-warning" />
-		
+		</ButtonWithIcon>
+	</a>
+	<a href={emailUrl} target="_blank">
+		<ButtonWithIcon>
+			<i slot="icon" class="fa fa-envelope text-warning" />
+
 			Email
-		
-	</ButtonWithIcon>
-</a>
+		</ButtonWithIcon>
+	</a>
 </div>

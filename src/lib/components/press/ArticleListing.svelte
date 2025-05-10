@@ -90,7 +90,11 @@
 			<img
 				class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
 				src={$page.data.user?.avatar
-					? getImageURL($page.data.user?.collectionId, $page.data.user?.id || '', $page.data.user?.avatar)
+					? getImageURL(
+							$page.data.user?.collectionId,
+							$page.data.user?.id || '',
+							$page.data.user?.avatar
+						)
 					: 'https://img.freepik.com/free-vector/page-found-concept-illustration_114360-1869.jpg?w=2000'}
 				alt="App screenshot"
 			/>

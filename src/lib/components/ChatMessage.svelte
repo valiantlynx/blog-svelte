@@ -6,7 +6,6 @@
 	export let message;
 	export let sender;
 
-
 	//console.log('message: ', message, 'sender: ', message.expand?.sender.username);
 
 	const messageClass = message.expand?.sender.username === sender ? 'chat-end' : 'chat-start';
@@ -15,7 +14,6 @@
 		: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${message.expand?.sender?.username}`;
 
 	const ts = new Date(message.created);
-
 </script>
 
 <div class={`chat ${messageClass}`}>

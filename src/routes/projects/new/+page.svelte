@@ -1,11 +1,11 @@
 <script>
 	import { enhance } from '$app/forms';
-	import {Input} from '@valiantlynx/svelte-ui';
+	import { Input } from '@valiantlynx/svelte-ui';
 	import { page } from '$app/stores';
 	import toast from 'svelte-french-toast';
 	let loading = false;
 
-	const submitNewProject= () => {
+	const submitNewProject = () => {
 		loading = true;
 		return async ({ result, update }) => {
 			switch (result.type) {
@@ -39,14 +39,38 @@
 		>
 			<h3 class="text-3xl font-bold">Tell us more about this project</h3>
 			<p class="mt-2 text-lg">We'll need the name, tagline, link, and description</p>
-			<Input id="name" label="Project name" disabled={loading} value={$page.form?.data?.name} errors={$page.form?.errors?.name}/>
-			<Input id="tagline" label="Project tagline" disabled={loading} value={$page.form?.data?.tagline} errors={$page.form?.errors?.tagline}/>
-			<Input id="url" label="Project URL" disabled={loading} value={$page.form?.data?.url} errors={$page.form?.errors?.url}/>
+			<Input
+				id="name"
+				label="Project name"
+				disabled={loading}
+				value={$page.form?.data?.name}
+				errors={$page.form?.errors?.name}
+			/>
+			<Input
+				id="tagline"
+				label="Project tagline"
+				disabled={loading}
+				value={$page.form?.data?.tagline}
+				errors={$page.form?.errors?.tagline}
+			/>
+			<Input
+				id="url"
+				label="Project URL"
+				disabled={loading}
+				value={$page.form?.data?.url}
+				errors={$page.form?.errors?.url}
+			/>
 			<div class="form-control w-full max-w-lg">
 				<label for="description" class="label font-medium pb-1">
 					<span class="label-text">Project description</span>
 				</label>
-				<textarea name="description" class="textarea textarea-bordered textarea-primary h-24" disabled={loading}  value={$page.form?.data?.description} errors={$page.form?.errors?.description}/>
+				<textarea
+					name="description"
+					class="textarea textarea-bordered textarea-primary h-24"
+					disabled={loading}
+					value={$page.form?.data?.description}
+					errors={$page.form?.errors?.description}
+				/>
 			</div>
 			<div class="form-control w-full max-w-lg">
 				<label for="thumbnail" class="label font-medium pb-1">
@@ -61,7 +85,9 @@
 				/>
 			</div>
 			<div class="w-full max-w-lg pt-3">
-				<button type="submit" class="btn btn-primary w-full max-w-lg" disabled={loading}>Create Project</button>
+				<button type="submit" class="btn btn-primary w-full max-w-lg" disabled={loading}
+					>Create Project</button
+				>
 			</div>
 		</form>
 	</div>

@@ -1,5 +1,5 @@
 <script>
-		import {Input} from '@valiantlynx/svelte-ui';
+	import { Input } from '@valiantlynx/svelte-ui';
 	import { enhance, applyAction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
@@ -82,21 +82,11 @@
 		<div class="md:w-1/2">
 			<h3 class="text-2xl font-medium">Update Profile</h3>
 
-			<Input
-				id="username"
-				label="Username"
-				value={$page.data?.user?.username}
-				disabled={loading}
-			/>
+			<Input id="username" label="Username" value={$page.data?.user?.username} disabled={loading} />
 
 			<Input id="title" label="Title" value={$page.data?.user?.title} disabled={loading} />
 
-			<Input
-				id="language"
-				label="Language"
-				value={$page.data?.user?.language}
-				disabled={loading}
-			/>
+			<Input id="language" label="Language" value={$page.data?.user?.language} disabled={loading} />
 
 			<Input
 				type="address"
@@ -105,12 +95,10 @@
 				value={$page.data?.user?.address}
 				disabled={loading}
 			/>
-
-			
 		</div>
 
 		<div class="w-full">
-			<label for='about' class="label font-medium pb-1">
+			<label for="about" class="label font-medium pb-1">
 				<span class="label-text">About yourself</span>
 			</label>
 			<textarea
@@ -122,7 +110,7 @@
 				disabled={loading}
 				type="text"
 			/>
-			<div class="border-t border-primary mt-4"> 
+			<div class="border-t border-primary mt-4">
 				<label for="roles" class="text-xl font-medium">Roles and Permissions</label>
 				<div class="flex flex-wrap -m-1">
 					{#each $page.data?.user?.role as role}

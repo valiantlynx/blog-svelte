@@ -2,7 +2,7 @@
 	import Search from './Search.svelte';
 	import ProfileModal from './ProfileModal.svelte';
 	import { page } from '$app/stores';
-	import {ThemeChanger} from '@valiantlynx/svelte-ui';
+	import { ThemeChanger } from '@valiantlynx/svelte-ui';
 </script>
 
 <!-- Small Devices Layout -->
@@ -25,7 +25,7 @@
 </div>
 
 <!-- Large Devices Layout -->
-<div class="navbar bg-base-300 hidden sm:flex"   id="title-bar">
+<div class="navbar bg-base-300 hidden sm:flex" id="title-bar">
 	<div class="flex-1">
 		<a class="btn btn-ghost normal-case text-xl" href="/">{$page.data.siteName}</a>
 		<ThemeChanger />
@@ -41,7 +41,6 @@
 
 <style>
 	#title-bar {
-	  -webkit-app-region: drag;
+		-webkit-app-region: drag;
 	}
-  </style>
-  
+</style>

@@ -1,12 +1,12 @@
 <script>
 	import { enhance } from '$app/forms';
-	import {Input} from '@valiantlynx/svelte-ui';
+	import { Input } from '@valiantlynx/svelte-ui';
 	import { getImageURL } from '$lib/utils/api';
 	import { page } from '$app/stores';
 	import toast from 'svelte-french-toast';
 	let loading = false;
 
-	const submitEditProject= () => {
+	const submitEditProject = () => {
 		loading = true;
 		return async ({ result, update }) => {
 			switch (result.type) {
@@ -20,7 +20,7 @@
 					break;
 				case 'error':
 					toast.error(result.error.message);
-					
+
 					break;
 				default:
 					await update();
@@ -28,10 +28,7 @@
 			loading = false;
 		};
 	};
-
 </script>
-
-
 
 <div class="flex flex-col w-full h-full p-2">
 	<div class="w-full">
@@ -43,9 +40,27 @@
 			use:enhance={submitEditProject}
 		>
 			<h3 class="text-3xl font-bold">Edit {$page.data.project.name}</h3>
-			<Input id="name" label="Project name" value={$page.data.project.name ?? ''} disabled={loading}  errors={$page.form?.errors?.name}/>
-			<Input id="tagline" label="Project tagline" value={$page.data.project.tagline ?? ''} disabled={loading} errors={$page.form?.errors?.name}/>
-			<Input id="url" label="Project URL" value={$page.data.project.url ?? ''} disabled={loading} errors={$page.form?.errors?.name}/>
+			<Input
+				id="name"
+				label="Project name"
+				value={$page.data.project.name ?? ''}
+				disabled={loading}
+				errors={$page.form?.errors?.name}
+			/>
+			<Input
+				id="tagline"
+				label="Project tagline"
+				value={$page.data.project.tagline ?? ''}
+				disabled={loading}
+				errors={$page.form?.errors?.name}
+			/>
+			<Input
+				id="url"
+				label="Project URL"
+				value={$page.data.project.url ?? ''}
+				disabled={loading}
+				errors={$page.form?.errors?.name}
+			/>
 			<div class="form-control w-full max-w-lg">
 				<label for="decription" class="label font-medium pb-1">
 					<span class="label-text">Project description</span>
@@ -91,7 +106,9 @@
 				/>
 			</div>
 			<div class="w-full max-w-lg pt-3">
-				<button type="submit" class="btn btn-primary w-full max-w-lg" disabled={loading}>Save Changes</button>
+				<button type="submit" class="btn btn-primary w-full max-w-lg" disabled={loading}
+					>Save Changes</button
+				>
 			</div>
 		</form>
 	</div>

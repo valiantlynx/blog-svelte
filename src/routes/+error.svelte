@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	
+
 	function goBack() {
 		window.history.back();
 	}
@@ -11,7 +11,7 @@
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 1024 768"
-			class="w-auto h-56 mx-auto  sm:h-64"
+			class="w-auto h-56 mx-auto sm:h-64"
 		>
 			<g fill="none" fill-rule="evenodd">
 				<g fill="#FF5678">
@@ -39,7 +39,7 @@
 			</g>
 		</svg>
 
-		<h1 class="mt-6 text-2xl font-bold tracking-tight  sm:text-4xl">
+		<h1 class="mt-6 text-2xl font-bold tracking-tight sm:text-4xl">
 			Oh-oh! {$page.status}
 		</h1>
 

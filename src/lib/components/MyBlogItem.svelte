@@ -1,6 +1,6 @@
 <script>
 	import { enhance } from '$app/forms';
-	import {Modal} from '@valiantlynx/svelte-ui';
+	import { Modal } from '@valiantlynx/svelte-ui';
 	import { getImageURL } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
 	export let blog;
@@ -9,7 +9,6 @@
 
 	let loading = false;
 
-	
 	const submitDeleteBlog = () => {
 		loading = true;
 		return async ({ result, update }) => {
@@ -53,15 +52,14 @@
 			<div slot="heading">
 				<h3 class="text-2xl">Delete {blog?.title}</h3>
 				<p class="text-base font-normal mt-2">
-					Are you sure you want to delete this blog? Once deleted, the blog cannot be
-					restored.
+					Are you sure you want to delete this blog? Once deleted, the blog cannot be restored.
 				</p>
 			</div>
 			<div slot="actions" class="flex w-full items-center justify-center space-x-2">
 				<label for={blog?.id} class="btn btn-outline">Cancel</label>
 				<form action="?/deleteBlog" method="POST" use:enhance={submitDeleteBlog}>
 					<input type="hidden" name="id" value={blog?.id} />
-					<button type="submit" class="btn btn-error" disabled={loading} >Delete</button>
+					<button type="submit" class="btn btn-error" disabled={loading}>Delete</button>
 				</form>
 			</div>
 		</Modal>

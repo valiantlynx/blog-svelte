@@ -12,8 +12,6 @@
 	<a href="/login" class="btn btn-primary">login</a>
 	<a href="/signup" class="btn btn-secondary">signup</a>
 {:else}
-	
-
 	<div class="dropdown dropdown-end">
 		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<label tabindex="0" for="profile button" class="btn btn-primary btn-circle avatar">

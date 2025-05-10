@@ -1,6 +1,6 @@
 <script>
 	import { enhance } from '$app/forms';
-	import {Modal} from '@valiantlynx/svelte-ui';
+	import { Modal } from '@valiantlynx/svelte-ui';
 	import { getImageURL } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
 	export let project;
@@ -9,7 +9,6 @@
 
 	let loading = false;
 
-	
 	const submitDeleteProject = () => {
 		loading = true;
 		return async ({ result, update }) => {
@@ -61,7 +60,7 @@
 				<label for={project.id} class="btn btn-outline">Cancel</label>
 				<form action="?/deleteProject" method="POST" use:enhance={submitDeleteProject}>
 					<input type="hidden" name="id" value={project.id} />
-					<button type="submit" class="btn btn-error" disabled={loading} >Delete</button>
+					<button type="submit" class="btn btn-error" disabled={loading}>Delete</button>
 				</form>
 			</div>
 		</Modal>
