@@ -11,7 +11,9 @@
 	const messageClass = message.expand?.sender.username === sender ? 'chat-end' : 'chat-start';
 	const avatar = message.expand?.sender?.avatar
 		? `${site.site.pocketbase}/api/files/${message.expand?.sender?.collectionId}/${message.expand?.sender?.id}/${message.expand?.sender?.avatar}`
-		: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${message.expand?.sender?.username}`;
+		: message.expand?.sender.username
+			? `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${message.expand?.sender?.username}`
+			: 'https://animevariant.fly.dev/api/files/_pb_users_auth_/cl1wlk9epnlmdsg/pngtree_anonymous_in_a_hood_red_concept_vector_png_image_6109862_8C3s64ADd8.jpg?token=';
 
 	const ts = new Date(message.created);
 </script>
@@ -23,16 +25,11 @@
 		</div>
 	</div>
 	<div class="chat-header">
-		{#if messageClass === 'chat-end'}
-			{#if message.expand?.sender.username}
-				{message.expand?.sender.username}
-			{:else}
-				You
-			{/if}
-		{:else}
+		{#if sender !== 'the user isnt logged in' || message.expand?.sender.username}
 			{message.expand?.sender.username}
+		{:else}
+			Anonymous
 		{/if}
-
 		<time class="text-xs opacity-50">{ts.toLocaleTimeString()}</time>
 	</div>
 	<div class="chat-bubble">{@html message.message}</div>
