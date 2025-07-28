@@ -169,6 +169,13 @@
   dependencies:
     "@iconify/types" "^2.0.0"
 
+"@iconify/svelte@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@iconify/svelte/-/svelte-5.0.1.tgz#4c3e0daa8159e64e6229e5195297f708d000da82"
+  integrity sha512-nR1ApafyeRDcsx6ytd+0mzaY0ASYfG5YBW9dN8rUWxwi792/HX401qAZEkXSjT0iHm2Dgua+PwXDs/3ttJhkqQ==
+  dependencies:
+    "@iconify/types" "^2.0.0"
+
 "@iconify/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@iconify/types/-/types-2.0.0.tgz"
