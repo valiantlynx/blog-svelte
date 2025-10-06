@@ -1675,7 +1675,7 @@ svelte@^4.0.5:
     magic-string "^0.30.4"
     periscopic "^3.1.0"
 
-tailwindcss@^3.1, tailwindcss@^3.2.4, tailwindcss@^3.3.5:
+tailwindcss@^3.1, tailwindcss@^3.2.4:
   version "3.4.0"
   resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.0.tgz"
   integrity sha512-VigzymniH77knD1dryXbyxR+ePHihHociZbXnLZHUyzf2MMs2ZVqlUrZ3FvpXP8pno9JzmILt1sZPD19M3IxtA==
@@ -1702,6 +1702,11 @@ tailwindcss@^3.1, tailwindcss@^3.2.4, tailwindcss@^3.3.5:
     postcss-selector-parser "^6.0.11"
     resolve "^1.22.2"
     sucrase "^3.32.0"
+
+tailwindcss@^4.1.14:
+  version "4.1.14"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.1.14.tgz#a5907cc2202a2a1f5f15bac6f2031e53117e43a8"
+  integrity sha512-b7pCxjGO98LnxVkKjaZSDeNuljC4ueKUddjENJOADtubtdo8llTaJy7HwBMeLNSSo2N5QIAgklslK1+Ir8r6CA==
 
 thenify-all@^1.0.0:
   version "1.6.0"
