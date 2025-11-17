@@ -248,7 +248,7 @@
 <Toaster />
 <Nav />
 <slot />
-<div class="container mx-auto px-4 my-8">
+<div class="container mx-auto px-4 my-8 max-w-4xl">
 	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
 	<div id="commento"></div>
 </div>
