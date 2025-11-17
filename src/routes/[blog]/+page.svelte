@@ -113,6 +113,8 @@
 		hashtags={blog?.expand?.tags.map((tag) => tag.name)}
 	/>
 	<!-- Chat Component -->
+	 <script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
+	<div id="commento"></div>
 	<Chat class="mt-8" />
 </div>
 
