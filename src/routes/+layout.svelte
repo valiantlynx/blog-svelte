@@ -243,6 +243,7 @@
 			crossorigin="anonymous"
 		></script>
 	{/if}
+	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
 </svelte:head>
 
 <Toaster />
