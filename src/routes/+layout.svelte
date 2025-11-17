@@ -244,13 +244,13 @@
 		></script>
 	{/if}
 </svelte:head>
-<svelte:body>
-	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
-</svelte:body>
 
 <Toaster />
 <Nav />
 <slot />
-<div id="commento"></div>
+<div class="h-10">
+	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
+	<div id="commento"></div>
+</div>
 <Feedback />
 <Footer />
