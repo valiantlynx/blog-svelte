@@ -248,9 +248,9 @@
 <Toaster />
 <Nav />
 <slot />
-<span>
+<div class="container mx-auto px-4 my-8">
 	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
-	<div id="commento" class="container"></div>
-</span>
+	<div id="commento"></div>
+</div>
 <Feedback />
 <Footer />
