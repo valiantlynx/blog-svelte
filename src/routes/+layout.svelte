@@ -242,8 +242,9 @@
 				.google_ads_client}"
 			crossorigin="anonymous"
 		></script>
-		<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
 	{/if}
+	
+	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
 </svelte:head>
 
 <Toaster />
