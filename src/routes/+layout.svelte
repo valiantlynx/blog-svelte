@@ -248,6 +248,5 @@
 <Toaster />
 <Nav />
 <slot />
-<div id="commento"></div>
 <Feedback />
 <Footer />
