@@ -113,7 +113,6 @@
 		hashtags={blog?.expand?.tags.map((tag) => tag.name)}
 	/>
 	<!-- Chat Component -->
-	<Chat class="mt-8" />
 </div>
 
 <svelte:head>

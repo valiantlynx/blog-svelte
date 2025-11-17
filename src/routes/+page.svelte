@@ -61,7 +61,6 @@
 >
 	<img src="/images/subscriptions.webp" alt="notify me" class="w-10 h-10" />
 </button>
-<Chat />
 
 <svelte:head>
 	<title>{$page.data.siteName}</title>

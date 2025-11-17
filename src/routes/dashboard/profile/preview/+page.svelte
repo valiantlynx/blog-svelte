@@ -58,5 +58,4 @@
 			</div>
 		</section>
 	</main>
-	<Chat />
 </div>
