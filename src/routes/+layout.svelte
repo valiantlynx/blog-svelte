@@ -242,6 +242,19 @@
 				.google_ads_client}"
 			crossorigin="anonymous"
 		></script>
+
+		<script
+			defer
+			data-domain="valiantlynx.com"
+			src="http://plausible.valiantlynx.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+		></script>
+		<script>
+			window.plausible =
+				window.plausible ||
+				function () {
+					(window.plausible.q = window.plausible.q || []).push(arguments);
+				};
+		</script>
 	{/if}
 </svelte:head>
 
