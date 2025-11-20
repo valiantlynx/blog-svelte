@@ -246,7 +246,7 @@
 		<script
 			defer
 			data-domain="valiantlynx.com"
-			src="http://plausible.valiantlynx.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+			src="https://plausible.valiantlynx.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
 		></script>
 		<script>
 			window.plausible =
