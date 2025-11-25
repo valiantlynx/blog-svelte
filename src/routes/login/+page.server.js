@@ -45,8 +45,8 @@ export const actions = {
 		const state = googleAuthProvider.state;
 		const verifier = googleAuthProvider.codeVerifier;
 
-		/* @migration task: add path argument */ event.cookies.set('state', state);
-		/* @migration task: add path argument */ event.cookies.set('verifier', verifier);
+		event.cookies.set('state', state, { path: '/' });
+		event.cookies.set('verifier', verifier, { path: '/' });
 		redirect(302, authProviderRedirect);
 	}
 };

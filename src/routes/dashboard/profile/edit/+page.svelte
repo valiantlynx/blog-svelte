@@ -7,7 +7,6 @@
 
 	let loading = $state(false);
 
-	
 	const showPreview = (event) => {
 		const target = event.target;
 		const files = target.files; //await compressFileImage(data.avatar, 200, 200, 0.7);

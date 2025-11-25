@@ -42,7 +42,7 @@ export const GET = async ({ locals, url, cookies }) => {
 		locals.pb.authStore = locals.pb.authStore;
 		// export the cookie to the client
 		// TODO: the cookie is not being set on the client
-		await /* @migration task: add path argument */ cookies.set('pb_auth', locals.pb.authStore);
+		cookies.set('pb_auth', JSON.stringify(locals.pb.authStore), { path: '/' });
 		await locals.pb.authStore.exportToCookie(cookies);
 
 		// set store for now until we can get the cookie to work

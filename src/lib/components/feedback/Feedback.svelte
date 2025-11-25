@@ -1,7 +1,5 @@
 <!-- Feedback.svelte -->
 <script>
-	import { preventDefault } from 'svelte/legacy';
-
 	import { page } from '$app/state';
 	// import { t } from 'svelte-i18n';
 
@@ -19,7 +17,8 @@
 	/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 	let isFeedbackVisible = false;
 
-	const submitFeedback = async () => {
+	const submitFeedback = async (event) => {
+		event.preventDefault();
 		const feedbackData = {
 			emotion: selectedEmotion,
 			note,
@@ -48,6 +47,11 @@
 			resultMessage = '';
 		}, 5000);
 	};
+
+	const selectEmotion = (index) => (event) => {
+		event.preventDefault();
+		selectedEmotion = index + 1;
+	};
 </script>
 
 <!-- The button to open modal -->
@@ -69,12 +73,12 @@
 		{#if resultMessage}
 			<p class="text-center">{resultMessage}</p>
 		{:else}
-			<form onsubmit={preventDefault(submitFeedback)}>
+			<form onsubmit={submitFeedback}>
 				<div class="flex justify-center py-4 space-x-6">
 					<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 					{#each new Array(4) as _, index}
 						<button
-							onclick={preventDefault(() => (selectedEmotion = index + 1))}
+							onclick={selectEmotion(index)}
 							class="filter transform transition duration-150 grayscale hover:scale-150 {selectedEmotion ===
 							index + 1
 								? 'grayscale-0'
