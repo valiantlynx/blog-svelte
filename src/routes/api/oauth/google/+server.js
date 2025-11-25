@@ -16,7 +16,7 @@ export const GET = async ({ locals, url, cookies }) => {
 	const authMethods = await locals.pb?.collection('users_valiantlynx').listAuthMethods(); //generates a state and a NEW verifier
 	if (!authMethods?.authProviders) {
 		console.error('no auth Providers');
-		redirect(302, '/signup');
+		throw redirect(302, '/signup');
 	}
 
 	const googleAuthProvider = authMethods.authProviders.find(
@@ -24,12 +24,12 @@ export const GET = async ({ locals, url, cookies }) => {
 	);
 	if (!googleAuthProvider) {
 		console.error('Provider not found');
-		redirect(302, '/signup');
+		throw redirect(302, '/signup');
 	}
 
 	if (expectedState !== gState) {
 		console.error('state mismatch', expectedState, gState);
-		redirect(302, '/signup');
+		throw redirect(302, '/signup');
 	}
 
 	try {
@@ -42,7 +42,7 @@ export const GET = async ({ locals, url, cookies }) => {
 		locals.pb.authStore = locals.pb.authStore;
 		// export the cookie to the client
 		// TODO: the cookie is not being set on the client
-		cookies.set('pb_auth', JSON.stringify(locals.pb.authStore), { path: '/' });
+		await cookies.set('pb_auth', locals.pb.authStore);
 		await locals.pb.authStore.exportToCookie(cookies);
 
 		// set store for now until we can get the cookie to work
@@ -51,5 +51,5 @@ export const GET = async ({ locals, url, cookies }) => {
 		console.log('Error Signing up with google auth', e, e.message);
 	}
 	// redirect to dashboard
-	redirect(303, '/dashboard');
+	throw redirect(303, '/dashboard');
 };

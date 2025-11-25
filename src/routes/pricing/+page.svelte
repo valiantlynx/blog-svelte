@@ -1,6 +1,6 @@
 <script>
 	let isNavOpen = false;
-	let billPlan = $state('monthly');
+	let billPlan = 'monthly';
 
 	let plans = [
 		{
@@ -52,7 +52,7 @@
 		<span class="text-base font-medium">Bill Monthly</span>
 		<button
 			class="relative rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
-			onclick={() => (billPlan = billPlan === 'monthly' ? 'annually' : 'monthly')}
+			on:click={() => (billPlan = billPlan === 'monthly' ? 'annually' : 'monthly')}
 		>
 			<div class="w-16 h-8 transition bg-secondary rounded-full shadow-md outline-none"></div>
 			<div

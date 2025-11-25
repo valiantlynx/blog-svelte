@@ -4,11 +4,11 @@ import { serializeNonPOJOs } from '$lib/utils/api';
 
 export const load = ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {
-		redirect(303, '/login');
+		throw redirect(303, '/login');
 	}
 
 	if (!locals.user.role.includes('editor')) {
-		redirect(303, '/pricing');
+		throw redirect(303, '/pricing');
 	}
 
 	const getUsersProjects = async (userId) => {
@@ -21,7 +21,7 @@ export const load = ({ locals }) => {
 			return projects;
 		} catch (err) {
 			console.error('Error: ', err);
-			error(err.status, err.message);
+			throw error(err.status, err.message);
 		}
 	};
 
@@ -36,7 +36,7 @@ export const load = ({ locals }) => {
 			return blogs;
 		} catch (err) {
 			console.error('Error: ', err);
-			error(err.status, err.message);
+			throw error(err.status, err.message);
 		}
 	};
 
@@ -54,7 +54,7 @@ export const actions = {
 			await locals.pb.collection('projects_valiantlynx').delete(id);
 		} catch (err) {
 			console.error('Error: ', err);
-			error(err.status, err.message);
+			throw error(err.status, err.message);
 		}
 		return {
 			success: true
@@ -67,7 +67,7 @@ export const actions = {
 			await locals.pb.collection('blogs').delete(id);
 		} catch (err) {
 			console.error('Error: ', err);
-			error(err.status, err.message);
+			throw error(err.status, err.message);
 		}
 		return {
 			success: true

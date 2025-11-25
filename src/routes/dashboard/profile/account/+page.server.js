@@ -7,7 +7,7 @@ export const actions = {
 		try {
 			await locals.pb.collection('users_valiantlynx').requestEmailChange(data.email);
 		} catch (err) {
-			error(err.status, err.message);
+			throw error(err.status, err.message);
 		}
 
 		return {
@@ -34,11 +34,11 @@ export const actions = {
 					};
 				} catch (err) {
 					console.error('Error: ', err);
-					error(err.status, err.message);
+					throw error(err.status, err.message);
 				}
 			}
 			console.error('Error: ', err);
-			error(err.status, err.message);
+			throw error(err.status, err.message);
 		}
 	},
 
@@ -50,9 +50,9 @@ export const actions = {
 			locals.pb.authStore.clear();
 		} catch (err) {
 			console.error('Error: ', err);
-			error(err.status, err.message);
+			throw error(err.status, err.message);
 		}
 
-		redirect(303, '/login');
+		throw redirect(303, '/login');
 	}
 };

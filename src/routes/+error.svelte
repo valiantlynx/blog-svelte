@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 
 	function goBack() {
 		window.history.back();
@@ -40,10 +40,10 @@
 		</svg>
 
 		<h1 class="mt-6 text-2xl font-bold tracking-tight sm:text-4xl">
-			Oh-oh! {page.status}
+			Oh-oh! {$page.status}
 		</h1>
 
-		<p class="my-4">{page.error?.message}</p>
-		<button class="btn btn-primary font-bold py-2 px-4 rounded" onclick={goBack}> Go back </button>
+		<p class="my-4">{$page.error?.message}</p>
+		<button class="btn btn-primary font-bold py-2 px-4 rounded" on:click={goBack}> Go back </button>
 	</div>
 </div>

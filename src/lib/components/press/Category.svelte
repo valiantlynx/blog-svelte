@@ -75,12 +75,12 @@
 	/**
 	 * @type {ArticleRecord[]}
 	 */
-	let articles = $state([]);
+	let articles = [];
 
 	/**
 	 * @type {Record<string, string>}
 	 */
-	let imageUrls = $state({});
+	let imageUrls = {};
 
 	/**
 	 * Svelte onMount hook.

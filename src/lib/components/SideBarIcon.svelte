@@ -2,16 +2,14 @@
 	// @ts-nocheck
 
 	import Icon from '@iconify/svelte';
-	
-	
 	/**
-	 * @typedef {Object} Props
-	 * @property {any} tooltip
-	 * @property {any} icon
+	 * @type {any}
 	 */
-
-	/** @type {Props} */
-	let { tooltip, icon } = $props();
+	export let tooltip;
+	/**
+	 * @type {any}
+	 */
+	export let icon;
 </script>
 
 <div

@@ -2,12 +2,12 @@
 	import Social from '$lib/components/press/Social.svelte';
 	import { postPocketbase } from '$lib/utils/api';
 
-	const contactData = $state({
+	const contactData = {
 		name: '',
 		email: '',
 		message: '',
 		handled: false
-	});
+	};
 
 	function send() {
 		// Send the data to the server
@@ -75,7 +75,7 @@
 										rows="3"
 										bind:value={contactData.message}
 										placeholder="message"
-									></textarea>
+									/>
 									<label
 										for="exampleFormControlTextarea1"
 										class="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none"
@@ -95,7 +95,7 @@
 									type="button"
 									data-te-ripple-init
 									data-te-ripple-color="light"
-									onclick={send}
+									on:click={send}
 									class="btn btn-base font-bold text-xl shadow-black shadow-inner mb-4 w-3/4"
 								>
 									Send
@@ -111,7 +111,7 @@
 								class="absolute left-0 top-0 h-full w-full rounded-lg"
 								frameborder="0"
 								allowfullscreen
-							></iframe>
+							/>
 						</div>
 					</div>
 				</div>
