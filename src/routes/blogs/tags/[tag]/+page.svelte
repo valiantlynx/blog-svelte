@@ -1,7 +1,7 @@
-<script lang="ts">
+<script>
 	import { page } from '$app/stores';
 	import BlogCards from '$lib/components/BlogCards.svelte';
-	let { data } = $props();
+	export let data;
 
 	const tag = data.tag;
 

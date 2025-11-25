@@ -1,11 +1,7 @@
 <script lang="ts">
 	import { searchQuery } from '$lib/utils/stores';
-	interface Props {
-		searchResults?: any;
-		handleClick: any;
-	}
-
-	let { searchResults = [], handleClick }: Props = $props();
+	export let searchResults: any = [];
+	export let handleClick: any;
 </script>
 
 <ul
@@ -17,7 +13,7 @@
 			{#each searchResults as result}
 				<li class="btn-ghost bg-base-300 shadow-md rounded-lg p-4 m-1">
 					<button
-						onclick={handleClick(result.src)}
+						on:click={handleClick(result.src)}
 						aria-label={'Go to ' + result.title + ' manga page'}
 					>
 						<h3 class="text-lg font-semibold">{result.title}</h3>

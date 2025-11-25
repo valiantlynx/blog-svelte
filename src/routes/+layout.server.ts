@@ -26,13 +26,9 @@ export const load = async (event) => {
 };
 
 const Sites = async (event) => {
-	try {
-		// you can also fetch all records at once via getFullList
-		const records = serializeNonPOJOs(await event.locals.pb.collection('sites').getFullList());
-		const adtxt = records.find((item: any) => item.site.includes(event.url.origin));
-		return adtxt;
-	} catch (error) {
-		console.warn('Could not fetch sites:', error instanceof Error ? error.message : error);
-		return undefined;
-	}
+	// you can also fetch all records at once via getFullList
+	const records = serializeNonPOJOs(await event.locals.pb.collection('sites').getFullList());
+	const adtxt = records.find((item: any) => item.site.includes(event.url.origin));
+
+	return adtxt;
 };

@@ -1,6 +1,6 @@
-<script lang="ts">
+<script>
 	import { getImageURL } from '$lib/utils/api';
-	let { data } = $props();
+	export let data;
 </script>
 
 <div class="flex flex-col w-full mt-4">

@@ -21,11 +21,11 @@
 	});
 
 	// make the mediabank array reactive
-	let sanitizedMediabank = $derived($mediabank.map((media) => ({
+	$: sanitizedMediabank = $mediabank.map((media) => ({
 		...media,
 		name: purify.sanitize(media.name),
 		details: purify.sanitize(media.details)
-	})));
+	}));
 </script>
 
 <div class="flex flex-wrap -m-2 mt-6">
@@ -36,7 +36,7 @@
 					<div
 						class="bg-current bg-center bg-no-repeat h-40 bg-contain"
 						style="background-image: url({getImageURL(media.collectionId, media.id, media.asset)});"
-					></div>
+					/>
 					<header class="p-4">
 						<h3 class="text-xl font-semibold">{media.name}</h3>
 						<p class="text-sm">{media.details}</p>

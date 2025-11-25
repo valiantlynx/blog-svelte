@@ -2,8 +2,8 @@ import { redirect } from '@sveltejs/kit';
 
 export const load = ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {
-		redirect(303, '/login');
+		throw redirect(303, '/login');
 	} else {
-		redirect(303, '/dashboard/profile/preview');
+		throw redirect(303, '/dashboard/profile/preview');
 	}
 };

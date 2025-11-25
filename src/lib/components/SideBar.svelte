@@ -1,6 +1,6 @@
 <script>
 	import SideBarIcon from '$lib/components/SideBarIcon.svelte';
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 </script>
 
 <div
@@ -9,13 +9,13 @@
 	<a href="/"><SideBarIcon tooltip="Home" icon="bx:bx-home" /></a>
 	<a href="/dashboard/profile"> <SideBarIcon tooltip="Profile" icon="iconoir:profile-circle" /></a>
 	<a href="/dashboard/settings"><SideBarIcon tooltip="Settings" icon="bx:bx-cog" /></a>
-	{#if page.data.user?.role.includes('admin')}
+	{#if $page.data.user?.role.includes('admin')}
 		<a href="/dashboard/admin"><SideBarIcon tooltip="Admin" icon="bx:bx-shield" /></a>
 		<a href="/dashboard/manager"
 			><SideBarIcon tooltip="Manage" icon="material-symbols:bookmark-manager" /></a
 		>
 	{/if}
-	{#if page.data.user?.role.includes('editor')}
+	{#if $page.data.user?.role.includes('editor')}
 		<a href="/dashboard/manager"
 			><SideBarIcon tooltip="Manage" icon="material-symbols:bookmark-manager" /></a
 		>

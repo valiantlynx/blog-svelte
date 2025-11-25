@@ -2,11 +2,11 @@ import { error, redirect } from '@sveltejs/kit';
 
 export const load = ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {
-		redirect(303, '/login');
+		throw redirect(303, '/login');
 	}
 
 	if (!locals.user.role.includes('editor')) {
-		redirect(303, '/pricing');
+		throw redirect(303, '/pricing');
 	}
 };
 
@@ -33,22 +33,22 @@ export const actions = {
 			console.error('Error: ', err);
 			console.error('err.data: ', err.data);
 			if (err.data?.data?.title?.message) {
-				error(err.status, `Blog title cannot be empty: ${err.data?.data?.title?.message}`);
+				throw error(err.status, `Blog title cannot be empty: ${err.data?.data?.title?.message}`);
 			} else if (err.data?.data?.summary?.message) {
-				error(
-                					err.status,
-                					`blog summary cannot be empty: ${err.data?.data?.summary?.message}`
-                				);
+				throw error(
+					err.status,
+					`blog summary cannot be empty: ${err.data?.data?.summary?.message}`
+				);
 			} else if (err.data?.data?.slug?.message) {
-				error(err.status, `blog slug cannot be empty: ${err.data?.data?.slug?.message}`);
+				throw error(err.status, `blog slug cannot be empty: ${err.data?.data?.slug?.message}`);
 			} else if (err.data?.data?.alt?.message) {
-				error(err.status, `blog alt cannot be empty: ${err.data?.data?.alt?.message}`);
+				throw error(err.status, `blog alt cannot be empty: ${err.data?.data?.alt?.message}`);
 			} else {
-				error(err.status, err.message);
+				throw error(err.status, err.message);
 			}
 		}
 
-		redirect(303, '/dashboard/manager');
+		throw redirect(303, '/dashboard/manager');
 	}
 };
 

@@ -1,28 +1,27 @@
 <!-- Feedback.svelte -->
 <script>
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 	// import { t } from 'svelte-i18n';
 
 	/**
 	 * @type {number | undefined}
 	 */
-	let selectedEmotion = $state();
-	let note = $state('');
+	let selectedEmotion;
+	let note = '';
 	/**
 	 * @type {string}
 	 */
-	let resultMessage = $state();
-	let isSubmittedOnce = $state(false);
+	let resultMessage;
+	let isSubmittedOnce = false;
 
 	/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 	let isFeedbackVisible = false;
 
-	const submitFeedback = async (event) => {
-		event.preventDefault();
+	const submitFeedback = async () => {
 		const feedbackData = {
 			emotion: selectedEmotion,
 			note,
-			url: `${page.url}`
+			url: `${$page.url}`
 		};
 		isSubmittedOnce = true;
 		const response = await fetch('/api/submit_feedback', {
@@ -47,11 +46,6 @@
 			resultMessage = '';
 		}, 5000);
 	};
-
-	const selectEmotion = (index) => (event) => {
-		event.preventDefault();
-		selectedEmotion = index + 1;
-	};
 </script>
 
 <!-- The button to open modal -->
@@ -59,7 +53,7 @@
 	for="feedback"
 	class="fixed right-1 top-1/2 -translate-y-1/2 w-10 h-44 bg-primary hover:bg-secondary text-primary-content z-10 flex flex-col items-center justify-center rounded-md cursor-pointe justify-centerr"
 >
-	<i class="fa fa-comment-alt fa justify-end mb-10"></i>
+	<i class="fa fa-comment-alt fa justify-end mb-10" />
 	<p class="-rotate-90 whitespace-nowrap mb-10 text-lg font-bold justify-start">Feedback</p>
 </label>
 
@@ -73,12 +67,12 @@
 		{#if resultMessage}
 			<p class="text-center">{resultMessage}</p>
 		{:else}
-			<form onsubmit={submitFeedback}>
+			<form on:submit|preventDefault={submitFeedback}>
 				<div class="flex justify-center py-4 space-x-6">
 					<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 					{#each new Array(4) as _, index}
 						<button
-							onclick={selectEmotion(index)}
+							on:click|preventDefault={() => (selectedEmotion = index + 1)}
 							class="filter transform transition duration-150 grayscale hover:scale-150 {selectedEmotion ===
 							index + 1
 								? 'grayscale-0'
@@ -110,7 +104,7 @@
 								autocomplete="off"
 								autocorrect="off"
 								class="w-full p-2 rounded-lg border border-primary resize-none"
-							></textarea>
+							/>
 						</div>
 						<div class="flex justify-end">
 							<!-- DIN TILBAKEMELDING -->

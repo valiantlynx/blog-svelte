@@ -1,26 +1,18 @@
 <script>
-	import { run } from 'svelte/legacy';
-
 	import { goto } from '$app/navigation';
 	import BigSearchResults from '$lib/components/BigSearchResults.svelte';
 	import SmallSearchResults from '$lib/components/SmallSearchResults.svelte';
 	import { metaKeywords, searchQuery } from '$lib/utils/stores';
 	import { getPocketbase } from '$lib/utils/api';
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [type]
-	 */
-
-	/** @type {Props} */
-	let { type = 'small' } = $props();
+	export let type = 'small';
 
 	/**
 	 * @type {any[]}
 	 */
-	let searchResults = $state([]);
-	let searchTerm = $state('');
-	let selectedOption = $state('Drivstoffpris');
+	let searchResults = [];
+	let searchTerm = '';
+	let selectedOption = 'Drivstoffpris';
 	let selectedSearchFunction = searchBlogs; // Initialize with the default search function
 
 	async function searchBlogs() {
@@ -60,9 +52,18 @@
 	/**
 	 * @type {number | undefined}
 	 */
-	let debouncedSearch = $state();
-	let lastSearchTerm = $state('');
+	let debouncedSearch;
+	let lastSearchTerm = '';
 
+	$: {
+		if (searchTerm !== lastSearchTerm) {
+			if (debouncedSearch) {
+				clearTimeout(debouncedSearch);
+			}
+			debouncedSearch = setTimeout(executeSelectedSearch, 300);
+			lastSearchTerm = searchTerm;
+		}
+	}
 
 	/**
 	 * @param {any} event
@@ -81,6 +82,12 @@
 		searchTerm = '';
 	}
 
+	$: {
+		if (searchResults.length > 0) {
+			const keywords = searchResults.map((result) => result.title).join(', ');
+			metaKeywords.set(keywords);
+		}
+	}
 
 	function executeSelectedSearch() {
 		if (searchTerm.trim() === '') {
@@ -106,21 +113,6 @@
 			console.error(error);
 		}
 	}
-	run(() => {
-		if (searchTerm !== lastSearchTerm) {
-			if (debouncedSearch) {
-				clearTimeout(debouncedSearch);
-			}
-			debouncedSearch = setTimeout(executeSelectedSearch, 300);
-			lastSearchTerm = searchTerm;
-		}
-	});
-	run(() => {
-		if (searchResults.length > 0) {
-			const keywords = searchResults.map((result) => result.title).join(', ');
-			metaKeywords.set(keywords);
-		}
-	});
 </script>
 
 <div class="max-w-screen mx-auto">
@@ -131,7 +123,7 @@
 					class="input input-bordered input-primary join-item w-full"
 					value={$searchQuery && type === 'big' ? $searchQuery : ''}
 					placeholder="Search"
-					oninput={handleSearch}
+					on:input={handleSearch}
 				/>
 			</div>
 		</div>

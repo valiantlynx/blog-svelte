@@ -45,11 +45,11 @@
 								{$page.data.user.username}
 							</h3>
 							<div class="text-sm text-blueGray-400 mt-2">
-								<i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
+								<i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400" />
 								{$page.data.user.address}
 							</div>
 							<div class="text-sm text-blueGray-600 mt-1">
-								<i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+								<i class="fas fa-briefcase mr-2 text-lg text-blueGray-400" />
 								{$page.data.user.title}
 							</div>
 						</div>

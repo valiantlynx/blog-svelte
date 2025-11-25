@@ -1,7 +1,7 @@
-<script lang="ts">
+<script>
 	import MyBlogItem from '$lib/components/MyBlogItem.svelte';
 	import MyProjectItem from '$lib/components/MyProjectItem.svelte';
-	let { data } = $props();
+	export let data;
 	console.log('data', data);
 </script>
 
@@ -12,7 +12,7 @@
 		<div class="w-full mt-4 flex flex-col items-center m-3">
 			<h2 class="sm:text-3xl text-md font-bold w-full">Create a new project</h2>
 			<a href="/projects/new" class="btn btn-primary btn-outline m-4">
-				<i class="fa fa-project-diagram"></i>
+				<i class="fa fa-project-diagram" />
 				Create a new project
 			</a>
 
@@ -24,7 +24,7 @@
 			{:else}
 				{#each data.projects as project}
 					<MyProjectItem {project} />
-					<div class="divider mt-0 mb-2"></div>
+					<div class="divider mt-0 mb-2" />
 				{/each}
 			{/if}
 		</div>
@@ -47,7 +47,7 @@
 						<div class="flex flex-col my-2">
 							<MyBlogItem {blog} />
 						</div>
-						<div class="divider"></div>
+						<div class="divider" />
 					{/each}
 				</div>
 			{/if}

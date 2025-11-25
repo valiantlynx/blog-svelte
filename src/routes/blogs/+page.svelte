@@ -1,6 +1,6 @@
-<script lang="ts">
+<script>
 	import BlogCards from '$lib/components/BlogCards.svelte';
-	let { data } = $props();
+	export let data;
 </script>
 
 <div class="w-full mt-4 flex flex-wrap -m-4 p-10 items-center">
