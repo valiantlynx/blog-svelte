@@ -19,7 +19,7 @@ export const actions = {
 		const userId = form.get('userId');
 
 		if (!userId || !contentId) {
-			throw error(400, 'Invalid request data');
+			error(400, 'Invalid request data');
 		}
 
 		try {
@@ -46,7 +46,7 @@ export const actions = {
 				};
 			}
 		} catch (err) {
-			throw error(err.status, err.message);
+			error(err.status, err.message);
 		}
 	}
 };

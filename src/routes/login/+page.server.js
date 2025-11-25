@@ -2,7 +2,7 @@ import { error, redirect } from '@sveltejs/kit';
 
 export const load = ({ locals }) => {
 	if (locals.pb.authStore.isValid) {
-		throw redirect(303, '/dashboard/profile/preview');
+		redirect(303, '/dashboard/profile/preview');
 	}
 };
 
@@ -19,14 +19,14 @@ export const actions = {
 			// console.log('event', event.getClientAddress());
 		} catch (err) {
 			if (err.data?.data?.identity?.message) {
-				throw error(err.status, `Your email ${err.data?.data?.identity?.message}`);
+				error(err.status, `Your email ${err.data?.data?.identity?.message}`);
 			} else if (err.data?.data?.password?.message) {
-				throw error(err.status, `Your password ${err.data?.data?.password?.message}`);
+				error(err.status, `Your password ${err.data?.data?.password?.message}`);
 			} else {
-				throw error(err.status, err.message);
+				error(err.status, err.message);
 			}
 		}
-		throw redirect(303, '/dashboard');
+		redirect(303, '/dashboard');
 	},
 	oauth2google: async (event) => {
 		const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
@@ -45,8 +45,8 @@ export const actions = {
 		const state = googleAuthProvider.state;
 		const verifier = googleAuthProvider.codeVerifier;
 
-		event.cookies.set('state', state);
-		event.cookies.set('verifier', verifier);
-		throw redirect(302, authProviderRedirect);
+		/* @migration task: add path argument */ event.cookies.set('state', state);
+		/* @migration task: add path argument */ event.cookies.set('verifier', verifier);
+		redirect(302, authProviderRedirect);
 	}
 };

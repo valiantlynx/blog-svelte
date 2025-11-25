@@ -3,7 +3,7 @@ import { serializeNonPOJOs } from '$lib/utils/api';
 
 export const load = async ({ locals, params }) => {
 	if (!locals.pb.authStore.isValid) {
-		throw error(401, 'Unauthorized');
+		error(401, 'Unauthorized');
 	}
 
 	try {
@@ -16,11 +16,11 @@ export const load = async ({ locals, params }) => {
 				project
 			};
 		} else {
-			throw error(403, 'Forbidden');
+			error(403, 'Forbidden');
 		}
 	} catch (err) {
 		console.error('Error: ', err);
-		throw error(err.status, err.message);
+		error(err.status, err.message);
 	}
 };
 
@@ -40,20 +40,20 @@ export const actions = {
 			console.error('Error: ', err);
 			console.error('Error.data: ', err.data);
 			if (err.data?.data?.name?.message) {
-				throw error(err.status, `project name cannot be empty: ${err.data?.data?.name?.message}`);
+				error(err.status, `project name cannot be empty: ${err.data?.data?.name?.message}`);
 			} else if (err.data?.data?.tagline?.message) {
-				throw error(
-					err.status,
-					`project tagline cannot be empty: ${err.data?.data?.tagline?.message}`
-				);
+				error(
+                					err.status,
+                					`project tagline cannot be empty: ${err.data?.data?.tagline?.message}`
+                				);
 			} else if (err.data?.data?.url?.message) {
-				throw error(err.status, `project url cannot be empty: ${err.data?.data?.url?.message}`);
+				error(err.status, `project url cannot be empty: ${err.data?.data?.url?.message}`);
 			} else {
-				throw error(err.status, err.message);
+				error(err.status, err.message);
 			}
 		}
 
-		throw redirect(303, `/dashboard/manager`);
+		redirect(303, `/dashboard/manager`);
 	},
 
 	deleteThumbnail: async ({ locals, params }) => {
@@ -65,16 +65,16 @@ export const actions = {
 			console.error('Error: ', err);
 			console.error('Error.data: ', err.data);
 			if (err.data?.data?.name?.message) {
-				throw error(err.status, `project name cannot be empty: ${err.data?.data?.name?.message}`);
+				error(err.status, `project name cannot be empty: ${err.data?.data?.name?.message}`);
 			} else if (err.data?.data?.tagline?.message) {
-				throw error(
-					err.status,
-					`project tagline cannot be empty: ${err.data?.data?.tagline?.message}`
-				);
+				error(
+                					err.status,
+                					`project tagline cannot be empty: ${err.data?.data?.tagline?.message}`
+                				);
 			} else if (err.data?.data?.url?.message) {
-				throw error(err.status, `project url cannot be empty: ${err.data?.data?.url?.message}`);
+				error(err.status, `project url cannot be empty: ${err.data?.data?.url?.message}`);
 			} else {
-				throw error(err.status, err.message);
+				error(err.status, err.message);
 			}
 		}
 		return {

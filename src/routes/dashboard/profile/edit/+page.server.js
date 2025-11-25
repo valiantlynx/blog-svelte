@@ -19,7 +19,7 @@ export const actions = {
 		} catch (err) {
 			console.error('Error: ', err);
 
-			throw error(400, 'Something went wrong updating your profile');
+			error(400, 'Something went wrong updating your profile');
 		}
 
 		return {

@@ -11,9 +11,9 @@ export const actions = {
 			await event.locals.pb.collection('users_valiantlynx').requestPasswordReset(email);
 		} catch (err) {
 			if (err.response?.data.email?.message) {
-				throw error(err.status, `Your email ${err.response?.data.email?.message}`);
+				error(err.status, `Your email ${err.response?.data.email?.message}`);
 			} else {
-				throw error(err.status, err.response?.message);
+				error(err.status, err.response?.message);
 			}
 		}
 	}

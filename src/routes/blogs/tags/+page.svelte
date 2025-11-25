@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
-	export let data;
+	let { data } = $props();
 </script>
 
 <div class="container mx-auto px-4 md:px-8 lg:px-12 py-4 md:py-8 lg:py-12">

@@ -6,5 +6,5 @@ export const POST = (event) => {
 	event.locals.user = undefined;
 	authStore.set(null);
 
-	throw redirect(303, '/login');
+	redirect(303, '/login');
 };

@@ -1,10 +1,14 @@
 <script>
 	import { site } from '@valiantlynx/general-config';
+	
 	/**
-	 * @type {{ expand: { sender: { username: any; avatar: any; id: any; }; }; created: string | number | Date; message: any; }}
+	 * @typedef {Object} Props
+	 * @property {{ expand: { sender: { username: any; avatar: any; id: any; }; }; created: string | number | Date; message: any; }} message
+	 * @property {any} sender
 	 */
-	export let message;
-	export let sender;
+
+	/** @type {Props} */
+	let { message, sender } = $props();
 
 	//console.log('message: ', message, 'sender: ', message.expand?.sender.username);
 

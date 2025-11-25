@@ -1,10 +1,10 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Input } from '@valiantlynx/svelte-ui';
+	import { Input } from '$lib/components/ui';
 	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
-	let loading = false;
+	let loading = $state(false);
 
 	const submitLogin = () => {
 		loading = true;
@@ -30,7 +30,7 @@
 
 <div class="relative flex flex-col items-center justify-center h-auto overflow-hidden mt-10 mx-6">
 	<div class="w-full p-6 border-t-4 rounded-md shadow-md border-top border-primary lg:max-w-lg">
-		<h1 class="text-3xl font-semibold text-center">{$page.data.siteName} | login</h1>
+		<h1 class="text-3xl font-semibold text-center">{page.data.siteName} | login</h1>
 		<form
 			action="/login?/login"
 			method="POST"
@@ -41,8 +41,8 @@
 				type="email"
 				id="email"
 				label="Email"
-				value={$page.form?.data?.email ?? ''}
-				errors={$page.form?.errors?.email}
+				value={page.form?.data?.email ?? ''}
+				errors={page.form?.errors?.email}
 				disabled={loading}
 				required
 			/>
@@ -51,7 +51,7 @@
 				id="password"
 				minlength="8"
 				label="Password"
-				errors={$page.form?.errors?.password}
+				errors={page.form?.errors?.password}
 				disabled={loading}
 				required
 			/>

@@ -1,11 +1,16 @@
-<script>
+<script lang="ts">
 	import Nav from '$lib/components/Nav.svelte';
 	import Feedback from '$lib/components/feedback/Feedback.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import { Toaster } from 'svelte-french-toast';
-	import '../app.postcss';
-	import { page } from '$app/stores';
+	import '../app.css';
+	import { page } from '$app/state';
 	import { onMount } from 'svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	async function detectServiceWorkerUpdate() {
 		const registration = await navigator.serviceWorker.ready;
@@ -186,20 +191,20 @@
 </script>
 
 <svelte:head>
-	<title>{$page.data.siteName}</title>
+	<title>{page.data.siteName}</title>
 	<!-- Canonical Link -->
-	<link rel="canonical" href="https://{$page.data.siteName}/" />
+	<link rel="canonical" href="https://{page.data.siteName}/" />
 	<!-- Author Meta Tag -->
-	<meta name="author" content={$page.data.siteName} />
+	<meta name="author" content={page.data.siteName} />
 	<!--OWN STUFF-->
-	<link rel="dns-prefetch" href="https://{$page.data.siteName}" />
+	<link rel="dns-prefetch" href="https://{page.data.siteName}" />
 
-	<meta name="apple-mobile-web-app-title" content={$page.data.siteName} />
+	<meta name="apple-mobile-web-app-title" content={page.data.siteName} />
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<meta name="mobile-web-app-capable" content="yes" />
 
-	{#if $page.data.sites}
+	{#if page.data.sites}
 		<!-- clarity there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead-->
 		{@html `<script type="text/javascript">
 			(function (c, l, a, r, i, t, y) {
@@ -213,7 +218,7 @@
 				t.src = 'https://www.clarity.ms/tag/' + i;
 				y = l.getElementsByTagName(r)[0];
 				y.parentNode.insertBefore(t, y);
-			})(window, document, 'clarity', 'script', '${$page.data.sites.clarity_tag}');
+			})(window, document, 'clarity', 'script', '${page.data.sites.clarity_tag}');
 		</script>`}
 
 		<!-- Google tag (gtag.js) there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead -->
@@ -221,7 +226,7 @@
 		<!-- Google tag (gtag.js) there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead -->
 		<script
 			async
-			src="https://www.googletagmanager.com/gtag/js?id={$page.data.sites.google_tag}"
+			src="https://www.googletagmanager.com/gtag/js?id={page.data.sites.google_tag}"
 		></script>
 		{@html `<script>
 			window.dataLayer = window.dataLayer || [];
@@ -230,7 +235,7 @@
 			}
 			gtag('js', new Date());
 
-			gtag('config', '${$page.data.sites.google_tag}');
+			gtag('config', '${page.data.sites.google_tag}');
 		</script>`}
 
 		<!-- Google Adsense -->
@@ -238,7 +243,7 @@
 		<!-- Google Adsense -->
 		<script
 			async
-			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={$page.data.sites
+			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={page.data.sites
 				.google_ads_client}"
 			crossorigin="anonymous"
 		></script>
@@ -260,7 +265,7 @@
 
 <Toaster />
 <Nav />
-<slot />
+{@render children?.()}
 <div class="container mx-auto px-4 my-8">
 	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
 	<div id="commento"></div>
