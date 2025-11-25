@@ -1,17 +1,17 @@
 <script>
 	import { enhance, applyAction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
-	import { Modal } from '@valiantlynx/svelte-ui';
-	import { Input } from '@valiantlynx/svelte-ui';
+	import { Modal } from '$lib/components/ui';
+	import { Input } from '$lib/components/ui';
 	import { page } from '$app/stores';
 
-	let emailModalOpen;
-	let usernameModalOpen;
-	let loading;
+	let emailModalOpen = $state(false);
+	let usernameModalOpen = $state(false);
+	let loading = $state(false);
 
-	$: emailModalOpen = false;
-	$: usernameModalOpen = false;
-	$: loading = false;
+	
+	
+	
 
 	const submitUpdateEmail = () => {
 		loading = true;
@@ -53,10 +53,14 @@
 <div class="flex flex-col sm:w-1/2 h-full space-y-12 ml-5">
 	<div class="w-full">
 		<h3 class="text-2xl font-medium">Change Email</h3>
-		<div class="divider" />
+		<div class="divider"></div>
 		<Modal label="change-email" checked={emailModalOpen}>
-			<span slot="trigger" class="btn btn-primary">Change Email</span>
-			<h3 slot="heading">Change Your Email</h3>
+			{#snippet trigger()}
+						<span  class="btn btn-primary">Change Email</span>
+					{/snippet}
+			{#snippet heading()}
+						<h3 >Change Your Email</h3>
+					{/snippet}
 			<form action="?/updateEmail" method="POST" class="space-y-2" use:enhance={submitUpdateEmail}>
 				<Input
 					id="email"
@@ -74,11 +78,15 @@
 	</div>
 	<div class="w-full">
 		<h3 class="text-2xl font-medium">Change Username</h3>
-		<div class="divider mb-0.5" />
+		<div class="divider mb-0.5"></div>
 		<Input id="username" label="Username" value={$page.data?.user?.username} disabled />
 		<Modal label="change-username" checked={usernameModalOpen}>
-			<span slot="trigger" class="btn btn-primary">Change Username</span>
-			<h3 slot="heading">Change Your Username</h3>
+			{#snippet trigger()}
+						<span  class="btn btn-primary">Change Username</span>
+					{/snippet}
+			{#snippet heading()}
+						<h3 >Change Your Username</h3>
+					{/snippet}
 			<form
 				action="?/updateUsername"
 				method="POST"
@@ -102,7 +110,7 @@
 	<div class="w-full">
 		<form action="?/updatePassword" method="POST" class="flex flex-col space-y-2 w-full">
 			<h3 class="text-2xl font-medium">Change Password</h3>
-			<div class="divider" />
+			<div class="divider"></div>
 			<Input id="oldPassword" label="Old Password" type="password" required />
 			<Input id="password" label="New Password" type="password" required />
 			<Input id="passwordConfirm" label="Confirm New Password" type="password" required />

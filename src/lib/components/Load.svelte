@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import { _ } from 'svelte-i18n';
 
-	export let loaded;
+	let { loaded } = $props();
 </script>
 
 {#if !loaded}
@@ -43,5 +43,5 @@
 		</div>
 	</div>
 {:else}
-	<p />
+	<p></p>
 {/if}

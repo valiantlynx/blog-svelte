@@ -1,14 +1,28 @@
-<script>
-	export let value = '';
-	export let placeholder = '';
-	export let id;
-	export let label;
-	export let type = 'text';
-	export let disabled = false;
-	export let required = false;
-	export let minlength;
+<script lang="ts">
 
-	export let errors;
+	interface Props {
+		value?: string;
+		placeholder?: string;
+		id: any;
+		label: any;
+		type?: string;
+		disabled?: boolean;
+		required?: boolean;
+		minlength: any;
+		errors: any;
+	}
+
+	let {
+		value = '',
+		placeholder = '',
+		id,
+		label,
+		type = 'text',
+		disabled = false,
+		required = false,
+		minlength,
+		errors
+	}: Props = $props();
 </script>
 
 <div class="form-control w-full max-w-lg mb-2">

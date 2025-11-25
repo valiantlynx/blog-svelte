@@ -10,7 +10,7 @@ export const load = ({ locals, params }) => {
 			return project;
 		} catch (err) {
 			console.error('Error: ', err);
-			throw error(err.status, err.message);
+			error(err.status, err.message);
 		}
 	};
 

@@ -1,13 +1,12 @@
 <script>
-	import { Input } from '@valiantlynx/svelte-ui';
+	import { Input } from '$lib/components/ui';
 	import { enhance, applyAction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { site } from '@valiantlynx/general-config';
 
-	let loading;
+	let loading = $state(false);
 
-	$: loading = false;
 	const showPreview = (event) => {
 		const target = event.target;
 		const files = target.files; //await compressFileImage(data.avatar, 200, 200, 0.7);
@@ -60,7 +59,7 @@
 					<span
 						class="btn btn-circle btn-sm btn-secondary absolute -bottom-2 -right-2 hover:cursor-pointer"
 					>
-						<i class="fa fa-pencil-alt" />
+						<i class="fa fa-pencil-alt"></i>
 					</span>
 					<div class="w-32 h-32 rounded-full overflow-hidden">
 						<img src={avatar} alt="user avatar" id="avatar-preview" />
@@ -73,7 +72,7 @@
 					value=""
 					accept="image/*"
 					hidden
-					on:change={showPreview}
+					onchange={showPreview}
 					disabled={loading}
 				/>
 			</div>
@@ -109,7 +108,7 @@
 				value={$page.data?.user?.about}
 				disabled={loading}
 				type="text"
-			/>
+			></textarea>
 			<div class="border-t border-primary mt-4">
 				<label for="roles" class="text-xl font-medium">Roles and Permissions</label>
 				<div class="flex flex-wrap -m-1">

@@ -13,7 +13,7 @@ export const load = ({ locals }) => {
 			return projects;
 		} catch (err) {
 			console.error('Error: ', err);
-			throw error(err.status, err.message);
+			error(err.status, err.message);
 		}
 	};
 

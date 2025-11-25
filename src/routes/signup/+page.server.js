@@ -24,43 +24,43 @@ export const actions = {
 		} catch (err) {
 			if (err.data?.data?.username?.code) {
 				if (!pbData.username) {
-					throw error(err.status, `Your username ${err.data?.data?.username?.message}`);
+					error(err.status, `Your username ${err.data?.data?.username?.message}`);
 				}
-				throw error(err.status, `Username already exist: ${err.data?.data?.username?.message}`);
+				error(err.status, `Username already exist: ${err.data?.data?.username?.message}`);
 			} else if (err.data?.data?.password?.code) {
 				if (!pbData.password) {
-					throw error(
-						err.status,
-						`Your password cannot be blank ${err.data?.data?.password?.message}`
-					);
+					error(
+                    						err.status,
+                    						`Your password cannot be blank ${err.data?.data?.password?.message}`
+                    					);
 				}
-				throw error(
-					err.status,
-					`Your password must be at least 8 characters: ${err.data?.data?.password?.message}`
-				);
+				error(
+                					err.status,
+                					`Your password must be at least 8 characters: ${err.data?.data?.password?.message}`
+                				);
 			} else if (err.data?.data?.passwordConfirm?.code) {
 				if (!pbData.passwordConfirm) {
-					throw error(
-						err.status,
-						`Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`
-					);
+					error(
+                    						err.status,
+                    						`Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`
+                    					);
 				}
-				throw error(
-					err.status,
-					`Your passwordConfirm and password ${err.data?.data?.passwordConfirm?.message}`
-				);
+				error(
+                					err.status,
+                					`Your passwordConfirm and password ${err.data?.data?.passwordConfirm?.message}`
+                				);
 			} else if (pbData.passwordConfirm !== pbData.password) {
-				throw error(err.status, `Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`);
+				error(err.status, `Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`);
 			} else if (err.data?.data?.email?.code) {
 				if (!pbData.email) {
-					throw error(err.status, `Your email ${err.data?.data?.email?.message}`);
+					error(err.status, `Your email ${err.data?.data?.email?.message}`);
 				}
-				throw error(err.status, `Your email ${err.data?.data?.email?.message}`);
+				error(err.status, `Your email ${err.data?.data?.email?.message}`);
 			} else {
-				throw error(
-					err.status,
-					`something went wrong with your signup. please try again or contact support through the feedback button ${err.response?.message}`
-				);
+				error(
+                					err.status,
+                					`something went wrong with your signup. please try again or contact support through the feedback button ${err.response?.message}`
+                				);
 			}
 		}
 		return;
@@ -81,9 +81,9 @@ export const actions = {
 		const state = googleAuthProvider.state;
 		const verifier = googleAuthProvider.codeVerifier;
 
-		event.cookies.set('state', state);
-		event.cookies.set('verifier', verifier);
+		event.cookies.set('state', state, { path: '/' });
+		event.cookies.set('verifier', verifier, { path: '/' });
 
-		throw redirect(302, authProviderRedirect);
+		redirect(302, authProviderRedirect);
 	}
 };

@@ -5,7 +5,7 @@
 	import * as THREE from 'three';
 
 	// Declare a variable to hold the container element
-	let canvasContainer: any;
+	let canvasContainer: any = $state();
 
 	// Check if the code is running in the browser environment
 	if (browser) {

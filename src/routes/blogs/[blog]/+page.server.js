@@ -58,7 +58,7 @@ export const actions = {
 					message: 'Liked blog successfully'
 				};
 			} else {
-				throw error(err.status, err.message);
+				error(err.status, err.message);
 			}
 		}
 	}
