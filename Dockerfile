@@ -42,7 +42,6 @@ USER svelte
 
 # Copy the necessary files from the installer stage
 COPY --from=installer /app/package.json .
-COPY --from=installer /app/.env .
 COPY --from=installer /app/build /app/build
 
 EXPOSE 3000
