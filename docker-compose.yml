@@ -1,6 +1,6 @@
 services:
-  svelte-leaflet:
-    container_name: svelte-leaflet
+  svelte-blog:
+    container_name: svelte-blog
     build:
       context: .
       dockerfile: Dockerfile

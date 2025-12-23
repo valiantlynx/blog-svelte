@@ -23,10 +23,10 @@ COPY . .
 # The container runs commands as root by default
 
 # Install Yarn globally
-RUN npm install --global yarn
+RUN npm install --global pnpm 
 
 # Install project dependencies
-RUN yarn install
+RUN pnpm install
 
 #install nvim dependecies, will be replaced in dot files
 RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
@@ -47,4 +47,4 @@ EXPOSE 4173
 SHELL ["/bin/bash", "-c"]
 
 # Start the SvelteKit app in development mode
-CMD ["yarn", "dev", "--host"]
+CMD ["pnpm", "run", "dev" "--host"]
