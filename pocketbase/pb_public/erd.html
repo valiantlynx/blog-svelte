@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drivstoffapp ERD Editor - Database Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(214.3 31.8% 91.4%)",
+                        input: "hsl(214.3 31.8% 91.4%)",
+                        ring: "hsl(222.2 84% 4.9%)",
+                        background: "hsl(0 0% 100%)",
+                        foreground: "hsl(222.2 84% 4.9%)",
+                        primary: {
+                            DEFAULT: "hsl(222.2 47.4% 11.2%)",
+                            foreground: "hsl(210 40% 98%)",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(210 40% 96%)",
+                            foreground: "hsl(222.2 84% 4.9%)",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(210 40% 96%)",
+                            foreground: "hsl(215.4 16.3% 46.9%)",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(210 40% 96%)",
+                            foreground: "hsl(222.2 84% 4.9%)",
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'slide-in': 'slide-in 0.3s ease-out',
+                        'slide-out': 'slide-out 0.3s ease-out',
+                        'fade-in': 'fade-in 0.2s ease-out',
+                    },
+                    keyframes: {
+                        'slide-in': {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(0)' },
+                        },
+                        'slide-out': {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        'fade-in': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        erd-editor {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: white;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .notification.success {
+            background: #10b981;
+        }
+        
+        .notification.error {
+            background: #ef4444;
+        }
+        
+        .notification.info {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground">
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed left-0 top-0 h-full w-80 bg-background border-r border-border z-50 transform transition-transform duration-300 shadow-lg">
+        <div class="p-6 border-b border-border">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
+                        <svg class="w-5 h-5 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-semibold text-lg">Drivstoffapp ERD</h1>
+                        <p class="text-sm text-muted-foreground">Database Design</p>
+                    </div>
+                </div>
+                <button id="closeSidebar" class="p-2 hover:bg-accent rounded-md transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Session Status -->
+        <div class="p-6 border-b border-border">
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium">Session Status</span>
+                    <div class="flex items-center space-x-2">
+                        <div id="statusDot" class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span id="statusText" class="text-sm text-muted-foreground">Ready</span>
+                    </div>
+                </div>
+                <div id="sessionInfo" class="hidden">
+                    <div class="text-xs text-muted-foreground bg-muted p-3 rounded-md">
+                        <div class="space-y-1">
+                            <div>Room: <span id="roomName" class="font-mono"></span></div>
+                            <div>Connected: <span id="connectedUsers">Team</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Actions -->
+        <div class="p-6 border-b border-border">
+            <div class="space-y-3">
+                <h3 class="text-sm font-medium mb-3">Actions</h3>
+                
+                <button id="shareBtn" class="w-full flex items-center space-x-3 p-3 text-left hover:bg-accent rounded-md transition-colors">
+                    <div class="w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center">
+                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-medium text-sm">Copy Collaboration URL</div>
+                        <div class="text-xs text-muted-foreground">Always collaborating</div>
+                    </div>
+                </button>
+                
+                <button id="saveBtn" class="w-full flex items-center space-x-3 p-3 text-left hover:bg-accent rounded-md transition-colors">
+                    <div class="w-8 h-8 bg-green-500/10 rounded-md flex items-center justify-center">
+                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-medium text-sm">Save Schema</div>
+                        <div class="text-xs text-muted-foreground">Download .erd.json</div>
+                    </div>
+                </button>
+                
+                <button id="exportBtn" class="w-full flex items-center space-x-3 p-3 text-left hover:bg-accent rounded-md transition-colors">
+                    <div class="w-8 h-8 bg-blue-500/10 rounded-md flex items-center justify-center">
+                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-medium text-sm">Export SQL</div>
+                        <div class="text-xs text-muted-foreground">Generate SQL schema</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="p-6 border-b border-border">
+            <div class="space-y-3">
+                <h3 class="text-sm font-medium mb-3">Navigation</h3>
+                
+                <a href="/" class="w-full flex items-center space-x-3 p-3 text-left hover:bg-accent rounded-md transition-colors">
+                    <div class="w-8 h-8 bg-gray-500/10 rounded-md flex items-center justify-center">
+                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-medium text-sm">Home</div>
+                        <div class="text-xs text-muted-foreground">Return to dashboard</div>
+                    </div>
+                </a>
+                
+                <a href="/_/" class="w-full flex items-center space-x-3 p-3 text-left hover:bg-accent rounded-md transition-colors">
+                    <div class="w-8 h-8 bg-orange-500/10 rounded-md flex items-center justify-center">
+                        <svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-medium text-sm">Admin Panel</div>
+                        <div class="text-xs text-muted-foreground">Manage PocketBase</div>
+                    </div>
+                </a>
+                
+                <a href="https://pocketbase.io/docs/" target="_blank" class="w-full flex items-center space-x-3 p-3 text-left hover:bg-accent rounded-md transition-colors">
+                    <div class="w-8 h-8 bg-purple-500/10 rounded-md flex items-center justify-center">
+                        <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-medium text-sm">API Documentation</div>
+                        <div class="text-xs text-muted-foreground">View REST API</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Schema Info -->
+        <div class="p-6">
+            <div class="space-y-3">
+                <h3 class="text-sm font-medium">Schema Info</h3>
+                <div class="space-y-2 text-sm text-muted-foreground">
+                    <div class="flex justify-between">
+                        <span>Tables:</span>
+                        <span id="tableCount">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Relations:</span>
+                        <span id="relationCount">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Last Modified:</span>
+                        <span id="lastModified">Now</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div id="mainContent" class="transition-all duration-300 ml-80">
+        <!-- Top Bar -->
+        <div class="bg-background/95 backdrop-blur border-b border-border px-6 py-4 flex items-center justify-between">
+            <button id="toggleSidebar" class="p-2 hover:bg-accent rounded-md transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            
+            <div class="flex items-center space-x-4">
+                <div id="loadingIndicator" class="text-sm text-muted-foreground">
+                    Loading Drivstoffapp Schema...
+                </div>
+            </div>
+        </div>
+        
+        <!-- ERD Editor Container -->
+        <div id="erdContainer" class="h-[calc(100vh-4rem)]">
+            <erd-editor id="editor" style="display: none;"></erd-editor>
+        </div>
+    </div>
+    
+    <!-- Notifications -->
+    <div id="notifications" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <!-- Load ERD Editor from CDN -->
+    <script type="module">
+        import 'https://unpkg.com/@dineug/erd-editor/dist/erd-editor.js';
+        
+        let editor;
+        let sharedStore;
+        let isCollaborating = false;
+        let isSidebarOpen = true;
+        
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            const container = document.getElementById('notifications');
+            container.appendChild(notification);
+            
+            // Trigger animation
+            setTimeout(() => notification.classList.add('show'), 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => container.removeChild(notification), 300);
+            }, 3000);
+        }
+        
+        // Update status
+        function updateStatus(text, type = 'ready') {
+            const statusText = document.getElementById('statusText');
+            const statusDot = document.getElementById('statusDot');
+            
+            statusText.textContent = text;
+            
+            // Update status dot color
+            statusDot.className = 'w-2 h-2 rounded-full';
+            switch (type) {
+                case 'ready':
+                    statusDot.classList.add('bg-green-500');
+                    break;
+                case 'collaborating':
+                    statusDot.classList.add('bg-blue-500');
+                    break;
+                case 'loading':
+                    statusDot.classList.add('bg-yellow-500');
+                    break;
+                case 'error':
+                    statusDot.classList.add('bg-red-500');
+                    break;
+            }
+        }
+        
+        // Update schema info
+        function updateSchemaInfo() {
+            try {
+                const data = JSON.parse(editor.value);
+                document.getElementById('tableCount').textContent = data.doc?.tableIds?.length || 0;
+                document.getElementById('relationCount').textContent = data.doc?.relationshipIds?.length || 0;
+                document.getElementById('lastModified').textContent = new Date().toLocaleTimeString();
+            } catch (error) {
+                console.error('Error updating schema info:', error);
+            }
+        }
+        
+        // Generate persistent session ID - always use the same constant ID
+        function getSessionId() {
+            // Always use the same session ID for constant collaboration
+            return 'drivstoffapp-team-collaboration';
+        }
+        
+        // Initialize collaboration automatically
+        function initializeCollaboration() {
+            const sessionInfo = document.getElementById('sessionInfo');
+            const roomNameEl = document.getElementById('roomName');
+            const connectedUsersEl = document.getElementById('connectedUsers');
+            const sessionId = getSessionId();
+            
+            // Always set the URL to include the session parameter
+            const shareUrl = `${window.location.origin}${window.location.pathname}?session=${sessionId}`;
+            const currentUrl = new URL(window.location);
+            
+            if (currentUrl.searchParams.get('session') !== sessionId) {
+                currentUrl.searchParams.set('session', sessionId);
+                window.history.replaceState({}, '', currentUrl);
+            }
+            
+            // Update UI to show active collaboration
+            roomNameEl.textContent = sessionId;
+            connectedUsersEl.textContent = 'Team';
+            sessionInfo.classList.remove('hidden');
+            isCollaborating = true;
+            
+            updateStatus('Always Collaborating', 'collaborating');
+        }
+        
+        // Sidebar functionality
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            
+            isSidebarOpen = !isSidebarOpen;
+            
+            if (isSidebarOpen) {
+                sidebar.style.transform = 'translateX(0)';
+                mainContent.classList.add('ml-80');
+                mainContent.classList.remove('ml-0');
+            } else {
+                sidebar.style.transform = 'translateX(-100%)';
+                mainContent.classList.remove('ml-80');
+                mainContent.classList.add('ml-0');
+            }
+        }
+        
+        async function initializeEditor() {
+            try {
+                const loadingIndicator = document.getElementById('loadingIndicator');
+                const editorElement = document.getElementById('editor');
+                
+                editor = editorElement;
+                updateStatus('Loading schema...', 'loading');
+                
+                // Load the JSON schema
+                const response = await fetch('./drivstoffapp@0.0.0.erd.json');
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load schema: ${response.statusText}`);
+                }
+                
+                const jsonData = await response.text();
+                
+                // Set up the editor with initial value
+                editor.setInitialValue(jsonData);
+                
+                // Configure theme
+                editor.setTheme({
+                    appearance: 'light',
+                    grayColor: 'slate',
+                    accentColor: 'blue'
+                });
+                
+                // Listen for changes
+                editor.addEventListener('change', (event) => {
+                    updateStatus('Schema modified');
+                    updateSchemaInfo();
+                    
+                    setTimeout(() => {
+                        updateStatus(isCollaborating ? 'Always Collaborating' : 'Ready', isCollaborating ? 'collaborating' : 'ready');
+                    }, 2000);
+                });
+                
+                // Show editor and update status
+                loadingIndicator.style.display = 'none';
+                editor.style.display = 'block';
+                
+                updateStatus('Ready', 'ready');
+                updateSchemaInfo();
+                showNotification('ERD Editor loaded successfully', 'success');
+                
+                // Initialize collaboration automatically
+                initializeCollaboration();
+                
+                // Focus the editor
+                editor.focus();
+                
+            } catch (error) {
+                console.error('Error initializing editor:', error);
+                updateStatus('Error loading', 'error');
+                showNotification(`Failed to load ERD Editor: ${error.message}`, 'error');
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('toggleSidebar').addEventListener('click', toggleSidebar);
+        document.getElementById('closeSidebar').addEventListener('click', toggleSidebar);
+        
+        // Share functionality - always active, just copy URL
+        document.getElementById('shareBtn').addEventListener('click', async () => {
+            try {
+                const sessionId = getSessionId();
+                const shareUrl = `${window.location.origin}${window.location.pathname}?session=${sessionId}`;
+                
+                // Copy to clipboard
+                await navigator.clipboard.writeText(shareUrl);
+                
+                showNotification('Collaboration URL copied to clipboard!', 'success');
+                
+            } catch (error) {
+                console.error('Error copying collaboration URL:', error);
+                showNotification('Error copying URL', 'error');
+                
+                // Fallback: try copying current URL
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    showNotification('URL copied to clipboard', 'info');
+                } catch (clipboardError) {
+                    console.error('Clipboard error:', clipboardError);
+                    showNotification('Could not access clipboard', 'error');
+                }
+            }
+        });
+        
+        // Save functionality
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            try {
+                const jsonData = editor.value;
+                const blob = new Blob([jsonData], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `drivstoffapp-schema-${new Date().toISOString().split('T')[0]}.erd.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showNotification('Schema saved successfully', 'success');
+                updateSchemaInfo();
+                
+            } catch (error) {
+                console.error('Error saving schema:', error);
+                showNotification('Error saving schema', 'error');
+            }
+        });
+        
+        // Export functionality
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            try {
+                // Try to get SQL from editor if available
+                let sqlData;
+                if (typeof editor.getSchemaSQL === 'function') {
+                    sqlData = editor.getSchemaSQL('PostgreSQL');
+                } else {
+                    // Fallback: generate basic SQL from JSON
+                    const data = JSON.parse(editor.value);
+                    sqlData = `-- Drivstoffapp Database Schema Export\n-- Generated on ${new Date().toISOString()}\n\n-- Note: This is a basic export. Use a proper ERD tool for complete SQL generation.\n\n-- Tables: ${data.doc?.tableIds?.length || 0}\n-- Relations: ${data.doc?.relationshipIds?.length || 0}\n`;
+                }
+                
+                const blob = new Blob([sqlData], { type: 'text/sql' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `drivstoffapp-schema-${new Date().toISOString().split('T')[0]}.sql`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showNotification('SQL exported successfully', 'success');
+                
+            } catch (error) {
+                console.error('Error exporting SQL:', error);
+                showNotification('Error exporting SQL', 'error');
+            }
+        });
+        
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Toggle sidebar with Ctrl/Cmd + B
+            if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+                e.preventDefault();
+                toggleSidebar();
+            }
+            
+            // Save with Ctrl/Cmd + S
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                document.getElementById('saveBtn').click();
+            }
+        });
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeEditor();
+            
+            // Collaboration is always active, no need to check URL parameters
+            // The initializeCollaboration() is called from initializeEditor()
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 768 && isSidebarOpen) {
+                toggleSidebar();
+            }
+        });
+        
+    </script>
+</body>
+</html>
