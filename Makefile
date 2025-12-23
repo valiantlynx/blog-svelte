@@ -1,4 +1,4 @@
-.PHONY: help dev dev-frontend dev-backend dev-database stop clean install check logs docker-up docker-down docker-rebuild
+.PHONY: help dev dev-blog dev-database stop clean install check logs docker-up docker-down docker-rebuild
 
 # Colors for output
 BLUE := \033[0;34m
@@ -7,21 +7,20 @@ YELLOW := \033[0;33m
 NC := \033[0m # No Color
 
 # Local development URLs (override production URLs in .env files)
-LOCAL_API_URL := http://localhost:8000
 LOCAL_POCKETBASE_URL := http://localhost:8090
 
 help: ## Show this help message
-	@echo "$(BLUE)Drivstoffapp Development Commands$(NC)"
+	@echo "$(BLUE)Svelte Blog Development Commands$(NC)"
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "$(GREEN)%-20s$(NC) %s\n", $$1, $$2}'
 
 # Development commands
 dev: ## Start all services in development mode (requires tmux or multiple terminals)
 	@echo "$(YELLOW)Starting all services...$(NC)"
-	@$(MAKE) -j3 dev-database dev-backend dev-frontend
+	@$(MAKE) -j3 dev-database dev-blog
 
-dev-frontend: ## Start frontend development server (port 5173)
-	@echo "$(BLUE)Starting frontend on http://localhost:5173$(NC)"
+dev-blog: ## Start blog development server (port 5173)
+	@echo "$(BLUE)Starting blog on http://localhost:5173$(NC)"
 	@cd browser && \
 		PUBLIC_API_BASE_URL=$(LOCAL_API_URL) \
 		PUBLIC_POCKETBASE_URL=$(LOCAL_POCKETBASE_URL) \
@@ -41,12 +40,12 @@ dev-database: ## Start PocketBase database (port 8090)
 # Installation commands
 install: ## Install all dependencies
 	@echo "$(YELLOW)Installing all dependencies...$(NC)"
-	@$(MAKE) install-frontend
+	@$(MAKE) installblog-
 	@$(MAKE) install-backend
 	@$(MAKE) install-database
 
-install-frontend: ## Install frontend dependencies (pnpm)
-	@echo "$(BLUE)Installing frontend dependencies...$(NC)"
+install-blog: ## Install blog dependencies (pnpm)
+	@echo "$(BLUE)Installing blog dependencies...$(NC)"
 	@cd browser && pnpm install
 
 install-backend: ## Install backend dependencies (uv)
@@ -59,11 +58,11 @@ install-database: ## Build database (Go)
 
 # Quality checks
 check: ## Run all quality checks
-	@$(MAKE) check-frontend
+	@$(MAKE) checkblog-
 	@$(MAKE) check-backend
 
-check-frontend: ## Run frontend type checking and linting
-	@echo "$(BLUE)Checking frontend...$(NC)"
+check-blog: ## Run blog type checking and linting
+	@echo "$(BLUE)Checking blog...$(NC)"
 	@cd browser && pnpm run check && pnpm run lint
 
 check-backend: ## Run backend tests
@@ -75,7 +74,7 @@ docker-up: ## Start all services with Docker Compose
 	@echo "$(YELLOW)Starting Docker services...$(NC)"
 	@docker-compose up -d
 	@echo "$(GREEN)Services started:$(NC)"
-	@echo "  Frontend:  http://localhost:9020"
+	@echo "  Blog:  http://localhost:9020"
 	@echo "  Backend:   http://localhost:8000"
 	@echo "  Database:  http://localhost:8090"
 	@echo "  DB Admin:  http://localhost:8090/_/"
@@ -95,7 +94,7 @@ docker-logs: ## Show Docker logs (follow)
 logs: ## Show logs for all services (requires running services)
 	@echo "$(YELLOW)Showing service logs...$(NC)"
 	@echo "Use Ctrl+C to stop following logs"
-	@tail -f frontend/logs/*.log backend/logs/*.log database/logs/*.log 2>/dev/null || echo "No log files found"
+	@tail -f blog/logs/*.log backend/logs/*.log database/logs/*.log 2>/dev/null || echo "No log files found"
 
 clean: ## Clean build artifacts and caches
 	@echo "$(YELLOW)Cleaning build artifacts...$(NC)"
@@ -153,7 +152,7 @@ tmux-dev: ## Start all services in tmux session (uses window 4)
 		tmux split-window -h -t drivstoffapp:4; \
 		tmux send-keys -t drivstoffapp:4.1 'cd $(PWD) && make dev-backend' C-m; \
 		tmux split-window -v -t drivstoffapp:4.1; \
-		tmux send-keys -t drivstoffapp:4.2 'cd $(PWD) && make dev-frontend' C-m; \
+		tmux send-keys -t drivstoffapp:4.2 'cd $(PWD) && make dev-blog' C-m; \
 		tmux select-layout -t drivstoffapp:4 even-horizontal; \
 		tmux attach-session -t drivstoffapp:4; \
 	fi
@@ -170,13 +169,13 @@ show-config: ## Show current environment configuration
 	@echo "$(BLUE)Current Configuration:$(NC)"
 	@echo ""
 	@echo "$(YELLOW)Production (from .env files):$(NC)"
-	@echo "  Frontend API URL:    $$(grep PUBLIC_API_BASE_URL frontend/.env | cut -d'=' -f2)"
-	@echo "  Frontend DB URL:     $$(grep PUBLIC_POCKETBASE_URL frontend/.env | cut -d'=' -f2)"
+	@echo "  Blog API URL:    $$(grep PUBLIC_API_BASE_URL blog/.env | cut -d'=' -f2)"
+	@echo "  Blog DB URL:     $$(grep PUBLIC_POCKETBASE_URL blog/.env | cut -d'=' -f2)"
 	@echo "  Backend DB URL:      $$(grep POCKETBASE_URL backend/.env | cut -d'=' -f2)"
 	@echo ""
 	@echo "$(YELLOW)Development (used by 'make dev' commands):$(NC)"
-	@echo "  Frontend API URL:    $(LOCAL_API_URL)"
-	@echo "  Frontend DB URL:     $(LOCAL_POCKETBASE_URL)"
+	@echo "  Blog API URL:    $(LOCAL_API_URL)"
+	@echo "  Blog DB URL:     $(LOCAL_POCKETBASE_URL)"
 	@echo "  Backend DB URL:      $(LOCAL_POCKETBASE_URL)"
 
 # Default target
