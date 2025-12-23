@@ -275,7 +275,7 @@
             
             <div class="flex items-center space-x-4">
                 <div id="loadingIndicator" class="text-sm text-muted-foreground">
-                    Loading Drivstoffapp Schema...
+                    Loading Blog Schema...
                 </div>
             </div>
         </div>
@@ -357,7 +357,7 @@
         // Generate persistent session ID - always use the same constant ID
         function getSessionId() {
             // Always use the same session ID for constant collaboration
-            return 'drivstoffapp-team-collaboration';
+            return 'blog-team-collaboration';
         }
         
         // Initialize collaboration automatically
@@ -412,7 +412,7 @@
                 updateStatus('Loading schema...', 'loading');
                 
                 // Load the JSON schema
-                const response = await fetch('./drivstoffapp@0.0.0.erd.json');
+                const response = await fetch('./blog@0.0.0.erd.json');
 
                 if (!response.ok) {
                     throw new Error(`Failed to load schema: ${response.statusText}`);
@@ -499,7 +499,7 @@
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `drivstoffapp-schema-${new Date().toISOString().split('T')[0]}.erd.json`;
+                a.download = `blog-schema-${new Date().toISOString().split('T')[0]}.erd.json`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
@@ -524,14 +524,14 @@
                 } else {
                     // Fallback: generate basic SQL from JSON
                     const data = JSON.parse(editor.value);
-                    sqlData = `-- Drivstoffapp Database Schema Export\n-- Generated on ${new Date().toISOString()}\n\n-- Note: This is a basic export. Use a proper ERD tool for complete SQL generation.\n\n-- Tables: ${data.doc?.tableIds?.length || 0}\n-- Relations: ${data.doc?.relationshipIds?.length || 0}\n`;
+                    sqlData = `-- Blog Database Schema Export\n-- Generated on ${new Date().toISOString()}\n\n-- Note: This is a basic export. Use a proper ERD tool for complete SQL generation.\n\n-- Tables: ${data.doc?.tableIds?.length || 0}\n-- Relations: ${data.doc?.relationshipIds?.length || 0}\n`;
                 }
                 
                 const blob = new Blob([sqlData], { type: 'text/sql' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `drivstoffapp-schema-${new Date().toISOString().split('T')[0]}.sql`;
+                a.download = `blog-schema-${new Date().toISOString().split('T')[0]}.sql`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
