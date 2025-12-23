@@ -67,7 +67,7 @@ func main() {
 }
 
 /*
-Drivstoffapp V2 PocketBase Configuration Summary:
+Blog-Svelte PocketBase Configuration Summary:
 
 CORE FEATURES:
 ✅ SQLite database with real-time subscriptions
@@ -76,43 +76,47 @@ CORE FEATURES:
 ✅ File storage and management
 ✅ Email verification system
 ✅ WebSocket real-time connections
-✅ CORS configuration for web/mobile frontends
+✅ CORS configuration for web frontends
 
-DRIVSTOFFAPP-SPECIFIC ENHANCEMENTS:
-✅ Auto-create user preferences on registration
-✅ Default workspace creation for new users
-✅ Rideshare booking confirmation handling
-✅ Charging station availability management
-✅ Custom API endpoints for:
-   - Route optimization
-   - Real-time fuel prices
-   - EV charging availability
-   - Trip cost calculations
-✅ Notification system with multiple delivery methods
+BLOG-SVELTE ENHANCEMENTS:
+✅ Auto-parsing SQL schema into PocketBase collections
+✅ Automatic timestamp triggers for all tables
+✅ Role-based access control (user, editor, admin, manager)
+✅ Blog content management with rich text
+✅ Project portfolio showcase
+✅ Tag-based content organization
+✅ Comment system with nested replies
+✅ Social engagement (likes, shares)
+✅ OAuth2 authentication (Google, GitHub)
 
 ENVIRONMENT CONFIGURATIONS:
+✅ ADMIN_EMAIL - Admin account email
+✅ ADMIN_PASSWORD - Admin account password
+✅ APP_URL - Application URL
 ✅ Development vs production settings
-✅ SMTP email configuration
-✅ Google OAuth2 integration
+✅ SMTP email configuration (optional)
+✅ OAuth2 client IDs and secrets (optional)
 ✅ Custom data directory support
-✅ Encryption environment variables
 
 INTEGRATION POINTS:
-✅ External mapping APIs (Google Maps, OpenStreetMap)
-✅ Fuel price APIs (YR, Circle K, Shell)
-✅ EV charging networks (Tesla, Fortum, Circle K)
-✅ Payment gateways (Vipps, Stripe, PayPal)
-✅ Push notification services (Firebase, OneSignal)
+✅ Google Analytics and Clarity tracking
+✅ Google AdSense integration
+✅ OAuth2 providers (Google, GitHub)
+✅ Comment system (Commento)
+✅ File uploads for images and avatars
 
 DEPLOYMENT READY:
-✅ Production-optimized settings
+✅ Docker multi-stage build
 ✅ Environment variable configuration
-✅ CORS security for multiple frontends
+✅ CORS security for frontend
 ✅ Logging and monitoring setup
 ✅ Database migrations support
+✅ Health check endpoint
 
 To run:
-go mod init drivstoffapp-backend
-go get github.com/pocketbase/pocketbase
+go mod download
 go run main.go serve --http=0.0.0.0:8090
+
+To run migrations:
+go run main.go migrate up
 */
