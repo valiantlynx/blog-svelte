@@ -46,13 +46,13 @@ func init() {
 
 		// Initialize application settings
 		settings := app.Settings()
-		settings.Meta.AppName = "Drivstoffapp"
+		settings.Meta.AppName = "Blog-Svelte"
 		settings.Meta.AppURL = os.Getenv("APP_URL")
 		if settings.Meta.AppURL == "" {
 			settings.Meta.AppURL = "http://localhost:8090"
 		}
-		settings.Meta.SenderName = "Drivstoffapp Support"
-		settings.Meta.SenderAddress = "support@drivstoffapp.com"
+		settings.Meta.SenderName = "Blog-Svelte Support"
+		settings.Meta.SenderAddress = "support@valiantlynx.com"
 
 		// Configure logs
 		settings.Logs.MaxDays = 7
