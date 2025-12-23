@@ -40,8 +40,8 @@ COPY --from=builder /app/pb_public ./pb_public/
 RUN mkdir -p /app/pb_data
 
 # Set environment variables
-ENV ADMIN_EMAIL=admin@drivstoffapp.com
-ENV ADMIN_PASSWORD=drivstoffapp_admin_2025
+ENV ADMIN_EMAIL=admin@valiantlynx.com
+ENV ADMIN_PASSWORD=valiantlynx_admin_2025
 ENV APP_URL=http://localhost:8090
 
 # Expose port
