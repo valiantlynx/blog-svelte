@@ -1,0 +1,9 @@
+services:
+  svelte-leaflet:
+    container_name: svelte-leaflet
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
