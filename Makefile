@@ -1,0 +1,183 @@
+.PHONY: help dev dev-frontend dev-backend dev-database stop clean install check logs docker-up docker-down docker-rebuild
+
+# Colors for output
+BLUE := \033[0;34m
+GREEN := \033[0;32m
+YELLOW := \033[0;33m
+NC := \033[0m # No Color
+
+# Local development URLs (override production URLs in .env files)
+LOCAL_API_URL := http://localhost:8000
+LOCAL_POCKETBASE_URL := http://localhost:8090
+
+help: ## Show this help message
+	@echo "$(BLUE)Drivstoffapp Development Commands$(NC)"
+	@echo ""
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "$(GREEN)%-20s$(NC) %s\n", $$1, $$2}'
+
+# Development commands
+dev: ## Start all services in development mode (requires tmux or multiple terminals)
+	@echo "$(YELLOW)Starting all services...$(NC)"
+	@$(MAKE) -j3 dev-database dev-backend dev-frontend
+
+dev-frontend: ## Start frontend development server (port 5173)
+	@echo "$(BLUE)Starting frontend on http://localhost:5173$(NC)"
+	@cd browser && \
+		PUBLIC_API_BASE_URL=$(LOCAL_API_URL) \
+		PUBLIC_POCKETBASE_URL=$(LOCAL_POCKETBASE_URL) \
+		pnpm run dev
+
+dev-backend: ## Start backend development server (port 8000)
+	@echo "$(BLUE)Starting backend on http://localhost:8000$(NC)"
+	@cd backend && \
+		POCKETBASE_URL=$(LOCAL_POCKETBASE_URL) \
+		uv run uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+
+dev-database: ## Start PocketBase database (port 8090)
+	@echo "$(BLUE)Starting PocketBase on http://localhost:8090$(NC)"
+	@echo "$(YELLOW)Admin UI: http://localhost:8090/_/$(NC)"
+	@cd pocketbase && go run . serve
+
+# Installation commands
+install: ## Install all dependencies
+	@echo "$(YELLOW)Installing all dependencies...$(NC)"
+	@$(MAKE) install-frontend
+	@$(MAKE) install-backend
+	@$(MAKE) install-database
+
+install-frontend: ## Install frontend dependencies (pnpm)
+	@echo "$(BLUE)Installing frontend dependencies...$(NC)"
+	@cd browser && pnpm install
+
+install-backend: ## Install backend dependencies (uv)
+	@echo "$(BLUE)Installing backend dependencies...$(NC)"
+	@cd backend && uv sync
+
+install-database: ## Build database (Go)
+	@echo "$(BLUE)Building database...$(NC)"
+	@cd pocketbase && go mod download
+
+# Quality checks
+check: ## Run all quality checks
+	@$(MAKE) check-frontend
+	@$(MAKE) check-backend
+
+check-frontend: ## Run frontend type checking and linting
+	@echo "$(BLUE)Checking frontend...$(NC)"
+	@cd browser && pnpm run check && pnpm run lint
+
+check-backend: ## Run backend tests
+	@echo "$(BLUE)Testing backend...$(NC)"
+	@cd backend && uv run pytest
+
+# Docker commands
+docker-up: ## Start all services with Docker Compose
+	@echo "$(YELLOW)Starting Docker services...$(NC)"
+	@docker-compose up -d
+	@echo "$(GREEN)Services started:$(NC)"
+	@echo "  Frontend:  http://localhost:9020"
+	@echo "  Backend:   http://localhost:8000"
+	@echo "  Database:  http://localhost:8090"
+	@echo "  DB Admin:  http://localhost:8090/_/"
+
+docker-down: ## Stop all Docker services
+	@echo "$(YELLOW)Stopping Docker services...$(NC)"
+	@docker-compose down
+
+docker-rebuild: ## Rebuild and restart Docker services
+	@echo "$(YELLOW)Rebuilding Docker services...$(NC)"
+	@docker-compose up -d --build
+
+docker-logs: ## Show Docker logs (follow)
+	@docker-compose logs -f
+
+# Utility commands
+logs: ## Show logs for all services (requires running services)
+	@echo "$(YELLOW)Showing service logs...$(NC)"
+	@echo "Use Ctrl+C to stop following logs"
+	@tail -f frontend/logs/*.log backend/logs/*.log database/logs/*.log 2>/dev/null || echo "No log files found"
+
+clean: ## Clean build artifacts and caches
+	@echo "$(YELLOW)Cleaning build artifacts...$(NC)"
+	@cd browser && rm -rf .svelte-kit build node_modules/.cache
+	@cd backend && rm -rf .pytest_cache __pycache__ **/__pycache__ .coverage htmlcov
+	@cd pocketbase && rm -rf pb_data/logs.db-*
+	@docker-compose down -v
+	@echo "$(GREEN)Cleanup complete$(NC)"
+
+clean-all: clean ## Clean everything including dependencies
+	@echo "$(YELLOW)Removing all dependencies...$(NC)"
+	@cd browser && rm -rf node_modules
+	@cd backend && rm -rf .venv
+	@echo "$(GREEN)Full cleanup complete. Run 'make install' to reinstall.$(NC)"
+
+# Database operations
+db-migrate: ## Run PocketBase migrations
+	@echo "$(BLUE)Running database migrations...$(NC)"
+	@cd pocketbase && go run . migrate up
+
+db-admin: ## Show database admin credentials
+	@echo "$(BLUE)PocketBase Admin Credentials:$(NC)"
+	@echo "  URL:      http://localhost:8090/_/"
+	@echo "  Email:    admin@drivstoffapp.com"
+	@echo "  Password: drivstoffapp_admin_2025"
+
+db-backup: ## Backup PocketBase database
+	@echo "$(BLUE)Creating database backup...$(NC)"
+	@cd pocketbase && ./backups/backup.sh || echo "Backup script not found"
+
+# Development helpers
+tmux-dev: ## Start all services in tmux session (uses window 4)
+	@echo "$(YELLOW)Starting services in tmux...$(NC)"
+	@if tmux has-session -t drivstoffapp 2>/dev/null; then \
+		echo "$(GREEN)Session 'drivstoffapp' already exists. Attaching to window 4...$(NC)"; \
+		tmux attach-session -t drivstoffapp:4; \
+	else \
+		if [ -f ~/.config/tmux/tmux.conf ] && grep -q "set-hook.*session-created" ~/.config/tmux/tmux.conf 2>/dev/null; then \
+			echo "$(BLUE)Using custom tmux config (session-created hook detected)...$(NC)"; \
+			tmux new-session -d -s drivstoffapp; \
+			sleep 1; \
+		else \
+			echo "$(BLUE)Using standard tmux (no custom config detected)...$(NC)"; \
+			tmux new-session -d -s drivstoffapp -n editor; \
+			tmux send-keys -t drivstoffapp:1 'nvim .' C-m; \
+			tmux new-window -t drivstoffapp:2 -n git; \
+			tmux send-keys -t drivstoffapp:2 'lazygit' C-m; \
+			tmux new-window -t drivstoffapp:3 -n yazi; \
+			tmux send-keys -t drivstoffapp:3 'yazi' C-m; \
+			tmux new-window -t drivstoffapp:4 -n terminal; \
+			sleep 0.5; \
+		fi; \
+		tmux select-window -t drivstoffapp:4; \
+		tmux send-keys -t drivstoffapp:4 'cd $(PWD) && make dev-database' C-m; \
+		tmux split-window -h -t drivstoffapp:4; \
+		tmux send-keys -t drivstoffapp:4.1 'cd $(PWD) && make dev-backend' C-m; \
+		tmux split-window -v -t drivstoffapp:4.1; \
+		tmux send-keys -t drivstoffapp:4.2 'cd $(PWD) && make dev-frontend' C-m; \
+		tmux select-layout -t drivstoffapp:4 even-horizontal; \
+		tmux attach-session -t drivstoffapp:4; \
+	fi
+
+tmux-stop: ## Stop tmux development session
+	@tmux kill-session -t drivstoffapp 2>/dev/null || echo "No tmux session found"
+	@echo "$(GREEN)Tmux session stopped$(NC)"
+
+tmux-attach: ## Attach to existing tmux session
+	@tmux attach-session -t drivstoffapp
+
+# Show current configuration
+show-config: ## Show current environment configuration
+	@echo "$(BLUE)Current Configuration:$(NC)"
+	@echo ""
+	@echo "$(YELLOW)Production (from .env files):$(NC)"
+	@echo "  Frontend API URL:    $$(grep PUBLIC_API_BASE_URL frontend/.env | cut -d'=' -f2)"
+	@echo "  Frontend DB URL:     $$(grep PUBLIC_POCKETBASE_URL frontend/.env | cut -d'=' -f2)"
+	@echo "  Backend DB URL:      $$(grep POCKETBASE_URL backend/.env | cut -d'=' -f2)"
+	@echo ""
+	@echo "$(YELLOW)Development (used by 'make dev' commands):$(NC)"
+	@echo "  Frontend API URL:    $(LOCAL_API_URL)"
+	@echo "  Frontend DB URL:     $(LOCAL_POCKETBASE_URL)"
+	@echo "  Backend DB URL:      $(LOCAL_POCKETBASE_URL)"
+
+# Default target
+.DEFAULT_GOAL := help
