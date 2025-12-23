@@ -7,3 +7,16 @@ services:
     restart: always
     ports:
       - 3000:3000
+  
+  database:
+    container_name: database
+    build: 
+      context: ./pocketbase
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8090:8090
+    environment:
+      - ADMIN_EMAIL=admin@valiantlynx.com
+      - ADMIN_PASSWORD=valiantlynx_admin_2025
+      - APP_URL=http://localhost:8090
