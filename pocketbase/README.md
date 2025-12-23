@@ -1,55 +1,57 @@
-# Drivstoffapp V2 PocketBase Service
+# Blog-Svelte PocketBase Service
 
-Real-time database and authentication service for Drivstoffapp V2, built on PocketBase with custom business logic.
+Real-time database service for Blog-Svelte platform, built on PocketBase with custom business logic.
 
 ## Features
 
 - **SQLite Database**: Fast, reliable database with real-time subscriptions
 - **Built-in Authentication**: User registration, login, OAuth2 support
 - **REST API**: Automatic REST endpoints for all collections
-- **Admin Dashboard**: Web-based admin panel at `/admin`
+- **Admin Dashboard**: Web-based admin panel at `/_/`
 - **Real-time Updates**: WebSocket subscriptions for live data
 - **File Storage**: Built-in file upload and management
 - **Email System**: User verification and notifications
 
-## Drivstoffapp-Specific Enhancements
+## Blog-Svelte Enhancements
 
 ### Database Schema
-- **24 Core Tables**: Complete fuel, trip planning, and rideshare platform
-- **User Preferences**: Vehicle types, fuel preferences, notification settings
-- **Station Management**: Fuel stations, EV charging, toll stations with real-time data
-- **Trip Planning**: Route optimization, cost calculation, sharing features
-- **Rideshare Platform**: Driver/passenger matching, booking system, ratings
-- **Payment Integration**: Support for Vipps, Stripe, PayPal
-- **Notification System**: Push, email, SMS delivery methods
+- **9 Core Tables**: Complete blog platform with users, content, and engagement
+- **User Management**: Role-based access (user, editor, admin, manager)
+- **Content Management**: Blogs with rich text editor, tags, and metadata
+- **Project Showcase**: Portfolio projects with descriptions and links
+- **Social Features**: Comments, likes, sharing capabilities
+- **Site Configuration**: Analytics, ads, SEO settings
+- **OAuth2 Integration**: Google, GitHub authentication support
 
 ### Custom Business Logic
-- Auto-create user preferences on registration
-- Rideshare booking confirmation handling
-- Charging station availability management
-- Station reservation system
-- Real-time price updates
-- Trip cost calculations
+- Auto-update timestamps on record changes
+- User authentication with role-based permissions
+- Blog engagement tracking (views, likes)
+- Comment moderation system
+- File upload handling for images and avatars
 
-### API Endpoints
-- `/api/routes/optimize` - Route optimization
-- `/api/fuel/prices/realtime` - Live fuel prices
-- `/api/charging/availability` - EV charging status
-- `/api/trips/calculate-cost` - Trip cost calculator
+### Collections
+- `users_valiantlynx` - Authentication and user profiles
+- `blogs` - Blog posts with rich content
+- `projects_valiantlynx` - Portfolio projects
+- `tags` - Blog categorization and filtering
+- `sites` - Site-wide configuration and analytics
+- `likes` - Blog engagement tracking
+- `comments` - Blog comments with nested replies
+- `oauth2_accounts` - Social authentication
+- `feedback` - User feedback collection
+- `messages` - Internal messaging system
 
 ## Installation
 
 ### Prerequisites
-- Go 1.21 or higher
+- Go 1.24 or higher
 - SQLite3
 
 ### Setup
 ```bash
-# Initialize Go module
-go mod init drivstoffapp-backend
-
 # Install dependencies
-go mod tidy
+go mod download
 
 # Run database migrations
 go run main.go migrate up
@@ -60,97 +62,104 @@ go run main.go serve --http=0.0.0.0:8090
 
 ### Environment Variables
 ```bash
+# Admin credentials
+export ADMIN_EMAIL="admin@valiantlynx.com"
+export ADMIN_PASSWORD="your-secure-password"
+
+# Application URL
+export APP_URL="http://localhost:8090"
+
 # Data directory
 export PB_DATA_DIR="./pb_data"
 
-# Environment (development/production)
-export GO_ENV="development"
-
-# Email settings
+# Email settings (optional)
 export SMTP_HOST="smtp.gmail.com"
 export SMTP_USERNAME="your-email@gmail.com"
 export SMTP_PASSWORD="your-app-password"
 
-# OAuth2 providers
+# OAuth2 providers (optional)
 export GOOGLE_CLIENT_ID="your-google-client-id"
 export GOOGLE_CLIENT_SECRET="your-google-client-secret"
+export GITHUB_CLIENT_ID="your-github-client-id"
+export GITHUB_CLIENT_SECRET="your-github-client-secret"
 ```
 
 ## Development
 
 ### Database Schema
 The complete database schema is defined in `schema.sql` with:
-- User management and preferences
-- Station data (fuel, charging, toll)
-- Trip planning and route sharing
-- Rideshare platform
-- Payment and subscription system
-- Notification management
-- Analytics and search history
+- User authentication and profiles
+- Blog content management
+- Project portfolio
+- Tagging system
+- Site configuration
+- Social engagement (likes, comments)
+- OAuth2 accounts
+- Feedback and messaging
 
-### Custom Hooks
-Business logic is implemented via PocketBase hooks:
-- User registration triggers
-- Booking confirmation handling
-- Station availability updates
-- Notification sending
+### Custom Migrations
+Business logic is implemented via PocketBase migrations in `migrations/`:
+- Auto-parsing of SQL schema into PocketBase collections
+- Automatic timestamp triggers
+- Seed data for default site configuration and tags
 
 ### Frontend Integration
-CORS is configured for multiple frontends:
-- Svelte/SvelteKit web app (port 5173)
-- Flutter mobile app (port 8080)
-- React/Next.js alternatives (port 3000)
+CORS is configured for SvelteKit:
+- Development: `http://localhost:5173`
+- Production: Configure via environment variables
 
 ## Production Deployment
 
 ### Docker Setup
-```dockerfile
-FROM golang:1.21-alpine AS builder
-WORKDIR /app
-COPY . .
-RUN go mod download
-RUN go build -o pocketbase main.go
+```bash
+# Build image
+docker build -t blog-svelte-pocketbase .
 
-FROM alpine:latest
-RUN apk --no-cache add ca-certificates
-WORKDIR /root/
-COPY --from=builder /app/pocketbase .
-EXPOSE 8090
-CMD ["./pocketbase", "serve", "--http=0.0.0.0:8090"]
+# Run container
+docker run -d \
+  -p 8090:8090 \
+  -e ADMIN_EMAIL=admin@valiantlynx.com \
+  -e ADMIN_PASSWORD=your-password \
+  -e APP_URL=https://your-domain.com \
+  -v $(pwd)/pb_data:/app/pb_data \
+  blog-svelte-pocketbase
 ```
 
 ### Environment Configuration
-- Set `GO_ENV=production` for production settings
+- Set proper admin credentials
 - Configure SMTP for email notifications
 - Set up OAuth2 providers for social login
-- Use environment variables for API keys
+- Use HTTPS in production
 
 ## API Documentation
 
 ### Authentication
-- `POST /api/collections/users/auth-with-password` - Login
-- `POST /api/collections/users/records` - Register
-- `POST /api/collections/users/auth-refresh` - Refresh token
-- `POST /api/collections/users/request-verification` - Email verification
+- `POST /api/collections/users_valiantlynx/auth-with-password` - Login
+- `POST /api/collections/users_valiantlynx/records` - Register
+- `POST /api/collections/users_valiantlynx/auth-refresh` - Refresh token
+- `POST /api/collections/users_valiantlynx/request-verification` - Email verification
+- `GET /api/collections/users_valiantlynx/auth-methods` - OAuth2 providers
 
 ### Collections
 All database tables are automatically exposed as REST endpoints:
-- `/api/collections/fuel_stations/records` - Fuel station data
-- `/api/collections/trips/records` - Trip planning
-- `/api/collections/rides/records` - Rideshare listings
-- `/api/collections/notifications/records` - User notifications
+- `/api/collections/blogs/records` - Blog posts
+- `/api/collections/projects_valiantlynx/records` - Projects
+- `/api/collections/tags/records` - Tags
+- `/api/collections/sites/records` - Site configuration
+- `/api/collections/comments/records` - Comments
+- `/api/collections/likes/records` - Likes
 
 ### Real-time Subscriptions
 WebSocket connections for live updates:
 ```javascript
-// Subscribe to fuel price changes
-pb.collection('fuel_stations').subscribe('*', function (e) {
-    console.log('Station updated:', e.record);
+// Subscribe to new blog posts
+pb.collection('blogs').subscribe('*', function (e) {
+    console.log('Blog updated:', e.record);
 });
 
-// Subscribe to rideshare bookings
-pb.collection('ride_bookings').subscribe('*', function (e) {
-    console.log('Booking update:', e.record);
+// Subscribe to comments
+pb.collection('comments').subscribe('*', function (e) {
+    console.log('Comment update:', e.record);
 });
 ```
 
@@ -164,55 +173,48 @@ pb.collection('ride_bookings').subscribe('*', function (e) {
 - Manage collections, users, and settings
 - View logs and analytics
 - Configure authentication providers
+- Manage file uploads
 
 ### Logs
 - Development: 2 days retention
 - Production: 7 days retention
-- Structured logging for debugging
+- Located in `pb_data/logs/`
 
 ## External Integrations
 
-### Fuel Price APIs
-- YR (Norwegian weather and fuel data)
-- Circle K API
-- Shell Station Locator
-- Esso/Exxon pricing data
+### Analytics
+- Microsoft Clarity tracking
+- Google Analytics (gtag.js)
+- Google AdSense integration
 
-### EV Charging Networks
-- Tesla Supercharger network
-- Fortum charging stations
-- Circle K EV charging
-- Ionity network data
+### OAuth2 Providers
+- Google authentication
+- GitHub authentication
+- Extensible for Facebook, Discord, etc.
 
-### Mapping Services
-- OpenStreetMap for routing
-- Google Maps for enhanced features
-- Norwegian mapping authority (Kartverket)
-
-### Payment Gateways
-- Vipps (Norwegian mobile payments)
-- Stripe (international cards)
-- PayPal (alternative payment method)
+### Comment System
+- Commento integration support
+- Native PocketBase comments
 
 ## Security
 
 ### Authentication
 - JWT tokens with refresh mechanism
 - OAuth2 social login support
-- Email verification required
+- Email verification optional
 - Password strength requirements
+- Role-based access control (RBAC)
 
 ### Data Protection
-- SQLite encryption at rest
+- SQLite database encryption
 - HTTPS/TLS in production
 - CORS protection
 - Rate limiting on API endpoints
 
 ### Privacy
-- GDPR compliant data handling
 - User data export/deletion
-- Anonymization options
-- Location data protection
+- Email visibility controls
+- Anonymous feedback support
 
 ## Support
 
@@ -226,12 +228,12 @@ pb.collection('ride_bookings').subscribe('*', function (e) {
 - Verify environment variables
 - Test database connectivity
 - Validate CORS settings for frontend
+- Check schema.sql parsing in migrations
 
 ### Development Contact
 - GitHub Issues for bug reports
 - Feature requests via discussions
-- Emergency contact for production issues
 
 ---
 
-**Drivstoffapp V2** - Complete fuel, trip planning, and transportation platform for the Norwegian market.
+**Blog-Svelte** - Modern blog platform built with SvelteKit and PocketBase.
