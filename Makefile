@@ -37,7 +37,7 @@ install: ## Install all dependencies
 
 install-blog: ## Install blog dependencies (pnpm)
 	@echo "$(BLUE)Installing blog dependencies...$(NC)"
-	@cd browser && pnpm install
+	@pnpm install
 
 install-database: ## Build database (Go)
 	@echo "$(BLUE)Building database...$(NC)"
@@ -49,7 +49,7 @@ check: ## Run all quality checks
 
 check-blog: ## Run blog type checking and linting
 	@echo "$(BLUE)Checking blog...$(NC)"
-	@cd browser && pnpm run check && pnpm run lint
+	@pnpm run check && pnpm run lint
 
 # Docker commands
 docker-up: ## Start all services with Docker Compose
