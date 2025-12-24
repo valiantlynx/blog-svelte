@@ -1,0 +1,21 @@
+export const site: any = {
+	protocol: 'https://',
+	domain: 'valiantlynx.com',
+	logo: '/logo.png',
+	company: 'Valiantlynx',
+	email: 'valiantlynxz@gmail.com',
+	noImage: '/assets/no-image.png',
+	title: 'valiantlynx',
+	subtitle: 'Where Imagination Meets Innovation',
+	pocketbase: 'http://localhost:8090',
+	lang: 'en-US',
+	description:
+		'Multi-Disciplinary Engineer: Exploring the Intersection of AI, Blockchain, Web Development, and Product Design',
+	author: {
+		avatar: '/assets/maskable@512.png',
+		name: 'Valiantlynx',
+		status: '🌸',
+		bio: 'Multi-Disciplinary Engineer: Exploring the Intersection of AI, Blockchain, Web Development, and Product Design'
+	},
+	themeColor: '#3D4451'
+};

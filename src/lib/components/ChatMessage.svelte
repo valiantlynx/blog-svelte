@@ -1,5 +1,5 @@
 <script>
-	import { site } from '@valiantlynx/general-config';
+	import { site } from '$lib/utils/config';
 	/**
 	 * @type {{ expand: { sender: { username: any; avatar: any; id: any; }; }; created: string | number | Date; message: any; }}
 	 */
@@ -10,7 +10,7 @@
 
 	const messageClass = message.expand?.sender.username === sender ? 'chat-end' : 'chat-start';
 	const avatar = message.expand?.sender?.avatar
-		? `${site.site.pocketbase}/api/files/${message.expand?.sender?.collectionId}/${message.expand?.sender?.id}/${message.expand?.sender?.avatar}`
+		? `${site.pocketbase}/api/files/${message.expand?.sender?.collectionId}/${message.expand?.sender?.id}/${message.expand?.sender?.avatar}`
 		: message.expand?.sender.username
 			? `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${message.expand?.sender?.username}`
 			: 'https://animevariant.fly.dev/api/files/_pb_users_auth_/cl1wlk9epnlmdsg/pngtree_anonymous_in_a_hood_red_concept_vector_png_image_6109862_8C3s64ADd8.jpg?token=';

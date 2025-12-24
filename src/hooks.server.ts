@@ -1,11 +1,11 @@
 import PocketBase from 'pocketbase';
-import { site } from '@valiantlynx/general-config';
+import { site } from '$lib/utils/config';
 import { serializeNonPOJOs } from '$lib/utils/api';
 import { authStore } from '$lib/utils/stores';
 
 /** @type {import('@sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {
-	event.locals.pb = new PocketBase(site.site.pocketbase);
+	event.locals.pb = new PocketBase(site.pocketbase);
 	let storedAuth;
 	// subscribe to the auth store
 	authStore.subscribe((value) => {

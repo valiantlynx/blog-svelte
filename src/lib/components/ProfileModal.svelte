@@ -1,9 +1,9 @@
 <script>
 	import { page } from '$app/stores';
-	import { site } from '@valiantlynx/general-config';
+	import { site } from '$lib/utils/config';
 
 	const avatar = $page.data.user?.avatar
-		? `${site.site.pocketbase}/api/files/${$page.data.user?.collectionId}/${$page.data.user?.id}/${$page.data.user?.avatar}`
+		? `${site.pocketbase}/api/files/${$page.data.user?.collectionId}/${$page.data.user?.id}/${$page.data.user?.avatar}`
 		: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${$page.data.user?.username}`;
 </script>
 
