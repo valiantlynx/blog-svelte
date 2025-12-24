@@ -2,7 +2,11 @@ module pocketbase
 
 go 1.24.3
 
-require github.com/pocketbase/pocketbase v0.35.0
+require (
+	github.com/joho/godotenv v1.5.1
+	github.com/pocketbase/pocketbase v0.35.0
+	modernc.org/sqlite v1.41.0
+)
 
 require (
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
@@ -34,8 +38,7 @@ require (
 	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/sys v0.39.0 // indirect
 	golang.org/x/text v0.32.0 // indirect
-	modernc.org/libc v1.67.1 // indirect
+	modernc.org/libc v1.66.10 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
-	modernc.org/sqlite v1.41.0 // indirect
 )
