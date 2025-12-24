@@ -1,0 +1,38 @@
+pb_data/
+backups/
+pb_migrations/
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when run with the
+# -o option
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Environment configuration files
+.env
+.env.local
+.env.*.local
+
+# Build direcory
+/build/
+
+# IDE and editor directories
+.idea/
+.vscode/
+*.swp
+*~
