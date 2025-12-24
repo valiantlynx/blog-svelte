@@ -1,4 +1,5 @@
 pb_data/
+backups/
 pb_migrations/
 
 # Binaries for programs and plugins
