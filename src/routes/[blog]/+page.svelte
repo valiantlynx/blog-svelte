@@ -4,8 +4,8 @@
 	import { ValiantRichText, getData } from '@valiantlynx/svelte-rich-text';
 	import { pb } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
-	import Chat from '$lib/components/Chat.svelte';
 	import Share from '$lib/components/share/Share.svelte';
+	import { site } from '$lib/utils/config';
 
 	const blog = $page.data.blog;
 
@@ -35,7 +35,7 @@
 			<div class="shrink-0">
 				<img
 					src={blog?.expand?.author.avatar
-						? `https://animevariant.fly.dev/api/files/${blog?.expand?.author?.collectionId}/${blog?.expand?.author?.id}/${blog?.expand?.author?.avatar}`
+						? `${site.pocketbase}/api/files/${blog?.expand?.author?.collectionId}/${blog?.expand?.author?.id}/${blog?.expand?.author?.avatar}`
 						: 'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=' +
 							blog?.expand?.author?.username}
 					alt={'Author' + blog?.expand?.author?.username}
