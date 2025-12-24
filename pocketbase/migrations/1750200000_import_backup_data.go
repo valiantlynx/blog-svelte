@@ -22,7 +22,8 @@ import (
 
 func init() {
 	m.Register(func(app core.App) error {
-		backupsDir := filepath.Join(app.DataDir(), "backups")
+		// Look for backups in the migrations/backups directory
+		backupsDir := filepath.Join("backups")
 
 		// Check if backups directory exists
 		if _, err := os.Stat(backupsDir); os.IsNotExist(err) {
