@@ -1,4 +1,4 @@
-import * as publicEnv from '$env/static/public';
+import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 
 export const site: any = {
 	protocol: 'https://',
@@ -9,7 +9,7 @@ export const site: any = {
 	noImage: '/assets/no-image.png',
 	title: 'valiantlynx',
 	subtitle: 'Where Imagination Meets Innovation',
-  pocketbase: publicEnv.PUBLIC_POCKETBASE_URL || 'https://pb.valiantlynx.com',
+  pocketbase: PUBLIC_POCKETBASE_URL || 'https://blog-db.valiantlynx.com',
 	lang: 'en-US',
 	description:
 		'Multi-Disciplinary Engineer: Exploring the Intersection of AI, Blockchain, Web Development, and Product Design',
