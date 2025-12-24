@@ -12,6 +12,7 @@
 		<meta name="”robots”" content="index, follow" />
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 		<script src="https://kit.fontawesome.com/881f2b3dd8.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@samletnorge/feedback-widget@latest/dist/feedback-widget.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 	</head>
@@ -37,4 +38,10 @@
 			console.log('INSTALL: Success');
 		});
 	</script>
+	<feedback-widget
+	data-repo="valiantlynx/blog-svelte"
+	data-token="your-github-pat-token"
+	data-type="discussion"
+	data-category="feedback"
+	></feedback-widget>
 </html>
