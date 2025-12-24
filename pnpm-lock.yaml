@@ -39,8 +39,8 @@ importers:
         specifier: ^0.0.14
         version: 0.0.14(svelte@4.2.20)
       '@valiantlynx/svelte-rich-text':
-        specifier: ^0.2.3
-        version: 0.2.8(svelte@4.2.20)
+        specifier: 0.2.3
+        version: 0.2.3(svelte@4.2.20)
       '@valiantlynx/svelte-ui':
         specifier: 0.0.24
         version: 0.0.24(svelte@4.2.20)
@@ -481,8 +481,8 @@ packages:
     peerDependencies:
       svelte: ^4.0.0
 
-  '@valiantlynx/svelte-rich-text@0.2.8':
-    resolution: {integrity: sha512-mF6elg01ttWyt2tXJlvDhDi88z9QlHaeNy/mKNs1OuJiD/fENJUMsXNfVJ7wMn9iD2dYOaGWtuGMM9H0CgprXQ==}
+  '@valiantlynx/svelte-rich-text@0.2.3':
+    resolution: {integrity: sha512-DTB6/AGuC64CcXvdwnvh+RJ+dP1JzRI98j9mO7gUXeQqt+5X3ThQEi6Em0kIDquvcM191hurnHlEx/8OOBtUPQ==}
     engines: {node: '>=16.14'}
     peerDependencies:
       svelte: ^4.0.0
@@ -1803,9 +1803,11 @@ snapshots:
       svelte-highlight: 7.9.0
       svelte-select: 5.8.3
 
-  '@valiantlynx/svelte-rich-text@0.2.8(svelte@4.2.20)':
+  '@valiantlynx/svelte-rich-text@0.2.3(svelte@4.2.20)':
     dependencies:
+      short-uuid: 4.2.2
       svelte: 4.2.20
+      svelte-select: 5.8.3
 
   '@valiantlynx/svelte-ui@0.0.23(svelte@4.2.20)':
     dependencies:

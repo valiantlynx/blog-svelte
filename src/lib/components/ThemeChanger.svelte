@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { browser, dev } from '$app/environment';
-	import { general } from '@valiantlynx/general-config';
+	import { theme } from '$lib/utils/config';
 	import { hslToHex } from '$lib/utils/color';
 	import Icon from '@iconify/svelte';
-
-	const { theme } = general;
 
 	let currentTheme: string;
 	let currentThemeColor: string;

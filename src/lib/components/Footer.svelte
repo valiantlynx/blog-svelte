@@ -1,5 +1,5 @@
 <script>
-	import { site } from '@valiantlynx/general-config';
+	import { site } from '$lib/utils/config';
 	import Icon from '@iconify/svelte';
 </script>
 
@@ -25,6 +25,6 @@
 		</div>
 	</div>
 	<div>
-		<p>Copyright © 2023 - All right reserved by {site.site.company}</p>
+		<p>Copyright © 2023 - All right reserved by {site.company}</p>
 	</div>
 </footer>
