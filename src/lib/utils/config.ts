@@ -1,5 +1,3 @@
-import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
-
 export const site: any = {
 	protocol: 'https://',
 	domain: 'valiantlynx.com',
@@ -9,7 +7,7 @@ export const site: any = {
 	noImage: '/assets/no-image.png',
 	title: 'valiantlynx',
 	subtitle: 'Where Imagination Meets Innovation',
-  pocketbase: PUBLIC_POCKETBASE_URL || 'https://blog-db.valiantlynx.com',
+  pocketbase: 'https://blog-db.valiantlynx.com',
 	lang: 'en-US',
 	description:
 		'Multi-Disciplinary Engineer: Exploring the Intersection of AI, Blockchain, Web Development, and Product Design',
