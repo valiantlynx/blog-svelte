@@ -1,6 +1,5 @@
 <script>
 	import Nav from '$lib/components/Nav.svelte';
-	import Feedback from '$lib/components/feedback/Feedback.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import { Toaster } from 'svelte-french-toast';
 	import '../app.postcss';
@@ -265,5 +264,4 @@
 	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
 	<div id="commento"></div>
 </div>
-<Feedback />
 <Footer />
