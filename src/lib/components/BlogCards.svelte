@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import { site } from '$lib/utils/config';
 	export let blog;
 
 	function shareButtonClick(blog) {
@@ -37,7 +38,7 @@
 			<div class="flex items-center">
 				<img
 					src={blog?.expand?.author.avatar
-						? `https://animevariant.fly.dev/api/files/${blog?.expand?.author?.collectionId}/${blog?.expand?.author?.id}/${blog?.expand?.author?.avatar}`
+						? `${site.pocketbase}/api/files/${blog?.expand?.author?.collectionId}/${blog?.expand?.author?.id}/${blog?.expand?.author?.avatar}`
 						: 'https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=' +
 							blog?.expand?.author?.username}
 					alt={blog?.expand?.author?.username}
