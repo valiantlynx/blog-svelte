@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/joho/godotenv"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
@@ -16,6 +17,9 @@ import (
 )
 
 func main() {
+	// Load environment variables from .env file if it exists
+	_ = godotenv.Load()
+
 	app := pocketbase.New()
 
 	// Check if running in development mode
