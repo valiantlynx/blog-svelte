@@ -128,8 +128,6 @@ tmux-dev: ## Start all services in tmux session (uses window 4)
 		fi; \
 		tmux select-window -t blog:4; \
 		tmux send-keys -t blog:4 'cd $(PWD) && make dev-database' C-m; \
-		tmux split-window -h -t blog:4; \
-		tmux send-keys -t blog:4.1 'cd $(PWD) && make dev-backend' C-m; \
 		tmux split-window -v -t blog:4.1; \
 		tmux send-keys -t blog:4.2 'cd $(PWD) && make dev-blog' C-m; \
 		tmux select-layout -t blog:4 even-horizontal; \
