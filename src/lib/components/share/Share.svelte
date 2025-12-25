@@ -1,7 +1,7 @@
 <script lang="ts">
 	// <<tobeeditedbyhumanlater>> Temporarily using local ButtonWithIcon
 	import ButtonWithIcon from '../ButtonWithIcon.svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	interface Props {
 		title?: any;
@@ -12,11 +12,11 @@
 	}
 
 	let {
-		title = $page.data.siteName,
-		url = $page.url.origin,
+		title = page.data.siteName,
+		url = page.url.origin,
 		text = 'Check out this manga website. it tracks your reading progress!',
 		hashtags = 'manga',
-		image = `${$page.url.origin}/api/logo?width=280&height=280&color=black`
+		image = `${page.url.origin}/api/logo?width=280&height=280&color=black`
 	}: Props = $props();
 
 	let twitterUrl = $derived(`https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&image=${image}`);

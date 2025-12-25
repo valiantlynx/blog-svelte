@@ -10,6 +10,10 @@
 	}
 
 	let { children }: Props = $props();
+	
+	// Extract page data for use in svelte:head to avoid SSR issues
+	let siteName = $derived(page.data.siteName);
+	let sites = $derived(page.data.sites);
 
 	async function detectServiceWorkerUpdate() {
 		const registration = await navigator.serviceWorker.ready;
@@ -190,20 +194,20 @@
 </script>
 
 <svelte:head>
-	<title>{page.data.siteName}</title>
+	<title>{siteName}</title>
 	<!-- Canonical Link -->
-	<link rel="canonical" href="https://{page.data.siteName}/" />
+	<link rel="canonical" href="https://{siteName}/" />
 	<!-- Author Meta Tag -->
-	<meta name="author" content={page.data.siteName} />
+	<meta name="author" content={siteName} />
 	<!--OWN STUFF-->
-	<link rel="dns-prefetch" href="https://{page.data.siteName}" />
+	<link rel="dns-prefetch" href="https://{siteName}" />
 
-	<meta name="apple-mobile-web-app-title" content={page.data.siteName} />
+	<meta name="apple-mobile-web-app-title" content={siteName} />
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<meta name="mobile-web-app-capable" content="yes" />
 
-	{#if page.data.sites}
+	{#if sites}
 		<!-- clarity there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead-->
 		{@html `<script type="text/javascript">
 			(function (c, l, a, r, i, t, y) {
@@ -217,7 +221,7 @@
 				t.src = 'https://www.clarity.ms/tag/' + i;
 				y = l.getElementsByTagName(r)[0];
 				y.parentNode.insertBefore(t, y);
-			})(window, document, 'clarity', 'script', '${page.data.sites.clarity_tag}');
+			})(window, document, 'clarity', 'script', '${sites.clarity_tag}');
 		</script>`}
 
 		<!-- Google tag (gtag.js) there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead -->
