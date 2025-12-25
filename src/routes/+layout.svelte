@@ -264,4 +264,15 @@
 	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
 	<div id="commento"></div>
 </div>
+{#if $page.data.feedbackToken}
+	<feedback-widget
+		data-repo="valiantlynx/blog-svelte"
+		data-token={$page.data.feedbackToken}
+		data-type="discussions"
+		data-title="Blog Feedback"
+		data-position="right"
+		data-primary-color="#10b981"
+	>
+	</feedback-widget>
+{/if}
 <Footer />
