@@ -1,4 +1,6 @@
 <script>
+	import { run } from 'svelte/legacy';
+
 	import { getPocketbase } from '$lib/utils/api';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
@@ -15,7 +17,9 @@
 	});
 
 	// Ensure the socials array stays reactive
-	$: socials;
+	run(() => {
+		socials;
+	});
 </script>
 
 <div

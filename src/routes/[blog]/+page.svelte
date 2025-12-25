@@ -1,13 +1,14 @@
 <script>
 	import LikeButton from '$lib/components/blog/LikeButton.svelte';
-	import { page } from '$app/stores';
-	import { ValiantRichText, getData } from '@valiantlynx/svelte-rich-text';
+	import { page } from '$app/state';
+	// <<tobeeditedbyhumanlater>> Temporarily using local ValiantRichText
+	import ValiantRichText from '$lib/components/ValiantRichText.svelte';
 	import { pb } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
 	import Share from '$lib/components/share/Share.svelte';
 	import { site } from '$lib/utils/config';
 
-	const blog = $page.data.blog;
+	const blog = page.data.blog;
 
 	const saveData = (data) => {
 		try {
@@ -66,12 +67,12 @@
 
 	<!-- Blog Content -->
 	<div class="text-base-content">
-		{#if $page.data.user}
-			{#if $page.data.user.id === blog?.author}
+		{#if page.data.user}
+			{#if page.data.user.id === blog?.author}
 				<ValiantRichText initialData={blog?.content_object} />
 				<button
 					class="btn btn-primary"
-					on:click={() => {
+					onclick={() => {
 						const data = getData(); // returns dataBlock[] type
 						saveData(data);
 					}}>Save</button
@@ -107,9 +108,9 @@
 
 	<Share
 		title={blog?.title + ' ' + blog?.expand?.author?.username}
-		url={$page.url.href}
+		url={page.url.href}
 		image={blog?.image}
-		text={`read ${blog?.title} by ${blog?.expand?.author?.username} at ${$page.url.hostname} free online, high quality`}
+		text={`read ${blog?.title} by ${blog?.expand?.author?.username} at ${page.url.hostname} free online, high quality`}
 		hashtags={blog?.expand?.tags.map((tag) => tag.name)}
 	/>
 	<!-- Chat Component -->
@@ -119,13 +120,13 @@
 <svelte:head>
 	<title>{blog?.title} | valiantlynx</title>
 	<!-- Canonical Link -->
-	<link rel="canonical" href="https://{$page.data.siteName}/" />
+	<link rel="canonical" href="https://{page.data.siteName}/" />
 	<!-- Author Meta Tag -->
-	<meta name="author" content={$page.data.siteName} />
+	<meta name="author" content={page.data.siteName} />
 	<!--OWN STUFF-->
-	<link rel="dns-prefetch" href="https://{$page.data.siteName}" />
+	<link rel="dns-prefetch" href="https://{page.data.siteName}" />
 
-	<meta name="apple-mobile-web-app-title" content={$page.data.siteName} />
+	<meta name="apple-mobile-web-app-title" content={page.data.siteName} />
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<meta name="description" content={blog?.summary} />
@@ -138,10 +139,10 @@
 	<meta property="og:title" content={blog?.title} />
 
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content={$page.url.origin} />
+	<meta property="og:url" content={page.url.origin} />
 	<meta property="og:image" content={blog?.image} />
-	<meta property="og:image:alt" content="{$page.data.siteName} Logo" />
-	<meta property="og:site_name" content={$page.data.siteName} />
+	<meta property="og:image:alt" content="{page.data.siteName} Logo" />
+	<meta property="og:site_name" content={page.data.siteName} />
 
 	<!-- Twitter Meta Tags (for social media sharing) -->
 	<meta name="twitter:card" content={blog?.image} />
@@ -154,27 +155,27 @@
 
 	<!-- Facebook Meta Tags (for social media sharing) -->
 	<meta property="fb:image" content={blog?.image} />
-	<meta property="fb:app_id" content={$page.data.siteName} />
-	<meta property="fb:admins" content={$page.data.siteName} />
-	<meta property="fb:page_id" content={$page.data.siteName} />
-	<meta property="fb:site_name" content={$page.data.siteName} />
-	<meta property="article:publisher" content={$page.data.siteName} />
-	<meta property="article:author" content={$page.data.siteName} />
-	<meta property="article:section" content={$page.data.siteName} />
+	<meta property="fb:app_id" content={page.data.siteName} />
+	<meta property="fb:admins" content={page.data.siteName} />
+	<meta property="fb:page_id" content={page.data.siteName} />
+	<meta property="fb:site_name" content={page.data.siteName} />
+	<meta property="article:publisher" content={page.data.siteName} />
+	<meta property="article:author" content={page.data.siteName} />
+	<meta property="article:section" content={page.data.siteName} />
 	{#each blog?.expand?.tags as tag}
 		<meta property="article:tag" content={tag.name} />
 	{/each}
-	<meta property="article:published_time" content={$page.data.siteName} />
-	<meta property="article:modified_time" content={$page.data.siteName} />
-	<meta property="article:author:first_name" content={$page.data.siteName} />
-	<meta property="article:author:last_name" content={$page.data.siteName} />
-	<meta property="article:author:username" content={$page.data.siteName} />
+	<meta property="article:published_time" content={page.data.siteName} />
+	<meta property="article:modified_time" content={page.data.siteName} />
+	<meta property="article:author:first_name" content={page.data.siteName} />
+	<meta property="article:author:last_name" content={page.data.siteName} />
+	<meta property="article:author:username" content={page.data.siteName} />
 
 	<!-- Schema.org Meta Tags (for SEO) -->
 	<meta itemprop="headline" content={blog?.title} />
 	<meta itemprop="image" content={blog?.image} />
 
-	{#if $page.data.sites}
+	{#if page.data.sites}
 		<!-- clarity there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead-->
 		{@html `<script type="text/javascript">
 			(function (c, l, a, r, i, t, y) {
@@ -188,7 +189,7 @@
 				t.src = 'https://www.clarity.ms/tag/' + i;
 				y = l.getElementsByTagName(r)[0];
 				y.parentNode.insertBefore(t, y);
-			})(window, document, 'clarity', 'script', '${$page.data.sites.clarity_tag}');
+			})(window, document, 'clarity', 'script', '${page.data.sites.clarity_tag}');
 		</script>`}
 
 		<!-- Google tag (gtag.js) there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead -->
@@ -196,7 +197,7 @@
 		<!-- Google tag (gtag.js) there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead -->
 		<script
 			async
-			src="https://www.googletagmanager.com/gtag/js?id={$page.data.sites.google_tag}"
+			src="https://www.googletagmanager.com/gtag/js?id={page.data.sites.google_tag}"
 		></script>
 		{@html `<script>
 			window.dataLayer = window.dataLayer || [];
@@ -205,7 +206,7 @@
 			}
 			gtag('js', new Date());
 
-			gtag('config', '${$page.data.sites.google_tag}');
+			gtag('config', '${page.data.sites.google_tag}');
 		</script>`}
 
 		<!-- Google Adsense -->
@@ -213,7 +214,7 @@
 		<!-- Google Adsense -->
 		<script
 			async
-			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={$page.data.sites
+			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={page.data.sites
 				.google_ads_client}"
 			crossorigin="anonymous"
 		></script>

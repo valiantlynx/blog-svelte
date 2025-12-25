@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import { site } from '$lib/utils/config';
-	export let blog;
+	let { blog } = $props();
 
 	function shareButtonClick(blog) {
 		if (navigator.share) {
@@ -58,19 +58,19 @@
 			<div class="flex items-center">
 				<ul class="flex justify-end mt-4">
 					<li class="inline pr-2">
-						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<!-- svelte-ignore a11y-no-static-element-interactions -->
+						<!-- svelte-ignore a11y_click_events_have_key_events -->
+						<!-- svelte-ignore a11y_no_static_element_interactions -->
 						<i
 							class="fa fa-envelope-o fa-lg hover:text-warning"
-							on:click={() => shareButtonClick(blog)}
+							onclick={() => shareButtonClick(blog)}
 						></i>
 					</li>
 					<li class="inline">
-						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<!-- svelte-ignore a11y-no-static-element-interactions -->
+						<!-- svelte-ignore a11y_click_events_have_key_events -->
+						<!-- svelte-ignore a11y_no_static_element_interactions -->
 						<i
 							class="fa fa-share-alt fa-lg hover:text-warning"
-							on:click={() => shareButtonClick(blog)}
+							onclick={() => shareButtonClick(blog)}
 						></i>
 					</li>
 				</ul>

@@ -1,9 +1,10 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Input } from '@valiantlynx/svelte-ui';
-	import { page } from '$app/stores';
+	// <<tobeeditedbyhumanlater>> Temporarily using local Input
+	import Input from './Input.svelte';
+	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
-	let loading = false;
+	let loading = $state(false);
 
 	const submitResetPassword = () => {
 		loading = true;
@@ -44,8 +45,8 @@
 				type="email"
 				id="email"
 				label="Email"
-				value={$page.form?.data?.email}
-				errors={$page.form?.errors?.email}
+				value={page.form?.data?.email}
+				errors={page.form?.errors?.email}
 				disabled={loading}
 			/>
 		</div>

@@ -1,9 +1,10 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Input } from '@valiantlynx/svelte-ui';
-	import { page } from '$app/stores';
+	// <<tobeeditedbyhumanlater>> Temporarily using local Input
+	import Input from '$lib/components/Input.svelte';
+	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
-	let loading = false;
+	let loading = $state(false);
 
 	const submitNewBlog = () => {
 		loading = true;
@@ -45,38 +46,38 @@
 				id="title"
 				label="Title"
 				disabled={loading}
-				value={$page.form?.data?.title}
-				errors={$page.form?.errors?.title}
+				value={page.form?.data?.title}
+				errors={page.form?.errors?.title}
 			/>
 			<Input
 				id="summary"
 				label="Summary"
 				disabled={loading}
-				value={$page.form?.data?.summary}
-				errors={$page.form?.errors?.summary}
+				value={page.form?.data?.summary}
+				errors={page.form?.errors?.summary}
 			/>
 			<Input
 				id="alt"
 				label="Image Alt Text"
 				disabled={loading}
-				value={$page.form?.data?.alt}
-				errors={$page.form?.errors?.alt}
+				value={page.form?.data?.alt}
+				errors={page.form?.errors?.alt}
 			/>
 			<Input
 				id="slug"
 				label="Slug"
 				disabled={loading}
-				value={$page.form?.data?.slug}
-				errors={$page.form?.errors?.slug}
+				value={page.form?.data?.slug}
+				errors={page.form?.errors?.slug}
 			/>
-			<!-- <Input id="tags" label="Tags" disabled={loading} value={$page.form?.data?.tags} errors={$page.form?.errors?.tags}/> -->
+			<!-- <Input id="tags" label="Tags" disabled={loading} value={page.form?.data?.tags} errors={page.form?.errors?.tags}/> -->
 			<Input
 				id="image"
 				label="Blog Image"
 				type="file"
 				disabled={loading}
-				value={$page.form?.data?.image}
-				errors={$page.form?.errors?.image}
+				value={page.form?.data?.image}
+				errors={page.form?.errors?.image}
 			/>
 			<div class="w-full max-w-lg pt-3">
 				<button type="submit" class="btn btn-primary w-full max-w-lg" disabled={loading}

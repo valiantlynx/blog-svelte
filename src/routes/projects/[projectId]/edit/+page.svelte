@@ -1,10 +1,11 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Input } from '@valiantlynx/svelte-ui';
+	// <<tobeeditedbyhumanlater>> Temporarily using local Input
+	import Input from '$lib/components/Input.svelte';
 	import { getImageURL } from '$lib/utils/api';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
-	let loading = false;
+	let loading = $state(false);
 
 	const submitEditProject = () => {
 		loading = true;
@@ -39,27 +40,27 @@
 			enctype="multipart/form-data"
 			use:enhance={submitEditProject}
 		>
-			<h3 class="text-3xl font-bold">Edit {$page.data.project.name}</h3>
+			<h3 class="text-3xl font-bold">Edit {page.data.project.name}</h3>
 			<Input
 				id="name"
 				label="Project name"
-				value={$page.data.project.name ?? ''}
+				value={page.data.project.name ?? ''}
 				disabled={loading}
-				errors={$page.form?.errors?.name}
+				errors={page.form?.errors?.name}
 			/>
 			<Input
 				id="tagline"
 				label="Project tagline"
-				value={$page.data.project.tagline ?? ''}
+				value={page.data.project.tagline ?? ''}
 				disabled={loading}
-				errors={$page.form?.errors?.name}
+				errors={page.form?.errors?.name}
 			/>
 			<Input
 				id="url"
 				label="Project URL"
-				value={$page.data.project.url ?? ''}
+				value={page.data.project.url ?? ''}
 				disabled={loading}
-				errors={$page.form?.errors?.name}
+				errors={page.form?.errors?.name}
 			/>
 			<div class="form-control w-full max-w-lg">
 				<label for="decription" class="label font-medium pb-1">
@@ -68,16 +69,16 @@
 				<textarea
 					name="description"
 					class="textarea textarea-bordered textarea-primary h-24 resize-none"
-					value={$page.data.project.description ?? ''}
+					value={page.data.project.description ?? ''}
 					disabled={loading}
-					errors={$page.form?.errors?.name}
-				/>
+					errors={page.form?.errors?.name}
+				></textarea>
 			</div>
 			<div class="form-control w-full max-w-lg">
 				<label for="thumbnail" class="label font-medium pb-1">
 					<span class="label-text">Thumbnail</span>
 				</label>
-				{#if $page.data.project.thumbnail}
+				{#if page.data.project.thumbnail}
 					<label for="thumbnail" class="avatar w-20 hover:cursor-pointer">
 						<label for="thumbnail" class="absolute -top-1.5 -right-1.5 hover:cursor-pointer">
 							<button formaction="?/deleteThumbnail" class="btn btn-error btn-sm btn-circle">
@@ -87,9 +88,9 @@
 						<div class="w-20 rounded">
 							<img
 								src={getImageURL(
-									$page.data.project.collectionId,
-									$page.data.project.id,
-									$page.data.project.thumbnail,
+									page.data.project.collectionId,
+									page.data.project.id,
+									page.data.project.thumbnail,
 									'80x80'
 								)}
 								alt="project thumbnail"

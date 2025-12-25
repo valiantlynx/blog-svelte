@@ -1,9 +1,7 @@
-<script>
+<script lang="ts">
 	import { pb } from '$lib/utils/api';
 	import { page } from '$app/stores';
-	export let provider;
-	export let logo;
-	export let active;
+	let { provider, logo, active } = $props();
 
 	async function oauth() {
 		await pb.collection('users').authWithOAuth2({ provider: provider });
@@ -12,7 +10,7 @@
 	}
 </script>
 
-<button on:click={oauth} class="w-full block hover:cursor-not-allowed" disabled={active}>
+<button onclick={oauth} class="w-full block hover:cursor-not-allowed" disabled={active}>
 	<div>
 		<div class="btn btn-block btn-primary" type="submit" disabled={active}>
 			<img src={logo} alt={`${provider} sign in`} class="w-10 h-10" />

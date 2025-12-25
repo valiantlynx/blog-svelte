@@ -3,9 +3,9 @@
 	import { onMount } from 'svelte';
 	import '@splidejs/svelte-splide/css';
 	import './splide-override.css';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
-	const blogs = $page.data.blogs;
+	const blogs = page.data.blogs;
 
 	// set up placeholder images
 	let images = [];
@@ -34,8 +34,8 @@
 	};
 
 	// sync carousels
-	let main;
-	let thumbs;
+	let main = $state();
+	let thumbs = $state();
 	onMount(() => {
 		if (main && thumbs) {
 			main.sync(thumbs.splide);

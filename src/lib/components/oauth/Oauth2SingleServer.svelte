@@ -1,10 +1,14 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
-	export let provider;
-	export let logo;
-	export let active = true;
 	import { enhance } from '$app/forms';
 	import toast from 'svelte-french-toast';
+	interface Props {
+		provider: any;
+		logo: any;
+		active?: boolean;
+	}
+
+	let { provider, logo, active = true }: Props = $props();
 	let loading = false;
 
 	const submitOauth = () => {
