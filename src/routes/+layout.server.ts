@@ -1,4 +1,5 @@
 import { serializeNonPOJOs } from '$lib/utils/api';
+import { env } from '$env/dynamic/private';
 
 export const load = async (event) => {
 	// remove the www. and .com or whatever from the url if it exists and use that as the site name
@@ -12,6 +13,7 @@ export const load = async (event) => {
 			user: event.locals.user,
 			sites: await Sites(event),
 			siteName,
+			feedbackToken: env.FEEDBACK_GITHUB_FINEGRAINED_TOKEN ?? null,
 			isSmallDevice
 		};
 	}
@@ -20,6 +22,7 @@ export const load = async (event) => {
 		user: undefined,
 		sites: await Sites(event),
 		siteName,
+		feedbackToken: env.FEEDBACK_GITHUB_FINEGRAINED_TOKEN ?? null,
 		isSmallDevice
 	};
 	return data;
