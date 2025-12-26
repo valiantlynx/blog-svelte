@@ -1,18 +1,35 @@
 <script>
 	import LikeButton from '$lib/components/blog/LikeButton.svelte';
 	import { page } from '$app/state';
-	// <<tobeeditedbyhumanlater>> Temporarily using local ValiantRichText
-	import ValiantRichText from '$lib/components/ValiantRichText.svelte';
 	import { pb } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
 	import Share from '$lib/components/share/Share.svelte';
 	import { site } from '$lib/utils/config';
+	import { browser } from '$app/environment';
 
 	const blog = page.data.blog;
+	
+	// Dynamically import ValiantRichText only on client side to avoid SSR issues
+	// TODO: there a a lucide icon bug in the svelte-rich text . For a permanent fix, you need to edit the source code at svelte-rich-text. The issue is likely in a file that's importing from @lucide/svelte. Here's what you should look for:
+
+	// Find files importing @lucide/svelte in the source project
+	// Replace import { Icon } from '@lucide/svelte'
+	// With one of these options:
+	// Use lucide-svelte if it provides compatible exports
+	// Import specific icon components rather than the base Icon
+	// Add proper bundling configuration to transpile .svelte files in the build output
+
+	let ValiantRichText = $state();
+	
+	if (browser) {
+		import('@mythrantic/svelte-rich-text').then((module) => {
+			ValiantRichText = module.ValiantRichText;
+		});
+	}
 
 	const saveData = (data) => {
 		try {
-			onsole.log(data);
+			console.log(data);
 			const datapb = {
 				content_object: data
 			};
@@ -23,6 +40,14 @@
 			toast.error('Something went wrong please try again');
 		}
 	};
+
+	// Editor states
+	let content = $state(blog?.content_object);
+	let editor = $state();
+
+	function onUpdate() {
+		content = editor?.getJSON();
+	}
 </script>
 
 <!-- Blog Container -->
@@ -69,20 +94,24 @@
 	<div class="text-base-content">
 		{#if page.data.user}
 			{#if page.data.user.id === blog?.author}
-				<ValiantRichText initialData={blog?.content_object} />
-				<button
-					class="btn btn-primary"
-					onclick={() => {
-						const data = getData(); // returns dataBlock[] type
-						saveData(data);
-					}}>Save</button
-				>
+				{#if ValiantRichText}
+					<ValiantRichText bind:editor {content} {onUpdate} editable={true} />
+					<button
+						class="btn btn-primary"
+						onclick={() => {
+							const data = editor?.getJSON();
+							saveData(data);
+						}}>Save</button
+					>
+				{/if}
 			{:else}
 				<h3 class="text-xl text-accent md:text-2xl lg:text-3xl font-bold mb-4">
 					you can not edit this blog post. as you are not the author of this blog post. Create your
 					own blog post <a href="/blogs/new" class="link link-primary">here</a>
 				</h3>
-				<ValiantRichText initialData={blog?.content_object} viewMode={true} />
+				{#if ValiantRichText}
+					<ValiantRichText {content} editable={false} />
+				{/if}
 			{/if}
 		{:else}
 			<h3 class="text-xl text-accent md:text-2xl lg:text-3xl font-bold mb-4">
@@ -90,7 +119,9 @@
 					>login</a
 				> to edit.
 			</h3>
-			<ValiantRichText initialData={blog?.content_object} viewMode={true} />
+			{#if ValiantRichText}
+				<ValiantRichText {content} editable={false} />
+			{/if}
 		{/if}
 	</div>
 
@@ -113,7 +144,6 @@
 		text={`read ${blog?.title} by ${blog?.expand?.author?.username} at ${page.url.hostname} free online, high quality`}
 		hashtags={blog?.expand?.tags.map((tag) => tag.name)}
 	/>
-	<!-- Chat Component -->
 </div>
 
 <svelte:head>
