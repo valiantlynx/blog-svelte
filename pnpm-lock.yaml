@@ -58,7 +58,7 @@ importers:
         specifier: ^17.0.1
         version: 17.0.1
       pocketbase:
-        specifier: ^0.26.0
+        specifier: ^0.26.5
         version: 0.26.5
       prettier:
         specifier: ^3.6.2
