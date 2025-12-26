@@ -161,6 +161,7 @@
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<meta name="description" content={blog?.summary} />
+	
 	<!-- Keywords Meta Tag -->
 	<meta name="keywords" content={blog?.expand?.tags.map((tag) => tag.name)} />
 
@@ -183,6 +184,7 @@
 
 	<!-- Google / Search Engine Tags -->
 	<meta itemprop="name" content={blog?.title} />
+	<meta itemprop="description" content={blog?.summary} />
 
 	<!-- Facebook Meta Tags (for social media sharing) -->
 	<meta property="fb:image" content={blog?.image} />
