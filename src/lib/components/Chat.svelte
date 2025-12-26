@@ -1,14 +1,16 @@
 <script>
+	import { preventDefault } from 'svelte/legacy';
+
 	import ChatMessage from './ChatMessage.svelte';
 	import { onMount, onDestroy } from 'svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { pb } from '$lib/utils/api';
 
-	let newMessage = '';
+	let newMessage = $state('');
 	/**
 	 * @type {any[]}
 	 */
-	let messages = [];
+	let messages = $state([]);
 	/**
 	 * @type {() => void}
 	 */
@@ -16,13 +18,13 @@
 	/**
 	 * @type {HTMLDivElement}
 	 */
-	let scrollBottom;
+	let scrollBottom = $state();
 	/**
 	 * @type {number}
 	 */
 	let lastScrollTop;
-	let canAutoScroll = true;
-	let unreadMessages = false;
+	let canAutoScroll = $state(true);
+	let unreadMessages = $state(false);
 
 	function autoScroll() {
 		setTimeout(() => scrollBottom?.scrollIntoView({ behavior: 'smooth' }), 50);
@@ -63,7 +65,7 @@
 				record.expand = { sender };
 				messages = [...messages, record];
 
-				if ($page.data.user.id !== record.receiver) {
+				if (page.data.user.id !== record.receiver) {
 					unreadMessages = true;
 				}
 			}
@@ -87,8 +89,8 @@
 	async function sendMessage() {
 		const data = {
 			message: newMessage,
-			sender: $page.data.user?.id,
-			receiver: $page.data.user?.id
+			sender: page.data.user?.id,
+			receiver: page.data.user?.id
 		};
 		await pb.collection('chat_valiantlynx').create(data);
 		newMessage = '';
@@ -101,19 +103,19 @@
 	<div class=" p-4 space-y-4 border-dashed border-2 border-primary sm:mx-20">
 		<h2 class="text-2xl font-bold mb-4">Join the Discussion</h2>
 
-		<main class="overflow-y-auto" on:scroll={watchScroll}>
+		<main class="overflow-y-auto" onscroll={watchScroll}>
 			{#each messages as message (message.id)}
 				<ChatMessage
 					{message}
-					sender={$page.data.user?.username ? $page.data.user?.username : 'the user isnt logged in'}
+					sender={page.data.user?.username ? page.data.user?.username : 'the user isnt logged in'}
 				/>
 			{/each}
-			<div class="dummy" bind:this={scrollBottom} />
+			<div class="dummy" bind:this={scrollBottom}></div>
 		</main>
 
 		{#if !canAutoScroll}
 			<div class="text-center justify-center flex">
-				<button on:click={autoScroll} class="btn btn-secondary">
+				<button onclick={autoScroll} class="btn btn-secondary">
 					{#if unreadMessages}
 						💬
 					{/if}
@@ -123,17 +125,17 @@
 		{/if}
 
 		<div class="border-t border-primary pt-4">
-			<form on:submit|preventDefault={sendMessage} class="space-x-2 flex items-center">
+			<form onsubmit={preventDefault(sendMessage)} class="space-x-2 flex items-center">
 				<input
 					type="text"
-					placeholder={$page.data.user
+					placeholder={page.data.user
 						? 'write your comment here'
 						: 'login to write a comment  ----------------->'}
 					minlength="1"
 					bind:value={newMessage}
 					class="input input-bordered input-primary flex-grow"
 				/>
-				{#if $page.data.user}
+				{#if page.data.user}
 					<button type="submit" class="btn btn-primary"> Send </button>
 				{:else}
 					<a href="/login" type="submit" class="btn btn-primary">Login</a>

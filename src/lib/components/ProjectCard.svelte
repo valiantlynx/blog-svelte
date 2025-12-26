@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import { getImageURL } from '$lib/utils/api';
 	import { site } from '$lib/utils/config';
-	export let project;
+	let { project } = $props();
 </script>
 
 <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
@@ -46,16 +46,16 @@
 			<div class="flex items-center">
 				<ul class="flex justify-end mt-4">
 					<li class="inline pr-2">
-						<i class="fa fa-eye fa-lg text-primary-content" />
+						<i class="fa fa-eye fa-lg text-primary-content"></i>
 					</li>
 					<li class="inline pr-2">
-						<i class="fa fa-heart-o fa-lg text-primary-content" />
+						<i class="fa fa-heart-o fa-lg text-primary-content"></i>
 					</li>
 					<li class="inline pr-2">
-						<i class="fa fa-envelope-o fa-lg text-primary-content" />
+						<i class="fa fa-envelope-o fa-lg text-primary-content"></i>
 					</li>
 					<li class="inline">
-						<i class="fa fa-share-alt fa-lg text-primary-content" />
+						<i class="fa fa-share-alt fa-lg text-primary-content"></i>
 					</li>
 				</ul>
 			</div>

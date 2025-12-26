@@ -1,10 +1,11 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Input } from '@valiantlynx/svelte-ui';
+	// <<tobeeditedbyhumanlater>> Temporarily using local Input
+	import Input from './Input.svelte';
 	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
-	let loading = false;
+	let loading = $state(false);
 
 	const submitSignup = () => {
 		loading = true;
@@ -33,7 +34,7 @@
 	<div
 		class="w-full p-6 bg-base-200 border-t-4 border-primary rounded-md shadow-md border-top lg:max-w-lg"
 	>
-		<h1 class="text-3xl font-semibold text-center">{$page.data.siteName} | Signup</h1>
+		<h1 class="text-3xl font-semibold text-center">{page.data.siteName} | Signup</h1>
 		<form
 			action="?/signup"
 			method="POST"
@@ -43,30 +44,30 @@
 			<Input
 				id="name"
 				label="Name"
-				value={$page.form?.data?.name}
-				errors={$page.form?.errors?.name}
+				value={page.form?.data?.name}
+				errors={page.form?.errors?.name}
 				disabled={loading}
 			/>
 			<Input
 				type="email"
 				id="email"
 				label="Email"
-				value={$page.form?.data?.email}
-				errors={$page.form?.errors?.email}
+				value={page.form?.data?.email}
+				errors={page.form?.errors?.email}
 				disabled={loading}
 			/>
 			<Input
 				type="password"
 				id="password"
 				label="Password"
-				errors={$page.form?.errors?.password}
+				errors={page.form?.errors?.password}
 				disabled={loading}
 			/>
 			<Input
 				type="password"
 				id="passwordConfirm"
 				label="Confirm Password"
-				errors={$page.form?.errors?.passwordConfirm}
+				errors={page.form?.errors?.passwordConfirm}
 				disabled={loading}
 			/>
 			<br />

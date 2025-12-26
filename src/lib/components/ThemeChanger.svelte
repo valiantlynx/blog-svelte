@@ -1,40 +1,46 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { browser, dev } from '$app/environment';
 	import { theme } from '$lib/utils/config';
 	import { hslToHex } from '$lib/utils/color';
 	import Icon from '@iconify/svelte';
 
-	let currentTheme: string;
-	let currentThemeColor: string;
-	let pin = true;
-	let percent: number;
-	let [scrollY, lastY] = [0, 0];
+	let currentTheme: string = $state();
+	let currentThemeColor: string = $state();
+	let pin = $state(true);
+	let percent: number = $state();
+	let [scrollY, lastY] = $state([0, 0]);
 
-	$: if (browser && currentTheme) {
-		document.documentElement.setAttribute('data-theme', currentTheme);
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		currentThemeColor = hslToHex(
-			...(getComputedStyle(document.documentElement)
-				.getPropertyValue('--b1')
-				.slice(dev ? 1 : 0)
-				.replaceAll('%', '')
-				.split(' ')
-				.map(Number) as [number, number, number])
-		);
-	}
-
-	$: if (scrollY) {
-		pin = lastY - scrollY > 0 || scrollY === 0 ? true : false;
-		lastY = scrollY;
-		if (browser)
+	run(() => {
+		if (browser && currentTheme) {
+			document.documentElement.setAttribute('data-theme', currentTheme);
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			percent =
-				Math.round(
-					(scrollY /
-						(document.documentElement.scrollHeight - document.documentElement.clientHeight)) *
-						10000
-				) / 100;
-	}
+			currentThemeColor = hslToHex(
+				...(getComputedStyle(document.documentElement)
+					.getPropertyValue('--b1')
+					.slice(dev ? 1 : 0)
+					.replaceAll('%', '')
+					.split(' ')
+					.map(Number) as [number, number, number])
+			);
+		}
+	});
+
+	run(() => {
+		if (scrollY) {
+			pin = lastY - scrollY > 0 || scrollY === 0 ? true : false;
+			lastY = scrollY;
+			if (browser)
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				percent =
+					Math.round(
+						(scrollY /
+							(document.documentElement.scrollHeight - document.documentElement.clientHeight)) *
+							10000
+					) / 100;
+		}
+	});
 
 	if (browser)
 		currentTheme =
@@ -45,13 +51,13 @@
 </script>
 
 <div id="change-theme" class="dropdown">
-	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<!-- reference: https://github.com/saadeghi/daisyui/issues/1285 -->
 	<div tabindex="0" class="btn btn-circle btn-ghost">
 		<Icon icon="heroicons-outline:color-swatch" width="30" />
 	</div>
 
-	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<!-- reference: https://github.com/saadeghi/daisyui/issues/1285 -->
 	<ul
 		tabindex="0"
@@ -61,7 +67,7 @@
 		{#each theme as { name, text }}
 			<button
 				data-theme={name}
-				on:click={() => {
+				onclick={() => {
 					currentTheme = name;
 					localStorage.setItem('theme', name);
 				}}
@@ -76,7 +82,7 @@
 				</p>
 				<div class="grid grid-cols-4 gap-0.5 m-auto">
 					{#each ['bg-primary', 'bg-secondary', 'bg-accent', 'bg-neutral'] as bg}
-						<div class={`${bg} w-1 h-4 rounded-btn`} />
+						<div class={`${bg} w-1 h-4 rounded-btn`}></div>
 					{/each}
 				</div>
 			</button>

@@ -1,14 +1,14 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { enhance } from '$app/forms';
 	import { pb } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
 
-	const blog = $page.data.blog;
-	let isLiked = false;
+	const blog = page.data.blog;
+	let isLiked = $state(false);
 
-	let blogLikes = [];
+	let blogLikes = $state([]);
 
 	async function getRecords() {
 		const records = await pb.collection('valiantlynx_likes').getFullList(200, {
@@ -22,10 +22,10 @@
 	onMount(async () => {
 		pb.collection('valiantlynx_likes').subscribe('*', async (e) => {
 			blogLikes = await getRecords();
-			isLiked = blogLikes.some((like) => like.userId === $page.data.user?.id);
+			isLiked = blogLikes.some((like) => like.userId === page.data.user?.id);
 		});
 		blogLikes = await getRecords();
-		isLiked = blogLikes.some((like) => like.userId === $page.data.user?.id);
+		isLiked = blogLikes.some((like) => like.userId === page.data.user?.id);
 	});
 
 	onDestroy(() => {
@@ -36,7 +36,7 @@
 
 	const submitLike = () => {
 		loading = true;
-		if ($page.data.user) {
+		if (page.data.user) {
 			return async ({ result, update }) => {
 				switch (result.type) {
 					case 'success':
@@ -71,9 +71,9 @@
 	};
 </script>
 
-<form use:enhance={submitLike} action="/blogs/{$page.data.blog?.slug}?/toggleLike" method="POST">
+<form use:enhance={submitLike} action="/blogs/{page.data.blog?.slug}?/toggleLike" method="POST">
 	<input type="hidden" name="blogId" value={blog?.id} />
-	<input type="hidden" name="userId" value={$page.data.user?.id} />
+	<input type="hidden" name="userId" value={page.data.user?.id} />
 	<button class="btn btn-outline btn-primary btn-sm flex items-center gap-2">
 		<i class="material-icons">{isLiked ? 'thumb_up' : 'thumb_up_off_alt'}</i>
 		{isLiked ? 'Liked' : 'Like this Post'}

@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
 	import ProjectCard from '$lib/components/ProjectCard.svelte';
-	export let data;
+	let { data } = $props();
 </script>
 
 <div class="w-full mt-4 flex flex-wrap -m-4 p-10 items-center">

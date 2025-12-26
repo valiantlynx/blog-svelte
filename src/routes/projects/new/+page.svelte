@@ -1,9 +1,10 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Input } from '@valiantlynx/svelte-ui';
-	import { page } from '$app/stores';
+	// <<tobeeditedbyhumanlater>> Temporarily using local Input
+	import Input from '$lib/components/Input.svelte';
+	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
-	let loading = false;
+	let loading = $state(false);
 
 	const submitNewProject = () => {
 		loading = true;
@@ -43,22 +44,22 @@
 				id="name"
 				label="Project name"
 				disabled={loading}
-				value={$page.form?.data?.name}
-				errors={$page.form?.errors?.name}
+				value={page.form?.data?.name}
+				errors={page.form?.errors?.name}
 			/>
 			<Input
 				id="tagline"
 				label="Project tagline"
 				disabled={loading}
-				value={$page.form?.data?.tagline}
-				errors={$page.form?.errors?.tagline}
+				value={page.form?.data?.tagline}
+				errors={page.form?.errors?.tagline}
 			/>
 			<Input
 				id="url"
 				label="Project URL"
 				disabled={loading}
-				value={$page.form?.data?.url}
-				errors={$page.form?.errors?.url}
+				value={page.form?.data?.url}
+				errors={page.form?.errors?.url}
 			/>
 			<div class="form-control w-full max-w-lg">
 				<label for="description" class="label font-medium pb-1">
@@ -68,9 +69,9 @@
 					name="description"
 					class="textarea textarea-bordered textarea-primary h-24"
 					disabled={loading}
-					value={$page.form?.data?.description}
-					errors={$page.form?.errors?.description}
-				/>
+					value={page.form?.data?.description}
+					errors={page.form?.errors?.description}
+				></textarea>
 			</div>
 			<div class="form-control w-full max-w-lg">
 				<label for="thumbnail" class="label font-medium pb-1">
