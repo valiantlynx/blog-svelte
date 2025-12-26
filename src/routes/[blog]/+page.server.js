@@ -48,5 +48,39 @@ export const actions = {
 		} catch (err) {
 			throw error(err.status, err.message);
 		}
+	},
+	
+	updateBlog: async ({ locals, request, params }) => {
+		// Check if user is authenticated
+		if (!locals.pb.authStore.isValid) {
+			throw error(401, 'Unauthorized - Please log in');
+		}
+
+		const form = await request.formData();
+		const contentObjectStr = form.get('content_object');
+		const blogId = form.get('blogId');
+
+		if (!contentObjectStr || !blogId) {
+			throw error(400, 'Invalid request data');
+		}
+
+		try {
+			// Parse the content object
+			const content_object = JSON.parse(contentObjectStr);
+			
+			// Update the blog with the authenticated pb instance
+			const updatedBlog = await locals.pb.collection('blogs').update(blogId, {
+				content_object
+			});
+
+			return {
+				success: true,
+				message: 'Blog post updated successfully',
+				blog: serializeNonPOJOs(updatedBlog)
+			};
+		} catch (err) {
+			console.error('Error updating blog:', err);
+			throw error(err.status || 500, err.message || 'Failed to update blog');
+		}
 	}
 };

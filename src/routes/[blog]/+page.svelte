@@ -1,11 +1,12 @@
 <script>
 	import LikeButton from '$lib/components/blog/LikeButton.svelte';
 	import { page } from '$app/state';
-	import { pb } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
 	import Share from '$lib/components/share/Share.svelte';
 	import { site } from '$lib/utils/config';
 	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
+	import { enhance } from '$app/forms';
 
 	const blog = page.data.blog;
 	
@@ -20,33 +21,23 @@
 	// Add proper bundling configuration to transpile .svelte files in the build output
 
 	let ValiantRichText = $state();
+	let isSaving = $state(false);
 	
-	if (browser) {
+	// Load rich text component on mount
+	onMount(() => {
 		import('@mythrantic/svelte-rich-text').then((module) => {
 			ValiantRichText = module.ValiantRichText;
 		});
-	}
-
-	const saveData = (data) => {
-		try {
-			console.log(data);
-			const datapb = {
-				content_object: data
-			};
-			pb.collection('blogs').update(blog?.id, datapb);
-			toast.success('Blog post updated successfully');
-		} catch (error) {
-			console.log(error);
-			toast.error('Something went wrong please try again');
-		}
-	};
+	});
 
 	// Editor states
 	let content = $state(blog?.content_object);
 	let editor = $state();
+	let contentJson = $state('');
 
 	function onUpdate() {
 		content = editor?.getJSON();
+		contentJson = JSON.stringify(content);
 	}
 </script>
 
@@ -95,14 +86,35 @@
 		{#if page.data.user}
 			{#if page.data.user.id === blog?.author}
 				{#if ValiantRichText}
-					<ValiantRichText bind:editor {content} {onUpdate} editable={true} />
-					<button
-						class="btn btn-primary"
-						onclick={() => {
-							const data = editor?.getJSON();
-							saveData(data);
-						}}>Save</button
+					<form 
+						method="POST" 
+						action="?/updateBlog"
+						use:enhance={() => {
+							isSaving = true;
+							return async ({ result, update }) => {
+								isSaving = false;
+								if (result.type === 'success') {
+									toast.success('Blog post updated successfully');
+								} else if (result.type === 'error') {
+									toast.error(result.error?.message || 'Failed to update blog');
+								}
+								await update();
+							};
+						}}
 					>
+						<input type="hidden" name="blogId" value={blog?.id} />
+						<input type="hidden" name="content_object" bind:value={contentJson} />
+						
+						<ValiantRichText bind:editor {content} {onUpdate} editable={true} />
+						
+						<button 
+							type="submit" 
+							class="btn btn-primary mt-4"
+							disabled={isSaving}
+						>
+							{isSaving ? 'Saving...' : 'Save'}
+						</button>
+					</form>
 				{/if}
 			{:else}
 				<h3 class="text-xl text-accent md:text-2xl lg:text-3xl font-bold mb-4">
