@@ -25,10 +25,13 @@
 					// TODO: Add badge to show unread notifications
 					let unreadCount = 1;
 					navigator.setAppBadge(unreadCount);
-					if (confirm('New update Available! Reload to update')) {
+					console.log('New Service Worker found, update available.');
+					if (navigator.serviceWorker.controller) {
+						console.log('New Service Worker installed.');
 						navigator.clearAppBadge();
 						// skipWaiting() will force the waiting ServiceWorker to become the active ServiceWorker
 						newServiceWorker.postMessage({ type: 'SKIP_WAITING' });
+
 						window.location.reload;
 					}
 				}

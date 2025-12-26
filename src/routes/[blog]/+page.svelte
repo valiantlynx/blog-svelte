@@ -1,28 +1,44 @@
 <script>
 	import LikeButton from '$lib/components/blog/LikeButton.svelte';
 	import { page } from '$app/state';
-	// <<tobeeditedbyhumanlater>> Temporarily using local ValiantRichText
-	import ValiantRichText from '$lib/components/ValiantRichText.svelte';
-	import { pb } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
 	import Share from '$lib/components/share/Share.svelte';
 	import { site } from '$lib/utils/config';
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
+	import { enhance } from '$app/forms';
 
 	const blog = page.data.blog;
+	
+	// Dynamically import ValiantRichText only on client side to avoid SSR issues
+	// TODO: there a a lucide icon bug in the svelte-rich text . For a permanent fix, you need to edit the source code at svelte-rich-text. The issue is likely in a file that's importing from @lucide/svelte. Here's what you should look for:
 
-	const saveData = (data) => {
-		try {
-			console.log(data);
-			const datapb = {
-				content_object: data
-			};
-			pb.collection('blogs').update(blog?.id, datapb);
-			toast.success('Blog post updated successfully');
-		} catch (error) {
-			console.log(error);
-			toast.error('Something went wrong please try again');
-		}
-	};
+	// Find files importing @lucide/svelte in the source project
+	// Replace import { Icon } from '@lucide/svelte'
+	// With one of these options:
+	// Use lucide-svelte if it provides compatible exports
+	// Import specific icon components rather than the base Icon
+	// Add proper bundling configuration to transpile .svelte files in the build output
+
+	let ValiantRichText = $state();
+	let isSaving = $state(false);
+	
+	// Load rich text component on mount
+	onMount(() => {
+		import('@mythrantic/svelte-rich-text').then((module) => {
+			ValiantRichText = module.ValiantRichText;
+		});
+	});
+
+	// Editor states
+	let content = $state(blog?.content_object);
+	let editor = $state();
+	let contentJson = $state('');
+
+	function onUpdate() {
+		content = editor?.getJSON();
+		contentJson = JSON.stringify(content);
+	}
 </script>
 
 <!-- Blog Container -->
@@ -69,20 +85,45 @@
 	<div class="text-base-content">
 		{#if page.data.user}
 			{#if page.data.user.id === blog?.author}
-				<ValiantRichText initialData={blog?.content_object} />
-				<button
-					class="btn btn-primary"
-					onclick={() => {
-						const data = getData(); // returns dataBlock[] type
-						saveData(data);
-					}}>Save</button
-				>
+				{#if ValiantRichText}
+					<form 
+						method="POST" 
+						action="?/updateBlog"
+						use:enhance={() => {
+							isSaving = true;
+							return async ({ result, update }) => {
+								isSaving = false;
+								if (result.type === 'success') {
+									toast.success('Blog post updated successfully');
+								} else if (result.type === 'error') {
+									toast.error(result.error?.message || 'Failed to update blog');
+								}
+								await update();
+							};
+						}}
+					>
+						<input type="hidden" name="blogId" value={blog?.id} />
+						<input type="hidden" name="content_object" bind:value={contentJson} />
+						
+						<ValiantRichText bind:editor {content} {onUpdate} editable={true} />
+						
+						<button 
+							type="submit" 
+							class="btn btn-primary mt-4"
+							disabled={isSaving}
+						>
+							{isSaving ? 'Saving...' : 'Save'}
+						</button>
+					</form>
+				{/if}
 			{:else}
 				<h3 class="text-xl text-accent md:text-2xl lg:text-3xl font-bold mb-4">
 					you can not edit this blog post. as you are not the author of this blog post. Create your
 					own blog post <a href="/blogs/new" class="link link-primary">here</a>
 				</h3>
-				<ValiantRichText initialData={blog?.content_object} viewMode={true} />
+				{#if ValiantRichText}
+					<ValiantRichText {content} editable={false} />
+				{/if}
 			{/if}
 		{:else}
 			<h3 class="text-xl text-accent md:text-2xl lg:text-3xl font-bold mb-4">
@@ -90,7 +131,9 @@
 					>login</a
 				> to edit.
 			</h3>
-			<ValiantRichText initialData={blog?.content_object} viewMode={true} />
+			{#if ValiantRichText}
+				<ValiantRichText {content} editable={false} />
+			{/if}
 		{/if}
 	</div>
 
@@ -130,6 +173,7 @@
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<meta name="description" content={blog?.summary} />
+	
 	<!-- Keywords Meta Tag -->
 	<meta name="keywords" content={blog?.expand?.tags.map((tag) => tag.name)} />
 
@@ -152,6 +196,7 @@
 
 	<!-- Google / Search Engine Tags -->
 	<meta itemprop="name" content={blog?.title} />
+	<meta itemprop="description" content={blog?.summary} />
 
 	<!-- Facebook Meta Tags (for social media sharing) -->
 	<meta property="fb:image" content={blog?.image} />
