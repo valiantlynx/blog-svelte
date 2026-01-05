@@ -14,7 +14,7 @@
 		"generate-pwa-assets": "npx @vite-pwa/assets-generator --preset minimal static/logo.svg"
 	},
 	"devDependencies": {
-		"@iconify/svelte": "^4.0.2",
+		"@iconify/svelte": "^5.2.1",
 		"@lucide/svelte": "0.562.0",
 		"@mythrantic/svelte-rich-text": "^1.1.0",
 		"@splidejs/svelte-splide": "^0.2.9",
