@@ -1,3 +1,5 @@
+[![Open in Coder](https://coder.valiantlynx.com/open-in-coder.svg)](https://coder.valiantlynx.com/templates/docker/workspace?param.git_repo=https://github.com/valiantlynx/blog-svelte.git)
+
 # Valiantlynx'S (https://www.valiantlynx.com) website
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
