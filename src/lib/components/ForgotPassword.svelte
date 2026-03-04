@@ -1,6 +1,5 @@
 <script>
 	import { enhance } from '$app/forms';
-	// <<tobeeditedbyhumanlater>> Temporarily using local Input
 	import Input from './Input.svelte';
 	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';

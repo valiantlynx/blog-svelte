@@ -1,7 +1,6 @@
 <script>
 	import { enhance, applyAction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
-	// <<tobeeditedbyhumanlater>> Temporarily using local components
 	import Modal from '$lib/components/Modal.svelte';
 	import Input from '$lib/components/Input.svelte';
 	import { page } from '$app/stores';

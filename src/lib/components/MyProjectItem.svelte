@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	// <<tobeeditedbyhumanlater>> Temporarily using local Modal
 	import Modal from './Modal.svelte';
 	import { getImageURL } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';

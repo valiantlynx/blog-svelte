@@ -1,4 +1,3 @@
-<!-- <<tobeeditedbyhumanlater>> Temporary placeholder for @valiantlynx/svelte-ui ButtonWithIcon -->
 <script>
 	let { icon = undefined, label = undefined, onclick = () => {}, children = undefined, ...rest } = $props();
 </script>

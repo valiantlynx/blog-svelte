@@ -1,5 +1,4 @@
 <script lang="ts">
-	// <<tobeeditedbyhumanlater>> Temporarily using local ButtonWithIcon
 	import ButtonWithIcon from '../ButtonWithIcon.svelte';
 	import { page } from '$app/state';
 

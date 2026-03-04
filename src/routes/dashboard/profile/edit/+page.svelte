@@ -1,5 +1,4 @@
 <script>
-	// <<tobeeditedbyhumanlater>> Temporarily using local Input
 	import Input from '$lib/components/Input.svelte';
 	import { enhance, applyAction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';

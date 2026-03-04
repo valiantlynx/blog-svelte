@@ -1,6 +1,5 @@
 <script>
 	import { enhance } from '$app/forms';
-	// <<tobeeditedbyhumanlater>> Temporarily using local Input
 	import Input from './Input.svelte';
 	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
 	import { page } from '$app/state';

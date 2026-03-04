@@ -1,6 +1,5 @@
 <script>
 	import { enhance } from '$app/forms';
-	// <<tobeeditedbyhumanlater>> Temporarily using local Input
 	import Input from '$lib/components/Input.svelte';
 	import { getImageURL } from '$lib/utils/api';
 	import { page } from '$app/state';
