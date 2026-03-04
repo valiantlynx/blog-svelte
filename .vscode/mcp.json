@@ -10,7 +10,16 @@
 		"svelte-mcp": {
 			"type": "http",
 			"url": "https://mcp.svelte.dev/mcp"
-		}
-	},
+		},
+      "daisyui-blueprint": {
+        "type": "stdio",
+        "command": "npx",
+        "args": ["-y", "daisyui-blueprint@latest"],
+        "env": {
+          "LICENSE": "",
+          "EMAIL": ""
+        }
+      }
+    },
 	"inputs": []
 }

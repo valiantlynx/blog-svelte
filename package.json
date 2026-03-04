@@ -27,7 +27,7 @@
 		"@typescript-eslint/eslint-plugin": "^8.20.0",
 		"@typescript-eslint/parser": "^8.20.0",
 		"autoprefixer": "^10.4.20",
-		"daisyui": "^5.0.0",
+		"daisyui": "^5.5.19",
 		"marked": "^17.0.1",
 		"pocketbase": "^0.26.5",
 		"prettier": "^3.6.2",
