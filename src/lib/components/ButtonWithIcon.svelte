@@ -1,6 +1,6 @@
 <!-- <<tobeeditedbyhumanlater>> Temporary placeholder for @valiantlynx/svelte-ui ButtonWithIcon -->
 <script>
-	let { icon, label, onclick = () => {}, children, ...rest } = $props();
+	let { icon = undefined, label = undefined, onclick = () => {}, children = undefined, ...rest } = $props();
 </script>
 
 <button {onclick} class="btn btn-sm gap-2" {...rest}>
