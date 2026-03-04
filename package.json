@@ -42,7 +42,7 @@
 	},
 	"type": "module",
 	"pnpm": {
-		"comment": "<<tobeeditedbyhumanlater>> The following @valiantlynx packages are temporarily disabled during Svelte 5 migration: eslint-config-custom, svelte-leaflet, svelte-rich-text, svelte-ui, tailwind-config, tsconfig"
+		"comment": "<<tobeeditedbyhumanlater>> The following @valiantlynx packages are temporarily disabled during Svelte 5 migration: svelte-rich-text"
 	},
 	"dependencies": {
 		"@valiantlynx/svelte-ui": "^0.0.24"
