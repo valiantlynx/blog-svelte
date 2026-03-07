@@ -4,48 +4,130 @@
 	import ProfileModal from './ProfileModal.svelte';
 	import LanguageSwitcher from './LanguageSwitcher.svelte';
 	import { page } from '$app/state';
-	// <<tobeeditedbyhumanlater>> Temporarily using local ThemeChanger
 	import ThemeChanger from './ThemeChanger.svelte';
+
+	let mobileMenuOpen = $state(false);
+
+	function toggleMenu() {
+		mobileMenuOpen = !mobileMenuOpen;
+	}
+
+	function closeMenu() {
+		mobileMenuOpen = false;
+	}
 </script>
 
-<!-- Small Devices Layout -->
-<div>
-	<div class="navbar bg-base-100 border-b border-base-300 max-w-full sm:hidden">
-		<div class="flex-1">
-			<Button href="/" variant="ghost" class="normal-case text-xl text-base-content">
-				{page.data.siteName}
-			</Button>
-			<ThemeChanger />
+<!-- Desktop Layout -->
+<nav
+	class="sticky top-0 z-40 hidden md:flex items-center justify-between bg-base-100 border-b border-base-300 px-8 py-4 gap-6 shadow-sm"
+	id="title-bar"
+>
+	<!-- Brand Section -->
+	<Button
+		href="/"
+		variant="ghost"
+		class="font-bold text-2xl tracking-tight text-base-content hover:text-primary transition-colors duration-200 flex-shrink-0 -ml-3"
+	>
+		✨ {page.data.siteName}
+	</Button>
+
+	<!-- Center: Search Bar (Desktop Only) -->
+	{#if page.url.pathname !== '/search'}
+		<div class="flex-1 max-w-xl">
+			<Search type="small" />
 		</div>
+	{/if}
+
+	<!-- Right Section: Actions -->
+	<div class="flex items-center gap-4 flex-shrink-0">
+		<ThemeChanger />
 		<LanguageSwitcher />
 		<ProfileModal />
 	</div>
-	<!-- Show search bar only on pages other than search -->
-	{#if page.url.pathname !== '/search'}
-		<div class="navbar bg-base-100 border-b border-base-300 flex flex-col sm:hidden">
-			<div class="flex-none sm:flex sm:gap-2">
-				<Search type="small" />
+</nav>
+
+<!-- Mobile Header -->
+<div class="sticky top-0 z-40 md:hidden bg-base-100 border-b border-base-300 shadow-sm">
+	<div class="flex items-center justify-between px-4 py-3 gap-2">
+		<!-- Brand -->
+		<Button
+			href="/"
+			variant="ghost"
+			class="font-bold text-xl tracking-tight text-base-content hover:text-primary transition-colors duration-200 flex-shrink-0 -ml-2"
+		>
+			✨ {page.data.siteName}
+		</Button>
+
+		<!-- Hamburger Menu Button -->
+		<button
+			onclick={toggleMenu}
+			class="flex items-center justify-center w-10 h-10 rounded-lg text-base-content hover:bg-base-200 transition-colors"
+			aria-label="Toggle menu"
+			aria-expanded={mobileMenuOpen}
+			type="button"
+		>
+			{#if mobileMenuOpen}
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M6 18L18 6M6 6l12 12"
+					/>
+				</svg>
+			{:else}
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M4 6h16M4 12h16M4 18h16"
+					/>
+				</svg>
+			{/if}
+		</button>
+
+		<!-- Login Button (Always Visible) -->
+		<ProfileModal />
+	</div>
+
+	<!-- Mobile Menu Dropdown -->
+	{#if mobileMenuOpen}
+		<!-- Backdrop -->
+		<button
+			type="button"
+			class="fixed inset-0 bg-black/20 z-30 md:hidden"
+			onclick={closeMenu}
+			aria-label="Close menu"
+		></button>
+
+		<!-- Menu Content -->
+		<div
+			class="absolute top-full left-0 right-0 bg-base-100 border-b border-base-300 shadow-lg md:hidden"
+		>
+			<!-- Search Bar -->
+			{#if page.url.pathname !== '/search'}
+				<div class="border-b border-base-300 px-4 py-3">
+					<Search type="small" />
+				</div>
+			{/if}
+
+			<!-- Menu Items -->
+			<div class="flex flex-col gap-2 p-4">
+				<!-- Theme Switcher -->
+				<div class="flex items-center justify-between py-2 border-b border-base-300 pb-3">
+					<span class="text-sm font-medium text-base-content">Theme</span>
+					<ThemeChanger />
+				</div>
+
+				<!-- Language Switcher -->
+				<div class="flex items-center justify-between py-2 border-b border-base-300 pb-3">
+					<span class="text-sm font-medium text-base-content">Language</span>
+					<LanguageSwitcher />
+				</div>
 			</div>
 		</div>
 	{/if}
-</div>
-
-<!-- Large Devices Layout -->
-<div class="navbar bg-base-100 border-b border-base-300 hidden sm:flex" id="title-bar">
-	<div class="flex-1">
-		<Button href="/" variant="ghost" class="normal-case text-xl text-base-content">
-			{page.data.siteName}
-		</Button>
-		<ThemeChanger />
-	</div>
-	<div class="flex-none gap-2">
-		<!-- Show search bar only on pages other than search -->
-		{#if page.url.pathname !== '/search'}
-			<Search type="small" />
-		{/if}
-		<LanguageSwitcher />
-		<ProfileModal />
-	</div>
 </div>
 
 <style>

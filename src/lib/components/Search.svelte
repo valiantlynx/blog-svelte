@@ -2,8 +2,6 @@
 	import { run } from 'svelte/legacy';
 
 	import { goto } from '$app/navigation';
-	import { Button } from '$lib/components/ui/button';
-	import { Input } from '$lib/components/ui/input';
 	import BigSearchResults from '$lib/components/BigSearchResults.svelte';
 	import SmallSearchResults from '$lib/components/SmallSearchResults.svelte';
 	import { metaKeywords, searchQuery } from '$lib/utils/stores';
@@ -124,32 +122,51 @@
 	});
 </script>
 
-<div class="max-w-screen mx-auto">
-	<div class="join">
-		<div class="w-full">
-			<Input
-				class="join-item w-full"
+<div class="max-w-screen mx-auto w-full">
+	<div class="relative w-full">
+		<div
+			class="flex flex-nowrap items-stretch gap-0 bg-base-100 border border-base-300 rounded-lg overflow-hidden shadow-sm"
+		>
+			<input
+				type="text"
 				value={$searchQuery && type === 'big' ? $searchQuery : ''}
 				placeholder={m['placeholders.search']()}
 				oninput={handleSearch}
+				class="flex-1 min-w-0 bg-base-100 text-base-content placeholder-base-content/50 px-4 py-2 focus:outline-none border-0"
 			/>
+			<div
+				class="border-l border-base-300 bg-base-200 hover:bg-base-300 transition-colors duration-200"
+			>
+				<select
+					class="bg-transparent text-base-content border-0 px-3 py-2 focus:outline-none cursor-pointer font-medium"
+					bind:value={selectedOption}
+				>
+					<option value={m['header.blogs']?.()}>{m['header.blogs']?.()}</option>
+					<option value={m['header.projects']?.()}>{m['header.projects']?.()}</option>
+				</select>
+			</div>
+
+			<button
+				type="button"
+				onclick={() => goto('/search')}
+				class="border-l border-base-300 bg-base-200 hover:bg-base-300 transition-colors duration-200 px-4 py-2 text-base-content hover:text-primary font-medium flex items-center gap-2 flex-shrink-0"
+			>
+				{m['buttons.search']?.()}
+			</button>
 		</div>
-		<select
-			class="select select-bordered select-primary join-item w-1/3"
-			bind:value={selectedOption}
-		>
-			<option value={m['header.blogs']?.()}>{m['header.blogs']?.()}</option>
-			<option value={m['header.projects']?.()}>{m['header.projects']?.()}</option>
-		</select>
 
-		<Button href="/search" variant="primary" class="join-item w-1/5"
-			>{m['buttons.search']?.()}</Button
-		>
+		{#if type === 'small' && searchResults.length > 0}
+			<div
+				class="absolute top-full left-0 right-0 mt-1 bg-base-100 border border-base-300 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto"
+			>
+				<SmallSearchResults {searchResults} {handleClick} />
+			</div>
+		{:else if type === 'big' && searchResults.length > 0}
+			<div
+				class="mt-2 bg-base-100 border border-base-300 rounded-lg shadow-lg max-h-96 overflow-y-auto"
+			>
+				<BigSearchResults {searchResults} {handleClick} />
+			</div>
+		{/if}
 	</div>
-
-	{#if type === 'small'}
-		<SmallSearchResults {searchResults} {handleClick} />
-	{:else if type === 'big'}
-		<BigSearchResults {searchResults} {handleClick} />
-	{/if}
 </div>
