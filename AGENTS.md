@@ -9,7 +9,8 @@ This guide provides essential information for agentic coding agents operating on
 - **Styling**: Tailwind CSS 4 + DaisyUI
 - **Database**: PocketBase
 - **Package Manager**: pnpm
-- **Default Dev URL**: http://localhost:5173 (with hot reloading enabled)
+- **Default Dev URL**: http://localhost:5173 (with hot reloading)
+- **Multi-Language**: Paraglide-js (13 languages, auto-detection, 60+ country mappings)
 
 ## Build & Development Commands
 
@@ -26,12 +27,12 @@ pnpm run lint         # Check code with ESLint + Prettier
 pnpm run deploy-test  # Full deployment simulation (format → lint → build → preview)
 ```
 
-### Testing & Code Quality
+### Code Quality
 
-- **No unit test framework configured** - testing must be manual or via integration tests
+- **No unit tests** - testing is manual or integration-based
 - **Type Checking**: `pnpm run check` (required before commits)
-- **Linting**: `pnpm run lint` (runs ESLint + Prettier checks)
-- **Formatting**: `pnpm run format` (auto-fixes formatting issues)
+- **Linting**: `pnpm run lint` (ESLint + Prettier checks)
+- **Formatting**: `pnpm run format` (auto-fixes formatting)
 
 ## Code Style Guidelines
 
@@ -40,58 +41,60 @@ pnpm run deploy-test  # Full deployment simulation (format → lint → build �
 - **Tabs**: Use tabs (2-space visual width)
 - **Line Length**: Max 100 characters
 - **Quotes**: Single quotes (`'....'`)
-- **Trailing Commas**: None (removed on format)
-- **Auto-format**: Run `pnpm run format` before committing
-- **Import Order**: Group by: external packages → relative imports (use `$lib/`)
-- **Svelte Aliases**: Use `$lib/` for `/src/lib/` imports
+- **Trailing Commas**: None
+- **Import Order**: External packages → relative imports using `$lib/`
+- **Path Aliases**: Use `$lib/` instead of `../../../`
 
 ### TypeScript & Types
 
-- **Strict Mode**: TypeScript strict checking enabled
-- **Types**: Always provide explicit types for function parameters and returns
-- **Avoid `any`**: Use proper types or `unknown` with type guards
-- **File Extensions**: Use `.ts` for modules, `.svelte` for components
+- **Strict Mode**: Enabled - always provide explicit types
+- **No `any`**: Use proper types or `unknown` with type guards
+- **File Extensions**: `.ts` for modules, `.svelte` for components
 - **Path Aliases**: `$lib` = `/src/lib/`
 
 ### Naming Conventions
 
-- **Components**: PascalCase (e.g., `MyComponent.svelte`)
-- **Files**: lowercase with hyphens (e.g., `my-utility.ts`)
-- **Variables/Functions**: camelCase (e.g., `getUserData()`)
-- **Constants**: UPPER_SNAKE_CASE (e.g., `MAX_RETRIES`)
-- **Private Methods**: Prefix with `_` (e.g., `_internal()`)
+- **Components**: PascalCase (`MyComponent.svelte`)
+- **Files**: lowercase with hyphens (`my-utility.ts`)
+- **Variables/Functions**: camelCase (`getUserData()`)
+- **Constants**: UPPER_SNAKE_CASE (`MAX_RETRIES`)
+- **Private Methods**: Prefix with `_` (`_internal()`)
 
-### Svelte 5 Specific
+### Svelte 5 & Runes (CRITICAL)
 
-- **Use Runes**: Always use Svelte 5 runes (`$state`, `$derived`, `$effect`, etc.)
-- **Reactive Variables**: Use `let count = $state(0)` instead of old reactive declarations
+- **ALWAYS use Svelte 5 runes**: `$state`, `$derived`, `$effect`, `$props()`
+- **NO old reactive syntax** - never use old Svelte 4 patterns
 - **Props**: Use `$props()` rune for type-safe prop definitions
-- **Effects**: Use `$effect()` for side effects (replaces `onMount`, lifecycle)
-- **Derived State**: Use `$derived()` for computed values
-- **Event Handlers**: Use `onclick`, `onchange` etc. (no need for forwarding with runes)
+- **State**: Use `let count = $state(0)` for reactive variables
+- **Effects**: Use `$effect()` for side effects (replaces `onMount`)
+- **Derived**: Use `$derived()` for computed values
+- **Never use `onMount`, `onDestroy`** - use `$effect` instead
+
+### User-Facing Text (CRITICAL - TRANSLATIONS)
+
+- **NO hardcoded user-facing text** in components or code
+- **ALL text must be**: Added to `/messages/en.json` first, then translated
+- **Usage pattern**: `import { m } from '$lib/paraglide/messages.js'` then `m['section.key']()`
+- **After updating translations**: Run `npx paraglide-js compile` then `pnpm run build`
+- **Supported Languages**: English, Spanish, French, German, Portuguese, Mandarin (zh/zh_CN), Malay, Tamil, Norwegian (nb/nn), Dutch, Vietnamese
+- **Example**: For error message, add to `en.json`: `"errors.notFound": "Not found"`, then use `m['errors.notFound']()`
 
 ### Error Handling
 
 - **Try-Catch**: Wrap async operations and PocketBase calls
-- **Error Messages**: Provide context and user-friendly descriptions
-- **Logging**: Use `console.error()` for errors during development; avoid in production
-- **API Errors**: Check PocketBase response status; validate data before use
-- **User Feedback**: Use toast notifications via `svelte-french-toast` for errors/success
-
-### ESLint & Prettier Configuration
-
-- **ESLint Config**: `extends: 'custom/svelte'` (custom preset)
-- **Prettier Overrides**: `.svelte` files use `svelte` parser
-- **Plugins**: ESLint Svelte plugin + TypeScript parser, Prettier Svelte plugin
+- **Error Messages**: Use translations (`m['errors.key']()`) for user feedback
+- **Logging**: Use `console.error()` during development only
+- **User Feedback**: Use `svelte-french-toast` for toast notifications
+- **Validation**: Check PocketBase response status before using data
 
 ## Development Workflow
 
 ### When Making Changes
 
-1. **Don't restart dev server**: Hot reloading is enabled; changes appear instantly
-2. **Ask user to refresh** if hot reloading doesn't reflect changes
-3. **Run type checks**: `pnpm run check` after structural changes
-4. **Format before committing**: `pnpm run format`
+1. **Don't restart dev server** - hot reloading is enabled
+2. **Ask user to refresh** only if hot reload doesn't work
+3. **Run `pnpm run check`** after structural changes
+4. **Run `pnpm run format`** before committing
 
 ### Before Committing
 
@@ -102,32 +105,24 @@ pnpm run check        # Verify TypeScript types
 pnpm run build        # Ensure production build works
 ```
 
-## Key Technologies & File Locations
+## Key File Locations
 
-| Purpose    | Location                             | Details                                |
-| ---------- | ------------------------------------ | -------------------------------------- |
-| Components | `src/lib/components/`                | Svelte 5 components with runes         |
-| Utilities  | `src/lib/utils/`                     | Helper functions (API, stores, config) |
-| Routes     | `src/routes/`                        | SvelteKit page structure               |
-| Styles     | `src/app.postcss`                    | Global Tailwind CSS setup              |
-| Config     | `svelte.config.js`, `vite.config.ts` | Framework & build config               |
-| Database   | PocketBase (external)                | Running on separate port               |
+| Purpose      | Location              | Details                         |
+| ------------ | --------------------- | ------------------------------- |
+| Components   | `src/lib/components/` | Svelte 5 components with runes  |
+| Utilities    | `src/lib/utils/`      | Helper functions & API patterns |
+| Routes       | `src/routes/`         | SvelteKit page structure        |
+| Translations | `/messages/`          | JSON files for all 13 languages |
+| Styles       | `src/app.postcss`     | Global Tailwind CSS             |
+| Config       | `svelte.config.js`    | Framework configuration         |
+| Database     | PocketBase (external) | Separate service process        |
 
-## Important Constraints & Tips
+## Critical Constraints
 
-- **Svelte 5 Only**: Use Svelte 5 syntax exclusively; no Svelte 4 patterns
-- **Hot Module Reloading**: Enabled by default; don't restart dev server unnecessarily
-- **Use MCP Tools**: Svelte MCP tools available for docs, validation, and testing
-- **Svelte Autofixer**: Use before suggesting code changes to validate syntax
-- **PocketBase Integration**: Check `src/lib/utils/api.ts` for existing API patterns
-- **DaisyUI Components**: Available via Tailwind classes; check DaisyUI docs for options
-- **Relative Imports**: Prefer `$lib/` over `../../../` for readability
-
-## Copilot/Cursor Instructions
-
-This codebase follows Svelte 5 best practices:
-
-- Always use the latest Svelte 5 runes and syntax
-- Verify code with svelte-autofixer before suggesting changes
-- Consult `.github/copilot-instructions.md` for additional guidelines
-- Leverage Svelte MCP tools for documentation accuracy
+- **Svelte 5 Only**: Never use Svelte 4 patterns
+- **Hot Reloading**: Don't restart dev server unnecessarily
+- **Translations**: NO hardcoded user text - use Paraglide-js messages
+- **Svelte Autofixer**: Use before suggesting code changes
+- **PocketBase**: Check `src/lib/utils/api.ts` for API patterns
+- **DaisyUI**: Use Tailwind classes for component styling
+- **MCP Tools**: Use Svelte MCP for docs, validation, and testing
