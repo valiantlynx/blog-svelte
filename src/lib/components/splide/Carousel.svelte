@@ -47,7 +47,7 @@
 <div class="gallery">
 	<div class="gallery--main">
 		<Splide bind:this={main} options={mainOptions}>
-			{#each blogs.items as blog}
+			{#each blogs.items as blog (blog.id)}
 				<SplideSlide>
 					<a
 						href={`/${blog?.slug}`}
@@ -61,7 +61,7 @@
 								<h2 class="text-2xl font-bold text-secondary-content">
 									{blog?.title}
 								</h2>
-								<p class="text-base font-normal text-secondary-content my-4">
+								<p class="text-base font-normal text-secondary-content my-4 line-clamp-2">
 									{blog?.summary}
 								</p>
 								<Button variant="primary">Read More</Button>
@@ -75,7 +75,7 @@
 
 	<div class="gallery--thumbs">
 		<Splide id="gallery--thumbs" bind:this={thumbs} options={thumbsOptions}>
-			{#each blogs.items as blog}
+			{#each blogs.items as blog (blog.id)}
 				<SplideSlide>
 					<img src={blog?.image} alt={blog?.alt} />
 				</SplideSlide>
