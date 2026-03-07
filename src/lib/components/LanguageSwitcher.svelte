@@ -29,7 +29,7 @@
 	);
 </script>
 
-<Dropdown align="right">
+<Dropdown align="right" direction="auto">
 	<svelte:fragment slot="trigger">
 		<Button variant="ghost" size="sm">
 			{languageNames[currentLocale]}
