@@ -10,8 +10,10 @@ export const handle = async ({ event, resolve }) => {
 
 	// Language detection from request headers
 	const cfCountry = event.request.headers.get('cf-ipcountry') || undefined; // Cloudflare
+	console.log('CF Country:', cfCountry);
 	const acceptLanguage = event.request.headers.get('accept-language') || undefined;
 	const userLanguage = detectUserLanguage(acceptLanguage, cfCountry);
+	console.log('Detected user language:', userLanguage);
 	event.locals.language = userLanguage;
 
 	let storedAuth;
