@@ -19,6 +19,7 @@ export type SupportedLanguage =
 
 // Mapping of countries to their primary languages
 const countryToLanguageMap: Record<string, SupportedLanguage[]> = {
+	// Asia-Pacific
 	// China
 	CN: ['zh_CN', 'zh'],
 	// Taiwan, Hong Kong
@@ -27,41 +28,124 @@ const countryToLanguageMap: Record<string, SupportedLanguage[]> = {
 	// Malaysia
 	MY: ['ms', 'en'],
 	// Singapore
-	SG: ['en', 'zh_CN'],
+	SG: ['en', 'zh_CN', 'ms'],
 	// India
 	IN: ['ta', 'en'],
 	// Tamil Nadu India
 	TN: ['ta', 'en'],
+	// Vietnam
+	VN: ['vi', 'en'],
+	// Philippines
+	PH: ['en', 'ms'],
+	// Thailand
+	TH: ['en'],
+	// Indonesia
+	ID: ['ms', 'en'],
+	// Japan
+	JP: ['en'],
+	// Sri Lanka
+	LK: ['ta', 'en'],
+	// Laos
+	LA: ['en'],
+	// Azerbaijan
+	AZ: ['en'],
+
+	// Europe
 	// Germany
 	DE: ['de', 'en'],
-	// Germany, Austria, Switzerland (German speakers)
+	// Austria
 	AT: ['de', 'en'],
+	// Switzerland
 	CH: ['de', 'fr', 'en'],
 	// Spain
 	ES: ['es', 'en'],
-	// Latin America Spanish speakers
-	MX: ['es', 'en'],
-	AR: ['es', 'en'],
-	CO: ['es', 'en'],
-	CL: ['es', 'en'],
 	// France
 	FR: ['fr', 'en'],
 	// Belgium
 	BE: ['fr', 'nl', 'en'],
 	// Netherlands
 	NL: ['nl', 'en'],
-	// Portugal, Brazil
+	// Portugal
 	PT: ['pt', 'en'],
-	BR: ['pt', 'en'],
 	// Norway
 	NO: ['nb', 'nn', 'en'],
-	// Vietnam
-	VN: ['vi', 'en'],
-	// Default
-	US: ['en'],
+	// Sweden
+	SE: ['en'],
+	// Finland
+	FI: ['en'],
+	// Poland
+	PL: ['en'],
+	// Czechia
+	CZ: ['en'],
+	// Slovakia
+	SK: ['en'],
+	// Romania
+	RO: ['en'],
+	// Moldova
+	MD: ['en'],
+	// Ukraine
+	UA: ['en'],
+	// Greece
+	GR: ['en'],
+	// Estonia
+	EE: ['en'],
+	// Denmark
+	DK: ['en'],
+	// Iceland
+	IS: ['en'],
+	// Ireland
+	IE: ['en'],
+	// United Kingdom
 	GB: ['en'],
+	// Italy
+	IT: ['en'],
+	// Russia
+	RU: ['en'],
+
+	// Americas
+	// United States
+	US: ['en'],
+	// Canada
+	CA: ['en', 'fr'],
+	// Mexico
+	MX: ['es', 'en'],
+	// Brazil
+	BR: ['pt', 'en'],
+	// Argentina
+	AR: ['es', 'en'],
+	// Chile
+	CL: ['es', 'en'],
+	// Colombia
+	CO: ['es', 'en'],
+	// Ecuador
+	EC: ['es', 'en'],
+	// Dominican Republic
+	DO: ['es', 'en'],
+	// Uruguay
+	UY: ['es', 'en'],
+	// Nicaragua
+	NI: ['es', 'en'],
+
+	// Middle East & Africa
+	// United Arab Emirates
+	AE: ['en'],
+	// Saudi Arabia
+	SA: ['en'],
+	// Turkey
+	TR: ['en'],
+	// Morocco
+	MA: ['en', 'fr'],
+	// Tunisia
+	TU: ['en', 'fr'],
+	// Iraq
+	IQ: ['en'],
+
+	// Oceania
+	// Australia
 	AU: ['en'],
-	CA: ['en']
+
+	// Antarctica
+	AQ: ['en']
 };
 
 // Browser language to app language mapping (handle edge cases)
