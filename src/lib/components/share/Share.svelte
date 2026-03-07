@@ -35,7 +35,7 @@
 	<a href={facebookUrl} target="_blank">
 		<ButtonWithIcon>
 			{#snippet icon()}
-				<i class="fa fa-facebook text-blue-600"></i>
+				<i class="fa fa-facebook text-info"></i>
 			{/snippet}
 
 			{m['labels.facebook']?.()}
@@ -45,7 +45,7 @@
 	<a href={twitterUrl} target="_blank">
 		<ButtonWithIcon>
 			{#snippet icon()}
-				<i class="fa fa-twitter text-blue-600"></i>
+				<i class="fa fa-twitter text-primary"></i>
 			{/snippet}
 			{m['labels.twitter']?.()}
 		</ButtonWithIcon>
@@ -53,7 +53,7 @@
 	<a href={linkedinUrl} target="_blank">
 		<ButtonWithIcon>
 			{#snippet icon()}
-				<i class="fa fa-linkedin text-blue-600"></i>
+				<i class="fa fa-linkedin text-info"></i>
 			{/snippet}
 
 			{m['labels.linkedin']?.()}

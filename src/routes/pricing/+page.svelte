@@ -91,7 +91,7 @@
 				<div class="flex-shrink-0">
 					<span
 						class="text-4xl font-medium tracking-tight"
-						class:text-green-500={plan.name === m['pages.pricing_plan_basic']()}
+						class:text-success={plan.name === m['pages.pricing_plan_basic']()}
 					>
 						${billPlan === 'monthly' ? plan.price.monthly : plan.price.annually}
 					</span>

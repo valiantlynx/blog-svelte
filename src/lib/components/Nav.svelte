@@ -10,9 +10,11 @@
 
 <!-- Small Devices Layout -->
 <div>
-	<div class="navbar bg-base-300 max-w-full sm:hidden">
+	<div class="navbar bg-base-100 border-b border-base-300 max-w-full sm:hidden">
 		<div class="flex-1">
-			<Button href="/" variant="ghost" class="normal-case text-xl">{page.data.siteName}</Button>
+			<Button href="/" variant="ghost" class="normal-case text-xl text-base-content">
+				{page.data.siteName}
+			</Button>
 			<ThemeChanger />
 		</div>
 		<LanguageSwitcher />
@@ -20,7 +22,7 @@
 	</div>
 	<!-- Show search bar only on pages other than search -->
 	{#if page.url.pathname !== '/search'}
-		<div class="navbar bg-base-300 flex flex-col sm:hidden">
+		<div class="navbar bg-base-100 border-b border-base-300 flex flex-col sm:hidden">
 			<div class="flex-none sm:flex sm:gap-2">
 				<Search type="small" />
 			</div>
@@ -29,9 +31,11 @@
 </div>
 
 <!-- Large Devices Layout -->
-<div class="navbar bg-base-300 hidden sm:flex" id="title-bar">
+<div class="navbar bg-base-100 border-b border-base-300 hidden sm:flex" id="title-bar">
 	<div class="flex-1">
-		<Button href="/" variant="ghost" class="normal-case text-xl">{page.data.siteName}</Button>
+		<Button href="/" variant="ghost" class="normal-case text-xl text-base-content">
+			{page.data.siteName}
+		</Button>
 		<ThemeChanger />
 	</div>
 	<div class="flex-none gap-2">

@@ -19,8 +19,10 @@
 					<h2 class="text-lg font-semibold">{contact.name}</h2>
 					<p>{contact.title}</p>
 					<div class="mt-1">
-						<a href="tel:{contact.tel}" class="text-blue-500">{contact.tel}</a><br />
-						<a href="mailto:{contact.email}" class="text-blue-500"
+						<a href="tel:{contact.tel}" class="text-info hover:text-primary transition-colors"
+							>{contact.tel}</a
+						><br />
+						<a href="mailto:{contact.email}" class="text-info hover:text-primary transition-colors"
 							>{contact.email ? contact.email : 'no email provided'}</a
 						>
 					</div>
