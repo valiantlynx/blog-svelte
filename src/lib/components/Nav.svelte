@@ -5,6 +5,7 @@
 	import LanguageSwitcher from './LanguageSwitcher.svelte';
 	import { page } from '$app/state';
 	import ThemeChanger from './ThemeChanger.svelte';
+	import * as m from '$lib/paraglide/messages.js';
 
 	let mobileMenuOpen = $state(false);
 
@@ -48,7 +49,7 @@
 
 <!-- Mobile Header -->
 <div class="sticky top-0 z-40 md:hidden bg-base-100 border-b border-base-300 shadow-sm">
-	<div class="flex items-center justify-between px-4 py-3 gap-2">
+	<div class="flex items-center justify-between px-4 py-3">
 		<!-- Brand -->
 		<Button
 			href="/"
@@ -87,8 +88,14 @@
 			{/if}
 		</button>
 
-		<!-- Login Button (Always Visible) -->
-		<ProfileModal />
+		<!-- Login Button (Hidden when menu is open) -->
+		{#if !mobileMenuOpen && page.data.user}
+			<ProfileModal />
+		{:else if !mobileMenuOpen && !page.data.user}
+			<Button href="/login" variant="primary" class="text-xs sm:text-sm"
+				>{m['navigation.login']()}</Button
+			>
+		{/if}
 	</div>
 
 	<!-- Mobile Menu Dropdown -->
@@ -96,15 +103,13 @@
 		<!-- Backdrop -->
 		<button
 			type="button"
-			class="fixed inset-0 bg-black/20 z-30 md:hidden"
+			class="fixed inset-0 bg-black/20 z-30 md:hidden shadow-lg"
 			onclick={closeMenu}
 			aria-label="Close menu"
 		></button>
 
 		<!-- Menu Content -->
-		<div
-			class="absolute top-full left-0 right-0 bg-base-100 border-b border-base-300 shadow-lg md:hidden"
-		>
+		<div class="absolute top-full left-0 right-0 bg-base-100 border-b border-base-300 md:hidden">
 			<!-- Search Bar -->
 			{#if page.url.pathname !== '/search'}
 				<div class="border-b border-base-300 px-4 py-3">
@@ -124,6 +129,13 @@
 				<div class="flex items-center justify-between py-2 border-b border-base-300 pb-3">
 					<span class="text-sm font-medium text-base-content">Language</span>
 					<LanguageSwitcher />
+				</div>
+
+				<!-- Auth Buttons -->
+				<div class="flex gap-3 pt-4">
+					<Button href="/login" variant="outline" class="flex-1">{m['navigation.login']()}</Button>
+					<Button href="/signup" variant="primary" class="flex-1">{m['navigation.signup']()}</Button
+					>
 				</div>
 			</div>
 		</div>
