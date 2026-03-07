@@ -7,10 +7,10 @@ services:
     restart: always
     ports:
       - 3000:3000
-  
+
   database:
     container_name: database
-    build: 
+    build:
       context: ./pocketbase
       dockerfile: Dockerfile
     restart: always
