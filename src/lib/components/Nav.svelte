@@ -4,7 +4,8 @@
 	import ProfileModal from './ProfileModal.svelte';
 	import LanguageSwitcher from './LanguageSwitcher.svelte';
 	import { page } from '$app/state';
-	import ThemeChanger from './ThemeChanger.svelte';
+	import ThemeSwitcher from './ThemeSwitcher.svelte';
+	import ModeSwitcher from './ModeSwitcher.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 
 	let mobileMenuOpen = $state(false);
@@ -41,7 +42,8 @@
 
 	<!-- Right Section: Actions -->
 	<div class="flex items-center gap-4 flex-shrink-0">
-		<ThemeChanger />
+		<ThemeSwitcher />
+		<ModeSwitcher />
 		<LanguageSwitcher />
 		<ProfileModal />
 	</div>
@@ -127,7 +129,13 @@
 				<!-- Theme Switcher -->
 				<div class="flex items-center justify-between py-2 border-b border-base-300 pb-3">
 					<span class="text-sm font-medium text-base-content">Theme</span>
-					<ThemeChanger />
+					<ThemeSwitcher />
+				</div>
+
+				<!-- Mode Switcher -->
+				<div class="flex items-center justify-between py-2 border-b border-base-300 pb-3">
+					<span class="text-sm font-medium text-base-content">Mode</span>
+					<ModeSwitcher />
 				</div>
 
 				<!-- Language Switcher -->

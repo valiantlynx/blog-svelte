@@ -2,6 +2,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import MyBlogItem from '$lib/components/MyBlogItem.svelte';
 	import MyProjectItem from '$lib/components/MyProjectItem.svelte';
+	import Icon from '@iconify/svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	let { data } = $props();
 	console.log('data', data);
@@ -24,7 +25,7 @@
 				{m['dashboard.my_projects_heading']()}
 			</h2>
 			{#if data.projects.length === 0}
-				<p class="text-center text-3xl">☹️</p>
+				<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
 				<p class="text-center sm:text-3xl text-md">{m['dashboard.no_projects']()}</p>
 				<Button href="/projects/new" variant="primary" class="max-w-md mt-4"
 					>{m['dashboard.add_project_button']()}</Button
@@ -46,7 +47,7 @@
 
 			<h2 class="text-3xl font-bold w-full">{m['dashboard.my_blogs_heading']()}</h2>
 			{#if data.blogs.length === 0}
-				<p class="text-center text-3xl">☹️</p>
+				<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
 				<p class="text-center text-xl">{m['dashboard.no_blogs']()}</p>
 				<Button href="/blogs/new" variant="primary" class="max-w-md mt-4"
 					>{m['dashboard.add_blog_button']()}</Button
