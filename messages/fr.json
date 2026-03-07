@@ -1,0 +1,109 @@
+{
+	"header": {
+		"home": "Accueil",
+		"blogs": "Blogs",
+		"projects": "Projets",
+		"pricing": "Tarification",
+		"about": "À propos",
+		"contact": "Contact"
+	},
+	"navigation": {
+		"profile": "Profil",
+		"dashboard": "Tableau de bord",
+		"login": "Connexion",
+		"signup": "S'inscrire",
+		"logout": "Déconnexion",
+		"settings": "Paramètres"
+	},
+	"buttons": {
+		"save": "Enregistrer",
+		"cancel": "Annuler",
+		"delete": "Supprimer",
+		"edit": "Modifier",
+		"create": "Créer",
+		"submit": "Soumettre",
+		"search": "Rechercher",
+		"send": "Envoyer",
+		"register": "S'inscrire",
+		"login": "Connexion",
+		"logout": "Déconnexion",
+		"reset": "Réinitialiser",
+		"close": "Fermer",
+		"next": "Suivant",
+		"previous": "Précédent",
+		"edit_blog": "Modifier le blog",
+		"edit_project": "Modifier le projet",
+		"show_more": "afficher plus",
+		"request_password_reset": "Demander la réinitialisation du mot de passe"
+	},
+	"modals": {
+		"confirm": "Confirmer",
+		"delete_blog": "Supprimer {title}",
+		"delete_project": "Supprimer {name}",
+		"delete_confirmation": "Êtes-vous sûr de vouloir supprimer ce {item}? Une fois supprimé, il ne peut pas être restauré.",
+		"confirm_delete": "Confirmer la suppression"
+	},
+	"forms": {
+		"email": "E-mail",
+		"password": "Mot de passe",
+		"password_confirm": "Confirmer le mot de passe",
+		"username": "Nom d'utilisateur",
+		"name": "Nom",
+		"title": "Titre",
+		"description": "Description",
+		"summary": "Résumé",
+		"url": "URL",
+		"project_name": "Nom du projet",
+		"project_url": "URL du projet",
+		"project_description": "Description du projet",
+		"project_tagline": "Slogan du projet",
+		"thumbnail": "Miniature",
+		"roles_permissions": "Rôles et permissions",
+		"already_registered": "Déjà inscrit?",
+		"already_have_account": "Vous avez déjà un compte?",
+		"dont_have_account": "Vous n'avez pas de compte?",
+		"click_here": "cliquez ici"
+	},
+	"placeholders": {
+		"search": "Rechercher",
+		"email": "email@example.com",
+		"password": "Entrez votre mot de passe",
+		"write_comment": "écrivez votre commentaire ici",
+		"login_to_comment": "connectez-vous pour écrire un commentaire"
+	},
+	"labels": {
+		"new": "Nouveau",
+		"roles": "Rôles",
+		"permissions": "Permissions"
+	},
+	"messages": {
+		"success_registered": "Inscrit avec succès",
+		"success_logged_in": "Connecté avec succès",
+		"success_logged_out": "Déconnecté avec succès",
+		"success_blog_deleted": "Blog supprimé avec succès!",
+		"success_project_deleted": "Projet supprimé avec succès!",
+		"success_blog_created": "Blog créé avec succès",
+		"success_project_created": "Projet créé avec succès",
+		"success_changes_saved": "Modifications enregistrées avec succès",
+		"error_invalid_credentials": "Identifiants invalides",
+		"error_delete_failed": "Impossible de supprimer {item}. Veuillez réessayer plus tard.",
+		"error_create_failed": "Impossible de créer {item}. Veuillez réessayer plus tard.",
+		"error_required_field": "Ce champ est requis",
+		"error_email_sent": "Un e-mail de réinitialisation du mot de passe a été envoyé!"
+	},
+	"footer": {
+		"about_us": "À propos",
+		"contact_us": "Nous contacter",
+		"privacy_policy": "Politique de confidentialité",
+		"terms": "Conditions de service",
+		"copyright": "© 2024 Valiant Lynx. Tous droits réservés.",
+		"language": "Langue",
+		"languages": {
+			"en": "English",
+			"es": "Español",
+			"fr": "Français",
+			"de": "Deutsch",
+			"pt": "Português"
+		}
+	}
+}

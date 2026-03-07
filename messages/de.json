@@ -1,0 +1,109 @@
+{
+	"header": {
+		"home": "Startseite",
+		"blogs": "Blogs",
+		"projects": "Projekte",
+		"pricing": "Preise",
+		"about": "Über uns",
+		"contact": "Kontakt"
+	},
+	"navigation": {
+		"profile": "Profil",
+		"dashboard": "Dashboard",
+		"login": "Anmelden",
+		"signup": "Registrieren",
+		"logout": "Abmelden",
+		"settings": "Einstellungen"
+	},
+	"buttons": {
+		"save": "Speichern",
+		"cancel": "Abbrechen",
+		"delete": "Löschen",
+		"edit": "Bearbeiten",
+		"create": "Erstellen",
+		"submit": "Absenden",
+		"search": "Suchen",
+		"send": "Senden",
+		"register": "Registrieren",
+		"login": "Anmelden",
+		"logout": "Abmelden",
+		"reset": "Zurücksetzen",
+		"close": "Schließen",
+		"next": "Weiter",
+		"previous": "Zurück",
+		"edit_blog": "Blog bearbeiten",
+		"edit_project": "Projekt bearbeiten",
+		"show_more": "mehr anzeigen",
+		"request_password_reset": "Passwort zurücksetzen anfordern"
+	},
+	"modals": {
+		"confirm": "Bestätigen",
+		"delete_blog": "{title} löschen",
+		"delete_project": "{name} löschen",
+		"delete_confirmation": "Sind Sie sicher, dass Sie dieses {item} löschen möchten? Nach dem Löschen kann es nicht wiederhergestellt werden.",
+		"confirm_delete": "Löschen bestätigen"
+	},
+	"forms": {
+		"email": "E-Mail",
+		"password": "Passwort",
+		"password_confirm": "Passwort bestätigen",
+		"username": "Benutzername",
+		"name": "Name",
+		"title": "Titel",
+		"description": "Beschreibung",
+		"summary": "Zusammenfassung",
+		"url": "URL",
+		"project_name": "Projektname",
+		"project_url": "Projekt-URL",
+		"project_description": "Projektbeschreibung",
+		"project_tagline": "Projekt-Tagline",
+		"thumbnail": "Vorschaubild",
+		"roles_permissions": "Rollen und Berechtigungen",
+		"already_registered": "Bereits registriert?",
+		"already_have_account": "Haben Sie bereits ein Konto?",
+		"dont_have_account": "Sie haben noch kein Konto?",
+		"click_here": "klick hier"
+	},
+	"placeholders": {
+		"search": "Suchen",
+		"email": "email@example.com",
+		"password": "Geben Sie Ihr Passwort ein",
+		"write_comment": "Schreiben Sie Ihren Kommentar hier",
+		"login_to_comment": "melden Sie sich an, um einen Kommentar zu schreiben"
+	},
+	"labels": {
+		"new": "Neu",
+		"roles": "Rollen",
+		"permissions": "Berechtigungen"
+	},
+	"messages": {
+		"success_registered": "Erfolgreich registriert",
+		"success_logged_in": "Erfolgreich angemeldet",
+		"success_logged_out": "Erfolgreich abgemeldet",
+		"success_blog_deleted": "Blog erfolgreich gelöscht!",
+		"success_project_deleted": "Projekt erfolgreich gelöscht!",
+		"success_blog_created": "Blog erfolgreich erstellt",
+		"success_project_created": "Projekt erfolgreich erstellt",
+		"success_changes_saved": "Änderungen erfolgreich gespeichert",
+		"error_invalid_credentials": "Ungültige Anmeldedaten",
+		"error_delete_failed": "Konnte {item} nicht löschen. Bitte versuchen Sie es später erneut.",
+		"error_create_failed": "Konnte {item} nicht erstellen. Bitte versuchen Sie es später erneut.",
+		"error_required_field": "Dieses Feld ist erforderlich",
+		"error_email_sent": "Eine E-Mail zum Zurücksetzen des Passworts wurde gesendet!"
+	},
+	"footer": {
+		"about_us": "Über uns",
+		"contact_us": "Kontaktieren Sie uns",
+		"privacy_policy": "Datenschutz",
+		"terms": "Nutzungsbedingungen",
+		"copyright": "© 2024 Valiant Lynx. Alle Rechte vorbehalten.",
+		"language": "Sprache",
+		"languages": {
+			"en": "English",
+			"es": "Español",
+			"fr": "Français",
+			"de": "Deutsch",
+			"pt": "Português"
+		}
+	}
+}
