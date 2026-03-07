@@ -1,4 +1,6 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
+	import { Badge } from '$lib/components/ui/badge';
 	import { enhance, applyAction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import Modal from '$lib/components/Modal.svelte';
@@ -8,10 +10,6 @@
 	let emailModalOpen = $state(false);
 	let usernameModalOpen = $state(false);
 	let loading = $state(false);
-
-	
-	
-	
 
 	const submitUpdateEmail = () => {
 		loading = true;
@@ -56,11 +54,11 @@
 		<div class="divider"></div>
 		<Modal label="change-email" checked={emailModalOpen}>
 			{#snippet trigger()}
-						<span  class="btn btn-primary">Change Email</span>
-					{/snippet}
+				<Button variant="primary">Change Email</Button>
+			{/snippet}
 			{#snippet heading()}
-						<h3 >Change Your Email</h3>
-					{/snippet}
+				<h3>Change Your Email</h3>
+			{/snippet}
 			<form action="?/updateEmail" method="POST" class="space-y-2" use:enhance={submitUpdateEmail}>
 				<Input
 					id="email"
@@ -70,8 +68,8 @@
 					value={$page.form?.data?.email}
 					disabled={loading}
 				/>
-				<button type="submit" class="btn btn-primary w-full" disabled={loading}
-					>Change my email</button
+				<Button type="submit" variant="primary" class="w-full" disabled={loading}
+					>Change my email</Button
 				>
 			</form>
 		</Modal>
@@ -82,11 +80,11 @@
 		<Input id="username" label="Username" value={$page.data?.user?.username} disabled />
 		<Modal label="change-username" checked={usernameModalOpen}>
 			{#snippet trigger()}
-						<span  class="btn btn-primary">Change Username</span>
-					{/snippet}
+				<Button variant="primary">Change Username</Button>
+			{/snippet}
 			{#snippet heading()}
-						<h3 >Change Your Username</h3>
-					{/snippet}
+				<h3>Change Your Username</h3>
+			{/snippet}
 			<form
 				action="?/updateUsername"
 				method="POST"
@@ -101,8 +99,8 @@
 					value={$page.form?.data?.username}
 					disabled={loading}
 				/>
-				<button type="submit" class="btn btn-primary w-full" disabled={loading}
-					>Change my username</button
+				<Button type="submit" variant="primary" class="w-full" disabled={loading}
+					>Change my username</Button
 				>
 			</form>
 		</Modal>
@@ -118,7 +116,7 @@
 				I forgot my password</a
 			>
 			<div class="w-full max-w-lg pt-3">
-				<button type="submit" class="btn btn-primary w-full max-w-lg"> Update Password </button>
+				<Button type="submit" variant="primary" class="w-full max-w-lg">Update Password</Button>
 			</div>
 		</form>
 	</div>
@@ -130,9 +128,9 @@
 			<h2 class="text-2xl font-medium mb-4">Roles and Permissions</h2>
 			<ul class="list-inside list-disc">
 				{#each $page.data?.user?.role as role}
-					<div class="badge badge-primary m-3 font-bold p-3">
+					<Badge class="m-3 inline-flex" size="lg">
 						{role}
-					</div>
+					</Badge>
 				{/each}
 			</ul>
 		</div>
@@ -146,7 +144,9 @@
 				Enhance your experience by upgrading to a higher role. Unlock additional features and
 				privileges.
 			</p>
-			<a href="/pricing" class="btn btn-primary w-full" alt="pricing page"> Upgrade Now </a>
+			<Button href="/pricing" variant="primary" class="w-full" alt="pricing page">
+				Upgrade Now
+			</Button>
 		</div>
 	</div>
 </div>

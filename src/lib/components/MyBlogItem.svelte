@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { Button } from '$lib/components/ui/button';
 	import Modal from './Modal.svelte';
 	import { getImageURL } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
@@ -26,8 +27,6 @@
 			loading = false;
 		};
 	};
-
-	
 </script>
 
 <div class="w-full flex items-center justify-between">
@@ -46,28 +45,30 @@
 		<p>{blog?.summary}</p>
 	</div>
 	<div class="flex items-center justify-end w-full">
-		<a href="/blogs/{blog?.id}/edit" class="btn btn-outline">Edit blog</a>
+		<Button href="/blogs/{blog?.id}/edit" variant="outline">Edit blog</Button>
 		<Modal label={blog?.id} checked={modalOpen}>
 			{#snippet trigger()}
-						<span  class="btn btn-error ml-2">Delete</span>
-					{/snippet}
+				<Button variant="error" class="ml-2">Delete</Button>
+			{/snippet}
 			{#snippet heading()}
-						<div >
+				<div>
 					<h3 class="text-2xl">Delete {blog?.title}</h3>
 					<p class="text-base font-normal mt-2">
 						Are you sure you want to delete this blog? Once deleted, the blog cannot be restored.
 					</p>
 				</div>
-					{/snippet}
+			{/snippet}
 			{#snippet actions()}
-						<div  class="flex w-full items-center justify-center space-x-2">
-					<label for={blog?.id} class="btn btn-outline">Cancel</label>
+				<div class="flex w-full items-center justify-center space-x-2">
+					<label for={blog?.id}>
+						<Button variant="outline" type="button">Cancel</Button>
+					</label>
 					<form action="?/deleteBlog" method="POST" use:enhance={submitDeleteBlog}>
 						<input type="hidden" name="id" value={blog?.id} />
-						<button type="submit" class="btn btn-error" disabled={loading}>Delete</button>
+						<Button type="submit" variant="error" disabled={loading}>Delete</Button>
 					</form>
 				</div>
-					{/snippet}
+			{/snippet}
 		</Modal>
 	</div>
 </div>

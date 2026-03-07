@@ -77,9 +77,7 @@
 			</div>
 
 			<div class="w-full pt-2">
-				<Button type="submit" variant="primary" class="w-full" loading={loading}>
-					Login
-				</Button>
+				<Button type="submit" variant="primary" class="w-full" {loading}>Login</Button>
 			</div>
 		</form>
 		<p class="text-center text-[var(--muted-foreground)] my-4">or</p>

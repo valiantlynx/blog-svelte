@@ -1,4 +1,5 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
 	import LikeButton from '$lib/components/blog/LikeButton.svelte';
 	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
@@ -9,7 +10,7 @@
 	import { enhance } from '$app/forms';
 
 	const blog = page.data.blog;
-	
+
 	// Dynamically import ValiantRichText only on client side to avoid SSR issues
 	// TODO: there a a lucide icon bug in the svelte-rich text . For a permanent fix, you need to edit the source code at svelte-rich-text. The issue is likely in a file that's importing from @lucide/svelte. Here's what you should look for:
 
@@ -22,7 +23,7 @@
 
 	let ValiantRichText = $state();
 	let isSaving = $state(false);
-	
+
 	// Load rich text component on mount
 	onMount(() => {
 		import('@mythrantic/svelte-rich-text').then((module) => {
@@ -86,8 +87,8 @@
 		{#if page.data.user}
 			{#if page.data.user.id === blog?.author}
 				{#if ValiantRichText}
-					<form 
-						method="POST" 
+					<form
+						method="POST"
 						action="?/updateBlog"
 						use:enhance={() => {
 							isSaving = true;
@@ -104,16 +105,12 @@
 					>
 						<input type="hidden" name="blogId" value={blog?.id} />
 						<input type="hidden" name="content_object" bind:value={contentJson} />
-						
+
 						<ValiantRichText bind:editor {content} {onUpdate} editable={true} />
-						
-						<button 
-							type="submit" 
-							class="btn btn-primary mt-4"
-							disabled={isSaving}
-						>
+
+						<Button type="submit" variant="primary" class="mt-4" disabled={isSaving}>
 							{isSaving ? 'Saving...' : 'Save'}
-						</button>
+						</Button>
 					</form>
 				{/if}
 			{:else}
@@ -173,7 +170,7 @@
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<meta name="description" content={blog?.summary} />
-	
+
 	<!-- Keywords Meta Tag -->
 	<meta name="keywords" content={blog?.expand?.tags.map((tag) => tag.name)} />
 

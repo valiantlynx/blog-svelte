@@ -10,7 +10,7 @@
 	}
 
 	let { children }: Props = $props();
-	
+
 	// Extract page data for use in svelte:head to avoid SSR issues
 	let siteName = $derived(page.data.siteName);
 	let sites = $derived(page.data.sites);

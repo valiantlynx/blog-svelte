@@ -1,9 +1,11 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
 	import { enhance } from '$app/forms';
 	import Input from './Input.svelte';
 	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
 	let loading = $state(false);
+	let email = $state('');
 
 	const submitResetPassword = () => {
 		loading = true;
@@ -39,18 +41,18 @@
 		class="flex flex-col items-center space-y-2 w-full pt-4"
 		use:enhance={submitResetPassword}
 	>
-		<div class="form-control w-full max-w-md">
-			<Input
-				type="email"
-				id="email"
-				label="Email"
-				value={page.form?.data?.email}
-				errors={page.form?.errors?.email}
-				disabled={loading}
-			/>
-		</div>
+		<Input
+			type="email"
+			id="email"
+			label="Email"
+			bind:value={email}
+			disabled={loading}
+			errors={page.form?.errors?.email}
+		/>
 		<div class="w-full max-w-md pt-2">
-			<button type="submit" class="btn btn-primary w-full">Request Password Reset</button>
+			<Button type="submit" variant="primary" class="w-full" disabled={loading}
+				>Request Password Reset</Button
+			>
 		</div>
 	</form>
 </div>

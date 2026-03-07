@@ -1,6 +1,8 @@
 <script>
 	import BlogCards from '$lib/components/BlogCards.svelte';
+	import { Button } from '$lib/components/ui/button';
 	import { page } from '$app/stores';
+	import * as m from '$lib/paraglide/messages.js';
 	const blogs = $page.data.blogs;
 </script>
 
@@ -11,5 +13,5 @@
 </div>
 <!-- if they want to see more available to go to the features page -->
 <div class="justify-center mb-8">
-	<a href="/blogs" class="flex btn btn-primary mx-8">show more</a>
+	<Button href="/blogs" variant="primary" class="flex mx-8">{m["buttons.show_more"]()}</Button>
 </div>

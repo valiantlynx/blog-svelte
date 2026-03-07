@@ -2,6 +2,8 @@
 	import { run } from 'svelte/legacy';
 
 	import { goto } from '$app/navigation';
+	import { Button } from '$lib/components/ui/button';
+	import { Input } from '$lib/components/ui/input';
 	import BigSearchResults from '$lib/components/BigSearchResults.svelte';
 	import SmallSearchResults from '$lib/components/SmallSearchResults.svelte';
 	import { metaKeywords, searchQuery } from '$lib/utils/stores';
@@ -63,7 +65,6 @@
 	let debouncedSearch = $state();
 	let lastSearchTerm = $state('');
 
-
 	/**
 	 * @param {any} event
 	 */
@@ -80,7 +81,6 @@
 		window.location.reload();
 		searchTerm = '';
 	}
-
 
 	function executeSelectedSearch() {
 		if (searchTerm.trim() === '') {
@@ -125,15 +125,13 @@
 
 <div class="max-w-screen mx-auto">
 	<div class="join">
-		<div>
-			<div>
-				<input
-					class="input input-bordered input-primary join-item w-full"
-					value={$searchQuery && type === 'big' ? $searchQuery : ''}
-					placeholder="Search"
-					oninput={handleSearch}
-				/>
-			</div>
+		<div class="w-full">
+			<Input
+				class="join-item w-full"
+				value={$searchQuery && type === 'big' ? $searchQuery : ''}
+				placeholder="Search"
+				oninput={handleSearch}
+			/>
 		</div>
 		<select
 			class="select select-bordered select-primary join-item w-1/3"
@@ -143,7 +141,7 @@
 			<option value="Projects">Projects</option>
 		</select>
 
-		<a href="/search" class="btn join-item btn-primary w-1/5">Search</a>
+		<Button href="/search" variant="primary" class="join-item w-1/5">Search</Button>
 	</div>
 
 	{#if type === 'small'}

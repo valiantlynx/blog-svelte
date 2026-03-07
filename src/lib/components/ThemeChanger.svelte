@@ -24,7 +24,9 @@
 		dropdownOpen = false;
 	}
 
-	const currentThemeLabel = $derived(themes.find((t) => t.id === currentTheme)?.label ?? '🎨 Theme');
+	const currentThemeLabel = $derived(
+		themes.find((t) => t.id === currentTheme)?.label ?? '🎨 Theme'
+	);
 </script>
 
 <div class="relative inline-block">
@@ -39,10 +41,7 @@
 
 	{#if dropdownOpen}
 		<!-- Backdrop -->
-		<div
-			class="fixed inset-0 z-40"
-			onclick={() => (dropdownOpen = false)}
-		></div>
+		<div class="fixed inset-0 z-40" onclick={() => (dropdownOpen = false)}></div>
 
 		<!-- Dropdown Menu -->
 		<div
@@ -53,9 +52,11 @@
 					onclick={() => setTheme(theme.id)}
 					class={`
 						w-full px-4 py-3 text-left transition-colors flex items-center justify-between gap-3
-						${currentTheme === theme.id
-							? 'bg-[var(--primary)] text-[var(--primary-content)]'
-							: 'hover:bg-[var(--base-200)] text-[var(--foreground)]'}
+						${
+							currentTheme === theme.id
+								? 'bg-[var(--primary)] text-[var(--primary-content)]'
+								: 'hover:bg-[var(--base-200)] text-[var(--foreground)]'
+						}
 					`}
 				>
 					<div class="flex-1">

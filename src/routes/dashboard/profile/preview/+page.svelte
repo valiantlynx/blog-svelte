@@ -1,4 +1,5 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
 	import Chat from '$lib/components/Chat.svelte';
 	import { page } from '$app/stores';
 	import { site } from '$lib/utils/config';
@@ -37,7 +38,8 @@
 					<div class="px-6 py-4">
 						<div class="flex items-center justify-between">
 							<img alt="Profile Avatar" src={avatar} class="rounded-full h-20 w-20 object-cover" />
-							<a class="btn btn-outline btn-accent font-bold" href="/dashboard/profile/edit">Edit</a
+							<Button href="/dashboard/profile/edit" variant="outline" class="font-bold"
+								>Edit</Button
 							>
 						</div>
 						<div class="text-center mt-6">

@@ -1,5 +1,6 @@
 <script>
 	import { enhance } from '$app/forms';
+	import { Button } from '$lib/components/ui/button';
 	import Input from './Input.svelte';
 	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
 	import { page } from '$app/state';
@@ -74,7 +75,7 @@
 				>Already registered? Login (click here)</a
 			>
 			<div class="w-full max-w-lg pt-2">
-				<button type="submit" class="btn btn-primary w-full" disabled={loading}>Register</button>
+				<Button type="submit" variant="primary" class="w-full" disabled={loading}>Register</Button>
 			</div>
 		</form>
 		<center class="text-center my-4"> or </center>

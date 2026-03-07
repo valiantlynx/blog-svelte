@@ -1,5 +1,8 @@
 <script>
-	import Input from '$lib/components/Input.svelte';
+	import { Button } from '$lib/components/ui/button';
+	import { Badge } from '$lib/components/ui/badge';
+	import { Input } from '$lib/components/ui/input';
+	import { FormControl } from '$lib/components/ui/form-control';
 	import { enhance, applyAction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
@@ -7,7 +10,6 @@
 
 	let loading = $state(false);
 
-	
 	const showPreview = (event) => {
 		const target = event.target;
 		const files = target.files; //await compressFileImage(data.avatar, 200, 200, 0.7);
@@ -57,11 +59,13 @@
 					<span class="label-text">Profile Picture</span>
 				</label>
 				<label for="avatar" class="avatar w-32 rounded-full hover:cursor-pointer relative">
-					<span
-						class="btn btn-circle btn-sm btn-secondary absolute -bottom-2 -right-2 hover:cursor-pointer"
+					<Button
+						variant="secondary"
+						size="sm"
+						class="rounded-full absolute -bottom-2 -right-2 hover:cursor-pointer p-0"
 					>
 						<i class="fa fa-pencil-alt"></i>
-					</span>
+					</Button>
 					<div class="w-32 h-32 rounded-full overflow-hidden">
 						<img src={avatar} alt="user avatar" id="avatar-preview" />
 					</div>
@@ -114,16 +118,16 @@
 				<label for="roles" class="text-xl font-medium">Roles and Permissions</label>
 				<div class="flex flex-wrap -m-1">
 					{#each $page.data?.user?.role as role}
-						<div class="badge badge-primary my-4">{role}</div>
+						<Badge class="my-2">{role}</Badge>
 					{/each}
 				</div>
 			</div>
 		</div>
 
 		<div class="w-full max-w-lg">
-			<button class="btn btn-primary w-full" type="submit" disabled={loading}>
+			<Button type="submit" variant="primary" class="w-full" disabled={loading}>
 				Update Profile
-			</button>
+			</Button>
 		</div>
 	</form>
 </div>

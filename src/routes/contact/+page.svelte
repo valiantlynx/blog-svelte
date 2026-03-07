@@ -1,5 +1,6 @@
 <script>
 	import Social from '$lib/components/press/Social.svelte';
+	import { Button } from '$lib/components/ui/button';
 	import { postPocketbase } from '$lib/utils/api';
 
 	const contactData = $state({
@@ -91,15 +92,15 @@
 										Send me a copy of this message
 									</label>
 								</div>
-								<button
+								<Button
 									type="button"
-									data-te-ripple-init
-									data-te-ripple-color="light"
+									variant="primary"
+									size="lg"
+									class="mb-4 w-3/4 font-bold text-xl shadow-black shadow-inner"
 									onclick={send}
-									class="btn btn-base font-bold text-xl shadow-black shadow-inner mb-4 w-3/4"
 								>
 									Send
-								</button>
+								</Button>
 							</form>
 						</div>
 					</div>

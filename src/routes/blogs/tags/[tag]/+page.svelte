@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import { page } from '$app/stores';
 	import BlogCards from '$lib/components/BlogCards.svelte';
 	let { data } = $props();
@@ -12,7 +13,7 @@
 	<h2 class="text-3xl font-bold w-full">My Blogs</h2>
 	<p class="text-center text-3xl">☹️</p>
 	<p class="text-center text-3xl">would you like to make a blog blogs.</p>
-	<a href="/blogs/new" class="btn btn-primary max-w-md mt-4">Add One</a>
+	<Button href="/blogs/new" variant="primary" class="max-w-md mt-4">Add One</Button>
 </div>
 
 <div class="w-full mt-4 flex flex-wrap -m-4 p-10 items-center">

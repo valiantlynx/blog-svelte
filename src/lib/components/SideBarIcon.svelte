@@ -2,8 +2,7 @@
 	// @ts-nocheck
 
 	import Icon from '@iconify/svelte';
-	
-	
+
 	/**
 	 * @typedef {Object} Props
 	 * @property {any} tooltip

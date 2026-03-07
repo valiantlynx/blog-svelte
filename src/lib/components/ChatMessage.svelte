@@ -1,6 +1,6 @@
 <script>
 	import { site } from '$lib/utils/config';
-	
+
 	/**
 	 * @typedef {Object} Props
 	 * @property {{ expand: { sender: { username: any; avatar: any; id: any; }; }; created: string | number | Date; message: any; }} message

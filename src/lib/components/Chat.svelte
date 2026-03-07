@@ -1,4 +1,6 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
+	import { Input } from '$lib/components/ui/input';
 	import { preventDefault } from 'svelte/legacy';
 
 	import ChatMessage from './ChatMessage.svelte';
@@ -115,30 +117,30 @@
 
 		{#if !canAutoScroll}
 			<div class="text-center justify-center flex">
-				<button onclick={autoScroll} class="btn btn-secondary">
+				<Button variant="secondary" onclick={autoScroll}>
 					{#if unreadMessages}
 						💬
 					{/if}
 					🡣
-				</button>
+				</Button>
 			</div>
 		{/if}
 
 		<div class="border-t border-primary pt-4">
 			<form onsubmit={preventDefault(sendMessage)} class="space-x-2 flex items-center">
-				<input
+				<Input
 					type="text"
 					placeholder={page.data.user
 						? 'write your comment here'
 						: 'login to write a comment  ----------------->'}
 					minlength="1"
 					bind:value={newMessage}
-					class="input input-bordered input-primary flex-grow"
+					class="flex-grow"
 				/>
 				{#if page.data.user}
-					<button type="submit" class="btn btn-primary"> Send </button>
+					<Button type="submit" variant="primary">Send</Button>
 				{:else}
-					<a href="/login" type="submit" class="btn btn-primary">Login</a>
+					<Button href="/login" variant="primary">Login</Button>
 				{/if}
 			</form>
 		</div>

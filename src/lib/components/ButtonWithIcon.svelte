@@ -1,8 +1,15 @@
 <script>
-	let { icon = undefined, label = undefined, onclick = () => {}, children = undefined, ...rest } = $props();
+	import { Button } from '$lib/components/ui/button';
+	let {
+		icon = undefined,
+		label = undefined,
+		onclick = () => {},
+		children = undefined,
+		...rest
+	} = $props();
 </script>
 
-<button {onclick} class="btn btn-sm gap-2" {...rest}>
+<Button {onclick} size="sm" class="gap-2" {...rest}>
 	{#if icon}
 		{@render icon()}
 	{/if}
@@ -11,4 +18,4 @@
 	{:else if label}
 		{label}
 	{/if}
-</button>
+</Button>

@@ -1,4 +1,5 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
 	import Search from './Search.svelte';
 	import ProfileModal from './ProfileModal.svelte';
 	import { page } from '$app/state';
@@ -10,7 +11,7 @@
 <div>
 	<div class="navbar bg-base-300 max-w-full sm:hidden">
 		<div class="flex-1">
-			<a class="btn btn-ghost normal-case text-xl" href="/">{page.data.siteName}</a>
+			<Button href="/" variant="ghost" class="normal-case text-xl">{page.data.siteName}</Button>
 			<ThemeChanger />
 		</div>
 		<ProfileModal />
@@ -28,7 +29,7 @@
 <!-- Large Devices Layout -->
 <div class="navbar bg-base-300 hidden sm:flex" id="title-bar">
 	<div class="flex-1">
-		<a class="btn btn-ghost normal-case text-xl" href="/">{page.data.siteName}</a>
+		<Button href="/" variant="ghost" class="normal-case text-xl">{page.data.siteName}</Button>
 		<ThemeChanger />
 	</div>
 	<div class="flex-none gap-2">

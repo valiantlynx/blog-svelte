@@ -1,64 +1,84 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
+	import { Badge } from '$lib/components/ui/badge';
+	import { Dropdown } from '$lib/components/ui/dropdown';
 	import { page } from '$app/state';
 	import { site } from '$lib/utils/config';
 
 	const avatar = page.data.user?.avatar
 		? `${site.pocketbase}/api/files/${page.data.user?.collectionId}/${page.data.user?.id}/${page.data.user?.avatar}`
 		: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${page.data.user?.username}`;
+
+	let dropdownOpen = $state(false);
 </script>
 
 <!-- profile-->
 {#if !page.data.user}
-	<a href="/login" class="btn btn-primary">login</a>
-	<a href="/signup" class="btn btn-secondary">signup</a>
+	<Button href="/login" variant="primary">login</Button>
+	<Button href="/signup" variant="secondary">signup</Button>
 {:else}
-	<div class="dropdown dropdown-end">
-		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-		<label tabindex="0" for="profile button" class="btn btn-primary btn-circle avatar">
-			<div class="w-10 rounded-full">
-				<img
-					src={avatar}
-					alt={`${page.data.user.username} profile picture on ${site.title}, ${
-						site.protocol + site.domain
-					}`}
-				/>
-			</div>
-		</label>
-		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-		<ul
-			tabindex="0"
-			class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-		>
-			<li>
-				<a class="justify-between" href="/dashboard/profile/preview">
-					Profile
-					<span class="badge">New</span>
-				</a>
-			</li>
-			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
-			<li aria-current={page.url.pathname === '/pricing' ? 'page' : undefined}>
-				<a class="justify-between" href="/pricing"> pricing </a>
-			</li>
-			<li aria-current={page.url.pathname === '/dashboard' ? 'page' : undefined}>
-				<a class="justify-between" href="/dashboard">
-					Dashboard
-					<span class="badge">New</span>
-				</a>
-			</li>
-			<li>
-				<form
-					action="/api/logout"
-					method="POST"
-					class="bg-primary text-primary-content rounded-box p-1 flex items-center mt-3"
+	<Dropdown align="right" bind:open={dropdownOpen}>
+		<svelte:fragment slot="trigger">
+			<button class="avatar cursor-pointer">
+				<div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+					<img
+						src={avatar}
+						alt={`${page.data.user.username} profile picture on ${site.title}, ${
+							site.protocol + site.domain
+						}`}
+					/>
+				</div>
+			</button>
+		</svelte:fragment>
+
+		<div class="py-2">
+			<a
+				href="/dashboard/profile/preview"
+				class="block px-4 py-2 hover:bg-[var(--base-200)] transition-colors"
+				onclick={() => (dropdownOpen = false)}
+			>
+				<div class="flex items-center justify-between gap-2">
+					<span>Profile</span>
+					<Badge>New</Badge>
+				</div>
+			</a>
+			<a
+				href="/"
+				class="block px-4 py-2 hover:bg-[var(--base-200)] transition-colors"
+				onclick={() => (dropdownOpen = false)}
+			>
+				Home
+			</a>
+			<a
+				href="/pricing"
+				class="block px-4 py-2 hover:bg-[var(--base-200)] transition-colors"
+				onclick={() => (dropdownOpen = false)}
+			>
+				<div class="flex items-center justify-between gap-2">
+					<span>pricing</span>
+				</div>
+			</a>
+			<a
+				href="/dashboard"
+				class="block px-4 py-2 hover:bg-[var(--base-200)] transition-colors"
+				onclick={() => (dropdownOpen = false)}
+			>
+				<div class="flex items-center justify-between gap-2">
+					<span>Dashboard</span>
+					<Badge>New</Badge>
+				</div>
+			</a>
+			<hr class="my-2 border-[var(--border)]" />
+			<form action="/api/logout" method="POST" class="px-2 py-1">
+				<button
+					type="submit"
+					class="w-full px-4 py-2 text-start bg-[var(--primary)] text-[var(--primary-content)] hover:opacity-90 rounded transition-all flex items-center justify-between"
+					onclick={() => (dropdownOpen = false)}
 				>
-					<button type="submit" class="w-full flex items-center">
-						<p class="text-start mr-auto font-bold">Logout</p>
-						<i class="fa fa-sign-out-alt justify-end"></i>
-					</button>
-				</form>
-			</li>
-		</ul>
-	</div>
+					<span class="font-bold">Logout</span>
+					<i class="fa fa-sign-out-alt"></i>
+				</button>
+			</form>
+		</div>
+	</Dropdown>
 {/if}

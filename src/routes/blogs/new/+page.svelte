@@ -1,4 +1,5 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
 	import { enhance } from '$app/forms';
 	import Input from '$lib/components/Input.svelte';
 	import { page } from '$app/state';
@@ -79,8 +80,8 @@
 				errors={page.form?.errors?.image}
 			/>
 			<div class="w-full max-w-lg pt-3">
-				<button type="submit" class="btn btn-primary w-full max-w-lg" disabled={loading}
-					>Create Blog</button
+				<Button type="submit" variant="primary" class="w-full max-w-lg" disabled={loading}
+					>Create Blog</Button
 				>
 			</div>
 		</form>

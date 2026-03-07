@@ -64,7 +64,7 @@ export const actions = {
 			}
 		}
 	},
-	
+
 	updateBlog: async ({ locals, request, params }) => {
 		// Check if user is authenticated
 		if (!locals.pb.authStore.isValid) {
@@ -82,7 +82,7 @@ export const actions = {
 		try {
 			// Parse the content object
 			const content_object = JSON.parse(contentObjectStr);
-			
+
 			// Update the blog with the authenticated pb instance
 			const updatedBlog = await locals.pb.collection('blogs').update(blogId, {
 				content_object

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import ProjectCard from '$lib/components/ProjectCard.svelte';
 	let { data } = $props();
 </script>
@@ -8,7 +9,7 @@
 	{#if data.projects.items.length === 0}
 		<p class="text-center text-3xl">☹️</p>
 		<p class="text-center text-3xl">Looks like you don't have any projects.</p>
-		<a href="/projects/new" class="btn btn-primary max-w-md mt-4">Add One</a>
+		<Button href="/projects/new" variant="primary" class="max-w-md mt-4">Add One</Button>
 	{:else}
 		{#each data.projects.items as project}
 			<ProjectCard {project} />
