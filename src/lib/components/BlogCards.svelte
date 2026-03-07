@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { site } from '$lib/utils/config';
+	import * as m from '$lib/paraglide/messages.js';
 	let { blog } = $props();
 
 	function shareButtonClick(blog) {
@@ -19,7 +20,7 @@
 					console.error(err);
 				});
 		} else {
-			alert("Browser doesn't support this API !");
+			alert(m['messages.browser_not_support_api']?.() || "Browser doesn't support this API !");
 		}
 	}
 </script>
@@ -45,14 +46,16 @@
 					class="w-8 h-8 rounded-full object-cover"
 				/>
 				<a href="/" class="ml-2 text-sm hover:underline hover:text-warning"
-					>{blog?.expand?.author?.username ? blog?.expand?.author?.username : 'anonymous'}</a
+					>{blog?.expand?.author?.username
+						? blog?.expand?.author?.username
+						: m['labels.anonymous']?.()}</a
 				>
 			</div>
 			<div class="flex items-center">
 				<a
 					href={`/${blog?.slug}`}
 					class="block font-bold hover:cursor-pointer hover:underline hover:text-warning"
-					>Read more</a
+					>{m['buttons.read_more']?.()}</a
 				>
 			</div>
 			<div class="flex items-center">

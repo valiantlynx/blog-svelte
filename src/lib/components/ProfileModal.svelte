@@ -4,6 +4,7 @@
 	import { Dropdown } from '$lib/components/ui/dropdown';
 	import { page } from '$app/state';
 	import { site } from '$lib/utils/config';
+	import * as m from '$lib/paraglide/messages.js';
 
 	const avatar = page.data.user?.avatar
 		? `${site.pocketbase}/api/files/${page.data.user?.collectionId}/${page.data.user?.id}/${page.data.user?.avatar}`
@@ -14,8 +15,8 @@
 
 <!-- profile-->
 {#if !page.data.user}
-	<Button href="/login" variant="primary">login</Button>
-	<Button href="/signup" variant="secondary">signup</Button>
+	<Button href="/login" variant="primary">{m['navigation.login']()}</Button>
+	<Button href="/signup" variant="secondary">{m['navigation.signup']()}</Button>
 {:else}
 	<Dropdown align="right" bind:open={dropdownOpen}>
 		<svelte:fragment slot="trigger">
@@ -38,8 +39,8 @@
 				onclick={() => (dropdownOpen = false)}
 			>
 				<div class="flex items-center justify-between gap-2">
-					<span>Profile</span>
-					<Badge>New</Badge>
+					<span>{m['navigation.profile']()}</span>
+					<Badge>{m['labels.new']()}</Badge>
 				</div>
 			</a>
 			<a
@@ -47,7 +48,7 @@
 				class="block px-4 py-2 hover:bg-[var(--base-200)] transition-colors"
 				onclick={() => (dropdownOpen = false)}
 			>
-				Home
+				{m['header.home']()}
 			</a>
 			<a
 				href="/pricing"
@@ -55,7 +56,7 @@
 				onclick={() => (dropdownOpen = false)}
 			>
 				<div class="flex items-center justify-between gap-2">
-					<span>pricing</span>
+					<span>{m['header.pricing']()}</span>
 				</div>
 			</a>
 			<a
@@ -64,8 +65,8 @@
 				onclick={() => (dropdownOpen = false)}
 			>
 				<div class="flex items-center justify-between gap-2">
-					<span>Dashboard</span>
-					<Badge>New</Badge>
+					<span>{m['navigation.dashboard']()}</span>
+					<Badge>{m['labels.new']()}</Badge>
 				</div>
 			</a>
 			<hr class="my-2 border-[var(--border)]" />
@@ -75,7 +76,7 @@
 					class="w-full px-4 py-2 text-start bg-[var(--primary)] text-[var(--primary-content)] hover:opacity-90 rounded transition-all flex items-center justify-between"
 					onclick={() => (dropdownOpen = false)}
 				>
-					<span class="font-bold">Logout</span>
+					<span class="font-bold">{m['navigation.logout']()}</span>
 					<i class="fa fa-sign-out-alt"></i>
 				</button>
 			</form>

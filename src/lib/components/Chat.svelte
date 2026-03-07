@@ -2,6 +2,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { preventDefault } from 'svelte/legacy';
+	import * as m from '$lib/paraglide/messages.js';
 
 	import ChatMessage from './ChatMessage.svelte';
 	import { onMount, onDestroy } from 'svelte';
@@ -103,13 +104,15 @@
 
 <div class=" p-4 space-y-4 items-center">
 	<div class=" p-4 space-y-4 border-dashed border-2 border-primary sm:mx-20">
-		<h2 class="text-2xl font-bold mb-4">Join the Discussion</h2>
+		<h2 class="text-2xl font-bold mb-4">{m['messages.join_discussion']?.()}</h2>
 
 		<main class="overflow-y-auto" onscroll={watchScroll}>
 			{#each messages as message (message.id)}
 				<ChatMessage
 					{message}
-					sender={page.data.user?.username ? page.data.user?.username : 'the user isnt logged in'}
+					sender={page.data.user?.username
+						? page.data.user?.username
+						: m['messages.not_logged_in']()}
 				/>
 			{/each}
 			<div class="dummy" bind:this={scrollBottom}></div>
@@ -131,16 +134,16 @@
 				<Input
 					type="text"
 					placeholder={page.data.user
-						? 'write your comment here'
-						: 'login to write a comment  ----------------->'}
+						? m['placeholders.write_comment']()
+						: m['placeholders.login_to_comment']()}
 					minlength="1"
 					bind:value={newMessage}
 					class="flex-grow"
 				/>
 				{#if page.data.user}
-					<Button type="submit" variant="primary">Send</Button>
+					<Button type="submit" variant="primary">{m['buttons.send']()}</Button>
 				{:else}
-					<Button href="/login" variant="primary">Login</Button>
+					<Button href="/login" variant="primary">{m['navigation.login']()}</Button>
 				{/if}
 			</form>
 		</div>

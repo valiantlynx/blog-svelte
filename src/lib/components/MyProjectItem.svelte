@@ -4,6 +4,7 @@
 	import Modal from './Modal.svelte';
 	import { getImageURL } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
+	import * as m from '$lib/paraglide/messages.js';
 	let { project } = $props();
 
 	let modalOpen = $state(false);
@@ -15,11 +16,11 @@
 		return async ({ result, update }) => {
 			switch (result.type) {
 				case 'success':
-					toast.success('Project deleted successfully!');
+					toast.success(m['messages.success_project_deleted']());
 					await update();
 					break;
 				case 'error':
-					toast.error('Could not delete project. Please try again later.');
+					toast.error(m['messages.error_create_failed']({ item: 'project' }));
 					break;
 				default:
 					await update();
@@ -45,28 +46,30 @@
 		<p>{project.tagline}</p>
 	</div>
 	<div class="flex items-center justify-end w-full">
-		<Button href="/projects/{project.id}/edit" variant="outline">Edit Project</Button>
+		<Button href="/projects/{project.id}/edit" variant="outline"
+			>{m['buttons.edit_project']()}</Button
+		>
 		<Modal label={project.id} checked={modalOpen}>
 			{#snippet trigger()}
-				<Button variant="error" class="ml-2">Delete</Button>
+				<Button variant="error" class="ml-2">{m['buttons.delete']()}</Button>
 			{/snippet}
 			{#snippet heading()}
 				<div>
-					<h3 class="text-2xl">Delete {project.name}</h3>
+					<h3 class="text-2xl">{m['modals.delete_project']({ name: project.name })}</h3>
 					<p class="text-base font-normal mt-2">
-						Are you sure you want to delete this project? Once deleted, the project cannot be
-						restored.
+						{m['modals.delete_confirmation']({ item: 'project' })}
 					</p>
 				</div>
 			{/snippet}
 			{#snippet actions()}
 				<div class="flex w-full items-center justify-center space-x-2">
 					<label for={project.id}>
-						<Button variant="outline" type="button">Cancel</Button>
+						<Button variant="outline" type="button">{m['buttons.cancel']()}</Button>
 					</label>
 					<form action="?/deleteProject" method="POST" use:enhance={submitDeleteProject}>
 						<input type="hidden" name="id" value={project.id} />
-						<Button type="submit" variant="error" disabled={loading}>Delete</Button>
+						<Button type="submit" variant="error" disabled={loading}>{m['buttons.delete']()}</Button
+						>
 					</form>
 				</div>
 			{/snippet}

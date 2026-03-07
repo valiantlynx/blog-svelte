@@ -1,5 +1,6 @@
 <script>
 	import { site } from '$lib/utils/config';
+	import * as m from '$lib/paraglide/messages.js';
 
 	/**
 	 * @typedef {Object} Props
@@ -29,17 +30,17 @@
 		</div>
 	</div>
 	<div class="chat-header">
-		{#if sender !== 'the user isnt logged in' || message.expand?.sender.username}
+		{#if sender !== m['messages.not_logged_in']() || message.expand?.sender.username}
 			{message.expand?.sender.username}
 		{:else}
-			Anonymous
+			{m['labels.anonymous']()}
 		{/if}
 		<time class="text-xs opacity-50">{ts.toLocaleTimeString()}</time>
 	</div>
 	<div class="chat-bubble">{@html message.message}</div>
 	{#if messageClass === 'chat-end'}
-		<div class="chat-footer opacity-50">comment sent</div>
+		<div class="chat-footer opacity-50">{m['messages.comment_sent']()}</div>
 	{:else}
-		<div class="chat-footer opacity-50">comment delivered</div>
+		<div class="chat-footer opacity-50">{m['messages.comment_delivered']()}</div>
 	{/if}
 </div>

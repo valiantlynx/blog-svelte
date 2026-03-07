@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as m from '$lib/paraglide/messages.js';
 	interface Props {
 		accept?: string;
 		multiple?: boolean;
@@ -65,16 +66,16 @@
 		<div>
 			<p class="text-[var(--foreground)] font-medium">
 				{#if files}
-					{files.length} file(s) selected
+					{m['file_input.files_selected']({ count: files.length })}
 				{:else}
-					Drop files here or click to select
+					{m['file_input.drop_files_prompt']()}
 				{/if}
 			</p>
 			<p class="text-[var(--muted-foreground)] text-sm">
 				{#if accept}
 					{accept}
 				{:else}
-					Any file type
+					{m['file_input.any_file_type']()}
 				{/if}
 			</p>
 		</div>

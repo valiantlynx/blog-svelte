@@ -4,6 +4,7 @@
 	import Modal from './Modal.svelte';
 	import { getImageURL } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
+	import * as m from '$lib/paraglide/messages.js';
 	let { blog } = $props();
 
 	let modalOpen = $state(false);
@@ -15,11 +16,11 @@
 		return async ({ result, update }) => {
 			switch (result.type) {
 				case 'success':
-					toast.success('Blog deleted successfully!');
+					toast.success(m['messages.success_blog_deleted']());
 					await update();
 					break;
 				case 'error':
-					toast.error('Could not delete blog. Please try again later.');
+					toast.error(m['messages.error_create_failed']({ item: 'blog' }));
 					break;
 				default:
 					await update();
@@ -45,27 +46,28 @@
 		<p>{blog?.summary}</p>
 	</div>
 	<div class="flex items-center justify-end w-full">
-		<Button href="/blogs/{blog?.id}/edit" variant="outline">Edit blog</Button>
+		<Button href="/blogs/{blog?.id}/edit" variant="outline">{m['buttons.edit_blog']()}</Button>
 		<Modal label={blog?.id} checked={modalOpen}>
 			{#snippet trigger()}
-				<Button variant="error" class="ml-2">Delete</Button>
+				<Button variant="error" class="ml-2">{m['buttons.delete']()}</Button>
 			{/snippet}
 			{#snippet heading()}
 				<div>
-					<h3 class="text-2xl">Delete {blog?.title}</h3>
+					<h3 class="text-2xl">{m['modals.delete_blog']({ title: blog?.title })}</h3>
 					<p class="text-base font-normal mt-2">
-						Are you sure you want to delete this blog? Once deleted, the blog cannot be restored.
+						{m['modals.delete_confirmation']({ item: 'blog' })}
 					</p>
 				</div>
 			{/snippet}
 			{#snippet actions()}
 				<div class="flex w-full items-center justify-center space-x-2">
 					<label for={blog?.id}>
-						<Button variant="outline" type="button">Cancel</Button>
+						<Button variant="outline" type="button">{m['buttons.cancel']()}</Button>
 					</label>
 					<form action="?/deleteBlog" method="POST" use:enhance={submitDeleteBlog}>
 						<input type="hidden" name="id" value={blog?.id} />
-						<Button type="submit" variant="error" disabled={loading}>Delete</Button>
+						<Button type="submit" variant="error" disabled={loading}>{m['buttons.delete']()}</Button
+						>
 					</form>
 				</div>
 			{/snippet}

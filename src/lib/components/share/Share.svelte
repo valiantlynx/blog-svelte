@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ButtonWithIcon from '../ButtonWithIcon.svelte';
 	import { page } from '$app/state';
+	import * as m from '$lib/paraglide/messages.js';
 
 	interface Props {
 		title?: any;
@@ -37,7 +38,7 @@
 				<i class="fa fa-facebook text-blue-600"></i>
 			{/snippet}
 
-			Facebook
+			{m['labels.facebook']?.()}
 		</ButtonWithIcon>
 	</a>
 
@@ -46,7 +47,7 @@
 			{#snippet icon()}
 				<i class="fa fa-twitter text-blue-600"></i>
 			{/snippet}
-			Twitter
+			{m['labels.twitter']?.()}
 		</ButtonWithIcon>
 	</a>
 	<a href={linkedinUrl} target="_blank">
@@ -55,7 +56,7 @@
 				<i class="fa fa-linkedin text-blue-600"></i>
 			{/snippet}
 
-			LinkedIn
+			{m['labels.linkedin']?.()}
 		</ButtonWithIcon>
 	</a>
 	<a href={emailUrl} target="_blank">
@@ -64,7 +65,7 @@
 				<i class="fa fa-envelope text-warning"></i>
 			{/snippet}
 
-			Email
+			{m['labels.email']?.()}
 		</ButtonWithIcon>
 	</a>
 </div>

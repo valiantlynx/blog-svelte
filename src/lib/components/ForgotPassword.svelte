@@ -4,6 +4,7 @@
 	import Input from './Input.svelte';
 	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
+	import * as m from '$lib/paraglide/messages.js';
 	let loading = $state(false);
 	let email = $state('');
 
@@ -12,11 +13,11 @@
 		return async ({ result, update }) => {
 			switch (result.type) {
 				case 'success':
-					toast.success('An email has been sent to reset your password!');
+					toast.success(m['messages.error_email_sent']());
 					await update();
 					break;
 				case 'invalid':
-					toast.error('Invalid credentials');
+					toast.error(m['messages.error_invalid_credentials']());
 					await update();
 					break;
 				case 'error':
@@ -32,9 +33,9 @@
 
 <div class="flex flex-col items-center h-full py-10 w-full">
 	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
-		Reset Your Password
+		{m['forms.password_reset_title']()}
 	</h2>
-	<p class="text-center mt-1">We'll send you an email with a link to reset your password.</p>
+	<p class="text-center mt-1">{m['forms.password_reset_description']()}</p>
 	<form
 		action="?/reset"
 		method="POST"
@@ -44,14 +45,14 @@
 		<Input
 			type="email"
 			id="email"
-			label="Email"
+			label={m['forms.email']()}
 			bind:value={email}
 			disabled={loading}
 			errors={page.form?.errors?.email}
 		/>
 		<div class="w-full max-w-md pt-2">
 			<Button type="submit" variant="primary" class="w-full" disabled={loading}
-				>Request Password Reset</Button
+				>{m['buttons.request_password_reset']()}</Button
 			>
 		</div>
 	</form>

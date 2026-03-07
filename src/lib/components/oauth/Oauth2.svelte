@@ -1,9 +1,10 @@
 <script>
 	import Oauth2SingleServer from './Oauth2SingleServer.svelte';
+	import * as m from '$lib/paraglide/messages.js';
 </script>
 
 <div class="flex flex-col w-full">
-	<h3 class="text-center text-lg font-bold">Login with</h3>
+	<h3 class="text-center text-lg font-bold">{m['buttons.login']?.()}</h3>
 	<!-- auth with google -->
 	<div class="w-full block my-4">
 		<Oauth2SingleServer
@@ -11,7 +12,7 @@
 			provider="google"
 		/>
 	</div>
-	<h6 class="text-center">Kommer Snart</h6>
+	<h6 class="text-center">{m['messages.coming_soon']?.()}</h6>
 
 	<!-- auth with apple -->
 	<div class="w-full block my-4">

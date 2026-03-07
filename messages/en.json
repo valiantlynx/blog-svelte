@@ -65,7 +65,9 @@
 		"already_registered": "Already registered?",
 		"already_have_account": "Already have an account?",
 		"dont_have_account": "Don't have an account?",
-		"click_here": "click here"
+		"click_here": "click here",
+		"password_reset_title": "Reset Your Password",
+		"password_reset_description": "We'll send you an email with a link to reset your password."
 	},
 	"placeholders": {
 		"search": "Search",
@@ -82,7 +84,11 @@
 		"anonymous": "Anonymous",
 		"read_more": "Read more",
 		"not_registered": "Not registered?",
-		"forgot_password": "Forgot password?"
+		"forgot_password": "Forgot password?",
+		"facebook": "Facebook",
+		"twitter": "Twitter",
+		"linkedin": "LinkedIn",
+		"email": "Email"
 	},
 	"messages": {
 		"success_registered": "Successfully registered",
@@ -103,7 +109,15 @@
 		"comment_sent": "comment sent",
 		"comment_delivered": "comment delivered",
 		"no_search_results": "No search results",
-		"not_logged_in": "the user isnt logged in"
+		"not_logged_in": "the user isnt logged in",
+		"join_discussion": "Join the Discussion",
+		"coming_soon": "Coming Soon",
+		"browser_not_support_api": "Browser doesn't support this API"
+	},
+	"file_input": {
+		"files_selected": "{count} file(s) selected",
+		"drop_files_prompt": "Drop files here or click to select",
+		"any_file_type": "Any file type"
 	},
 	"footer": {
 		"about_us": "About Us",

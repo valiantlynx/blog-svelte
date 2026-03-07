@@ -65,7 +65,9 @@
 		"already_registered": "Déjà inscrit?",
 		"already_have_account": "Vous avez déjà un compte?",
 		"dont_have_account": "Vous n'avez pas de compte?",
-		"click_here": "cliquez ici"
+		"click_here": "cliquez ici",
+		"password_reset_title": "Réinitialiser votre mot de passe",
+		"password_reset_description": "Nous vous enverrons un email avec un lien pour réinitialiser votre mot de passe."
 	},
 	"placeholders": {
 		"search": "Rechercher",
@@ -81,6 +83,10 @@
 		"permissions": "Permissions",
 		"anonymous": "Anonyme",
 		"forgot_password": "Mot de passe oublié?",
+		"facebook": "Facebook",
+		"twitter": "Twitter",
+		"linkedin": "LinkedIn",
+		"email": "E-mail",
 		"not_registered": "Pas encore enregistré?"
 	},
 	"messages": {
@@ -102,7 +108,15 @@
 		"comment_sent": "commentaire envoyé",
 		"comment_delivered": "commentaire livré",
 		"no_search_results": "Aucun résultat de recherche",
-		"not_logged_in": "l'utilisateur n'est pas connecté"
+		"not_logged_in": "l'utilisateur n'est pas connecté",
+		"join_discussion": "Rejoignez la Discussion",
+		"coming_soon": "Bientôt",
+		"browser_not_support_api": "Le navigateur ne supporte pas cette API"
+	},
+	"file_input": {
+		"files_selected": "{count} fichier(s) sélectionné(s)",
+		"drop_files_prompt": "Déposez les fichiers ici ou cliquez pour sélectionner",
+		"any_file_type": "Tout type de fichier"
 	},
 	"footer": {
 		"about_us": "À propos",

@@ -5,6 +5,7 @@
 	import { enhance } from '$app/forms';
 	import { pb } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
+	import * as m from '$lib/paraglide/messages.js';
 
 	const blog = page.data.blog;
 	let isLiked = $state(false);
@@ -45,7 +46,7 @@
 						toast.success(result.data.message);
 						break;
 					case 'invalid':
-						toast.error('could not like this blog');
+						toast.error(m['messages.error_like_failed']());
 						await update();
 						break;
 					case 'error':
@@ -60,7 +61,7 @@
 			return async ({ result, update }) => {
 				switch (result.type) {
 					case 'error':
-						toast.error('Please login to like this post');
+						toast.error(m['messages.error_login_like']());
 						break;
 					default:
 						await update();
@@ -77,7 +78,7 @@
 	<input type="hidden" name="userId" value={page.data.user?.id} />
 	<Button variant="outline" size="sm" class="flex items-center gap-2">
 		<i class="material-icons">{isLiked ? 'thumb_up' : 'thumb_up_off_alt'}</i>
-		{isLiked ? 'Liked' : 'Like this Post'}
+		{isLiked ? m['buttons.liked']() : m['buttons.like']()}
 		<span class="ml-2">({blogLikes.length})</span>
 	</Button>
 </form>

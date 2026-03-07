@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as m from '$lib/paraglide/messages.js';
 	import { searchQuery } from '$lib/utils/stores';
 	interface Props {
 		searchResults?: any;
@@ -28,6 +29,6 @@
 			{/each}
 		</div>
 	{:else}
-		<p>No search results</p>
+		<p>{m['messages.no_search_results']()}</p>
 	{/if}
 </ul>

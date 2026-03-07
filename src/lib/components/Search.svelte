@@ -8,6 +8,7 @@
 	import SmallSearchResults from '$lib/components/SmallSearchResults.svelte';
 	import { metaKeywords, searchQuery } from '$lib/utils/stores';
 	import { getPocketbase } from '$lib/utils/api';
+	import * as m from '$lib/paraglide/messages.js';
 
 	/**
 	 * @typedef {Object} Props
@@ -90,10 +91,10 @@
 
 		try {
 			switch (selectedOption) {
-				case 'Blogs':
+				case m['header.blogs']?.():
 					selectedSearchFunction = searchBlogs;
 					break;
-				case 'Projects':
+				case m['header.projects']?.():
 					selectedSearchFunction = searchProjects;
 
 				default:
@@ -129,7 +130,7 @@
 			<Input
 				class="join-item w-full"
 				value={$searchQuery && type === 'big' ? $searchQuery : ''}
-				placeholder="Search"
+				placeholder={m['placeholders.search']()}
 				oninput={handleSearch}
 			/>
 		</div>
@@ -137,11 +138,13 @@
 			class="select select-bordered select-primary join-item w-1/3"
 			bind:value={selectedOption}
 		>
-			<option value="Blogs">Blogs</option>
-			<option value="Projects">Projects</option>
+			<option value={m['header.blogs']?.()}>{m['header.blogs']?.()}</option>
+			<option value={m['header.projects']?.()}>{m['header.projects']?.()}</option>
 		</select>
 
-		<Button href="/search" variant="primary" class="join-item w-1/5">Search</Button>
+		<Button href="/search" variant="primary" class="join-item w-1/5"
+			>{m['buttons.search']?.()}</Button
+		>
 	</div>
 
 	{#if type === 'small'}
