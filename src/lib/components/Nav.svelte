@@ -59,43 +59,46 @@
 			✨ {page.data.siteName}
 		</Button>
 
-		<!-- Hamburger Menu Button -->
-		<button
-			onclick={toggleMenu}
-			class="flex items-center justify-center w-10 h-10 rounded-lg text-base-content hover:bg-base-200 transition-colors"
-			aria-label="Toggle menu"
-			aria-expanded={mobileMenuOpen}
-			type="button"
-		>
-			{#if mobileMenuOpen}
-				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M6 18L18 6M6 6l12 12"
-					/>
-				</svg>
-			{:else}
-				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h16M4 18h16"
-					/>
-				</svg>
-			{/if}
-		</button>
-
-		<!-- Login Button (Hidden when menu is open) -->
-		{#if !mobileMenuOpen && page.data.user}
-			<ProfileModal />
-		{:else if !mobileMenuOpen && !page.data.user}
-			<Button href="/login" variant="primary" class="text-xs sm:text-sm"
-				>{m['navigation.login']()}</Button
+		<!-- Right Section: Hamburger + Login -->
+		<div class="flex items-center gap-2">
+			<!-- Hamburger Menu Button -->
+			<button
+				onclick={toggleMenu}
+				class="flex items-center justify-center w-10 h-10 rounded-lg text-base-content hover:bg-base-200 transition-colors"
+				aria-label="Toggle menu"
+				aria-expanded={mobileMenuOpen}
+				type="button"
 			>
-		{/if}
+				{#if mobileMenuOpen}
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M6 18L18 6M6 6l12 12"
+						/>
+					</svg>
+				{:else}
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h16M4 18h16"
+						/>
+					</svg>
+				{/if}
+			</button>
+
+			<!-- Login Button (Hidden when menu is open) -->
+			{#if !mobileMenuOpen && page.data.user}
+				<ProfileModal />
+			{:else if !mobileMenuOpen && !page.data.user}
+				<Button href="/login" variant="primary" class="text-xs sm:text-sm"
+					>{m['navigation.login']()}</Button
+				>
+			{/if}
+		</div>
 	</div>
 
 	<!-- Mobile Menu Dropdown -->
