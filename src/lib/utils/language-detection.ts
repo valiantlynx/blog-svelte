@@ -28,7 +28,7 @@ const countryToLanguageMap: Record<string, SupportedLanguage[]> = {
 	// Malaysia
 	MY: ['ms', 'en'],
 	// Singapore
-	SG: ['en', 'zh_CN', 'ms'],
+	SG: ['zh_CN', 'ms', 'en'],
 	// India
 	IN: ['ta', 'en'],
 	// Tamil Nadu India
