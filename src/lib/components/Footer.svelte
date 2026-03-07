@@ -13,7 +13,7 @@
 			<div class="flex flex-col gap-4">
 				<div class="flex items-center gap-2 mb-2">
 					<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-						<Icon icon="mdi:lightning-bolt" class="text-primary-content text-lg" />
+						<img src="/logo.svg" alt="Logo" class="w-8 h-8" />
 					</div>
 					<span class="text-xl font-bold text-primary">Valiant Lynx</span>
 				</div>
@@ -22,7 +22,7 @@
 				</p>
 				<div class="flex gap-3 pt-2">
 					<a
-						href="https://twitter.com/valiantlynx"
+						href="https://twitter.com/valiantlynx42"
 						target="_blank"
 						rel="noopener noreferrer"
 						class="w-10 h-10 rounded-full bg-base-300 hover:bg-primary hover:text-primary-content flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -40,7 +40,7 @@
 						<Icon icon="mdi:youtube" width="20" height="20" />
 					</a>
 					<a
-						href="https://www.facebook.com/valiantlynx/"
+						href="https://twitter.com/valiantlynx42/"
 						target="_blank"
 						rel="noopener noreferrer"
 						class="w-10 h-10 rounded-full bg-base-300 hover:bg-info hover:text-info-content flex items-center justify-center transition-all duration-300 hover:scale-110"
