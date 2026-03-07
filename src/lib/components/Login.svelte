@@ -1,4 +1,5 @@
 <script>
+	import * as m from '$lib/paraglide/messages.js';
 	import { enhance } from '$app/forms';
 	import { Input } from '$lib/components/ui/input';
 	import { Button } from '$lib/components/ui/button';
@@ -16,7 +17,7 @@
 					await update();
 					break;
 				case 'invalid':
-					toast.error('Invalid credentials');
+					toast.error(m['messages.error_invalid_credentials']());
 					await update();
 					break;
 				case 'error':
@@ -32,18 +33,20 @@
 
 <div class="relative flex flex-col items-center justify-center h-auto overflow-hidden mt-10 mx-6">
 	<div class="w-full p-6 border-t-4 rounded-md shadow-md border-primary lg:max-w-lg">
-		<h1 class="text-3xl font-semibold text-center">{page.data.siteName} | login</h1>
+		<h1 class="text-3xl font-semibold text-center">
+			{page.data.siteName} | {m['navigation.login']()}
+		</h1>
 		<form
 			action="/login?/login"
 			method="POST"
 			class="flex flex-col items-center space-y-4 w-full pt-4"
 			use:enhance={submitLogin}
 		>
-			<FormControl label="Email" required>
+			<FormControl label={m['forms.email']()} required>
 				<Input
 					type="email"
 					id="email"
-					placeholder="Enter your email"
+					placeholder={m['placeholders.enter_email']()}
 					value={page.form?.data?.email ?? ''}
 					error={!!page.form?.errors?.email}
 					disabled={loading}
@@ -53,12 +56,12 @@
 				{/if}
 			</FormControl>
 
-			<FormControl label="Password" required>
+			<FormControl label={m['forms.password']()} required>
 				<Input
 					type="password"
 					id="password"
 					minlength="8"
-					placeholder="Enter your password"
+					placeholder={m['placeholders.password']()}
 					error={!!page.form?.errors?.password}
 					disabled={loading}
 				/>
@@ -69,15 +72,17 @@
 
 			<div class="flex flex-row justify-between w-full">
 				<a href="/signup" class="text-sm text-[var(--primary)] hover:underline"
-					>Not registered? Signup</a
+					>{m['labels.not_registered']()} {m['buttons.register']()}</a
 				>
 				<a href="/forgot-password" class="text-sm text-[var(--primary)] hover:underline"
-					>Forgot password</a
+					>{m['labels.forgot_password']()}</a
 				>
 			</div>
 
 			<div class="w-full pt-2">
-				<Button type="submit" variant="primary" class="w-full" {loading}>Login</Button>
+				<Button type="submit" variant="primary" class="w-full" {loading}
+					>{m['buttons.login']()}</Button
+				>
 			</div>
 		</form>
 		<p class="text-center text-[var(--muted-foreground)] my-4">or</p>

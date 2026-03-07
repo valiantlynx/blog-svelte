@@ -34,7 +34,10 @@
 		"edit_blog": "Edit blog",
 		"edit_project": "Edit Project",
 		"show_more": "show more",
-		"request_password_reset": "Request Password Reset"
+		"request_password_reset": "Request Password Reset",
+		"read_more": "Read more",
+		"like": "Like this Post",
+		"liked": "Liked"
 	},
 	"modals": {
 		"confirm": "Confirm",
@@ -69,12 +72,17 @@
 		"email": "email@example.com",
 		"password": "Enter your password",
 		"write_comment": "write your comment here",
-		"login_to_comment": "login to write a comment"
+		"login_to_comment": "login to write a comment",
+		"enter_email": "Enter your email"
 	},
 	"labels": {
 		"new": "New",
 		"roles": "Roles",
-		"permissions": "Permissions"
+		"permissions": "Permissions",
+		"anonymous": "Anonymous",
+		"read_more": "Read more",
+		"not_registered": "Not registered?",
+		"forgot_password": "Forgot password?"
 	},
 	"messages": {
 		"success_registered": "Successfully registered",
@@ -89,7 +97,13 @@
 		"error_delete_failed": "Could not delete {item}. Please try again later.",
 		"error_create_failed": "Could not create {item}. Please try again later.",
 		"error_required_field": "This field is required",
-		"error_email_sent": "An email has been sent to reset your password!"
+		"error_email_sent": "An email has been sent to reset your password!",
+		"error_like_failed": "Could not like this blog",
+		"error_login_like": "Please login to like this post",
+		"comment_sent": "comment sent",
+		"comment_delivered": "comment delivered",
+		"no_search_results": "No search results",
+		"not_logged_in": "the user isnt logged in"
 	},
 	"footer": {
 		"about_us": "About Us",

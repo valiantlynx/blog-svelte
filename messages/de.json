@@ -34,7 +34,10 @@
 		"edit_blog": "Blog bearbeiten",
 		"edit_project": "Projekt bearbeiten",
 		"show_more": "mehr anzeigen",
-		"request_password_reset": "Passwort zurücksetzen anfordern"
+		"request_password_reset": "Passwort zurücksetzen anfordern",
+		"read_more": "Weiterlesen",
+		"like": "Mag ich diesen Artikel",
+		"liked": "Gemocht"
 	},
 	"modals": {
 		"confirm": "Bestätigen",
@@ -69,12 +72,16 @@
 		"email": "email@example.com",
 		"password": "Geben Sie Ihr Passwort ein",
 		"write_comment": "Schreiben Sie Ihren Kommentar hier",
-		"login_to_comment": "melden Sie sich an, um einen Kommentar zu schreiben"
+		"login_to_comment": "melden Sie sich an, um einen Kommentar zu schreiben",
+		"enter_email": "Geben Sie Ihre E-Mail ein"
 	},
 	"labels": {
 		"new": "Neu",
 		"roles": "Rollen",
-		"permissions": "Berechtigungen"
+		"permissions": "Berechtigungen",
+		"anonymous": "Anonym",
+		"forgot_password": "Passwort vergessen?",
+		"not_registered": "Noch nicht registriert?"
 	},
 	"messages": {
 		"success_registered": "Erfolgreich registriert",
@@ -89,7 +96,13 @@
 		"error_delete_failed": "Konnte {item} nicht löschen. Bitte versuchen Sie es später erneut.",
 		"error_create_failed": "Konnte {item} nicht erstellen. Bitte versuchen Sie es später erneut.",
 		"error_required_field": "Dieses Feld ist erforderlich",
-		"error_email_sent": "Eine E-Mail zum Zurücksetzen des Passworts wurde gesendet!"
+		"error_email_sent": "Eine E-Mail zum Zurücksetzen des Passworts wurde gesendet!",
+		"error_like_failed": "Konnte diesem Blog nicht zustimmen",
+		"error_login_like": "Bitte melden Sie sich an, um diesen Beitrag zu mögen",
+		"comment_sent": "Kommentar gesendet",
+		"comment_delivered": "Kommentar zugestellt",
+		"no_search_results": "Keine Suchergebnisse",
+		"not_logged_in": "der Benutzer ist nicht angemeldet"
 	},
 	"footer": {
 		"about_us": "Über uns",

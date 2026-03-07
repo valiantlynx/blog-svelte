@@ -34,7 +34,10 @@
 		"edit_blog": "Editar blog",
 		"edit_project": "Editar Projeto",
 		"show_more": "mostrar mais",
-		"request_password_reset": "Solicitar Redefinição de Senha"
+		"request_password_reset": "Solicitar Redefinição de Senha",
+		"read_more": "Leia mais",
+		"like": "Gosto deste artigo",
+		"liked": "Gostei"
 	},
 	"modals": {
 		"confirm": "Confirmar",
@@ -69,12 +72,16 @@
 		"email": "email@exemplo.com",
 		"password": "Digite sua senha",
 		"write_comment": "escreva seu comentário aqui",
-		"login_to_comment": "faça login para escrever um comentário"
+		"login_to_comment": "faça login para escrever um comentário",
+		"enter_email": "Digite seu email"
 	},
 	"labels": {
 		"new": "Novo",
 		"roles": "Funções",
-		"permissions": "Permissões"
+		"permissions": "Permissões",
+		"anonymous": "Anônimo",
+		"forgot_password": "Esqueceu sua senha?",
+		"not_registered": "Ainda não registrado?"
 	},
 	"messages": {
 		"success_registered": "Registrado com sucesso",
@@ -89,7 +96,13 @@
 		"error_delete_failed": "Não foi possível excluir {item}. Por favor, tente novamente mais tarde.",
 		"error_create_failed": "Não foi possível criar {item}. Por favor, tente novamente mais tarde.",
 		"error_required_field": "Este campo é obrigatório",
-		"error_email_sent": "Um e-mail foi enviado para redefinir sua senha!"
+		"error_email_sent": "Um e-mail foi enviado para redefinir sua senha!",
+		"error_like_failed": "Não foi possível gostar deste blog",
+		"error_login_like": "Por favor, faça login para gostar desta publicação",
+		"comment_sent": "comentário enviado",
+		"comment_delivered": "comentário entregue",
+		"no_search_results": "Nenhum resultado de pesquisa",
+		"not_logged_in": "o usuário não está conectado"
 	},
 	"footer": {
 		"about_us": "Sobre Nós",

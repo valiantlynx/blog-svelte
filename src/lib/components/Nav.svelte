@@ -2,6 +2,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import Search from './Search.svelte';
 	import ProfileModal from './ProfileModal.svelte';
+	import LanguageSwitcher from './LanguageSwitcher.svelte';
 	import { page } from '$app/state';
 	// <<tobeeditedbyhumanlater>> Temporarily using local ThemeChanger
 	import ThemeChanger from './ThemeChanger.svelte';
@@ -14,6 +15,7 @@
 			<Button href="/" variant="ghost" class="normal-case text-xl">{page.data.siteName}</Button>
 			<ThemeChanger />
 		</div>
+		<LanguageSwitcher />
 		<ProfileModal />
 	</div>
 	<!-- Show search bar only on pages other than search -->
@@ -37,6 +39,7 @@
 		{#if page.url.pathname !== '/search'}
 			<Search type="small" />
 		{/if}
+		<LanguageSwitcher />
 		<ProfileModal />
 	</div>
 </div>

@@ -1,14 +1,16 @@
 <script>
+	import * as m from '$lib/paraglide/messages.js';
 	import { site } from '$lib/utils/config';
 	import Icon from '@iconify/svelte';
+	import LanguageSwitcher from './LanguageSwitcher.svelte';
 </script>
 
 <footer class="footer footer-center p-10 bg-base-300 text-base-content rounded mt-auto">
 	<div class="grid grid-flow-col gap-4">
-		<a href="/about" class="link link-hover">About us</a>
-		<a href="/contact" class="link link-hover">Contact</a>
-		<a href="/privacy-policy" class="link link-hover">Privacy</a>
-		<a href="/pricing" class="link link-hover">Pricing</a>
+		<a href="/about" class="link link-hover">{m['footer.about_us']()}</a>
+		<a href="/contact" class="link link-hover">{m['footer.contact_us']()}</a>
+		<a href="/privacy-policy" class="link link-hover">{m['footer.privacy_policy']()}</a>
+		<a href="/pricing" class="link link-hover">{m['footer.terms']()}</a>
 		<a href="/sitemap.xml" class="link link-hover">Sitemap</a>
 	</div>
 	<div>
@@ -24,7 +26,11 @@
 			>
 		</div>
 	</div>
-	<div>
-		<p>Copyright © 2023 - All right reserved by {site.company}</p>
+	<div class="flex flex-col gap-4">
+		<p>{m['footer.copyright']()}</p>
+		<div class="flex items-center justify-center gap-2">
+			<span>{m['footer.language']()}:</span>
+			<LanguageSwitcher />
+		</div>
 	</div>
 </footer>

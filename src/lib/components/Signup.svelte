@@ -1,4 +1,5 @@
 <script>
+	import * as m from '$lib/paraglide/messages.js';
 	import { enhance } from '$app/forms';
 	import { Button } from '$lib/components/ui/button';
 	import Input from './Input.svelte';
@@ -12,11 +13,11 @@
 		return async ({ result, update }) => {
 			switch (result.type) {
 				case 'success':
-					toast.success('Successfully registered');
+					toast.success(m['messages.success_registered']());
 					await update();
 					break;
 				case 'invalid':
-					toast.error('Invalid credentials');
+					toast.error(m['messages.error_invalid_credentials']());
 					await update();
 					break;
 				case 'error':
@@ -34,7 +35,9 @@
 	<div
 		class="w-full p-6 bg-base-200 border-t-4 border-primary rounded-md shadow-md border-top lg:max-w-lg"
 	>
-		<h1 class="text-3xl font-semibold text-center">{page.data.siteName} | Signup</h1>
+		<h1 class="text-3xl font-semibold text-center">
+			{page.data.siteName} | {m['navigation.signup']()}
+		</h1>
 		<form
 			action="?/signup"
 			method="POST"
@@ -43,7 +46,7 @@
 		>
 			<Input
 				id="name"
-				label="Name"
+				label={m['forms.name']()}
 				value={page.form?.data?.name}
 				errors={page.form?.errors?.name}
 				disabled={loading}
@@ -51,7 +54,7 @@
 			<Input
 				type="email"
 				id="email"
-				label="Email"
+				label={m['forms.email']()}
 				value={page.form?.data?.email}
 				errors={page.form?.errors?.email}
 				disabled={loading}
@@ -59,23 +62,25 @@
 			<Input
 				type="password"
 				id="password"
-				label="Password"
+				label={m['forms.password']()}
 				errors={page.form?.errors?.password}
 				disabled={loading}
 			/>
 			<Input
 				type="password"
 				id="passwordConfirm"
-				label="Confirm Password"
+				label={m['forms.password_confirm']()}
 				errors={page.form?.errors?.passwordConfirm}
 				disabled={loading}
 			/>
 			<br />
 			<a href="/login" class=" link link-hover font-bold text-1xl underline"
-				>Already registered? Login (click here)</a
+				>{m['forms.already_have_account']()} {m['buttons.login']()} ({m['forms.click_here']()})</a
 			>
 			<div class="w-full max-w-lg pt-2">
-				<Button type="submit" variant="primary" class="w-full" disabled={loading}>Register</Button>
+				<Button type="submit" variant="primary" class="w-full" disabled={loading}
+					>{m['buttons.register']()}</Button
+				>
 			</div>
 		</form>
 		<center class="text-center my-4"> or </center>

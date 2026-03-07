@@ -34,7 +34,10 @@
 		"edit_blog": "Editar blog",
 		"edit_project": "Editar Proyecto",
 		"show_more": "mostrar más",
-		"request_password_reset": "Solicitar restablecimiento de contraseña"
+		"request_password_reset": "Solicitar restablecimiento de contraseña",
+		"read_more": "Leer más",
+		"like": "Me gusta este artículo",
+		"liked": "Me gusta"
 	},
 	"modals": {
 		"confirm": "Confirmar",
@@ -69,12 +72,16 @@
 		"email": "email@example.com",
 		"password": "Ingrese su contraseña",
 		"write_comment": "escriba su comentario aquí",
-		"login_to_comment": "inicie sesión para escribir un comentario"
+		"login_to_comment": "inicie sesión para escribir un comentario",
+		"enter_email": "Ingrese su correo electrónico"
 	},
 	"labels": {
 		"new": "Nuevo",
 		"roles": "Roles",
-		"permissions": "Permisos"
+		"permissions": "Permisos",
+		"anonymous": "Anónimo",
+		"forgot_password": "¿Olvidó su contraseña?",
+		"not_registered": "¿No registrado?"
 	},
 	"messages": {
 		"success_registered": "Registrado exitosamente",
@@ -89,7 +96,13 @@
 		"error_delete_failed": "No se pudo eliminar {item}. Por favor, intente más tarde.",
 		"error_create_failed": "No se pudo crear {item}. Por favor, intente más tarde.",
 		"error_required_field": "Este campo es requerido",
-		"error_email_sent": "¡Se ha enviado un correo electrónico para restablecer su contraseña!"
+		"error_email_sent": "¡Se ha enviado un correo electrónico para restablecer su contraseña!",
+		"error_like_failed": "No se pudo dar me gusta a este blog",
+		"error_login_like": "Por favor inicie sesión para dar me gusta",
+		"comment_sent": "comentario enviado",
+		"comment_delivered": "comentario entregado",
+		"no_search_results": "Sin resultados de búsqueda",
+		"not_logged_in": "el usuario no está conectado"
 	},
 	"footer": {
 		"about_us": "Acerca de",

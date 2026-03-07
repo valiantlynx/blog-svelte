@@ -34,7 +34,10 @@
 		"edit_blog": "Modifier le blog",
 		"edit_project": "Modifier le projet",
 		"show_more": "afficher plus",
-		"request_password_reset": "Demander la réinitialisation du mot de passe"
+		"request_password_reset": "Demander la réinitialisation du mot de passe",
+		"read_more": "En savoir plus",
+		"like": "J'aime cet article",
+		"liked": "Aimé"
 	},
 	"modals": {
 		"confirm": "Confirmer",
@@ -69,12 +72,16 @@
 		"email": "email@example.com",
 		"password": "Entrez votre mot de passe",
 		"write_comment": "écrivez votre commentaire ici",
-		"login_to_comment": "connectez-vous pour écrire un commentaire"
+		"login_to_comment": "connectez-vous pour écrire un commentaire",
+		"enter_email": "Entrez votre email"
 	},
 	"labels": {
 		"new": "Nouveau",
 		"roles": "Rôles",
-		"permissions": "Permissions"
+		"permissions": "Permissions",
+		"anonymous": "Anonyme",
+		"forgot_password": "Mot de passe oublié?",
+		"not_registered": "Pas encore enregistré?"
 	},
 	"messages": {
 		"success_registered": "Inscrit avec succès",
@@ -89,7 +96,13 @@
 		"error_delete_failed": "Impossible de supprimer {item}. Veuillez réessayer plus tard.",
 		"error_create_failed": "Impossible de créer {item}. Veuillez réessayer plus tard.",
 		"error_required_field": "Ce champ est requis",
-		"error_email_sent": "Un e-mail de réinitialisation du mot de passe a été envoyé!"
+		"error_email_sent": "Un e-mail de réinitialisation du mot de passe a été envoyé!",
+		"error_like_failed": "Impossible d'aimer ce blog",
+		"error_login_like": "Veuillez vous connecter pour aimer ce post",
+		"comment_sent": "commentaire envoyé",
+		"comment_delivered": "commentaire livré",
+		"no_search_results": "Aucun résultat de recherche",
+		"not_logged_in": "l'utilisateur n'est pas connecté"
 	},
 	"footer": {
 		"about_us": "À propos",
