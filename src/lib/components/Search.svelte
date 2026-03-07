@@ -21,7 +21,7 @@
 	 */
 	let searchResults = $state([]);
 	let searchTerm = $state('');
-	let selectedOption = $state('Drivstoffpris');
+	let selectedOption = $state(m['header.blogs']?.());
 	let selectedSearchFunction = searchBlogs; // Initialize with the default search function
 
 	async function searchBlogs() {
