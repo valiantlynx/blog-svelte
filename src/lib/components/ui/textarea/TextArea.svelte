@@ -44,7 +44,8 @@
 			: 'border-[var(--border)] focus:border-[var(--primary)] focus:ring-[var(--primary)]'
 	);
 
-	const bgClasses = 'bg-[var(--base-100)] text-[var(--foreground)] placeholder-[var(--muted-foreground)]';
+	const bgClasses =
+		'bg-[var(--base-100)] text-[var(--foreground)] placeholder-[var(--muted-foreground)]';
 
 	const textareaClasses = $derived(`${baseClasses} ${borderClasses} ${bgClasses} ${className}`);
 </script>

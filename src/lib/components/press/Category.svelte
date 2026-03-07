@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { Button } from '$lib/components/ui/button';
 	import { pb } from '$lib/utils/api'; // Adjust these imports accordingly
 
 	/**
@@ -102,12 +103,9 @@
 						<p class="mt-4 text-lg leading-6">
 							{article.subtitle}
 						</p>
-						<a
-							href="blog/{article.id}"
-							class="m-2 btn btn-primary border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium"
-						>
+						<Button href={`blog/${article.id}`} variant="primary" class="m-2">
 							{article.cta}
-						</a>
+						</Button>
 					</div>
 				</div>
 				<img

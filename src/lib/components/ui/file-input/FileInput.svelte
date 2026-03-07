@@ -78,14 +78,6 @@
 				{/if}
 			</p>
 		</div>
-		<input
-			type="file"
-			{accept}
-			{multiple}
-			{disabled}
-			class="hidden"
-			bind:files
-			{...rest}
-		/>
+		<input type="file" {accept} {multiple} {disabled} class="hidden" bind:files {...rest} />
 	</label>
 </div>

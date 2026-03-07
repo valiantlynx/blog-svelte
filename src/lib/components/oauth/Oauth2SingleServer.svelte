@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
 	import toast from 'svelte-french-toast';
@@ -35,14 +36,12 @@
 </script>
 
 <form method="POST" action="?/oauth2{provider}" use:enhance={submitOauth}>
-	<div>
-		<button class="btn btn-block btn-primary" type="submit" disabled={!active}>
-			<img src={logo} alt={`${provider} sign in`} class="w-10 h-10" />
-			{#if $page.url.pathname == '/login'}
-				Login with {provider}
-			{:else if $page.url.pathname == '/signup'}
-				Signup with {provider}
-			{/if}
-		</button>
-	</div>
+	<Button type="submit" variant="primary" class="w-full" disabled={!active}>
+		<img src={logo} alt={`${provider} sign in`} class="w-10 h-10" />
+		{#if $page.url.pathname == '/login'}
+			Login with {provider}
+		{:else if $page.url.pathname == '/signup'}
+			Signup with {provider}
+		{/if}
+	</Button>
 </form>

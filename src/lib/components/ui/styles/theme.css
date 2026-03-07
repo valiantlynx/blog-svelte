@@ -7,7 +7,7 @@
    THEME 1: DEFAULT (Blue/Gray)
    ============================================ */
 
-:root[data-theme="default-light"] {
+:root[data-theme='default-light'] {
 	/* Primary Colors */
 	--primary: #3b82f6;
 	--primary-dark: #1e40af;
@@ -56,7 +56,7 @@
 	--border: #e2e8f0;
 }
 
-:root[data-theme="default-dark"] {
+:root[data-theme='default-dark'] {
 	/* Primary Colors */
 	--primary: #60a5fa;
 	--primary-dark: #3b82f6;
@@ -109,7 +109,7 @@
    THEME 2: OCEAN (Blue/Teal)
    ============================================ */
 
-:root[data-theme="ocean-light"] {
+:root[data-theme='ocean-light'] {
 	/* Primary Colors */
 	--primary: #0369a1;
 	--primary-dark: #082f49;
@@ -158,7 +158,7 @@
 	--border: #cffafe;
 }
 
-:root[data-theme="ocean-dark"] {
+:root[data-theme='ocean-dark'] {
 	/* Primary Colors */
 	--primary: #06b6d4;
 	--primary-dark: #0891b2;
@@ -211,7 +211,7 @@
    THEME 3: FOREST (Green/Earth)
    ============================================ */
 
-:root[data-theme="forest-light"] {
+:root[data-theme='forest-light'] {
 	/* Primary Colors */
 	--primary: #059669;
 	--primary-dark: #065f46;
@@ -260,7 +260,7 @@
 	--border: #bbf7d0;
 }
 
-:root[data-theme="forest-dark"] {
+:root[data-theme='forest-dark'] {
 	/* Primary Colors */
 	--primary: #4ade80;
 	--primary-dark: #22c55e;
@@ -313,7 +313,7 @@
    THEME 4: SUNSET (Orange/Red)
    ============================================ */
 
-:root[data-theme="sunset-light"] {
+:root[data-theme='sunset-light'] {
 	/* Primary Colors */
 	--primary: #ea580c;
 	--primary-dark: #b45309;
@@ -362,7 +362,7 @@
 	--border: #ffedd5;
 }
 
-:root[data-theme="sunset-dark"] {
+:root[data-theme='sunset-dark'] {
 	/* Primary Colors */
 	--primary: #fb923c;
 	--primary-dark: #f97316;
@@ -415,7 +415,7 @@
    THEME 5: LAVENDER (Purple/Pink)
    ============================================ */
 
-:root[data-theme="lavender-light"] {
+:root[data-theme='lavender-light'] {
 	/* Primary Colors */
 	--primary: #a855f7;
 	--primary-dark: #7e22ce;
@@ -464,7 +464,7 @@
 	--border: #f3e8ff;
 }
 
-:root[data-theme="lavender-dark"] {
+:root[data-theme='lavender-dark'] {
 	/* Primary Colors */
 	--primary: #d8b4fe;
 	--primary-dark: #c084fc;

@@ -1,4 +1,5 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
 	import { onMount, onDestroy } from 'svelte';
 	import { page } from '$app/state';
 	import { enhance } from '$app/forms';
@@ -74,9 +75,9 @@
 <form use:enhance={submitLike} action="/blogs/{page.data.blog?.slug}?/toggleLike" method="POST">
 	<input type="hidden" name="blogId" value={blog?.id} />
 	<input type="hidden" name="userId" value={page.data.user?.id} />
-	<button class="btn btn-outline btn-primary btn-sm flex items-center gap-2">
+	<Button variant="outline" size="sm" class="flex items-center gap-2">
 		<i class="material-icons">{isLiked ? 'thumb_up' : 'thumb_up_off_alt'}</i>
 		{isLiked ? 'Liked' : 'Like this Post'}
 		<span class="ml-2">({blogLikes.length})</span>
-	</button>
+	</Button>
 </form>

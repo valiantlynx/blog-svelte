@@ -1,6 +1,7 @@
 <script>
 	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
 	import { onMount } from 'svelte';
+	import { Button } from '$lib/components/ui/button';
 	import '@splidejs/svelte-splide/css';
 	import './splide-override.css';
 	import { page } from '$app/state';
@@ -63,7 +64,7 @@
 								<p class="text-base font-normal text-secondary-content my-4">
 									{blog?.summary}
 								</p>
-								<p class="btn btn-primary">Read More</p>
+								<Button variant="primary">Read More</Button>
 							</div>
 						</div>
 					</a>

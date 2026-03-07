@@ -21,11 +21,13 @@
 	});
 
 	// make the mediabank array reactive
-	let sanitizedMediabank = $derived($mediabank.map((media) => ({
-		...media,
-		name: purify.sanitize(media.name),
-		details: purify.sanitize(media.details)
-	})));
+	let sanitizedMediabank = $derived(
+		$mediabank.map((media) => ({
+			...media,
+			name: purify.sanitize(media.name),
+			details: purify.sanitize(media.details)
+		}))
+	);
 </script>
 
 <div class="flex flex-wrap -m-2 mt-6">

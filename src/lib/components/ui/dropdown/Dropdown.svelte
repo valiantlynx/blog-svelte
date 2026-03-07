@@ -11,7 +11,11 @@
 	let triggerRef: HTMLElement;
 
 	function handleClickOutside(e: MouseEvent) {
-		if (dropdownRef && !dropdownRef.contains(e.target as Node) && !triggerRef?.contains(e.target as Node)) {
+		if (
+			dropdownRef &&
+			!dropdownRef.contains(e.target as Node) &&
+			!triggerRef?.contains(e.target as Node)
+		) {
 			open = false;
 		}
 	}

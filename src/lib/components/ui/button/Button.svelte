@@ -43,18 +43,14 @@
 		icon: 'w-10 h-10 p-0 rounded-lg'
 	};
 
-	const buttonClasses = $derived(`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`);
+	const buttonClasses = $derived(
+		`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`
+	);
 	const isLink = $derived(!!href);
 </script>
 
 {#if isLink}
-	<a
-		href={href}
-		class={buttonClasses}
-		{...rest}
-		aria-label={ariaLabel}
-		aria-disabled={disabled}
-	>
+	<a {href} class={buttonClasses} {...rest} aria-label={ariaLabel} aria-disabled={disabled}>
 		{#if loading}
 			<span class="inline-flex items-center gap-2">
 				<span
