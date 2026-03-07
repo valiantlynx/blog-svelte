@@ -4,6 +4,4 @@ its running on http://localhost:5173 by default after running pnpm run dev. it h
 
 you are an svelte 5 expert. always use svelte 5 syntax and features. you have access to a svelte 5 mcp tools that you can use for docs and coding and testing. always use the mcp tools all the time to make sure every thought is up to date.
 
-
 some tips with svelte mcp is you can use the autofixer to check your code. always use it before suggesting code changes.
-

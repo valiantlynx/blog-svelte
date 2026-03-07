@@ -15,6 +15,7 @@ Real-time database service for Blog-Svelte platform, built on PocketBase with cu
 ## Blog-Svelte Enhancements
 
 ### Database Schema
+
 - **9 Core Tables**: Complete blog platform with users, content, and engagement
 - **User Management**: Role-based access (user, editor, admin, manager)
 - **Content Management**: Blogs with rich text editor, tags, and metadata
@@ -24,6 +25,7 @@ Real-time database service for Blog-Svelte platform, built on PocketBase with cu
 - **OAuth2 Integration**: Google, GitHub authentication support
 
 ### Custom Business Logic
+
 - Auto-update timestamps on record changes
 - User authentication with role-based permissions
 - Blog engagement tracking (views, likes)
@@ -31,6 +33,7 @@ Real-time database service for Blog-Svelte platform, built on PocketBase with cu
 - File upload handling for images and avatars
 
 ### Collections
+
 - `users_valiantlynx` - Authentication and user profiles
 - `blogs` - Blog posts with rich content
 - `projects_valiantlynx` - Portfolio projects
@@ -45,10 +48,12 @@ Real-time database service for Blog-Svelte platform, built on PocketBase with cu
 ## Installation
 
 ### Prerequisites
+
 - Go 1.24 or higher
 - SQLite3
 
 ### Setup
+
 ```bash
 # Install dependencies
 go mod download
@@ -61,6 +66,7 @@ go run main.go serve --http=0.0.0.0:8090
 ```
 
 ### Environment Variables
+
 ```bash
 # Admin credentials
 export ADMIN_EMAIL="admin@valiantlynx.com"
@@ -87,7 +93,9 @@ export GITHUB_CLIENT_SECRET="your-github-client-secret"
 ## Development
 
 ### Database Schema
+
 The complete database schema is defined in `schema.sql` with:
+
 - User authentication and profiles
 - Blog content management
 - Project portfolio
@@ -98,19 +106,24 @@ The complete database schema is defined in `schema.sql` with:
 - Feedback and messaging
 
 ### Custom Migrations
+
 Business logic is implemented via PocketBase migrations in `migrations/`:
+
 - Auto-parsing of SQL schema into PocketBase collections
 - Automatic timestamp triggers
 - Seed data for default site configuration and tags
 
 ### Frontend Integration
+
 CORS is configured for SvelteKit:
+
 - Development: `http://localhost:5173`
 - Production: Configure via environment variables
 
 ## Production Deployment
 
 ### Docker Setup
+
 ```bash
 # Build image
 docker build -t blog-svelte-pocketbase .
@@ -126,6 +139,7 @@ docker run -d \
 ```
 
 ### Environment Configuration
+
 - Set proper admin credentials
 - Configure SMTP for email notifications
 - Set up OAuth2 providers for social login
@@ -134,6 +148,7 @@ docker run -d \
 ## API Documentation
 
 ### Authentication
+
 - `POST /api/collections/users_valiantlynx/auth-with-password` - Login
 - `POST /api/collections/users_valiantlynx/records` - Register
 - `POST /api/collections/users_valiantlynx/auth-refresh` - Refresh token
@@ -141,7 +156,9 @@ docker run -d \
 - `GET /api/collections/users_valiantlynx/auth-methods` - OAuth2 providers
 
 ### Collections
+
 All database tables are automatically exposed as REST endpoints:
+
 - `/api/collections/blogs/records` - Blog posts
 - `/api/collections/projects_valiantlynx/records` - Projects
 - `/api/collections/tags/records` - Tags
@@ -150,25 +167,29 @@ All database tables are automatically exposed as REST endpoints:
 - `/api/collections/likes/records` - Likes
 
 ### Real-time Subscriptions
+
 WebSocket connections for live updates:
+
 ```javascript
 // Subscribe to new blog posts
 pb.collection('blogs').subscribe('*', function (e) {
-    console.log('Blog updated:', e.record);
+	console.log('Blog updated:', e.record);
 });
 
 // Subscribe to comments
 pb.collection('comments').subscribe('*', function (e) {
-    console.log('Comment update:', e.record);
+	console.log('Comment update:', e.record);
 });
 ```
 
 ## Monitoring
 
 ### Health Check
+
 - `GET /api/health` - Service health status
 
 ### Admin Panel
+
 - Access at `http://localhost:8090/_/` (development)
 - Manage collections, users, and settings
 - View logs and analytics
@@ -176,6 +197,7 @@ pb.collection('comments').subscribe('*', function (e) {
 - Manage file uploads
 
 ### Logs
+
 - Development: 2 days retention
 - Production: 7 days retention
 - Located in `pb_data/logs/`
@@ -183,22 +205,26 @@ pb.collection('comments').subscribe('*', function (e) {
 ## External Integrations
 
 ### Analytics
+
 - Microsoft Clarity tracking
 - Google Analytics (gtag.js)
 - Google AdSense integration
 
 ### OAuth2 Providers
+
 - Google authentication
 - GitHub authentication
 - Extensible for Facebook, Discord, etc.
 
 ### Comment System
+
 - Commento integration support
 - Native PocketBase comments
 
 ## Security
 
 ### Authentication
+
 - JWT tokens with refresh mechanism
 - OAuth2 social login support
 - Email verification optional
@@ -206,12 +232,14 @@ pb.collection('comments').subscribe('*', function (e) {
 - Role-based access control (RBAC)
 
 ### Data Protection
+
 - SQLite database encryption
 - HTTPS/TLS in production
 - CORS protection
 - Rate limiting on API endpoints
 
 ### Privacy
+
 - User data export/deletion
 - Email visibility controls
 - Anonymous feedback support
@@ -219,11 +247,13 @@ pb.collection('comments').subscribe('*', function (e) {
 ## Support
 
 ### Documentation
+
 - PocketBase official docs: https://pocketbase.io/docs/
 - API reference available at `/api/docs`
 - Admin panel help sections
 
 ### Troubleshooting
+
 - Check logs in `pb_data/logs/`
 - Verify environment variables
 - Test database connectivity
@@ -231,6 +261,7 @@ pb.collection('comments').subscribe('*', function (e) {
 - Check schema.sql parsing in migrations
 
 ### Development Contact
+
 - GitHub Issues for bug reports
 - Feature requests via discussions
 
