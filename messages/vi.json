@@ -169,6 +169,9 @@
 		"logout": "Đăng xuất",
 		"theme": "🎨 Chủ đề",
 		"change_theme": "Thay đổi chủ đề",
+		"toggle_mode": "Bật/tắt chế độ sáng/tối",
+		"light_mode": "Chế độ sáng",
+		"dark_mode": "Chế độ tối",
 		"loading": "Đang tải"
 	},
 	"pages": {

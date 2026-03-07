@@ -169,6 +169,9 @@
 		"logout": "Logg ut",
 		"theme": "🎨 Tema",
 		"change_theme": "Endre tema",
+		"toggle_mode": "Veksla mellom lys/mørk modus",
+		"light_mode": "Lys modus",
+		"dark_mode": "Mørk modus",
 		"loading": "Lastar"
 	},
 	"pages": {

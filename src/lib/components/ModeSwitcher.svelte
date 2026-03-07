@@ -34,9 +34,10 @@
 
 	function toggleMode() {
 		currentMode = currentMode === 'light' ? 'dark' : 'light';
+		// Preserve the current theme when toggling mode
 		localStorage.setItem(
 			'theme-config',
-			JSON.stringify({ theme: currentThemeName, mode: currentMode })
+			JSON.stringify({ theme: currentThemeName || 'default', mode: currentMode })
 		);
 	}
 

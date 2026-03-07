@@ -1,0 +1,479 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - alert
+    - navigation [ref=e3]:
+      - link "✨ localhost:5173" [ref=e4]:
+        - /url: /
+      - generic [ref=e8]:
+        - textbox "Search" [ref=e9]
+        - combobox [ref=e11] [cursor=pointer]:
+          - option "Blogs" [selected]
+          - option "Projects"
+        - button "Search" [ref=e12]
+      - generic [ref=e13]:
+        - button "Change theme" [ref=e15]:
+          - img [ref=e16]
+          - generic [ref=e22]: Default
+        - button "Toggle light/dark mode" [ref=e23]:
+          - img [ref=e525]
+        - button "English" [ref=e28]
+        - link "Login" [ref=e29]:
+          - /url: /login
+        - link "Sign Up" [ref=e30]:
+          - /url: /signup
+    - generic [ref=e31]:
+      - region [ref=e255]:
+        - generic:
+          - button "Previous slide" [ref=e256] [cursor=pointer]:
+            - img [ref=e257]
+          - button "Next slide" [ref=e259] [cursor=pointer]:
+            - img [ref=e260]
+        - generic [ref=e262]:
+          - tabpanel [ref=e263]:
+            - link [ref=e264]:
+              - /url: /convert-html-to-react
+              - generic [ref=e265]:
+                - img [ref=e266]
+                - generic [ref=e267]:
+                  - heading [level=2] [ref=e268]: How to Convert HTML to React; A Step-by-Step Guide
+                  - paragraph [ref=e269]: React is a popular JavaScript library for building user interfaces, and it's widely used for creating dynamic and interactive web applications. If you have existing HTML pages that you'd like to convert to React, it can seem like a daunting task. But don't worry, with a little bit of planning and patience, you can easily convert your HTML to React and enjoy all the benefits of this powerful library.
+                  - button [ref=e270]: Read More
+          - tabpanel [ref=e271]:
+            - link [ref=e272]:
+              - /url: /comprehensive-guide-frequency-tables
+              - generic [ref=e273]:
+                - img [ref=e274]
+                - generic [ref=e275]:
+                  - heading [level=2] [ref=e276]: A Comprehensive Guide to Understanding and Visualizing Frequency Tables
+                  - paragraph [ref=e277]: Frequency tables and histograms are two of the most commonly used tools in statistics for representing and visualizing data. In this guide, we will explore the basics of frequency tables and histograms, including how to create frequency tables, calculate relative frequencies, and visualize the data with histograms.
+                  - button [ref=e278]: Read More
+          - tabpanel [ref=e279]:
+            - link [ref=e280]:
+              - /url: /how-to-install-android-apps-in-windows-11
+              - generic [ref=e281]:
+                - img [ref=e282]
+                - generic [ref=e283]:
+                  - heading [level=2] [ref=e284]: How to install Android apps in Windows 11
+                  - paragraph [ref=e285]: in this guide we will learn how to install android apps in windows 11. We will use WSATools to install android apps in windows 11. Native android apps install in Windows 11 using Windows Subsystem for Android (even in unsupported regions). Without emulators. How to install Android Apps on Windows 11. how to run android apps on pc. android on windows 11. android apps on windows 11. windows 11 android apps install tamil. android on windows 11 2023. This app will not work on your device. windows 11 installation step by step. windows subsystem for android. Amazon Appstore. install android apps on windows 11. WSATools - APK installer. windows 11 android apps install
+                  - button [ref=e286]: Read More
+          - tabpanel [ref=e464]:
+            - link [ref=e465]:
+              - /url: /how-to-connect-to-the-internet-on-kali-linux-without-ethernet
+              - generic [ref=e289]:
+                - img [ref=e466]
+                - generic [ref=e291]:
+                  - heading [level=2] [ref=e467]: How to Connect to the Internet on Kali Linux Without Ethernet
+                  - paragraph [ref=e293]: If you've installed Kali Linux on your laptop but don't have an Ethernet port, connecting to the internet can be a challenge. Fortunately, there are a few workarounds you can use to get connected, as we explored in this conversation. In this blog post, we will explain two methods to connect to the internet without Ethernet.
+                  - button [ref=e468]: Read More
+          - tabpanel [ref=e478]:
+            - link [ref=e479]:
+              - /url: /getting-started-with-three.js-in-sveltekit
+              - generic [ref=e297]:
+                - img [ref=e480]
+                - generic [ref=e299]:
+                  - heading [level=2] [ref=e481]: Getting Started with Three.js in SvelteKit
+                  - paragraph [ref=e301]: Learn how to integrate Three.js, a popular 3D graphics library, with SvelteKit to create stunning interactive 3D visuals for your web applications.
+                  - button [ref=e482]: Read More
+          - tabpanel [ref=e507]:
+            - link [ref=e508]:
+              - /url: /extract-data-api-response-javascript
+              - generic [ref=e305]:
+                - img [ref=e509]
+                - generic [ref=e307]:
+                  - heading [level=2] [ref=e510]: How to Extract Data from an API Response in JavaScript
+                  - paragraph [ref=e309]: In today's digital world, APIs have become a critical component for accessing and sharing data between different systems and applications. Whether you are building a web application, mobile app, or simply working with data, it's important to understand how to extract the data you need from an API response.
+                  - button [ref=e511]: Read More
+          - tabpanel [ref=e311]:
+            - link [ref=e312]:
+              - /url: /experience-the-unparalleled-universe-of-manga-with-animevariant
+              - generic [ref=e313]:
+                - img [ref=e314]
+                - generic [ref=e315]:
+                  - heading [level=2] [ref=e316]: Experience the Unparalleled Universe of Manga with AnimeVariant
+                  - paragraph [ref=e317]: In the vast cosmos of digital platforms, there’s a new star that shines the brightest for manga lovers — AnimeVariant.org. This comprehensive manga reading website is not just another name in the ocean of manga websites; it’s a revolution that has come to redefine the way you access, read, and enjoy manga.
+                  - button [ref=e318]: Read More
+          - tabpanel [ref=e531]:
+            - link [ref=e532]:
+              - /url: /dockerizing-nodejs-application-production-deployment
+              - generic [ref=e321]:
+                - img [ref=e533]
+                - generic [ref=e323]:
+                  - heading [level=2] [ref=e534]: Dockerizing a Node.js Application for Production Deployment
+                  - paragraph [ref=e325]: Dockerizing a Node.js application is a crucial step in the process of deploying a web application to production. The Docker image created by the Dockerfile contains everything your application needs to run in a production environment, making it easier to deploy and manage.
+                  - button [ref=e535]: Read More
+          - tabpanel [ref=e560]:
+            - link [ref=e561]:
+              - /url: /custom-llm-in-logseq
+              - generic [ref=e329]:
+                - img [ref=e562]
+                - generic [ref=e331]:
+                  - heading [level=2] [ref=e563]: Custom LLM in Logseq
+                  - paragraph [ref=e333]: Have you ever wanted to create your own LLM in Logseq? Well, now you can! In this blog post, we'll walk through the process of creating a custom LLM in Logseq using Python and the Logseq Python Plugin. We'll start by downloading the Logseq Python Plugin from GitHub and then we'll unpack it and load it into Logseq. Next, we'll set up our environment and then we'll create our custom LLM in Logseq. Finally, we'll test our custom LLM in Logseq and then we'll publish it to the Logseq Plugin Store.
+                  - button [ref=e564]: Read More
+          - tabpanel [ref=e574]:
+            - link [ref=e575]:
+              - /url: /how-to-intall-wsl-wsl2-distro-on-an-external-drive
+              - generic [ref=e337]:
+                - img [ref=e576]
+                - generic [ref=e339]:
+                  - heading [level=2] [ref=e577]: How to Install WSL/WSL2 Distro on an External Drive
+                  - paragraph [ref=e341]: If you're running out of space on your computer's hard drive, you can install WSL/WSL2 distro on an external drive. This will allow you to free up space on your computer's hard drive while still being able to use WSL/WSL2.
+                  - button [ref=e578]: Read More
+          - tabpanel "9 of 10" [ref=e579]:
+            - link "'How to Convert HTML to React; A Step-by-Step Guide' How to Convert HTML to React; A Step-by-Step Guide React is a popular JavaScript library for building user interfaces, and it's widely used for creating dynamic and interactive web applications. If you have existing HTML pages that you'd like to convert to React, it can seem like a daunting task. But don't worry, with a little bit of planning and patience, you can easily convert your HTML to React and enjoy all the benefits of this powerful library. Read More" [ref=e580]:
+              - /url: /convert-html-to-react
+              - generic [ref=e345]:
+                - img "'How to Convert HTML to React; A Step-by-Step Guide'" [ref=e581]
+                - generic [ref=e347]:
+                  - heading "How to Convert HTML to React; A Step-by-Step Guide" [level=2] [ref=e582]
+                  - paragraph [ref=e349]: React is a popular JavaScript library for building user interfaces, and it's widely used for creating dynamic and interactive web applications. If you have existing HTML pages that you'd like to convert to React, it can seem like a daunting task. But don't worry, with a little bit of planning and patience, you can easily convert your HTML to React and enjoy all the benefits of this powerful library.
+                  - button "Read More" [ref=e583]
+          - tabpanel [ref=e351]:
+            - link [ref=e352]:
+              - /url: /comprehensive-guide-frequency-tables
+              - generic [ref=e353]:
+                - img [ref=e354]
+                - generic [ref=e355]:
+                  - heading [level=2] [ref=e356]: A Comprehensive Guide to Understanding and Visualizing Frequency Tables
+                  - paragraph [ref=e357]: Frequency tables and histograms are two of the most commonly used tools in statistics for representing and visualizing data. In this guide, we will explore the basics of frequency tables and histograms, including how to create frequency tables, calculate relative frequencies, and visualize the data with histograms.
+                  - button [ref=e358]: Read More
+          - tabpanel [ref=e359]:
+            - link [ref=e360]:
+              - /url: /how-to-install-android-apps-in-windows-11
+              - generic [ref=e361]:
+                - img [ref=e362]
+                - generic [ref=e363]:
+                  - heading [level=2] [ref=e364]: How to install Android apps in Windows 11
+                  - paragraph [ref=e365]: in this guide we will learn how to install android apps in windows 11. We will use WSATools to install android apps in windows 11. Native android apps install in Windows 11 using Windows Subsystem for Android (even in unsupported regions). Without emulators. How to install Android Apps on Windows 11. how to run android apps on pc. android on windows 11. android apps on windows 11. windows 11 android apps install tamil. android on windows 11 2023. This app will not work on your device. windows 11 installation step by step. windows subsystem for android. Amazon Appstore. install android apps on windows 11. WSATools - APK installer. windows 11 android apps install
+                  - button [ref=e366]: Read More
+          - tabpanel [ref=e367]:
+            - link [ref=e368]:
+              - /url: /how-to-connect-to-the-internet-on-kali-linux-without-ethernet
+              - generic [ref=e369]:
+                - img [ref=e370]
+                - generic [ref=e371]:
+                  - heading [level=2] [ref=e372]: How to Connect to the Internet on Kali Linux Without Ethernet
+                  - paragraph [ref=e373]: If you've installed Kali Linux on your laptop but don't have an Ethernet port, connecting to the internet can be a challenge. Fortunately, there are a few workarounds you can use to get connected, as we explored in this conversation. In this blog post, we will explain two methods to connect to the internet without Ethernet.
+                  - button [ref=e374]: Read More
+        - tablist "Select a slide to show":
+          - tab "Go to slide 1" [ref=e375]
+          - tab "Go to slide 2" [ref=e376]
+          - tab "Go to slide 3" [ref=e377]
+          - tab "Go to slide 4" [ref=e378]
+          - tab "Go to slide 5" [ref=e379]
+          - tab "Go to slide 6" [ref=e380]
+          - tab "Go to slide 7" [ref=e381]
+          - tab "Go to slide 8" [ref=e382]
+          - tab "Go to slide 9" [selected] [ref=e383]
+          - tab "Go to slide 10" [ref=e384]
+      - region [ref=e385]:
+        - generic [ref=e386]:
+          - button [ref=e387] [cursor=pointer]:
+            - img [ref=e388]
+          - button [ref=e389] [cursor=pointer]:
+            - img [ref=e390]
+          - button [ref=e391] [cursor=pointer]:
+            - img [ref=e392]
+          - button [ref=e393] [cursor=pointer]:
+            - img [ref=e394]
+          - button [ref=e395] [cursor=pointer]:
+            - img [ref=e396]
+          - button [ref=e397] [cursor=pointer]:
+            - img [ref=e398]
+          - button [ref=e399] [cursor=pointer]:
+            - img [ref=e400]
+          - button [ref=e401] [cursor=pointer]:
+            - img [ref=e402]
+          - button [ref=e474] [cursor=pointer]:
+            - img [ref=e475]
+          - button [ref=e488] [cursor=pointer]:
+            - img [ref=e489]
+          - button [ref=e517] [cursor=pointer]:
+            - img [ref=e518]
+          - button [ref=e519] [cursor=pointer]:
+            - img [ref=e520]
+          - button [ref=e541] [cursor=pointer]:
+            - img [ref=e542]
+          - button [ref=e570] [cursor=pointer]:
+            - img [ref=e571]
+          - button [ref=e584] [cursor=pointer]:
+            - img [ref=e585]
+          - button "Go to slide 8" [ref=e543] [cursor=pointer]:
+            - img "'How to Install WSL/WSL2 Distro on an External Drive'" [ref=e544]
+          - button "Go to slide 9" [ref=e572] [cursor=pointer]:
+            - img "'How to Convert HTML to React; A Step-by-Step Guide'" [ref=e573]
+          - button "Go to slide 10" [ref=e586] [cursor=pointer]:
+            - img "'A Comprehensive Guide to Understanding and Visualizing Frequency Tables'" [ref=e587]
+          - button [ref=e423] [cursor=pointer]:
+            - img [ref=e424]
+          - button [ref=e425] [cursor=pointer]:
+            - img [ref=e426]
+          - button [ref=e427] [cursor=pointer]:
+            - img [ref=e428]
+          - button [ref=e429] [cursor=pointer]:
+            - img [ref=e430]
+          - button [ref=e431] [cursor=pointer]:
+            - img [ref=e432]
+          - button [ref=e433] [cursor=pointer]:
+            - img [ref=e434]
+          - button [ref=e435] [cursor=pointer]:
+            - img [ref=e436]
+          - button [ref=e437] [cursor=pointer]:
+            - img [ref=e438]
+    - generic [ref=e34]:
+      - generic [ref=e36]:
+        - img "How to install Android apps in Windows 11" [ref=e37]
+        - heading "How to install Android apps in Windows 11" [level=2] [ref=e38]:
+          - link "How to install Android apps in Windows 11" [ref=e39]:
+            - /url: /how-to-install-android-apps-in-windows-11
+        - paragraph [ref=e40]: in this guide we will learn how to install android apps in windows 11. We will use WSATools to install android apps in windows 11. Native android apps install in Windows 11 using Windows Subsystem for Android (even in unsupported regions). Without emulators. How to install Android Apps on Windows 11. how to run android apps on pc. android on windows 11. android apps on windows 11. windows 11 android apps install tamil. android on windows 11 2023. This app will not work on your device. windows 11 installation step by step. windows subsystem for android. Amazon Appstore. install android apps on windows 11. WSATools - APK installer. windows 11 android apps install
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - img "mads" [ref=e43]
+            - link "mads" [ref=e44]:
+              - /url: /
+          - link "Read more" [ref=e46]:
+            - /url: /how-to-install-android-apps-in-windows-11
+          - list [ref=e48]:
+            - listitem [ref=e49]:
+              - generic [ref=e50]: 
+            - listitem [ref=e51]:
+              - generic [ref=e52]: 
+      - generic [ref=e54]:
+        - img "How to Connect to the Internet on Kali Linux Without Ethernet" [ref=e55]
+        - heading "How to Connect to the Internet on Kali Linux Without Ethernet" [level=2] [ref=e56]:
+          - link "How to Connect to the Internet on Kali Linux Without Ethernet" [ref=e57]:
+            - /url: /how-to-connect-to-the-internet-on-kali-linux-without-ethernet
+        - paragraph [ref=e58]: If you've installed Kali Linux on your laptop but don't have an Ethernet port, connecting to the internet can be a challenge. Fortunately, there are a few workarounds you can use to get connected, as we explored in this conversation. In this blog post, we will explain two methods to connect to the internet without Ethernet.
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - img "Gormery" [ref=e61]
+            - link "Gormery" [ref=e62]:
+              - /url: /
+          - link "Read more" [ref=e64]:
+            - /url: /how-to-connect-to-the-internet-on-kali-linux-without-ethernet
+          - list [ref=e66]:
+            - listitem [ref=e67]:
+              - generic [ref=e68]: 
+            - listitem [ref=e69]:
+              - generic [ref=e70]: 
+      - generic [ref=e72]:
+        - img "Getting Started with Three.js in SvelteKit" [ref=e73]
+        - heading "Getting Started with Three.js in SvelteKit" [level=2] [ref=e74]:
+          - link "Getting Started with Three.js in SvelteKit" [ref=e75]:
+            - /url: /getting-started-with-three.js-in-sveltekit
+        - paragraph [ref=e76]: Learn how to integrate Three.js, a popular 3D graphics library, with SvelteKit to create stunning interactive 3D visuals for your web applications.
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - img "Gormery" [ref=e79]
+            - link "Gormery" [ref=e80]:
+              - /url: /
+          - link "Read more" [ref=e82]:
+            - /url: /getting-started-with-three.js-in-sveltekit
+          - list [ref=e84]:
+            - listitem [ref=e85]:
+              - generic [ref=e86]: 
+            - listitem [ref=e87]:
+              - generic [ref=e88]: 
+      - generic [ref=e90]:
+        - img "How to Extract Data from an API Response in JavaScript" [ref=e91]
+        - heading "How to Extract Data from an API Response in JavaScript" [level=2] [ref=e92]:
+          - link "How to Extract Data from an API Response in JavaScript" [ref=e93]:
+            - /url: /extract-data-api-response-javascript
+        - paragraph [ref=e94]: In today's digital world, APIs have become a critical component for accessing and sharing data between different systems and applications. Whether you are building a web application, mobile app, or simply working with data, it's important to understand how to extract the data you need from an API response.
+        - generic [ref=e95]:
+          - generic [ref=e96]:
+            - img "Gormery" [ref=e97]
+            - link "Gormery" [ref=e98]:
+              - /url: /
+          - link "Read more" [ref=e100]:
+            - /url: /extract-data-api-response-javascript
+          - list [ref=e102]:
+            - listitem [ref=e103]:
+              - generic [ref=e104]: 
+            - listitem [ref=e105]:
+              - generic [ref=e106]: 
+      - generic [ref=e108]:
+        - img "Experience the Unparalleled Universe of Manga with AnimeVariant" [ref=e109]
+        - heading "Experience the Unparalleled Universe of Manga with AnimeVariant" [level=2] [ref=e110]:
+          - link "Experience the Unparalleled Universe of Manga with AnimeVariant" [ref=e111]:
+            - /url: /experience-the-unparalleled-universe-of-manga-with-animevariant
+        - paragraph [ref=e112]: In the vast cosmos of digital platforms, there’s a new star that shines the brightest for manga lovers — AnimeVariant.org. This comprehensive manga reading website is not just another name in the ocean of manga websites; it’s a revolution that has come to redefine the way you access, read, and enjoy manga.
+        - generic [ref=e113]:
+          - generic [ref=e114]:
+            - img "valiantlynx" [ref=e115]
+            - link "valiantlynx" [ref=e116]:
+              - /url: /
+          - link "Read more" [ref=e118]:
+            - /url: /experience-the-unparalleled-universe-of-manga-with-animevariant
+          - list [ref=e120]:
+            - listitem [ref=e121]:
+              - generic [ref=e122]: 
+            - listitem [ref=e123]:
+              - generic [ref=e124]: 
+      - generic [ref=e126]:
+        - img "Dockerizing a Node.js Application for Production Deployment" [ref=e127]
+        - heading "Dockerizing a Node.js Application for Production Deployment" [level=2] [ref=e128]:
+          - link "Dockerizing a Node.js Application for Production Deployment" [ref=e129]:
+            - /url: /dockerizing-nodejs-application-production-deployment
+        - paragraph [ref=e130]: Dockerizing a Node.js application is a crucial step in the process of deploying a web application to production. The Docker image created by the Dockerfile contains everything your application needs to run in a production environment, making it easier to deploy and manage.
+        - generic [ref=e131]:
+          - generic [ref=e132]:
+            - img "Gormery" [ref=e133]
+            - link "Gormery" [ref=e134]:
+              - /url: /
+          - link "Read more" [ref=e136]:
+            - /url: /dockerizing-nodejs-application-production-deployment
+          - list [ref=e138]:
+            - listitem [ref=e139]:
+              - generic [ref=e140]: 
+            - listitem [ref=e141]:
+              - generic [ref=e142]: 
+      - generic [ref=e144]:
+        - img "Custom LLM in Logseq" [ref=e145]
+        - heading "Custom LLM in Logseq" [level=2] [ref=e146]:
+          - link "Custom LLM in Logseq" [ref=e147]:
+            - /url: /custom-llm-in-logseq
+        - paragraph [ref=e148]: Have you ever wanted to create your own LLM in Logseq? Well, now you can! In this blog post, we'll walk through the process of creating a custom LLM in Logseq using Python and the Logseq Python Plugin. We'll start by downloading the Logseq Python Plugin from GitHub and then we'll unpack it and load it into Logseq. Next, we'll set up our environment and then we'll create our custom LLM in Logseq. Finally, we'll test our custom LLM in Logseq and then we'll publish it to the Logseq Plugin Store.
+        - generic [ref=e149]:
+          - generic [ref=e150]:
+            - img "mads" [ref=e151]
+            - link "mads" [ref=e152]:
+              - /url: /
+          - link "Read more" [ref=e154]:
+            - /url: /custom-llm-in-logseq
+          - list [ref=e156]:
+            - listitem [ref=e157]:
+              - generic [ref=e158]: 
+            - listitem [ref=e159]:
+              - generic [ref=e160]: 
+      - generic [ref=e162]:
+        - img "How to Install WSL/WSL2 Distro on an External Drive" [ref=e163]
+        - heading "How to Install WSL/WSL2 Distro on an External Drive" [level=2] [ref=e164]:
+          - link "How to Install WSL/WSL2 Distro on an External Drive" [ref=e165]:
+            - /url: /how-to-intall-wsl-wsl2-distro-on-an-external-drive
+        - paragraph [ref=e166]: If you're running out of space on your computer's hard drive, you can install WSL/WSL2 distro on an external drive. This will allow you to free up space on your computer's hard drive while still being able to use WSL/WSL2.
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - img "Gormery" [ref=e169]
+            - link "Gormery" [ref=e170]:
+              - /url: /
+          - link "Read more" [ref=e172]:
+            - /url: /how-to-intall-wsl-wsl2-distro-on-an-external-drive
+          - list [ref=e174]:
+            - listitem [ref=e175]:
+              - generic [ref=e176]: 
+            - listitem [ref=e177]:
+              - generic [ref=e178]: 
+      - generic [ref=e180]:
+        - img "How to Convert HTML to React; A Step-by-Step Guide" [ref=e181]
+        - heading "How to Convert HTML to React; A Step-by-Step Guide" [level=2] [ref=e182]:
+          - link "How to Convert HTML to React; A Step-by-Step Guide" [ref=e183]:
+            - /url: /convert-html-to-react
+        - paragraph [ref=e184]: React is a popular JavaScript library for building user interfaces, and it's widely used for creating dynamic and interactive web applications. If you have existing HTML pages that you'd like to convert to React, it can seem like a daunting task. But don't worry, with a little bit of planning and patience, you can easily convert your HTML to React and enjoy all the benefits of this powerful library.
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - img "Gormery" [ref=e187]
+            - link "Gormery" [ref=e188]:
+              - /url: /
+          - link "Read more" [ref=e190]:
+            - /url: /convert-html-to-react
+          - list [ref=e192]:
+            - listitem [ref=e193]:
+              - generic [ref=e194]: 
+            - listitem [ref=e195]:
+              - generic [ref=e196]: 
+      - generic [ref=e198]:
+        - img "A Comprehensive Guide to Understanding and Visualizing Frequency Tables" [ref=e199]
+        - heading "A Comprehensive Guide to Understanding and Visualizing Frequency Tables" [level=2] [ref=e200]:
+          - link "A Comprehensive Guide to Understanding and Visualizing Frequency Tables" [ref=e201]:
+            - /url: /comprehensive-guide-frequency-tables
+        - paragraph [ref=e202]: Frequency tables and histograms are two of the most commonly used tools in statistics for representing and visualizing data. In this guide, we will explore the basics of frequency tables and histograms, including how to create frequency tables, calculate relative frequencies, and visualize the data with histograms.
+        - generic [ref=e203]:
+          - generic [ref=e204]:
+            - img "Gormery" [ref=e205]
+            - link "Gormery" [ref=e206]:
+              - /url: /
+          - link "Read more" [ref=e208]:
+            - /url: /comprehensive-guide-frequency-tables
+          - list [ref=e210]:
+            - listitem [ref=e211]:
+              - generic [ref=e212]: 
+            - listitem [ref=e213]:
+              - generic [ref=e214]: 
+    - link "show more" [ref=e216]:
+      - /url: /blogs
+    - button "notify me" [ref=e217]:
+      - img "notify me" [ref=e218]
+    - contentinfo [ref=e219]:
+      - generic [ref=e220]:
+        - generic [ref=e221]:
+          - generic [ref=e222]:
+            - generic [ref=e223]:
+              - img [ref=e439]
+              - generic [ref=e225]: Valiant Lynx
+            - paragraph [ref=e226]: Sharing ideas, code, and creativity with the world.
+            - generic [ref=e227]:
+              - link "Twitter" [ref=e228]:
+                - /url: https://twitter.com/valiantlynx
+                - img [ref=e441]
+              - link "YouTube" [ref=e229]:
+                - /url: https://www.youtube.com/@valiantlynx/
+                - img [ref=e443]
+              - link "Facebook" [ref=e230]:
+                - /url: https://www.facebook.com/valiantlynx/
+                - img [ref=e445]
+          - generic [ref=e231]:
+            - heading "Navigation" [level=3] [ref=e232]: Navigation
+            - navigation [ref=e234]:
+              - link "About Us" [ref=e235]:
+                - /url: /about
+                - img [ref=e447]
+                - text: About Us
+              - link "Contact Us" [ref=e236]:
+                - /url: /contact
+                - img [ref=e449]
+                - text: Contact Us
+              - link "Terms of Service" [ref=e237]:
+                - /url: /pricing
+                - img [ref=e451]
+                - text: Terms of Service
+              - link "Privacy Policy" [ref=e238]:
+                - /url: /privacy-policy
+                - img [ref=e453]
+                - text: Privacy Policy
+              - link "Sitemap" [ref=e239]:
+                - /url: /sitemap.xml
+                - img [ref=e455]
+                - text: Sitemap
+          - generic [ref=e240]:
+            - heading "Settings" [level=3] [ref=e241]: Settings
+            - generic [ref=e244]:
+              - generic [ref=e245]:
+                - img [ref=e457]
+                - generic [ref=e246]: Language
+              - generic [ref=e247]:
+                - button "English" [active] [ref=e249]
+                - generic [ref=e546]:
+                  - button "English" [ref=e547]
+                  - button "Deutsch" [ref=e548]
+                  - button "Español" [ref=e549]
+                  - button "Français" [ref=e550]
+                  - button "Português" [ref=e551]
+                  - button "中文（繁體）" [ref=e552]
+                  - button "中文（简体）" [ref=e553]
+                  - button "Bahasa Melayu" [ref=e554]
+                  - button "தமிழ்" [ref=e555]
+                  - button "Norsk Bokmål" [ref=e556]
+                  - button "Nynorsk" [ref=e557]
+                  - button "Nederlands" [ref=e558]
+                  - button "Tiếng Việt" [ref=e559]
+        - generic [ref=e251]:
+          - paragraph [ref=e252]:
+            - img [ref=e459]
+            - text: © 2024 Valiant Lynx. All rights reserved.
+          - paragraph [ref=e253]:
+            - text: Crafted with
+            - img [ref=e461]
+            - text: by Valiant Lynx
+  - button "Open feedback form" [ref=e254] [cursor=pointer]: Feedback

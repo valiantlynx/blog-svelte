@@ -169,6 +169,9 @@
 		"logout": "Logout",
 		"theme": "🎨 Theme",
 		"change_theme": "Change theme",
+		"toggle_mode": "Toggle light/dark mode",
+		"light_mode": "Light mode",
+		"dark_mode": "Dark mode",
 		"loading": "Loading"
 	},
 	"pages": {

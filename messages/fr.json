@@ -151,6 +151,9 @@
 		"logout": "Déconnexion",
 		"theme": "🎨 Thème",
 		"change_theme": "Changer de thème",
+		"toggle_mode": "Basculer mode clair/sombre",
+		"light_mode": "Mode clair",
+		"dark_mode": "Mode sombre",
 		"loading": "Chargement"
 	},
 	"pages": {

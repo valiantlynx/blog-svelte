@@ -169,6 +169,9 @@
 		"logout": "登出",
 		"theme": "🎨 主題",
 		"change_theme": "變更主題",
+		"toggle_mode": "切換淺色/深色模式",
+		"light_mode": "淺色模式",
+		"dark_mode": "深色模式",
 		"loading": "載入中"
 	},
 	"pages": {

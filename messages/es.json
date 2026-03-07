@@ -151,6 +151,9 @@
 		"logout": "Cerrar sesión",
 		"theme": "🎨 Tema",
 		"change_theme": "Cambiar tema",
+		"toggle_mode": "Alternar modo claro/oscuro",
+		"light_mode": "Modo claro",
+		"dark_mode": "Modo oscuro",
 		"loading": "Cargando"
 	},
 	"pages": {

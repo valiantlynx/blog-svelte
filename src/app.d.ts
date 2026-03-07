@@ -10,6 +10,7 @@ declare global {
 			verifier?: string;
 			siteName?: string;
 			isSmallDevice?: boolean;
+			language?: string;
 		}
 		// interface Platform {}
 		interface PageData {

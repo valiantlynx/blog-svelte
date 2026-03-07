@@ -151,6 +151,9 @@
 		"logout": "Abmelden",
 		"theme": "🎨 Design",
 		"change_theme": "Design ändern",
+		"toggle_mode": "Helles/dunkles Design umschalten",
+		"light_mode": "Helles Design",
+		"dark_mode": "Dunkles Design",
 		"loading": "Wird geladen"
 	},
 	"pages": {

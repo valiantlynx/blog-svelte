@@ -151,6 +151,9 @@
 		"logout": "Sair",
 		"theme": "🎨 Tema",
 		"change_theme": "Mudar tema",
+		"toggle_mode": "Alternar modo claro/escuro",
+		"light_mode": "Modo claro",
+		"dark_mode": "Modo escuro",
 		"loading": "Carregando"
 	},
 	"pages": {

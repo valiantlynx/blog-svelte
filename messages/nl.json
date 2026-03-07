@@ -169,6 +169,9 @@
 		"logout": "Afmelden",
 		"theme": "🎨 Thema",
 		"change_theme": "Thema wijzigen",
+		"toggle_mode": "Wissel licht-/donkere modus",
+		"light_mode": "Lichte modus",
+		"dark_mode": "Donkere modus",
 		"loading": "Laden"
 	},
 	"pages": {

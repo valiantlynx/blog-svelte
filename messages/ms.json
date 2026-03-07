@@ -169,6 +169,9 @@
 		"logout": "Daftar Keluar",
 		"theme": "🎨 Tema",
 		"change_theme": "Ubah tema",
+		"toggle_mode": "Togol mod cerah/gelap",
+		"light_mode": "Mod cerah",
+		"dark_mode": "Mod gelap",
 		"loading": "Memuatkan"
 	},
 	"pages": {
