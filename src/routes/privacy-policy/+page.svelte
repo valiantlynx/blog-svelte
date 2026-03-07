@@ -1,9 +1,13 @@
+<script>
+	import * as m from '$lib/paraglide/messages.js';
+</script>
+
 <div class="py-16 px-4">
 	<div class="text-primary prose max-w-2xl mx-auto">
 		<h1
 			class="flex justify-center text-3xl font-extrabold tracking-tight text-base-content sm:text-4xl"
 		>
-			Privacy Policy
+			{m['privacy_policy.title']()}
 		</h1>
 		<p>
 			Your privacy is important to us. It is Valiant Lynx's policy to respect your privacy and
@@ -16,16 +20,16 @@
 		<p>
 			This policy is effective as of [Current Date] and was last updated on [Last Updated Date].
 		</p>
-		<h3 class="text-warning font-bold py-4">Information We Collect</h3>
+		<h3 class="text-warning font-bold py-4">{m['privacy_policy.information_we_collect']()}</h3>
 		<p>
 			Information we collect includes both information you knowingly and actively provide us when
 			using or participating in any of our services and promotions, and any information
 			automatically sent by your devices in the course of accessing our products and services.
 		</p>
-		<h4 class="text-warning font-bold py-4">Log Data</h4>
+		<h4 class="text-warning font-bold py-4">{m['privacy_policy.log_data']()}</h4>
 		<p>
 			When you visit our website, our servers may automatically log the standard data provided by
-			your web browser. It may include your device’s Internet Protocol (IP) address, your browser
+			your web browser. It may include your device's Internet Protocol (IP) address, your browser
 			type and version, the pages you visit, the time and date of your visit, the time spent on each
 			page, other details about your visit, and technical details that occur in conjunction with any
 			errors you may encounter.
@@ -34,7 +38,7 @@
 			Please be aware that while this information may not be personally identifying by itself, it
 			may be possible to combine it with other data to personally identify individual persons.
 		</p>
-		<h4 class="text-warning font-bold py-4">Collection and Use of Information</h4>
+		<h4 class="text-warning font-bold py-4">{m['privacy_policy.collection_and_use']()}</h4>
 		<p>
 			We may collect personal information from you when you do any of the following on our website:
 		</p>
@@ -52,7 +56,7 @@
 			Please be aware that we may combine information we collect about you with general information
 			or research data we receive from other trusted sources.
 		</p>
-		<h4 class="text-warning font-bold py-4">Security of Your Personal Information</h4>
+		<h4 class="text-warning font-bold py-4">{m['privacy_policy.security']()}</h4>
 		<p>
 			When we collect and process personal information, and while we retain this information, we
 			will protect it within commercially acceptable means to prevent loss and theft, as well as
@@ -68,7 +72,7 @@
 			You are responsible for selecting any password and its overall security strength, ensuring the
 			security of your own information within the bounds of our services.
 		</p>
-		<h4 class="text-warning font-bold py-4">How Long We Keep Your Personal Information</h4>
+		<h4 class="text-warning font-bold py-4">{m['privacy_policy.retention']()}</h4>
 		<p>
 			We keep your personal information only for as long as we need to. This time period may depend
 			on what we are using your information for, in accordance with this privacy policy. If your
@@ -80,12 +84,12 @@
 			legal, accounting, or reporting obligation or for archiving purposes in the public interest,
 			scientific, or historical research purposes or statistical purposes.
 		</p>
-		<h3 class="text-warning font-bold py-4">Children’s Privacy</h3>
+		<h3 class="text-warning font-bold py-4">{m['privacy_policy.children_privacy']()}</h3>
 		<p>
 			We do not aim any of our products or services directly at children under the age of 13, and we
 			do not knowingly collect personal information about children under 13.
 		</p>
-		<h3 class="text-warning font-bold py-4">Disclosure of Personal Information to Third Parties</h3>
+		<h3 class="text-warning font-bold py-4">{m['privacy_policy.disclosure']()}</h3>
 		<p>We may disclose personal information to:</p>
 		<ul>
 			<li>a parent, subsidiary, or affiliate of our company</li>
@@ -107,7 +111,7 @@
 				products, services, or direct marketing to you third parties to collect and process data
 			</li>
 		</ul>
-		<h3 class="text-warning font-bold py-4">International Transfers of Personal Information</h3>
+		<h3 class="text-warning font-bold py-4">{m['privacy_policy.international']()}</h3>
 		<p>
 			The personal information we collect is stored and/or processed where we or our partners,
 			affiliates, and third-party providers maintain facilities. Please be aware that the locations
@@ -118,7 +122,7 @@
 			transferred personal information in accordance with this privacy policy.
 		</p>
 		<h3 class="text-warning font-bold py-4">
-			Your Rights and Controlling Your Personal Information
+			{m['privacy_policy.your_rights']()}
 		</h3>
 		<p>
 			You always retain the right to withhold personal information from us, with the understanding
@@ -131,7 +135,7 @@
 		<p>
 			If we receive personal information about you from a third party, we will protect it as set out
 			in this privacy policy. If you are a third party providing personal information about somebody
-			else, you represent and warrant that you have such person’s consent to provide the personal
+			else, you represent and warrant that you have such person's consent to provide the personal
 			information to us.
 		</p>
 		<p>
@@ -154,20 +158,20 @@
 			complaint. You also have the right to contact a regulatory body or data protection authority
 			in relation to your complaint.
 		</p>
-		<h3 class="text-warning font-bold py-4">Use of Cookies</h3>
+		<h3 class="text-warning font-bold py-4">{m['privacy_policy.cookies']()}</h3>
 		<p>
-			We use “cookies” to collect information about you and your activity across our site. A cookie
+			We use "cookies" to collect information about you and your activity across our site. A cookie
 			is a small piece of data that our website stores on your computer and accesses each time you
 			visit so we can understand how you use our site. This helps us serve you content based on
 			preferences you have specified.
 		</p>
-		<h3 class="text-warning font-bold py-4">Limits of Our Policy</h3>
+		<h3 class="text-warning font-bold py-4">{m['privacy_policy.limits']()}</h3>
 		<p>
 			Our website may link to external sites that are not operated by us. Please be aware that we
 			have no control over the content and policies of those sites, and cannot accept responsibility
 			or liability for their respective privacy practices.
 		</p>
-		<h3 class="text-warning font-bold py-4">Changes to This Policy</h3>
+		<h3 class="text-warning font-bold py-4">{m['privacy_policy.changes']()}</h3>
 		<p>
 			At our discretion, we may change our privacy policy to reflect updates to our business
 			processes, current acceptable practices, or legislative or regulatory changes. If we decide to
@@ -178,7 +182,7 @@
 			If required by law, we will get your permission or give you the opportunity to opt in to or
 			opt out of, as applicable, any new uses of your personal information.
 		</p>
-		<h3 class="text-warning font-bold py-4">Contact Us</h3>
+		<h3 class="text-warning font-bold py-4">{m['privacy_policy.contact_us']()}</h3>
 		<p>
 			For any questions or concerns regarding your privacy, you may contact us using the following
 			details:

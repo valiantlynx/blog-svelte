@@ -83,7 +83,7 @@
 				>
 			</div>
 		</form>
-		<center class="text-center my-4"> or </center>
+		<center class="text-center my-4">{m['auth.or_separator']()}</center>
 		<Oauth2 />
 	</div>
 </div>

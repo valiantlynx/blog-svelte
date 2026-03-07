@@ -11,7 +11,7 @@
 		<a href="/contact" class="link link-hover">{m['footer.contact_us']()}</a>
 		<a href="/privacy-policy" class="link link-hover">{m['footer.privacy_policy']()}</a>
 		<a href="/pricing" class="link link-hover">{m['footer.terms']()}</a>
-		<a href="/sitemap.xml" class="link link-hover">Sitemap</a>
+		<a href="/sitemap.xml" class="link link-hover">{m['footer.sitemap']()}</a>
 	</div>
 	<div>
 		<div class="grid grid-flow-col gap-4">

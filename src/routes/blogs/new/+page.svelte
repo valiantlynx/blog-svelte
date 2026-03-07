@@ -2,6 +2,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { enhance } from '$app/forms';
 	import Input from '$lib/components/Input.svelte';
+	import * as m from '$lib/paraglide/messages.js';
 	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
 	let loading = $state(false);
@@ -11,11 +12,11 @@
 		return async ({ result, update }) => {
 			switch (result.type) {
 				case 'success':
-					toast.success('Blog created!');
+					toast.success(m['messages.success_blog_created']());
 					await update();
 					break;
 				case 'invalid':
-					toast.error('Invalid credentials');
+					toast.error(m['messages.error_invalid_credentials']());
 					await update();
 					break;
 				case 'error':
@@ -38,34 +39,34 @@
 			enctype="multipart/form-data"
 			use:enhance={submitNewBlog}
 		>
-			<h3 class="text-3xl font-bold">Create a new blog</h3>
-			<p class="mt-2 text-lg">Please fill in the blog details</p>
+			<h3 class="text-3xl font-bold">{m['forms.blog_heading']()}</h3>
+			<p class="mt-2 text-lg">{m['forms.blog_instruction']()}</p>
 
 			<!-- Add new fields for blog creation -->
 			<Input
 				id="title"
-				label="Title"
+				label={m['forms.blog_title']()}
 				disabled={loading}
 				value={page.form?.data?.title}
 				errors={page.form?.errors?.title}
 			/>
 			<Input
 				id="summary"
-				label="Summary"
+				label={m['forms.blog_summary']()}
 				disabled={loading}
 				value={page.form?.data?.summary}
 				errors={page.form?.errors?.summary}
 			/>
 			<Input
 				id="alt"
-				label="Image Alt Text"
+				label={m['forms.blog_image_alt']()}
 				disabled={loading}
 				value={page.form?.data?.alt}
 				errors={page.form?.errors?.alt}
 			/>
 			<Input
 				id="slug"
-				label="Slug"
+				label={m['forms.blog_slug']()}
 				disabled={loading}
 				value={page.form?.data?.slug}
 				errors={page.form?.errors?.slug}
@@ -73,7 +74,7 @@
 			<!-- <Input id="tags" label="Tags" disabled={loading} value={page.form?.data?.tags} errors={page.form?.errors?.tags}/> -->
 			<Input
 				id="image"
-				label="Blog Image"
+				label={m['forms.blog_image']()}
 				type="file"
 				disabled={loading}
 				value={page.form?.data?.image}
@@ -81,7 +82,7 @@
 			/>
 			<div class="w-full max-w-lg pt-3">
 				<Button type="submit" variant="primary" class="w-full max-w-lg" disabled={loading}
-					>Create Blog</Button
+					>{m['forms.blog_button']()}</Button
 				>
 			</div>
 		</form>

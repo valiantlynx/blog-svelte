@@ -2,29 +2,30 @@
 	import Chat from '$lib/components/Chat.svelte';
 	import Carousel from '$lib/components/splide/Carousel.svelte';
 	import BlogGrid from '$lib/components/BlogGrid.svelte';
+	import * as m from '$lib/paraglide/messages.js';
 	import { page } from '$app/state';
 
 	async function requestNotificationPermission() {
 		if (!('Notification' in window)) {
 			// Check if the browser supports notifications
-			alert('This browser does not support desktop notification');
+			alert(m['notifications.browser_no_support']());
 		} else if (Notification.permission === 'granted') {
 			// Check whether notification permissions have already been granted;
 			// if so, create a notification
-			await showNotification('Hi there!', {
+			await showNotification(m['notifications.notification_title'](), {
 				actions: [
 					{
 						action: 'hello',
-						title: 'say hello'
+						title: m['notifications.notification_action']()
 					}
 				],
-				body: 'How are you doing?',
+				body: m['notifications.notification_body'](),
 				icon: 'logo.svg',
 				vibrate: [200, 100, 200, 100, 200, 100, 200],
 				requireInteraction: true,
 				renotify: true,
 				image: 'og.png',
-				tag: 'notification-sample',
+				tag: m['notifications.notification_tag'](),
 				lang: 'en',
 				dir: 'ltr',
 				badge: 'logo.svg',
@@ -35,7 +36,7 @@
 			Notification.requestPermission().then((permission) => {
 				// If the user accepts, let's create a notification
 				if (permission === 'granted') {
-					const notification = new Notification('Hi there!');
+					const notification = new Notification(m['notifications.notification_title']());
 					// …
 				}
 			});

@@ -1,55 +1,70 @@
 <script>
+	import * as m from '$lib/paraglide/messages.js';
 	let isNavOpen = false;
 	let billPlan = $state('monthly');
 
 	let plans = [
 		{
-			name: 'Easy',
-			discretion: 'All the basics for businesses that are just getting started.',
+			name: m['pages.pricing_plan_easy'](),
+			discretion: m['pages.pricing_easy_description'](),
 			price: {
 				monthly: 29,
 				annually: 29 * 12 - 199
 			},
-			features: ['One project', 'Your dashboard']
+			features: [m['pages.pricing_easy_feature_1'](), m['pages.pricing_easy_feature_2']()]
 		},
 		{
-			name: 'Basic',
-			discretion: 'Better for growing businesses that want more customers.',
+			name: m['pages.pricing_plan_basic'](),
+			discretion: m['pages.pricing_basic_description'](),
 			price: {
 				monthly: 59,
 				annually: 59 * 12 - 100
 			},
-			features: ['Two projects', 'Your dashboard', 'Components included', 'Advanced charts']
+			features: [
+				m['pages.pricing_basic_feature_1'](),
+				m['pages.pricing_basic_feature_2'](),
+				m['pages.pricing_basic_feature_3'](),
+				m['pages.pricing_basic_feature_4']()
+			]
 		},
 		{
-			name: 'Custom',
-			discretion: 'Advanced features for pros who need more customization.',
+			name: m['pages.pricing_plan_custom'](),
+			discretion: m['pages.pricing_custom_description'](),
 			price: {
 				monthly: 139,
 				annually: 139 * 12 - 100
 			},
-			features: ['Unlimited projects', 'Your dashboard', '+300 Components', 'Chat support']
+			features: [
+				m['pages.pricing_custom_feature_1'](),
+				m['pages.pricing_custom_feature_2'](),
+				m['pages.pricing_custom_feature_3'](),
+				m['pages.pricing_custom_feature_4']()
+			]
 		}
 	];
 </script>
 
+<svelte:head>
+	<title>{m['pages.pricing_title']()}</title>
+</svelte:head>
+
 <main class="mx-4 my-16">
 	<div class="text-center text-base-content">
 		<h1 class="mb-4 text-2xl font-normal md:text-3xl lg:text-4xl">
-			Our <span class="font-semibold">plans</span> for your
-			<span class="font-semibold">strategies</span>
+			Our <span class="font-semibold">{m['pages.pricing_plans_keyword']()}</span> for your
+			<span class="font-semibold">{m['pages.pricing_strategies_keyword']()}</span>
 		</h1>
 		<p class="text-sm font-normal">
-			See below our main three plans for your business, for your startup and agency.
+			{m['pages.pricing_description']()}
 		</p>
 		<p class="text-sm font-normal">
-			It starts from here! You can teach yourself what you really like.
+			{m['pages.pricing_starter_description']()}
 		</p>
 	</div>
 
 	<!-- Plan switch -->
 	<div class="flex items-center justify-center mt-10 space-x-4">
-		<span class="text-base font-medium">Bill Monthly</span>
+		<span class="text-base font-medium">{m['pages.pricing_bill_monthly']()}</span>
 		<button
 			class="relative rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
 			onclick={() => (billPlan = billPlan === 'monthly' ? 'annually' : 'monthly')}
@@ -61,7 +76,7 @@
 				class:translate-x-8={billPlan === 'annually'}
 			></div>
 		</button>
-		<span class="text-base font-medium">Bill Annually</span>
+		<span class="text-base font-medium">{m['pages.pricing_bill_annually']()}</span>
 	</div>
 
 	<!-- Plans -->
@@ -76,11 +91,15 @@
 				<div class="flex-shrink-0">
 					<span
 						class="text-4xl font-medium tracking-tight"
-						class:text-green-500={plan.name === 'Basic'}
+						class:text-green-500={plan.name === m['pages.pricing_plan_basic']()}
 					>
 						${billPlan === 'monthly' ? plan.price.monthly : plan.price.annually}
 					</span>
-					<span class="">{billPlan === 'monthly' ? '/month' : '/year'}</span>
+					<span class=""
+						>{billPlan === 'monthly'
+							? m['pages.pricing_per_month']()
+							: m['pages.pricing_per_year']()}</span
+					>
 				</div>
 
 				<!-- Plan Description -->
@@ -103,12 +122,12 @@
 				<div class="flex-shrink-0 pt-4">
 					<button
 						class="inline-flex items-center justify-center w-full max-w-xs px-4 py-2 transition-colors border border-secondary rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
-						class:bg-secondary={plan.name === 'Basic'}
-						class:text-secondary-content={plan.name == 'Basic'}
-						class:hover:bg-secondary={plan.name !== 'Basic'}
-						class:hover:text-secondary-content={plan.name !== 'Basic'}
+						class:bg-secondary={plan.name === m['pages.pricing_plan_basic']()}
+						class:text-secondary-content={plan.name == m['pages.pricing_plan_basic']()}
+						class:hover:bg-secondary={plan.name !== m['pages.pricing_plan_basic']()}
+						class:hover:text-secondary-content={plan.name !== m['pages.pricing_plan_basic']()}
 					>
-						Get {plan.name}
+						{m['pages.pricing_get_plan']({ plan: plan.name })}
 					</button>
 				</div>
 			</section>

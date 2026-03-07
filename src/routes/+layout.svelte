@@ -2,6 +2,7 @@
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import { Toaster } from 'svelte-french-toast';
+	import * as m from '$lib/paraglide/messages.js';
 	import '../app.postcss';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
@@ -138,24 +139,22 @@
 				if (status === 'granted') {
 					notification();
 				} else {
-					alert('You denied or dismissed permissions to notifications.');
+					alert(m['notifications.permission_denied']());
 				}
 			});
 		} else {
 			// If the user refuses to get notified
-			alert(
-				'You denied permissions to notifications. Please go to your browser or phone setting to allow notifications.'
-			);
+			alert(m['notifications.permission_denied_detailed']());
 		}
 	}
 
 	async function notification() {
 		const reg = await navigator.serviceWorker.getRegistration();
 		const options = {
-			body: 'Testing Our Notification',
+			body: m['notifications.notification_test_body'](),
 			icon: '/mine.png'
 		};
-		reg.showNotification('PWA Notification!', options);
+		reg.showNotification(m['notifications.notification_test_title'](), options);
 		await not();
 	}
 
@@ -281,7 +280,7 @@
 		data-repo="valiantlynx/blog-svelte"
 		data-token={page.data.feedbackToken}
 		data-type="discussions"
-		data-title="Blog Feedback"
+		data-title={m['buttons.send']()}
 		data-position="right"
 		data-primary-color="#10b981"
 	>

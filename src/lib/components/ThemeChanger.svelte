@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as m from '$lib/paraglide/messages.js';
 	import { themes } from '$lib/components/ui/styles/themes';
 	import { Button } from '$lib/components/ui/button';
 	import { browser } from '$app/environment';
@@ -25,7 +26,7 @@
 	}
 
 	const currentThemeLabel = $derived(
-		themes.find((t) => t.id === currentTheme)?.label ?? '🎨 Theme'
+		themes.find((t) => t.id === currentTheme)?.label ?? m['tooltips.theme']()
 	);
 </script>
 
@@ -34,7 +35,7 @@
 		variant="ghost"
 		size="icon"
 		onclick={() => (dropdownOpen = !dropdownOpen)}
-		aria-label="Change theme"
+		aria-label={m['tooltips.change_theme']()}
 	>
 		{currentThemeLabel}
 	</Button>

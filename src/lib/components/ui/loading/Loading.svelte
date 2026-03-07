@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as m from '$lib/paraglide/messages.js';
 	interface Props {
 		size?: 'sm' | 'md' | 'lg';
 		label?: string;
@@ -30,7 +31,7 @@
 			animate-spin
 		`}
 		role="status"
-		aria-label={label || 'Loading'}
+		aria-label={label || m['tooltips.loading']()}
 	></div>
 	{#if label}
 		<p class="text-[var(--muted-foreground)] text-sm">{label}</p>
