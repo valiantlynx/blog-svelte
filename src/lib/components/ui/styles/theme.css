@@ -1,0 +1,593 @@
+/**
+ * Custom Theme System - 5 Themes with Light/Dark Variants
+ * CSS Custom Properties for dynamic theming
+ */
+
+/* ============================================
+   THEME 1: DEFAULT (Blue/Gray)
+   ============================================ */
+
+:root[data-theme="default-light"] {
+	/* Primary Colors */
+	--primary: #3b82f6;
+	--primary-dark: #1e40af;
+	--primary-light: #dbeafe;
+	--primary-content: #ffffff;
+
+	/* Secondary Colors */
+	--secondary: #8b5cf6;
+	--secondary-dark: #5b21b6;
+	--secondary-light: #ede9fe;
+	--secondary-content: #ffffff;
+
+	/* Accent Colors */
+	--accent: #06b6d4;
+	--accent-dark: #0369a1;
+	--accent-light: #cffafe;
+	--accent-content: #ffffff;
+
+	/* Neutral Colors */
+	--neutral: #64748b;
+	--neutral-dark: #334155;
+	--neutral-light: #f1f5f9;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #ffffff;
+	--base-200: #f8fafc;
+	--base-300: #e2e8f0;
+	--base-content: #1e293b;
+
+	/* State Colors */
+	--success: #10b981;
+	--success-content: #ffffff;
+	--warning: #f59e0b;
+	--warning-content: #ffffff;
+	--error: #ef4444;
+	--error-content: #ffffff;
+	--info: #3b82f6;
+	--info-content: #ffffff;
+
+	/* Foreground & Background */
+	--foreground: #1e293b;
+	--background: #ffffff;
+	--muted: #94a3b8;
+	--muted-foreground: #64748b;
+	--border: #e2e8f0;
+}
+
+:root[data-theme="default-dark"] {
+	/* Primary Colors */
+	--primary: #60a5fa;
+	--primary-dark: #3b82f6;
+	--primary-light: #1e40af;
+	--primary-content: #ffffff;
+
+	/* Secondary Colors */
+	--secondary: #c4b5fd;
+	--secondary-dark: #a78bfa;
+	--secondary-light: #5b21b6;
+	--secondary-content: #000000;
+
+	/* Accent Colors */
+	--accent: #22d3ee;
+	--accent-dark: #06b6d4;
+	--accent-light: #0369a1;
+	--accent-content: #000000;
+
+	/* Neutral Colors */
+	--neutral: #cbd5e1;
+	--neutral-dark: #94a3b8;
+	--neutral-light: #334155;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #1e293b;
+	--base-200: #0f172a;
+	--base-300: #334155;
+	--base-content: #f1f5f9;
+
+	/* State Colors */
+	--success: #34d399;
+	--success-content: #000000;
+	--warning: #fbbf24;
+	--warning-content: #000000;
+	--error: #f87171;
+	--error-content: #000000;
+	--info: #60a5fa;
+	--info-content: #000000;
+
+	/* Foreground & Background */
+	--foreground: #f1f5f9;
+	--background: #1e293b;
+	--muted: #64748b;
+	--muted-foreground: #cbd5e1;
+	--border: #334155;
+}
+
+/* ============================================
+   THEME 2: OCEAN (Blue/Teal)
+   ============================================ */
+
+:root[data-theme="ocean-light"] {
+	/* Primary Colors */
+	--primary: #0369a1;
+	--primary-dark: #082f49;
+	--primary-light: #cffafe;
+	--primary-content: #ffffff;
+
+	/* Secondary Colors */
+	--secondary: #0891b2;
+	--secondary-dark: #164e63;
+	--secondary-light: #ecf0f1;
+	--secondary-content: #ffffff;
+
+	/* Accent Colors */
+	--accent: #06b6d4;
+	--accent-dark: #0369a1;
+	--accent-light: #cffafe;
+	--accent-content: #ffffff;
+
+	/* Neutral Colors */
+	--neutral: #475569;
+	--neutral-dark: #1e293b;
+	--neutral-light: #f1f5f9;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #ffffff;
+	--base-200: #f0f9ff;
+	--base-300: #e0f2fe;
+	--base-content: #082f49;
+
+	/* State Colors */
+	--success: #059669;
+	--success-content: #ffffff;
+	--warning: #d97706;
+	--warning-content: #ffffff;
+	--error: #dc2626;
+	--error-content: #ffffff;
+	--info: #0369a1;
+	--info-content: #ffffff;
+
+	/* Foreground & Background */
+	--foreground: #082f49;
+	--background: #ffffff;
+	--muted: #64748b;
+	--muted-foreground: #475569;
+	--border: #cffafe;
+}
+
+:root[data-theme="ocean-dark"] {
+	/* Primary Colors */
+	--primary: #06b6d4;
+	--primary-dark: #0891b2;
+	--primary-light: #082f49;
+	--primary-content: #ffffff;
+
+	/* Secondary Colors */
+	--secondary: #22d3ee;
+	--secondary-dark: #0891b2;
+	--secondary-light: #082f49;
+	--secondary-content: #000000;
+
+	/* Accent Colors */
+	--accent: #4dd0e1;
+	--accent-dark: #0891b2;
+	--accent-light: #082f49;
+	--accent-content: #000000;
+
+	/* Neutral Colors */
+	--neutral: #94a3b8;
+	--neutral-dark: #475569;
+	--neutral-light: #1e293b;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #0f2f3f;
+	--base-200: #0a1f2e;
+	--base-300: #1a3a47;
+	--base-content: #e0f2fe;
+
+	/* State Colors */
+	--success: #4ade80;
+	--success-content: #000000;
+	--warning: #facc15;
+	--warning-content: #000000;
+	--error: #f87171;
+	--error-content: #000000;
+	--info: #22d3ee;
+	--info-content: #000000;
+
+	/* Foreground & Background */
+	--foreground: #e0f2fe;
+	--background: #0f2f3f;
+	--muted: #64748b;
+	--muted-foreground: #cbd5e1;
+	--border: #1a3a47;
+}
+
+/* ============================================
+   THEME 3: FOREST (Green/Earth)
+   ============================================ */
+
+:root[data-theme="forest-light"] {
+	/* Primary Colors */
+	--primary: #059669;
+	--primary-dark: #065f46;
+	--primary-light: #d1fae5;
+	--primary-content: #ffffff;
+
+	/* Secondary Colors */
+	--secondary: #7c3aed;
+	--secondary-dark: #5b21b6;
+	--secondary-light: #f3e8ff;
+	--secondary-content: #ffffff;
+
+	/* Accent Colors */
+	--accent: #10b981;
+	--accent-dark: #059669;
+	--accent-light: #d1fae5;
+	--accent-content: #ffffff;
+
+	/* Neutral Colors */
+	--neutral: #78716c;
+	--neutral-dark: #44403c;
+	--neutral-light: #f5f5f4;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #ffffff;
+	--base-200: #f0fdf4;
+	--base-300: #dcfce7;
+	--base-content: #14532d;
+
+	/* State Colors */
+	--success: #059669;
+	--success-content: #ffffff;
+	--warning: #ca8a04;
+	--warning-content: #ffffff;
+	--error: #dc2626;
+	--error-content: #ffffff;
+	--info: #0891b2;
+	--info-content: #ffffff;
+
+	/* Foreground & Background */
+	--foreground: #14532d;
+	--background: #ffffff;
+	--muted: #92a75f;
+	--muted-foreground: #65a30d;
+	--border: #bbf7d0;
+}
+
+:root[data-theme="forest-dark"] {
+	/* Primary Colors */
+	--primary: #4ade80;
+	--primary-dark: #22c55e;
+	--primary-light: #065f46;
+	--primary-content: #ffffff;
+
+	/* Secondary Colors */
+	--secondary: #e9d5ff;
+	--secondary-dark: #c084fc;
+	--secondary-light: #5b21b6;
+	--secondary-content: #000000;
+
+	/* Accent Colors */
+	--accent: #86efac;
+	--accent-dark: #4ade80;
+	--accent-light: #065f46;
+	--accent-content: #000000;
+
+	/* Neutral Colors */
+	--neutral: #a8a29e;
+	--neutral-dark: #78716c;
+	--neutral-light: #3f3f37;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #1b341b;
+	--base-200: #0f2210;
+	--base-300: #213b21;
+	--base-content: #e8f5e9;
+
+	/* State Colors */
+	--success: #4ade80;
+	--success-content: #000000;
+	--warning: #facc15;
+	--warning-content: #000000;
+	--error: #f87171;
+	--error-content: #000000;
+	--info: #22d3ee;
+	--info-content: #000000;
+
+	/* Foreground & Background */
+	--foreground: #e8f5e9;
+	--background: #1b341b;
+	--muted: #65a30d;
+	--muted-foreground: #bef264;
+	--border: #365f13;
+}
+
+/* ============================================
+   THEME 4: SUNSET (Orange/Red)
+   ============================================ */
+
+:root[data-theme="sunset-light"] {
+	/* Primary Colors */
+	--primary: #ea580c;
+	--primary-dark: #b45309;
+	--primary-light: #fed7aa;
+	--primary-content: #ffffff;
+
+	/* Secondary Colors */
+	--secondary: #f97316;
+	--secondary-dark: #ea580c;
+	--secondary-light: #ffedd5;
+	--secondary-content: #ffffff;
+
+	/* Accent Colors */
+	--accent: #ef4444;
+	--accent-dark: #dc2626;
+	--accent-light: #fecaca;
+	--accent-content: #ffffff;
+
+	/* Neutral Colors */
+	--neutral: #78716c;
+	--neutral-dark: #3f3f37;
+	--neutral-light: #f5f5f4;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #ffffff;
+	--base-200: #fff7ed;
+	--base-300: #fed7aa;
+	--base-content: #5a2e0f;
+
+	/* State Colors */
+	--success: #16a34a;
+	--success-content: #ffffff;
+	--warning: #f97316;
+	--warning-content: #ffffff;
+	--error: #dc2626;
+	--error-content: #ffffff;
+	--info: #0ea5e9;
+	--info-content: #ffffff;
+
+	/* Foreground & Background */
+	--foreground: #5a2e0f;
+	--background: #ffffff;
+	--muted: #a16207;
+	--muted-foreground: #ea580c;
+	--border: #ffedd5;
+}
+
+:root[data-theme="sunset-dark"] {
+	/* Primary Colors */
+	--primary: #fb923c;
+	--primary-dark: #f97316;
+	--primary-light: #7c2d12;
+	--primary-content: #ffffff;
+
+	/* Secondary Colors */
+	--secondary: #fed7aa;
+	--secondary-dark: #fdba74;
+	--secondary-light: #7c2d12;
+	--secondary-content: #000000;
+
+	/* Accent Colors */
+	--accent: #fca5a5;
+	--accent-dark: #f87171;
+	--accent-light: #7c2622;
+	--accent-content: #000000;
+
+	/* Neutral Colors */
+	--neutral: #a8a29e;
+	--neutral-dark: #78716c;
+	--neutral-light: #3f3f37;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #2c1f1b;
+	--base-200: #1c1310;
+	--base-300: #3c2a23;
+	--base-content: #fef3c7;
+
+	/* State Colors */
+	--success: #4ade80;
+	--success-content: #000000;
+	--warning: #fbbf24;
+	--warning-content: #000000;
+	--error: #f87171;
+	--error-content: #000000;
+	--info: #38bdf8;
+	--info-content: #000000;
+
+	/* Foreground & Background */
+	--foreground: #fef3c7;
+	--background: #2c1f1b;
+	--muted: #d97706;
+	--muted-foreground: #fbbf24;
+	--border: #5a3a2f;
+}
+
+/* ============================================
+   THEME 5: LAVENDER (Purple/Pink)
+   ============================================ */
+
+:root[data-theme="lavender-light"] {
+	/* Primary Colors */
+	--primary: #a855f7;
+	--primary-dark: #7e22ce;
+	--primary-light: #f3e8ff;
+	--primary-content: #ffffff;
+
+	/* Secondary Colors */
+	--secondary: #ec4899;
+	--secondary-dark: #be185d;
+	--secondary-light: #fce7f3;
+	--secondary-content: #ffffff;
+
+	/* Accent Colors */
+	--accent: #d946ef;
+	--accent-dark: #c026d3;
+	--accent-light: #fae8ff;
+	--accent-content: #ffffff;
+
+	/* Neutral Colors */
+	--neutral: #78716c;
+	--neutral-dark: #3f3f37;
+	--neutral-light: #f5f5f4;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #ffffff;
+	--base-200: #faf5ff;
+	--base-300: #f3e8ff;
+	--base-content: #3f0f5c;
+
+	/* State Colors */
+	--success: #10b981;
+	--success-content: #ffffff;
+	--warning: #f59e0b;
+	--warning-content: #ffffff;
+	--error: #ef4444;
+	--error-content: #ffffff;
+	--info: #8b5cf6;
+	--info-content: #ffffff;
+
+	/* Foreground & Background */
+	--foreground: #3f0f5c;
+	--background: #ffffff;
+	--muted: #c084fc;
+	--muted-foreground: #a855f7;
+	--border: #f3e8ff;
+}
+
+:root[data-theme="lavender-dark"] {
+	/* Primary Colors */
+	--primary: #d8b4fe;
+	--primary-dark: #c084fc;
+	--primary-light: #6b21a8;
+	--primary-content: #000000;
+
+	/* Secondary Colors */
+	--secondary: #f472b6;
+	--secondary-dark: #ec4899;
+	--secondary-light: #831843;
+	--secondary-content: #000000;
+
+	/* Accent Colors */
+	--accent: #f0abfc;
+	--accent-dark: #e879f9;
+	--accent-light: #6b21a8;
+	--accent-content: #000000;
+
+	/* Neutral Colors */
+	--neutral: #a8a29e;
+	--neutral-dark: #78716c;
+	--neutral-light: #3f3f37;
+	--neutral-content: #ffffff;
+
+	/* Base Colors */
+	--base-100: #2e1065;
+	--base-200: #1f0c3b;
+	--base-300: #3f1c6a;
+	--base-content: #f3e8ff;
+
+	/* State Colors */
+	--success: #4ade80;
+	--success-content: #000000;
+	--warning: #fbbf24;
+	--warning-content: #000000;
+	--error: #f87171;
+	--error-content: #000000;
+	--info: #a78bfa;
+	--info-content: #000000;
+
+	/* Foreground & Background */
+	--foreground: #f3e8ff;
+	--background: #2e1065;
+	--muted: #c084fc;
+	--muted-foreground: #e9d5ff;
+	--border: #5b21b6;
+}
+
+/**
+ * Default theme on HTML root (fallback)
+ */
+:root {
+	color-scheme: light;
+	--primary: #3b82f6;
+	--primary-dark: #1e40af;
+	--primary-light: #dbeafe;
+	--primary-content: #ffffff;
+	--secondary: #8b5cf6;
+	--secondary-dark: #5b21b6;
+	--secondary-light: #ede9fe;
+	--secondary-content: #ffffff;
+	--accent: #06b6d4;
+	--accent-dark: #0369a1;
+	--accent-light: #cffafe;
+	--accent-content: #ffffff;
+	--neutral: #64748b;
+	--neutral-dark: #334155;
+	--neutral-light: #f1f5f9;
+	--neutral-content: #ffffff;
+	--base-100: #ffffff;
+	--base-200: #f8fafc;
+	--base-300: #e2e8f0;
+	--base-content: #1e293b;
+	--success: #10b981;
+	--success-content: #ffffff;
+	--warning: #f59e0b;
+	--warning-content: #ffffff;
+	--error: #ef4444;
+	--error-content: #ffffff;
+	--info: #3b82f6;
+	--info-content: #ffffff;
+	--foreground: #1e293b;
+	--background: #ffffff;
+	--muted: #94a3b8;
+	--muted-foreground: #64748b;
+	--border: #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		color-scheme: dark;
+		--primary: #60a5fa;
+		--primary-dark: #3b82f6;
+		--primary-light: #1e40af;
+		--primary-content: #ffffff;
+		--secondary: #c4b5fd;
+		--secondary-dark: #a78bfa;
+		--secondary-light: #5b21b6;
+		--secondary-content: #000000;
+		--accent: #22d3ee;
+		--accent-dark: #06b6d4;
+		--accent-light: #0369a1;
+		--accent-content: #000000;
+		--neutral: #cbd5e1;
+		--neutral-dark: #94a3b8;
+		--neutral-light: #334155;
+		--neutral-content: #ffffff;
+		--base-100: #1e293b;
+		--base-200: #0f172a;
+		--base-300: #334155;
+		--base-content: #f1f5f9;
+		--success: #34d399;
+		--success-content: #000000;
+		--warning: #fbbf24;
+		--warning-content: #000000;
+		--error: #f87171;
+		--error-content: #000000;
+		--info: #60a5fa;
+		--info-content: #000000;
+		--foreground: #f1f5f9;
+		--background: #1e293b;
+		--muted: #64748b;
+		--muted-foreground: #cbd5e1;
+		--border: #334155;
+	}
+}
