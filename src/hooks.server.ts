@@ -8,12 +8,27 @@ import { detectUserLanguage } from '$lib/utils/language-detection';
 export const handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase(site.pocketbase);
 
-	// Language detection from request headers
+	// Language detection from request headers and user preference
 	const cfCountry = event.request.headers.get('cf-ipcountry') || undefined; // Cloudflare
 	console.log('CF Country:', cfCountry);
 	const acceptLanguage = event.request.headers.get('accept-language') || undefined;
-	const userLanguage = detectUserLanguage(acceptLanguage, cfCountry);
-	console.log('Detected user language:', userLanguage);
+
+	// Check if user already has a language preference set (via cookie)
+	const cookies = event.request.headers.get('cookie') || '';
+	const existingLocale = cookies.match(/PARAGLIDE_LOCALE=([^;]+)/)?.[1];
+
+	let userLanguage: string;
+
+	if (existingLocale) {
+		// User has already set a language preference, use it
+		userLanguage = existingLocale;
+		console.log('Using existing user language preference:', userLanguage);
+	} else {
+		// First-time visitor: detect language from country/accept-language headers
+		userLanguage = detectUserLanguage(acceptLanguage, cfCountry);
+		console.log('Detected language for first-time visitor:', userLanguage);
+	}
+
 	event.locals.language = userLanguage;
 
 	let storedAuth;
@@ -37,6 +52,15 @@ export const handle = async ({ event, resolve }) => {
 	}
 
 	const response = await resolve(event);
+
+	// Set language cookie for first-time visitors (only if no existing preference)
+	if (!existingLocale) {
+		response.headers.append(
+			'set-cookie',
+			`PARAGLIDE_LOCALE=${userLanguage}; Max-Age=34560000; Path=/; SameSite=Lax`
+		);
+	}
+
 	response.headers.append('set-cookie', event.locals.pb.authStore.exportToCookie({ secure: true }));
 	return response;
 };
