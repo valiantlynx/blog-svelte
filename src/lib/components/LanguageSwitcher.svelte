@@ -39,7 +39,7 @@
 	<div class="flex flex-col gap-1 p-2">
 		{#each locales as locale}
 			<button
-				class="px-3 py-2 rounded text-sm text-left hover:bg-primary hover:text-white transition-colors"
+				class="px-3 py-2 rounded text-sm text-left text-[var(--base-content)] hover:bg-[var(--primary)] hover:text-[var(--primary-content)] transition-colors"
 				class:font-semibold={locale === currentLocale}
 				class:bg-base-200={locale === currentLocale}
 				on:click={() => handleLanguageChange(locale)}
