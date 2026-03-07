@@ -2,10 +2,18 @@ import PocketBase from 'pocketbase';
 import { site } from '$lib/utils/config';
 import { serializeNonPOJOs } from '$lib/utils/api';
 import { authStore } from '$lib/utils/stores';
+import { detectUserLanguage } from '$lib/utils/language-detection';
 
 /** @type {import('@sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase(site.pocketbase);
+
+	// Language detection from request headers
+	const cfCountry = event.request.headers.get('cf-ipcountry') || undefined; // Cloudflare
+	const acceptLanguage = event.request.headers.get('accept-language') || undefined;
+	const userLanguage = detectUserLanguage(acceptLanguage, cfCountry);
+	event.locals.language = userLanguage;
+
 	let storedAuth;
 	// subscribe to the auth store
 	authStore.subscribe((value) => {
