@@ -15,7 +15,11 @@ export default defineConfig({
 		devtoolsJson()
 	],
 	server: {
-		allowedHosts: ['7db9b44ed38a.ngrok-free.app', 'localhost', 'www.valiantlynx.com', 'posthog.valiantlynx.com']
+		allowedHosts: [
+			'7db9b44ed38a.ngrok-free.app',
+			'localhost',
+			'www.valiantlynx.com',
+			'posthog.valiantlynx.com'
+		]
 	}
 });
-

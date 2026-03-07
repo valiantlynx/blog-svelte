@@ -13,5 +13,5 @@
 </div>
 <!-- if they want to see more available to go to the features page -->
 <div class="justify-center mb-8">
-	<Button href="/blogs" variant="primary" class="flex mx-8">{m["buttons.show_more"]()}</Button>
+	<Button href="/blogs" variant="primary" class="flex mx-8">{m['buttons.show_more']()}</Button>
 </div>

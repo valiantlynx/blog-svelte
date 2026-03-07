@@ -144,21 +144,21 @@
 		"copyright": "© 2024 Valiant Lynx。版權所有。",
 		"language": "語言",
 		"sitemap": "網站地圖",
-    "languages": {
-      "en": "English",
-      "es": "Español",
-      "fr": "Français",
-      "de": "Deutsch",
-      "pt": "Português",
-      "zh": "中文（繁體）",
-      "zh_CN": "中文（简体）",
-      "ms": "Bahasa Melayu",
-      "ta": "தமிழ்",
-      "nb": "Norsk Bokmål",
-      "nn": "Nynorsk",
-      "nl": "Nederlands",
-      "vi": "Tiếng Việt"
-    }
+		"languages": {
+			"en": "English",
+			"es": "Español",
+			"fr": "Français",
+			"de": "Deutsch",
+			"pt": "Português",
+			"zh": "中文（繁體）",
+			"zh_CN": "中文（简体）",
+			"ms": "Bahasa Melayu",
+			"ta": "தமிழ்",
+			"nb": "Norsk Bokmål",
+			"nn": "Nynorsk",
+			"nl": "Nederlands",
+			"vi": "Tiếng Việt"
+		}
 	},
 	"tooltips": {
 		"home": "首頁",
