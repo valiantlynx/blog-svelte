@@ -3,45 +3,40 @@
 	import { themeNames } from '$lib/components/ui/styles/themes';
 	import { Button } from '$lib/components/ui/button';
 	import { browser } from '$app/environment';
+	import { themeStore } from '$lib/utils/stores';
 
-	let currentThemeName = $state<string>('default');
-	let currentMode = $state<'light' | 'dark'>('light');
+	let themeConfig = $state({ theme: 'default', mode: 'light' as const });
 	let dropdownOpen = $state(false);
 
 	$effect(() => {
 		if (browser) {
-			const stored = localStorage.getItem('theme-config');
-			if (stored) {
-				try {
-					const config = JSON.parse(stored);
-					currentThemeName = config.theme ?? 'default';
-					currentMode = config.mode ?? 'light';
-				} catch {
-					currentThemeName = 'default';
-					currentMode = 'light';
-				}
-			} else {
-				currentThemeName = 'default';
-				currentMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-			}
+			themeStore.loadFromStorage();
 		}
 	});
 
+	// Subscribe to store changes
 	$effect(() => {
-		if (browser && currentThemeName) {
-			const themeId = `${currentThemeName}-${currentMode}`;
+		const unsubscribe = themeStore.subscribe((config) => {
+			themeConfig = config;
+		});
+
+		return () => unsubscribe();
+	});
+
+	$effect(() => {
+		if (browser && themeConfig.theme) {
+			const themeId = `${themeConfig.theme}-${themeConfig.mode}`;
 			document.documentElement.setAttribute('data-theme', themeId);
 		}
 	});
 
 	function setTheme(themeName: string) {
-		currentThemeName = themeName;
-		localStorage.setItem('theme-config', JSON.stringify({ theme: themeName, mode: currentMode }));
+		themeStore.setTheme(themeName);
 		dropdownOpen = false;
 	}
 
 	const currentThemeLabel = $derived(
-		themeNames.find((t) => t.id === currentThemeName)?.label ?? m['tooltips.theme']()
+		themeNames.find((t) => t.id === themeConfig.theme)?.label ?? m['tooltips.theme']()
 	);
 
 	// SVG icon mapping for themes
@@ -101,7 +96,7 @@
 					class={`
 						w-full px-4 py-3 text-left transition-colors flex items-center justify-between gap-3
 						${
-							currentThemeName === theme.id
+							themeConfig.theme === theme.id
 								? 'bg-[var(--primary)] text-[var(--primary-content)]'
 								: 'hover:bg-[var(--base-200)] text-[var(--foreground)]'
 						}
@@ -201,7 +196,7 @@
 						<div class="w-2 h-2 rounded-full bg-[var(--accent)]"></div>
 					</div>
 
-					{#if currentThemeName === theme.id}
+					{#if themeConfig.theme === theme.id}
 						<svg
 							width="20"
 							height="20"

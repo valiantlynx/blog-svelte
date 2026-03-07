@@ -82,3 +82,55 @@ export const stationImageMap = {
 export const minimum_fuel_economy = 0.1;
 
 export const authStore = writable(null);
+
+// Theme store - shared between ThemeSwitcher and ModeSwitcher
+interface ThemeConfig {
+	theme: string;
+	mode: 'light' | 'dark';
+}
+
+function createThemeStore() {
+	const { subscribe, set, update } = writable<ThemeConfig>({
+		theme: 'default',
+		mode: 'light'
+	});
+
+	return {
+		subscribe,
+		set,
+		update,
+		loadFromStorage: () => {
+			if (typeof window !== 'undefined') {
+				const stored = localStorage.getItem('theme-config');
+				if (stored) {
+					try {
+						const config = JSON.parse(stored) as ThemeConfig;
+						set({ theme: config.theme ?? 'default', mode: config.mode ?? 'light' });
+					} catch {
+						set({ theme: 'default', mode: 'light' });
+					}
+				} else {
+					const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+					set({ theme: 'default', mode: isDark ? 'dark' : 'light' });
+				}
+			}
+		},
+		setTheme: (theme: string) => {
+			update((config) => {
+				const newConfig: ThemeConfig = { ...config, theme };
+				localStorage.setItem('theme-config', JSON.stringify(newConfig));
+				return newConfig;
+			});
+		},
+		toggleMode: () => {
+			update((config) => {
+				const newMode: 'light' | 'dark' = config.mode === 'light' ? 'dark' : 'light';
+				const newConfig: ThemeConfig = { ...config, mode: newMode };
+				localStorage.setItem('theme-config', JSON.stringify(newConfig));
+				return newConfig;
+			});
+		}
+	};
+}
+
+export const themeStore = createThemeStore();

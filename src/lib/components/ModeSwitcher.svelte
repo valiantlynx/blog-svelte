@@ -2,47 +2,39 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import { Button } from '$lib/components/ui/button';
 	import { browser } from '$app/environment';
+	import { themeStore } from '$lib/utils/stores';
 
-	let currentMode = $state<'light' | 'dark'>('light');
-	let currentThemeName = $state<string>('default');
+	let themeConfig = $state({ theme: 'default', mode: 'light' as const });
 
 	$effect(() => {
 		if (browser) {
-			const stored = localStorage.getItem('theme-config');
-			if (stored) {
-				try {
-					const config = JSON.parse(stored);
-					currentThemeName = config.theme ?? 'default';
-					currentMode = config.mode ?? 'light';
-				} catch {
-					currentThemeName = 'default';
-					currentMode = 'light';
-				}
-			} else {
-				currentThemeName = 'default';
-				currentMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-			}
+			// Load initial config from store
+			themeStore.loadFromStorage();
 		}
 	});
 
+	// Subscribe to store changes
 	$effect(() => {
-		if (browser && currentThemeName) {
-			const themeId = `${currentThemeName}-${currentMode}`;
+		const unsubscribe = themeStore.subscribe((config) => {
+			themeConfig = config;
+		});
+
+		return () => unsubscribe();
+	});
+
+	$effect(() => {
+		if (browser && themeConfig.theme) {
+			const themeId = `${themeConfig.theme}-${themeConfig.mode}`;
 			document.documentElement.setAttribute('data-theme', themeId);
 		}
 	});
 
 	function toggleMode() {
-		currentMode = currentMode === 'light' ? 'dark' : 'light';
-		// Preserve the current theme when toggling mode
-		localStorage.setItem(
-			'theme-config',
-			JSON.stringify({ theme: currentThemeName || 'default', mode: currentMode })
-		);
+		themeStore.toggleMode();
 	}
 
 	const modeLabel = $derived(
-		currentMode === 'light' ? m['tooltips.dark_mode']() : m['tooltips.light_mode']()
+		themeConfig.mode === 'light' ? m['tooltips.dark_mode']() : m['tooltips.light_mode']()
 	);
 </script>
 
@@ -53,7 +45,7 @@
 	ariaLabel={m['tooltips.toggle_mode']()}
 	title={modeLabel}
 >
-	{#if currentMode === 'light'}
+	{#if themeConfig.mode === 'light'}
 		<svg
 			width="20"
 			height="20"
