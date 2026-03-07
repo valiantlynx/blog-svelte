@@ -103,13 +103,15 @@
 		<!-- Backdrop -->
 		<button
 			type="button"
-			class="fixed inset-0 bg-black/20 z-30 md:hidden shadow-lg"
+			class="fixed inset-0 bg-black/20 z-30 md:hidden shadow-lg pointer-events-auto"
 			onclick={closeMenu}
 			aria-label="Close menu"
 		></button>
 
 		<!-- Menu Content -->
-		<div class="absolute top-full left-0 right-0 bg-base-100 border-b border-base-300 md:hidden">
+		<div
+			class="absolute top-full left-0 right-0 bg-base-100 border-b border-base-300 md:hidden relative z-40"
+		>
 			<!-- Search Bar -->
 			{#if page.url.pathname !== '/search'}
 				<div class="border-b border-base-300 px-4 py-3">
