@@ -1,91 +1,80 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
+	import { themes } from '$lib/components/ui/styles/themes';
+	import { Button } from '$lib/components/ui/button';
+	import { browser } from '$app/environment';
 
-	import { browser, dev } from '$app/environment';
-	import { theme } from '$lib/utils/config';
-	import { hslToHex } from '$lib/utils/color';
-	import Icon from '@iconify/svelte';
+	let currentTheme = $state<string>();
+	let dropdownOpen = $state(false);
 
-	let currentTheme: string = $state();
-	let currentThemeColor: string = $state();
-	let pin = $state(true);
-	let percent: number = $state();
-	let [scrollY, lastY] = $state([0, 0]);
-
-	run(() => {
-		if (browser && currentTheme) {
+	$effect(() => {
+		if (browser) {
+			currentTheme =
+				localStorage.getItem('theme') ??
+				(window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'default-dark'
+					: 'default-light');
 			document.documentElement.setAttribute('data-theme', currentTheme);
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			currentThemeColor = hslToHex(
-				...(getComputedStyle(document.documentElement)
-					.getPropertyValue('--b1')
-					.slice(dev ? 1 : 0)
-					.replaceAll('%', '')
-					.split(' ')
-					.map(Number) as [number, number, number])
-			);
 		}
 	});
 
-	run(() => {
-		if (scrollY) {
-			pin = lastY - scrollY > 0 || scrollY === 0 ? true : false;
-			lastY = scrollY;
-			if (browser)
-				// eslint-disable-next-line @typescript-eslint/no-unused-vars
-				percent =
-					Math.round(
-						(scrollY /
-							(document.documentElement.scrollHeight - document.documentElement.clientHeight)) *
-							10000
-					) / 100;
-		}
-	});
+	function setTheme(themeId: string) {
+		currentTheme = themeId;
+		localStorage.setItem('theme', themeId);
+		document.documentElement.setAttribute('data-theme', themeId);
+		dropdownOpen = false;
+	}
 
-	if (browser)
-		currentTheme =
-			localStorage.getItem('theme') ??
-			(window.matchMedia('(prefers-color-scheme: dark)').matches
-				? theme?.[1].name
-				: theme[0].name ?? theme[0].name);
+	const currentThemeLabel = $derived(themes.find((t) => t.id === currentTheme)?.label ?? '🎨 Theme');
 </script>
 
-<div id="change-theme" class="dropdown">
-	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-	<!-- reference: https://github.com/saadeghi/daisyui/issues/1285 -->
-	<div tabindex="0" class="btn btn-circle btn-ghost">
-		<Icon icon="heroicons-outline:color-swatch" width="30" />
-	</div>
-
-	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-	<!-- reference: https://github.com/saadeghi/daisyui/issues/1285 -->
-	<ul
-		tabindex="0"
-		class="flex z-[1] flex-nowrap shadow-2xl menu dropdown-content bg-base-100 text-base-content rounded-box w-52 p-2 gap-2 overflow-y-auto max-h-[21.5rem]"
-		class:hidden={!pin}
+<div class="relative inline-block">
+	<Button
+		variant="ghost"
+		size="icon"
+		onclick={() => (dropdownOpen = !dropdownOpen)}
+		aria-label="Change theme"
 	>
-		{#each theme as { name, text }}
-			<button
-				data-theme={name}
-				onclick={() => {
-					currentTheme = name;
-					localStorage.setItem('theme', name);
-				}}
-				class:border-2={currentTheme === name}
-				class:border-primary={currentTheme === name}
-				class="btn btn-ghost w-full hover:bg-primary group rounded-lg flex bg-base-100 p-2 transition-all"
-			>
-				<p
-					class="flex-1 text-left text-base-content group-hover:text-primary-content transition-color"
+		{currentThemeLabel}
+	</Button>
+
+	{#if dropdownOpen}
+		<!-- Backdrop -->
+		<div
+			class="fixed inset-0 z-40"
+			onclick={() => (dropdownOpen = false)}
+		></div>
+
+		<!-- Dropdown Menu -->
+		<div
+			class="absolute top-full right-0 mt-2 w-56 bg-[var(--base-100)] border border-[var(--border)] rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto"
+		>
+			{#each themes as theme (theme.id)}
+				<button
+					onclick={() => setTheme(theme.id)}
+					class={`
+						w-full px-4 py-3 text-left transition-colors flex items-center justify-between gap-3
+						${currentTheme === theme.id
+							? 'bg-[var(--primary)] text-[var(--primary-content)]'
+							: 'hover:bg-[var(--base-200)] text-[var(--foreground)]'}
+					`}
 				>
-					{text ?? name}
-				</p>
-				<div class="grid grid-cols-4 gap-0.5 m-auto">
-					{#each ['bg-primary', 'bg-secondary', 'bg-accent', 'bg-neutral'] as bg}
-						<div class={`${bg} w-1 h-4 rounded-btn`}></div>
-					{/each}
-				</div>
-			</button>
-		{/each}
-	</ul>
+					<div class="flex-1">
+						<div class="font-medium">{theme.label}</div>
+						<div class="text-xs opacity-75">{theme.description}</div>
+					</div>
+
+					<!-- Color preview swatches -->
+					<div class="flex gap-1">
+						<div class="w-2 h-2 rounded-full bg-[var(--primary)]"></div>
+						<div class="w-2 h-2 rounded-full bg-[var(--secondary)]"></div>
+						<div class="w-2 h-2 rounded-full bg-[var(--accent)]"></div>
+					</div>
+
+					{#if currentTheme === theme.id}
+						<span class="text-lg">✓</span>
+					{/if}
+				</button>
+			{/each}
+		</div>
+	{/if}
 </div>
