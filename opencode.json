@@ -75,13 +75,13 @@
 				"gemma3:latest": {
 					"name": "Gemma3 4B"
 				},
-				"devstral-small-2": {
+				"devstral-small-2:latest": {
 					"name": "Devstral Small 2"
 				},
-				"deepseek-ocr": {
+				"deepseek-ocr:latest": {
 					"name": "DeepSeek OCR"
 				},
-				"glm-ocr": {
+				"glm-ocr:latest": {
 					"name": "GLM OCR"
 				},
 				"qwen3.5:0.8b": {
