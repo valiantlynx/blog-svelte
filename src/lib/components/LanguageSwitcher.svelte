@@ -12,14 +12,21 @@
 		}
 	};
 
-	// Language display names
-	const languageNames = {
-		en: m['footer.languages.en'](),
-		es: m['footer.languages.es'](),
-		fr: m['footer.languages.fr'](),
-		de: m['footer.languages.de'](),
-		pt: m['footer.languages.pt']()
+	// Get language display names dynamically from footer.languages.{locale}
+	const getLanguageName = (locale) => {
+		const key = `footer.languages.${locale}`;
+		try {
+			return m[key]();
+		} catch {
+			// Fallback to locale code if translation key doesn't exist
+			return locale.toUpperCase();
+		}
 	};
+
+	// Create a reactive language names object for all locales
+	const languageNames = Object.fromEntries(
+		locales.map((locale) => [locale, getLanguageName(locale)])
+	);
 </script>
 
 <Dropdown align="right">
