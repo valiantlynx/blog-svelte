@@ -30,7 +30,8 @@
 		variant="ghost"
 		class="font-bold text-2xl tracking-tight text-base-content hover:text-primary transition-colors duration-200 flex-shrink-0 -ml-3"
 	>
-		✨ {page.data.siteName}
+		<img src="/logo.svg" alt="Logo" class="w-8 h-8 mr-2" />
+		{page.data.siteName}
 	</Button>
 
 	<!-- Center: Search Bar (Desktop Only) -->
@@ -58,7 +59,8 @@
 			variant="ghost"
 			class="font-bold text-xl tracking-tight text-base-content hover:text-primary transition-colors duration-200 flex-shrink-0 -ml-2"
 		>
-			✨ {page.data.siteName}
+			<img src="/logo.svg" alt="Logo" class="w-8 h-8 mr-2" />
+			{page.data.siteName}
 		</Button>
 
 		<!-- Right Section: Hamburger + Login -->
