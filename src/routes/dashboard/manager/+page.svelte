@@ -7,72 +7,153 @@
 	let { data } = $props();
 </script>
 
-<main class="flex flex-col w-full overflow-hidden m-4">
-	<h2 class="sm:text-3xl text-md font-bold w-full">{m['dashboard.manage_heading']()}</h2>
+<main class="w-full max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
+	<!-- Header -->
+	<div class="mb-8">
+		<h1 class="text-2xl md:text-3xl font-bold">{m['dashboard.manage_heading']()}</h1>
+		<p class="text-base-content/70 mt-2">Manage your projects and blogs in one place</p>
+	</div>
 
-	<div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-		<div class="w-full mt-4 flex flex-col items-center m-3">
-			<h2 class="sm:text-3xl text-md font-bold w-full">
-				{m['dashboard.create_project_section']()}
-			</h2>
-			<Button href="/projects/new" variant="outline" class="m-4">
-				<i class="fa fa-project-diagram"></i>
-				{m['dashboard.create_project_button']()}
-			</Button>
+	<!-- Stats Cards -->
+	<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+		<div class="stats shadow">
+			<div class="stat">
+				<div class="stat-figure text-primary">
+					<Icon icon="mdi:folder-star" class="text-2xl" />
+				</div>
+				<div class="stat-title">Projects</div>
+				{#await data.projects}
+					<div class="stat-value text-sm">Loading...</div>
+				{:then projects}
+					<div class="stat-value">{projects?.length ?? 0}</div>
+				{:catch}
+					<div class="stat-value">-</div>
+				{/await}
+			</div>
+		</div>
+		<div class="stats shadow">
+			<div class="stat">
+				<div class="stat-figure text-secondary">
+					<Icon icon="mdi:file-document" class="text-2xl" />
+				</div>
+				<div class="stat-title">Blogs</div>
+				{#await data.blogs}
+					<div class="stat-value text-sm">Loading...</div>
+				{:then blogs}
+					<div class="stat-value">{blogs?.length ?? 0}</div>
+				{:catch}
+					<div class="stat-value">-</div>
+				{/await}
+			</div>
+		</div>
+	</div>
 
-			<h2 class="sm:text-3xl text-md3xl font-bold w-full">
-				{m['dashboard.my_projects_heading']()}
-			</h2>
+	<!-- Content Tabs for Mobile -->
+	<div class="tabs tabs-boxed mb-6 md:hidden">
+		<a class="tab tab-active" href="#projects">Projects</a>
+		<a class="tab" href="#blogs">Blogs</a>
+	</div>
+
+	<!-- Two Column Layout -->
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+		<!-- Projects Section -->
+		<section id="projects" class="space-y-4">
+			<div class="flex items-center justify-between">
+				<div>
+					<h2 class="text-xl font-semibold flex items-center gap-2">
+						<Icon icon="mdi:folder-star" class="text-primary" />
+						Projects
+					</h2>
+					<p class="text-sm text-base-content/60">Manage your portfolio projects</p>
+				</div>
+				<Button href="/projects/new" size="sm">
+					<Icon icon="mdi:plus" class="mr-1" />
+					New
+				</Button>
+			</div>
+
+			<div class="divider"></div>
+
 			{#await data.projects}
-				<p>Loading...</p>
+				<div class="flex justify-center py-8">
+					<span class="loading loading-spinner loading-lg text-primary"></span>
+				</div>
 			{:then projects}
 				{#if !projects || projects.length === 0}
-					<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
-					<p class="text-center sm:text-3xl text-md">{m['dashboard.no_projects']()}</p>
-					<Button href="/projects/new" variant="primary" class="max-w-md mt-4"
-						>{m['dashboard.add_project_button']()}</Button
-					>
+					<div class="card bg-base-200 shadow-xl">
+						<div class="card-body items-center text-center">
+							<Icon icon="mdi:folder-plus-outline" class="text-5xl text-base-content/30 mb-4" />
+							<h3 class="text-lg font-semibold">{m['dashboard.no_projects']()}</h3>
+							<p class="text-base-content/60 text-sm mb-4">Start building your portfolio</p>
+							<Button href="/projects/new" variant="primary" size="sm">
+								<Icon icon="mdi:plus" class="mr-1" />
+								{m['dashboard.add_project_button']()}
+							</Button>
+						</div>
+					</div>
 				{:else}
-					{#each projects as project}
-						<MyProjectItem {project} />
-						<div class="divider mt-0 mb-2"></div>
-					{/each}
-				{/if}
-			{:catch}
-				<p class="text-error">Error loading projects</p>
-			{/await}
-		</div>
-
-		<div class="w-full mt-4 flex flex-col items-center mx-3">
-			<h2 class="text-3xl font-bold w-full">{m['dashboard.create_blog_section']()}</h2>
-			<Button href="/blogs/new" variant="outline" class="my-4">
-				<i class="fa fa-plus"></i>
-				{m['dashboard.create_blog_button']()}
-			</Button>
-
-			<h2 class="text-3xl font-bold w-full">{m['dashboard.my_blogs_heading']()}</h2>
-			{#await data.blogs}
-				<p>Loading...</p>
-			{:then blogs}
-				{#if !blogs || blogs.length === 0}
-					<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
-					<p class="text-center text-xl">{m['dashboard.no_blogs']()}</p>
-					<Button href="/blogs/new" variant="primary" class="max-w-md mt-4"
-						>{m['dashboard.add_blog_button']()}</Button
-					>
-				{:else}
-					<div class="w-full">
-						{#each blogs as blog}
-							<div class="flex flex-col my-2">
-								<MyBlogItem {blog} />
-							</div>
-							<div class="divider"></div>
+					<div class="space-y-4">
+						{#each projects as project (project.id)}
+							<MyProjectItem {project} />
 						{/each}
 					</div>
 				{/if}
 			{:catch}
-				<p class="text-error">Error loading blogs</p>
+				<div class="alert alert-error">
+					<Icon icon="mdi:alert-circle" />
+					<span>Error loading projects</span>
+				</div>
 			{/await}
-		</div>
+		</section>
+
+		<!-- Blogs Section -->
+		<section id="blogs" class="space-y-4">
+			<div class="flex items-center justify-between">
+				<div>
+					<h2 class="text-xl font-semibold flex items-center gap-2">
+						<Icon icon="mdi:file-document" class="text-secondary" />
+						Blogs
+					</h2>
+					<p class="text-sm text-base-content/60">Manage your blog posts</p>
+				</div>
+				<Button href="/blogs/new" size="sm">
+					<Icon icon="mdi:plus" class="mr-1" />
+					New
+				</Button>
+			</div>
+
+			<div class="divider"></div>
+
+			{#await data.blogs}
+				<div class="flex justify-center py-8">
+					<span class="loading loading-spinner loading-lg text-secondary"></span>
+				</div>
+			{:then blogs}
+				{#if !blogs || blogs.length === 0}
+					<div class="card bg-base-200 shadow-xl">
+						<div class="card-body items-center text-center">
+							<Icon icon="mdi:file-plus-outline" class="text-5xl text-base-content/30 mb-4" />
+							<h3 class="text-lg font-semibold">{m['dashboard.no_blogs']()}</h3>
+							<p class="text-base-content/60 text-sm mb-4">Start writing your first post</p>
+							<Button href="/blogs/new" variant="primary" size="sm">
+								<Icon icon="mdi:plus" class="mr-1" />
+								{m['dashboard.add_blog_button']()}
+							</Button>
+						</div>
+					</div>
+				{:else}
+					<div class="space-y-4">
+						{#each blogs as blog (blog.id)}
+							<MyBlogItem {blog} />
+						{/each}
+					</div>
+				{/if}
+			{:catch}
+				<div class="alert alert-error">
+					<Icon icon="mdi:alert-circle" />
+					<span>Error loading blogs</span>
+				</div>
+			{/await}
+		</section>
 	</div>
 </main>

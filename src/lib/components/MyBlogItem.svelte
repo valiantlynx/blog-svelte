@@ -31,43 +31,53 @@
 	};
 </script>
 
-<div class="w-full flex items-center justify-between">
-	<div class="avatar">
-		<div class="h-48 rounded">
+<div
+	class="w-full flex items-center gap-4 p-4 bg-base-200 rounded-lg hover:shadow-md transition-shadow"
+>
+	<div class="avatar flex-shrink-0">
+		<div class="w-16 h-16 rounded-lg overflow-hidden">
 			<img
 				src={blog?.image
 					? getImageURL(blog?.collectionId, blog?.id, blog?.image)
 					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${blog?.title}`}
 				alt="{blog?.image} blog image"
+				class="w-full h-full object-cover"
 			/>
 		</div>
 	</div>
-	<div class="flex flex-col w-full ml-4 h-full justify-center">
-		<a href="/blogs/{blog?.slug}" class="font-semibold text-lg">{blog?.title}</a>
-		<p>{blog?.summary}</p>
+	<div class="flex-1 min-w-0">
+		<a
+			href="/blogs/{blog?.slug}"
+			class="font-semibold text-lg hover:text-primary transition-colors block truncate"
+		>
+			{blog?.title}
+		</a>
+		<p class="text-sm text-base-content/70 line-clamp-2">{blog?.summary}</p>
 	</div>
-	<div class="flex items-center justify-end w-full">
-		<Button href="/blogs/{blog?.slug}/edit" variant="outline">{m['buttons.edit_blog']()}</Button>
-		<Button variant="destructive" class="ml-2" onclick={() => (isModalOpen = true)}>
+	<div class="flex items-center gap-2 flex-shrink-0">
+		<Button href="/blogs/{blog?.slug}/edit" variant="outline" size="sm"
+			>{m['buttons.edit_blog']()}</Button
+		>
+		<Button variant="destructive" size="sm" onclick={() => (isModalOpen = true)}>
 			{m['buttons.delete']()}
 		</Button>
 		<Modal bind:open={isModalOpen}>
 			{#snippet heading()}
 				<div>
-					<h3 class="text-2xl">{m['modals.delete_blog']({ title: blog?.title })}</h3>
-					<p class="text-base font-normal mt-2">
+					<h3 class="text-xl">{m['modals.delete_blog']({ title: blog?.title })}</h3>
+					<p class="text-sm font-normal mt-2">
 						{m['modals.delete_confirmation']({ item: 'blog' })}
 					</p>
 				</div>
 			{/snippet}
 			{#snippet actions()}
-				<div class="flex w-full items-center justify-center space-x-2">
-					<Button variant="outline" type="button" onclick={() => (isModalOpen = false)}>
+				<div class="flex w-full items-center justify-center gap-2">
+					<Button variant="outline" type="button" size="sm" onclick={() => (isModalOpen = false)}>
 						{m['buttons.cancel']()}
 					</Button>
 					<form action="?/deleteBlog" method="POST" use:enhance={submitDeleteBlog}>
 						<input type="hidden" name="id" value={blog?.id} />
-						<Button type="submit" variant="destructive" disabled={loading}
+						<Button type="submit" variant="destructive" size="sm" disabled={loading}
 							>{m['buttons.delete']()}</Button
 						>
 					</form>

@@ -31,45 +31,53 @@
 	};
 </script>
 
-<div class="w-full h-28 flex items-center justify-between">
-	<div class="avatar">
-		<div class="w-20 rounded">
+<div
+	class="w-full flex items-center gap-4 p-4 bg-base-200 rounded-lg hover:shadow-md transition-shadow"
+>
+	<div class="avatar flex-shrink-0">
+		<div class="w-16 h-16 rounded-lg overflow-hidden">
 			<img
 				src={project?.thumbnail
 					? getImageURL(project.collectionId, project.id, project.thumbnail)
 					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${project.name}`}
 				alt="project thumbnail"
+				class="w-full h-full object-cover"
 			/>
 		</div>
 	</div>
-	<div class="flex flex-col w-full ml-4 h-full justify-center">
-		<a href="/projects/{project.id}" class="font-semibold text-lg">{project.name}</a>
-		<p>{project.tagline}</p>
+	<div class="flex-1 min-w-0">
+		<a
+			href="/projects/{project.id}"
+			class="font-semibold text-lg hover:text-primary transition-colors block truncate"
+		>
+			{project.name}
+		</a>
+		<p class="text-sm text-base-content/70 line-clamp-2">{project.tagline}</p>
 	</div>
-	<div class="flex items-center justify-end w-full">
-		<Button href="/projects/{project.id}/edit" variant="outline"
+	<div class="flex items-center gap-2 flex-shrink-0">
+		<Button href="/projects/{project.id}/edit" variant="outline" size="sm"
 			>{m['buttons.edit_project']()}</Button
 		>
-		<Button variant="destructive" class="ml-2" onclick={() => (isModalOpen = true)}>
+		<Button variant="destructive" size="sm" onclick={() => (isModalOpen = true)}>
 			{m['buttons.delete']()}
 		</Button>
 		<Modal bind:open={isModalOpen}>
 			{#snippet heading()}
 				<div>
-					<h3 class="text-2xl">{m['modals.delete_project']({ name: project.name })}</h3>
-					<p class="text-base font-normal mt-2">
+					<h3 class="text-xl">{m['modals.delete_project']({ name: project.name })}</h3>
+					<p class="text-sm font-normal mt-2">
 						{m['modals.delete_confirmation']({ item: 'project' })}
 					</p>
 				</div>
 			{/snippet}
 			{#snippet actions()}
-				<div class="flex w-full items-center justify-center space-x-2">
-					<Button variant="outline" type="button" onclick={() => (isModalOpen = false)}>
+				<div class="flex w-full items-center justify-center gap-2">
+					<Button variant="outline" type="button" size="sm" onclick={() => (isModalOpen = false)}>
 						{m['buttons.cancel']()}
 					</Button>
 					<form action="?/deleteProject" method="POST" use:enhance={submitDeleteProject}>
 						<input type="hidden" name="id" value={project.id} />
-						<Button type="submit" variant="destructive" disabled={loading}
+						<Button type="submit" variant="destructive" size="sm" disabled={loading}
 							>{m['buttons.delete']()}</Button
 						>
 					</form>
