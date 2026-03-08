@@ -5,7 +5,6 @@
 	import { getImageURL } from '$lib/utils/api';
 	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
-	import { onMount } from 'svelte';
 	let loading = $state(false);
 
 	const blog = page.data.blog;
@@ -34,7 +33,8 @@
 		slugValue = generateSlug(titleValue);
 	}
 
-	onMount(() => {
+	$effect(() => {
+		isLoading = true;
 		import('@mythrantic/svelte-rich-text')
 			.then((module) => {
 				ValiantRichText = module.ValiantRichText;

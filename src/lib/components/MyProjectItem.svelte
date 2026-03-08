@@ -7,7 +7,7 @@
 	import * as m from '$lib/paraglide/messages.js';
 	let { project } = $props();
 
-	let modalOpen = $state(false);
+	let isModalOpen = $state(false);
 
 	let loading = $state(false);
 
@@ -17,6 +17,7 @@
 			switch (result.type) {
 				case 'success':
 					toast.success(m['messages.success_project_deleted']());
+					isModalOpen = false;
 					await update();
 					break;
 				case 'error':
@@ -35,7 +36,7 @@
 		<div class="w-20 rounded">
 			<img
 				src={project?.thumbnail
-					? getImageURL(project.collectionId, project.id, project.thumbnail, '80x80')
+					? getImageURL(project.collectionId, project.id, project.thumbnail)
 					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${project.name}`}
 				alt="project thumbnail"
 			/>
@@ -49,10 +50,10 @@
 		<Button href="/projects/{project.id}/edit" variant="outline"
 			>{m['buttons.edit_project']()}</Button
 		>
-		<Modal label={project.id} checked={modalOpen}>
-			{#snippet trigger()}
-				<Button variant="error" class="ml-2">{m['buttons.delete']()}</Button>
-			{/snippet}
+		<Button variant="destructive" class="ml-2" onclick={() => (isModalOpen = true)}>
+			{m['buttons.delete']()}
+		</Button>
+		<Modal bind:open={isModalOpen}>
 			{#snippet heading()}
 				<div>
 					<h3 class="text-2xl">{m['modals.delete_project']({ name: project.name })}</h3>
@@ -63,12 +64,13 @@
 			{/snippet}
 			{#snippet actions()}
 				<div class="flex w-full items-center justify-center space-x-2">
-					<label for={project.id}>
-						<Button variant="outline" type="button">{m['buttons.cancel']()}</Button>
-					</label>
+					<Button variant="outline" type="button" onclick={() => (isModalOpen = false)}>
+						{m['buttons.cancel']()}
+					</Button>
 					<form action="?/deleteProject" method="POST" use:enhance={submitDeleteProject}>
 						<input type="hidden" name="id" value={project.id} />
-						<Button type="submit" variant="error" disabled={loading}>{m['buttons.delete']()}</Button
+						<Button type="submit" variant="destructive" disabled={loading}
+							>{m['buttons.delete']()}</Button
 						>
 					</form>
 				</div>

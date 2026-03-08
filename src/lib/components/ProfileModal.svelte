@@ -23,14 +23,13 @@
 			<button class="avatar cursor-pointer">
 				<div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
 					<img
-					class="rounded-full h-10 w-10 object-cover"
+						class="rounded-full h-10 w-10 object-cover"
 						src={avatar}
 						alt={`${page.data.user.username} profile picture on ${site.title}, ${
 							site.protocol + site.domain
 						}`}
 					/>
 				</div>
-
 			</button>
 		</svelte:fragment>
 

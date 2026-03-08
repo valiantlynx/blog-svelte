@@ -7,9 +7,9 @@
 	import * as m from '$lib/paraglide/messages.js';
 	let { blog } = $props();
 
-	let modalOpen = $state(false);
-
 	let loading = $state(false);
+
+	let isModalOpen = $state(false);
 
 	const submitDeleteBlog = () => {
 		loading = true;
@@ -17,6 +17,7 @@
 			switch (result.type) {
 				case 'success':
 					toast.success(m['messages.success_blog_deleted']());
+					isModalOpen = false;
 					await update();
 					break;
 				case 'error':
@@ -47,10 +48,10 @@
 	</div>
 	<div class="flex items-center justify-end w-full">
 		<Button href="/blogs/{blog?.slug}/edit" variant="outline">{m['buttons.edit_blog']()}</Button>
-		<Modal label={blog?.id} checked={modalOpen}>
-			{#snippet trigger()}
-				<Button variant="destructive" class="ml-2">{m['buttons.delete']()}</Button>
-			{/snippet}
+		<Button variant="destructive" class="ml-2" onclick={() => (isModalOpen = true)}>
+			{m['buttons.delete']()}
+		</Button>
+		<Modal bind:open={isModalOpen}>
 			{#snippet heading()}
 				<div>
 					<h3 class="text-2xl">{m['modals.delete_blog']({ title: blog?.title })}</h3>
@@ -61,9 +62,9 @@
 			{/snippet}
 			{#snippet actions()}
 				<div class="flex w-full items-center justify-center space-x-2">
-					<label for={blog?.id}>
-						<Button variant="outline" type="button">{m['buttons.cancel']()}</Button>
-					</label>
+					<Button variant="outline" type="button" onclick={() => (isModalOpen = false)}>
+						{m['buttons.cancel']()}
+					</Button>
 					<form action="?/deleteBlog" method="POST" use:enhance={submitDeleteBlog}>
 						<input type="hidden" name="id" value={blog?.id} />
 						<Button type="submit" variant="destructive" disabled={loading}

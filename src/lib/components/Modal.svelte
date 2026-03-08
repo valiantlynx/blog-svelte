@@ -2,25 +2,22 @@
 	import type { Snippet } from 'svelte';
 
 	interface Props {
-		label: string;
-		checked: boolean;
-		trigger?: Snippet;
+		open?: boolean;
 		heading?: Snippet;
 		actions?: Snippet;
 		children?: Snippet;
 	}
 
-	let { label, checked, trigger, heading, actions, children }: Props = $props();
+	let { open = $bindable(false), heading, actions, children }: Props = $props();
 </script>
 
-<label for={label}>
-	{@render trigger?.()}
-</label>
+{#if open}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class="fixed inset-0 bg-black bg-opacity-50 z-40" onclick={() => (open = false)}></div>
 
-<input type="checkbox" id={label} class="hidden" bind:checked />
-{#if checked}
-	<div class="fixed inset-0 bg-black bg-opacity-50 z-40" onclick={() => (checked = false)}></div>
-
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
 		<div
 			class="bg-[var(--base-100)] rounded-lg shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-[var(--border)]"
