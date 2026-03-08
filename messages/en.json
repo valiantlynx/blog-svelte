@@ -236,17 +236,24 @@
 		"permission_denied_detailed": "You denied permissions to notifications. Please go to your browser or phone setting to allow notifications."
 	},
 	"dashboard": {
-		"manage_heading": "Manage your blogs and projects",
-		"create_project_section": "Create a new project",
-		"create_project_button": "Create a new project",
-		"my_projects_heading": "My Projects",
-		"no_projects": "Looks like you don't have any projects.",
-		"add_project_button": "Add One",
-		"create_blog_section": "Create a new blog",
-		"create_blog_button": "Create a new blog",
-		"my_blogs_heading": "My Blogs (under construction)",
-		"no_blogs": "Looks like you don't have any blogs.",
-		"add_blog_button": "Add One"
+		"manage_heading": "Manage your content",
+		"manage_subheading": "Overview of your blogs and projects",
+		"total_items": "Total Content",
+		"projects_count": "Projects",
+		"blogs_count": "Blogs",
+		"quick_stats": "Quick Stats",
+		"recent_activity": "Recent Activity",
+		"no_projects": "No projects yet.",
+		"no_projects_desc": "Start building your portfolio by creating your first project. It takes just a few minutes!",
+		"add_project_button": "Create Project",
+		"no_blogs": "No blogs yet.",
+		"no_blogs_desc": "Share your thoughts and insights by writing your first blog post today!",
+		"add_blog_button": "Write Post",
+		"view_all": "View All",
+		"stats_this_month": "This Month",
+		"total_views": "Total Views",
+		"total_likes": "Total Likes",
+		"engagement_rate": "Engagement Rate"
 	},
 	"contact": {
 		"also_contact": "You can also contact us in our socials"
