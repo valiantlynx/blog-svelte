@@ -11,22 +11,39 @@
 </script>
 
 <main class="w-full max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
-	<!-- Header with gradient background -->
+	<!-- Redesigned Header -->
 	<div
-		class="mb-8 relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 p-6 shadow-lg ring-1 ring-base-content/5 dark:from-primary/20 dark:to-secondary/20"
+		class="mb-8 relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary/5 to-secondary/5 p-6 shadow-lg ring-1 ring-base-content/5"
 	>
-		<div class="relative flex items-center justify-between">
-			<div>
-				<h1
-					class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-				>
+		<div
+			class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+		>
+			<div class="flex-1">
+				<h1 class="text-2xl md:text-3xl font-extrabold text-base-content">
 					{m['dashboard.manage_heading']()}
 				</h1>
-				<p class="mt-2 text-base-content/70 max-w-xl">
-					{m['dashboard.manage_subheading']()}
-				</p>
+				<p class="mt-1 text-base-content/60 max-w-xl">{m['dashboard.manage_subheading']()}</p>
+				<div class="mt-4 flex flex-wrap gap-3">
+					<a href="/blogs/new" class="btn btn-outline btn-sm">
+						<Icon icon="mdi:plus" class="mr-1" />
+						{m['dashboard.add_blog_button']()}
+					</a>
+					<a href="/projects/new" class="btn btn-outline btn-sm">
+						<Icon icon="mdi:plus" class="mr-1" />
+						{m['dashboard.add_project_button']()}
+					</a>
+				</div>
 			</div>
-			<Icon icon="mdi:analytics" class="text-5xl opacity-20" />
+			<div class="flex items-center gap-4">
+				<div class="text-right">
+					<p class="text-sm text-base-content/60">{m['dashboard.quick_stats']()}</p>
+					<p class="text-2xl font-bold">
+						{#if projectsCount === null || blogsCount === null}...{:else}{projectsCount +
+								blogsCount}{/if}
+					</p>
+				</div>
+				<Icon icon="mdi:account-circle" class="text-5xl opacity-25" />
+			</div>
 		</div>
 	</div>
 
@@ -48,7 +65,7 @@
 				<div>
 					<p class="text-sm font-medium text-base-content/60">{m['dashboard.total_items']()}</p>
 					{#if projectsCount === null || blogsCount === null}
-						<div class="text-2xl font-bold">Loading...</div>
+						<div class="text-2xl font-bold">{m['tooltips.loading']()}</div>
 					{:else}
 						<div class="text-2xl font-bold">{projectsCount + blogsCount}</div>
 					{/if}
