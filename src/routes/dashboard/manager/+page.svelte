@@ -14,7 +14,8 @@
 	<!-- Fresh hero header -->
 	<header class="mb-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
 		<div
-			class="col-span-2 rounded-3xl p-8 bg-gradient-to-r from-sky-50 to-white shadow-md relative overflow-hidden"
+			class="col-span-2 rounded-3xl p-8 shadow-md relative overflow-hidden"
+			style="background: linear-gradient(90deg, var(--hero-gradient-start), var(--hero-gradient-end));"
 		>
 			<div class="absolute -right-24 -top-10 opacity-10 transform rotate-12">
 				<svg
@@ -24,7 +25,14 @@
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 				>
-					<circle cx="50" cy="50" r="45" stroke="rgba(99,102,241,0.15)" stroke-width="10" />
+					<circle
+						cx="50"
+						cy="50"
+						r="45"
+						stroke="var(--primary)"
+						stroke-width="10"
+						stroke-opacity="0.12"
+					/>
 				</svg>
 			</div>
 			<div class="relative z-10">
@@ -62,6 +70,12 @@
 						{m['dashboard.add_project_button']()}
 					</Button>
 				</div>
+
+				<!-- theme-aware overlay to mute hero in dark modes -->
+				<div
+					class="absolute inset-0 pointer-events-none"
+					style="background: var(--hero-overlay); mix-blend-mode: overlay;"
+				></div>
 			</div>
 		</div>
 
