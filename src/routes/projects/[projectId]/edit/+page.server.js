@@ -28,6 +28,18 @@ export const actions = {
 	updateProject: async ({ request, locals, params }) => {
 		const formData = await request.formData();
 
+		// Verify the project belongs to the current user
+		try {
+			const project = await locals.pb.collection('projects_valiantlynx').getOne(params.projectId);
+
+			if (project.user !== locals.user.id) {
+				throw error(403, 'You can only edit your own projects');
+			}
+		} catch (err) {
+			console.error('Error: ', err);
+			throw error(err.status || 404, err.message || 'Project not found');
+		}
+
 		const thumbnail = formData.get('thumbnail');
 
 		if (thumbnail.size === 0) {
@@ -57,6 +69,18 @@ export const actions = {
 	},
 
 	deleteThumbnail: async ({ locals, params }) => {
+		// Verify the project belongs to the current user
+		try {
+			const project = await locals.pb.collection('projects_valiantlynx').getOne(params.projectId);
+
+			if (project.user !== locals.user.id) {
+				throw error(403, 'You can only edit your own projects');
+			}
+		} catch (err) {
+			console.error('Error: ', err);
+			throw error(err.status || 404, err.message || 'Project not found');
+		}
+
 		try {
 			await locals.pb
 				.collection('projects_valiantlynx')

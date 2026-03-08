@@ -35,12 +35,25 @@ export const actions = {
 
 		// First get the blog by slug to get the ID
 		let blogId = params.blog;
+		let blog;
 		try {
-			const blog = await locals.pb.collection('blogs').getFirstListItem(`slug="${params.blog}"`);
+			blog = await locals.pb.collection('blogs').getFirstListItem(`slug="${params.blog}"`);
 			blogId = blog.id;
 		} catch (err) {
 			// Try using as ID directly if slug lookup fails
 			blogId = params.blog;
+			// Try to get the blog by ID to check authorization
+			try {
+				blog = await locals.pb.collection('blogs').getOne(blogId);
+			} catch (err) {
+				console.error('Error: ', err);
+				throw error(err.status || 404, err.message || 'Blog not found');
+			}
+		}
+
+		// Verify the blog belongs to the current user
+		if (blog.author !== locals.user.id) {
+			throw error(403, 'You can only edit your own blogs');
 		}
 
 		// Handle content_object

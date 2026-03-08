@@ -52,6 +52,13 @@ export const actions = {
 		const { id } = Object.fromEntries(await request.formData());
 
 		try {
+			// Verify the project exists and belongs to the current user
+			const project = await locals.pb.collection('projects_valiantlynx').getOne(id);
+
+			if (project.user !== locals.user.id) {
+				throw error(403, 'You can only delete your own projects');
+			}
+
 			await locals.pb.collection('projects_valiantlynx').delete(id);
 		} catch (err) {
 			console.error('Error: ', err);
@@ -65,6 +72,13 @@ export const actions = {
 		const { id } = Object.fromEntries(await request.formData());
 
 		try {
+			// Verify the blog exists and belongs to the current user
+			const blog = await locals.pb.collection('blogs').getOne(id);
+
+			if (blog.author !== locals.user.id) {
+				throw error(403, 'You can only delete your own blogs');
+			}
+
 			await locals.pb.collection('blogs').delete(id);
 		} catch (err) {
 			console.error('Error: ', err);
