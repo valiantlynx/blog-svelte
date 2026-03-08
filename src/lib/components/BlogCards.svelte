@@ -9,7 +9,7 @@
 			navigator
 				.share({
 					title: blog?.title,
-					url: $page.url.origin + '/' + blog?.slug,
+					url: $page.url.origin + '/blogs/' + blog?.slug,
 					text: blog?.summary
 				})
 				.then(() => {
@@ -28,7 +28,7 @@
 <div class="bg-primary border rounded-lg p-4 shadow-md hover:shadow-lg text-primary-content h-full">
 	<img src={blog?.image} alt={blog?.title} class="w-full h-48 object-cover rounded-lg" />
 	<h2 class="text-xl font-bold mt-4">
-		<a href={`/${blog?.slug}`} class="hover:cursor-pointer hover:underline hover:text-warning">
+		<a href="/blogs/{blog?.slug}" class="hover:cursor-pointer hover:underline hover:text-warning">
 			{blog?.title}
 		</a>
 	</h2>
@@ -51,7 +51,7 @@
 		</div>
 		<div class="flex items-center">
 			<a
-				href={`/${blog?.slug}`}
+				href="/blogs/{blog?.slug}"
 				class="block font-bold hover:cursor-pointer hover:underline hover:text-warning"
 				>{m['buttons.read_more']?.()}</a
 			>

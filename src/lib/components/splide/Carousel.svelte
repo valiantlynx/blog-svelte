@@ -50,7 +50,7 @@
 			{#each blogs.items as blog (blog.id)}
 				<SplideSlide>
 					<a
-						href={`/${blog?.slug}`}
+						href="/blogs/{blog?.slug}"
 						class="hover:cursor-pointer hover:underline hover:text-secondary"
 					>
 						<div class="blog-hero">
