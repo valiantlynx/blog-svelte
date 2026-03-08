@@ -2,6 +2,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { page } from '$app/stores';
 	import BlogCards from '$lib/components/BlogCards.svelte';
+	import MasonryGrid from '$lib/components/MasonryGrid.svelte';
 	import Icon from '@iconify/svelte';
 	let { data } = $props();
 
@@ -10,20 +11,24 @@
 	console.log('data', data.blogs);
 </script>
 
-<div class="w-full mt-4 flex flex-wrap -m-4 p-10 items-center">
-	<h2 class="text-3xl font-bold w-full">My Blogs</h2>
+<div class="w-full mt-4 p-4">
+	<h2 class="text-3xl font-bold mb-6">My Blogs</h2>
 	<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
 	<p class="text-center text-3xl">would you like to make a blog blogs.</p>
 	<Button href="/blogs/new" variant="primary" class="max-w-md mt-4">Add One</Button>
 </div>
 
-<div class="w-full mt-4 flex flex-wrap -m-4 p-10 items-center">
-	<h2 class="text-3xl font-bold w-full">
+<div class="w-full mt-4 p-4">
+	<h2 class="text-3xl font-bold mb-6">
 		All Blogs with tag: <p class="text-accent text-3xl">{tag.name}</p>
 	</h2>
-	{#each data.blogs as blog}
-		<BlogCards {blog} />
-	{/each}
+	{#if data.blogs && data.blogs.length > 0}
+		<MasonryGrid items={data.blogs} columnCount={4} gap="gap-4">
+			{#snippet children({ item: blog })}
+				<BlogCards {blog} />
+			{/snippet}
+		</MasonryGrid>
+	{/if}
 </div>
 
 <svelte:head>
@@ -61,7 +66,7 @@
 	<!-- Google / Search Engine Tags -->
 	<meta itemprop="name" content={tag} />
 
-	<!-- Facebook Meta Tags (for social media sharing) -->
+	<!-- Facebook Meta Tags -->
 	<meta property="fb:app_id" content={$page.data.siteName} />
 	<meta property="fb:admins" content={$page.data.siteName} />
 	<meta property="fb:page_id" content={$page.data.siteName} />
@@ -84,7 +89,6 @@
 	<!--meta itemprop="image" content="/twitter-image.png" /-->
 
 	{#if $page.data.sites}
-		<!-- clarity there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead-->
 		{@html `<script type="text/javascript">
 			(function (c, l, a, r, i, t, y) {
 				c[a] =
@@ -100,9 +104,6 @@
 			})(window, document, 'clarity', 'script', '${$page.data.sites.clarity_tag}');
 		</script>`}
 
-		<!-- Google tag (gtag.js) there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead -->
-		<!-- Google tag (gtag.js) there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead -->
-		<!-- Google tag (gtag.js) there is abug in svelte where inside the svript tags i cannot access the variables //! https://stackoverflow.com/questions/63419284/svelte-substitution-in-script-within-sveltehead -->
 		<script
 			async
 			src="https://www.googletagmanager.com/gtag/js?id={$page.data.sites.google_tag}"
@@ -117,9 +118,6 @@
 			gtag('config', '${$page.data.sites.google_tag}');
 		</script>`}
 
-		<!-- Google Adsense -->
-		<!-- Google Adsense -->
-		<!-- Google Adsense -->
 		<script
 			async
 			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={$page.data.sites
