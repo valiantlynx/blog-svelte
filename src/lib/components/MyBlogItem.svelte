@@ -35,21 +35,21 @@
 		<div class="h-48 rounded">
 			<img
 				src={blog?.image
-					? getImageURL(blog?.collectionId, blog?.id, blog?.image, '80x80')
+					? getImageURL(blog?.collectionId, blog?.id, blog?.image)
 					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${blog?.title}`}
 				alt="{blog?.image} blog image"
 			/>
 		</div>
 	</div>
 	<div class="flex flex-col w-full ml-4 h-full justify-center">
-		<a href="/blogs/{blog?.id}" class="font-semibold text-lg">{blog?.title}</a>
+		<a href="/blogs/{blog?.slug}" class="font-semibold text-lg">{blog?.title}</a>
 		<p>{blog?.summary}</p>
 	</div>
 	<div class="flex items-center justify-end w-full">
-		<Button href="/blogs/{blog?.id}/edit" variant="outline">{m['buttons.edit_blog']()}</Button>
+		<Button href="/blogs/{blog?.slug}/edit" variant="outline">{m['buttons.edit_blog']()}</Button>
 		<Modal label={blog?.id} checked={modalOpen}>
 			{#snippet trigger()}
-				<Button variant="error" class="ml-2">{m['buttons.delete']()}</Button>
+				<Button variant="destructive" class="ml-2">{m['buttons.delete']()}</Button>
 			{/snippet}
 			{#snippet heading()}
 				<div>
@@ -66,7 +66,8 @@
 					</label>
 					<form action="?/deleteBlog" method="POST" use:enhance={submitDeleteBlog}>
 						<input type="hidden" name="id" value={blog?.id} />
-						<Button type="submit" variant="error" disabled={loading}>{m['buttons.delete']()}</Button
+						<Button type="submit" variant="destructive" disabled={loading}
+							>{m['buttons.delete']()}</Button
 						>
 					</form>
 				</div>
