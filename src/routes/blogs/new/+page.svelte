@@ -14,6 +14,28 @@
 	let content = $state({});
 	let contentJson = $state('');
 
+	// Slug handling
+	let titleValue = $state('');
+	let slugValue = $state('');
+
+	// Convert title to slug
+	function generateSlug(text) {
+		return text
+			.toLowerCase()
+			.trim()
+			.replace(/[^\w\s-]/g, '') // Remove special chars except spaces and dashes
+			.replace(/[\s_-]+/g, '-') // Replace spaces and underscores with dashes
+			.replace(/^-+|-+$/g, ''); // Remove leading/trailing dashes
+	}
+
+	// Auto-generate slug when title changes
+	function onTitleInput(e) {
+		titleValue = e.target.value;
+		// Only auto-generate slug if user hasn't manually edited it
+		// For simplicity, we'll always update slug from title
+		slugValue = generateSlug(titleValue);
+	}
+
 	onMount(() => {
 		import('@mythrantic/svelte-rich-text').then((module) => {
 			ValiantRichText = module.ValiantRichText;
@@ -66,8 +88,9 @@
 				name="title"
 				label={m['forms.blog_title']()}
 				disabled={loading}
-				value={page.form?.data?.title ?? ''}
+				value={page.form?.data?.title ?? titleValue}
 				errors={page.form?.errors?.title}
+				oninput={onTitleInput}
 			/>
 			<Input
 				id="summary"
@@ -90,9 +113,13 @@
 				name="slug"
 				label={m['forms.blog_slug']()}
 				disabled={loading}
-				value={page.form?.data?.slug ?? ''}
+				value={page.form?.data?.slug ?? slugValue}
 				errors={page.form?.errors?.slug}
+				placeholder="auto-generated-from-title"
 			/>
+			<p class="text-sm text-muted-foreground -mt-2 mb-2">
+				Will be converted to: /blogs/{slugValue || 'your-slug'}
+			</p>
 			<Input
 				id="image"
 				name="image"
