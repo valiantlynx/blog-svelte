@@ -18,11 +18,8 @@
 		<a href="/dashboard/admin"
 			><SideBarIcon tooltip={m['tooltips.admin']()} icon="bx:bx-shield" /></a
 		>
-		<a href="/dashboard/manager"
-			><SideBarIcon tooltip={m['tooltips.manage']()} icon="material-symbols:bookmark-manager" /></a
-		>
 	{/if}
-	{#if page.data.user?.role.includes('editor')}
+	{#if page.data.user?.role.includes('admin') || page.data.user?.role.includes('editor')}
 		<a href="/dashboard/manager"
 			><SideBarIcon tooltip={m['tooltips.manage']()} icon="material-symbols:bookmark-manager" /></a
 		>
