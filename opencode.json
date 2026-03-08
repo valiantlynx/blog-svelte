@@ -134,6 +134,16 @@
 				"LICENSE": "",
 				"EMAIL": ""
 			}
+		},
+		"github": {
+			"type": "remote",
+			"headers": {"Authorization": "Bearer {env:GITHUB_PAT}"},
+			"url": "https://api.githubcopilot.com/mcp/",
+			"oauth": {
+				"clientId": "{env:MADP_CLIENT_ID}",
+				"clientSecret": "{env:MADP_CLIENT_SECRET}",
+				"scope": "tools:read tools:execute"
+			}
 		}
 	}
 }
