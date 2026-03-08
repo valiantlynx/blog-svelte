@@ -30,7 +30,8 @@
 			<div class="relative z-10">
 				<div class="flex items-center gap-4">
 					<div
-						class="h-14 w-14 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-2xl font-bold"
+						class="h-14 w-14 rounded-lg flex items-center justify-center text-white text-2xl font-bold"
+						style="background: linear-gradient(135deg, var(--primary), var(--secondary));"
 					>
 						VL
 					</div>
@@ -40,7 +41,9 @@
 								? m['dashboard_extra.welcome_back']()
 								: 'Welcome back'}
 						</h1>
-						<p class="text-sm text-base-content/60 mt-1">{m['dashboard.manage_subheading']()}</p>
+						<p class="text-sm mt-1" style="color:var(--base-content);opacity:0.7">
+							{m['dashboard.manage_subheading']()}
+						</p>
 					</div>
 				</div>
 
@@ -48,7 +51,8 @@
 					<Button
 						href="/blogs/new"
 						variant="ghost"
-						class="px-4 py-2 shadow-sm bg-white/60 backdrop-blur-sm"
+						class="px-4 py-2 shadow-sm"
+						style="background-color: var(--base-200); backdrop-filter: blur(4px);"
 					>
 						<Icon icon="mdi:plus" class="mr-2" />
 						{m['dashboard.add_blog_button']()}
@@ -61,10 +65,17 @@
 			</div>
 		</div>
 
-		<div class="rounded-2xl p-6 bg-base-100 shadow-md flex flex-col gap-3">
+		<div
+			class="rounded-2xl p-6 shadow-md flex flex-col gap-3"
+			style="background-color:var(--base-100)"
+		>
 			<div class="flex items-center justify-between">
-				<p class="text-sm text-base-content/60">{m['dashboard.quick_stats']()}</p>
-				<span class="text-xs text-base-content/50">{m['status.active']()}</span>
+				<p class="text-sm" style="color:var(--base-content);opacity:0.75">
+					{m['dashboard.quick_stats']()}
+				</p>
+				<span class="text-xs" style="color:var(--base-content);opacity:0.5"
+					>{m['status.active']()}</span
+				>
 			</div>
 			<div class="flex items-center justify-between">
 				<div>
@@ -72,18 +83,26 @@
 						{#if projectsCount === null || blogsCount === null}—{:else}{projectsCount +
 								blogsCount}{/if}
 					</p>
-					<p class="text-sm text-base-content/60">{m['dashboard.total_items']()}</p>
+					<p class="text-sm" style="color:var(--base-content);opacity:0.7">
+						{m['dashboard.total_items']()}
+					</p>
 				</div>
-				<Icon icon="mdi:chart-donut" class="text-5xl text-primary/80" />
+				<Icon icon="mdi:chart-donut" style="font-size:2.2rem;color:var(--primary);opacity:0.85" />
 			</div>
 		</div>
 	</header>
 
 	<!-- Compact stat widgets -->
 	<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-		<article class="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border">
+		<article
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
+			style="background-color:var(--base-100)"
+		>
 			<div class="flex items-center gap-4">
-				<div class="p-3 rounded-lg bg-primary/10 text-primary">
+				<div
+					class="p-3 rounded-lg"
+					style="background-color:var(--primary-light);color:var(--primary)"
+				>
 					<Icon icon="mdi:folder-multiple-plus" />
 				</div>
 				<div>
@@ -95,10 +114,15 @@
 				</div>
 			</div>
 		</article>
-
-		<article class="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border">
+		<article
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
+			style="background-color:var(--base-100)"
+		>
 			<div class="flex items-center gap-4">
-				<div class="p-3 rounded-lg bg-secondary/10 text-secondary">
+				<div
+					class="p-3 rounded-lg"
+					style="background-color:var(--secondary-light);color:var(--secondary)"
+				>
 					<Icon icon="mdi:folder-star" />
 				</div>
 				<div>
@@ -111,10 +135,15 @@
 				</div>
 			</div>
 		</article>
-
-		<article class="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border">
+		<article
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
+			style="background-color:var(--base-100)"
+		>
 			<div class="flex items-center gap-4">
-				<div class="p-3 rounded-lg bg-accent/10 text-accent">
+				<div
+					class="p-3 rounded-lg"
+					style="background-color:var(--accent-light);color:var(--accent)"
+				>
 					<Icon icon="mdi:file-document-multiple" />
 				</div>
 				<div>
@@ -127,10 +156,15 @@
 				</div>
 			</div>
 		</article>
-
-		<article class="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border">
+		<article
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
+			style="background-color:var(--base-100)"
+		>
 			<div class="flex items-center gap-4">
-				<div class="p-3 rounded-lg bg-accent/10 text-accent">
+				<div
+					class="p-3 rounded-lg"
+					style="background-color:var(--accent-light);color:var(--accent)"
+				>
 					<Icon icon="mdi:clock-outline" />
 				</div>
 				<div>
