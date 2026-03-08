@@ -11,7 +11,8 @@
 		disabled = false,
 		required = false,
 		minlength,
-		errors
+		errors,
+		oninput
 	} = $props();
 </script>
 
@@ -26,5 +27,6 @@
 		{required}
 		{minlength}
 		error={!!errors}
+		{oninput}
 	/>
 </FormControl>

@@ -1,5 +1,16 @@
 <script lang="ts">
-	let { label, checked, trigger, heading, children, actions } = $props();
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		label: string;
+		checked: boolean;
+		trigger?: Snippet;
+		heading?: Snippet;
+		actions?: Snippet;
+		children?: Snippet;
+	}
+
+	let { label, checked, trigger, heading, actions, children }: Props = $props();
 </script>
 
 <label for={label}>
