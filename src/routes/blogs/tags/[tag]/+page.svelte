@@ -28,6 +28,8 @@
 				<BlogCards {blog} />
 			{/snippet}
 		</MasonryGrid>
+	{:else}
+		<p class="text-center text-xl">No blogs found with this tag.</p>
 	{/if}
 </div>
 

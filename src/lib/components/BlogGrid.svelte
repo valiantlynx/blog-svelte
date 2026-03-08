@@ -4,7 +4,8 @@
 	import { page } from '$app/stores';
 	import MasonryGrid from '$lib/components/MasonryGrid.svelte';
 	import * as m from '$lib/paraglide/messages.js';
-	const blogs = $page.data.blogs;
+
+	let blogs = $derived($page.data.blogs);
 </script>
 
 {#if blogs?.items?.length}
