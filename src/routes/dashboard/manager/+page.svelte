@@ -10,140 +10,184 @@
 	let blogsCount = $state<number | null>(null);
 </script>
 
-<main class="w-full max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
-	<!-- Redesigned Header -->
-	<div
-		class="mb-8 relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary/5 to-secondary/5 p-6 shadow-lg ring-1 ring-base-content/5"
-	>
+<main class="w-full max-w-7xl mx-auto p-6">
+	<!-- Fresh hero header -->
+	<header class="mb-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
 		<div
-			class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+			class="col-span-2 rounded-3xl p-8 shadow-md relative overflow-hidden"
+			style="background: linear-gradient(90deg, var(--hero-gradient-start), var(--hero-gradient-end));"
 		>
-			<div class="flex-1">
-				<h1 class="text-2xl md:text-3xl font-extrabold text-base-content">
-					{m['dashboard.manage_heading']()}
-				</h1>
-				<p class="mt-1 text-base-content/60 max-w-xl">{m['dashboard.manage_subheading']()}</p>
-				<div class="mt-4 flex flex-wrap gap-3">
-					<a href="/blogs/new" class="btn btn-outline btn-sm">
-						<Icon icon="mdi:plus" class="mr-1" />
-						{m['dashboard.add_blog_button']()}
-					</a>
-					<a href="/projects/new" class="btn btn-outline btn-sm">
-						<Icon icon="mdi:plus" class="mr-1" />
-						{m['dashboard.add_project_button']()}
-					</a>
-				</div>
+			<div class="absolute -right-24 -top-10 opacity-10 transform rotate-12">
+				<svg
+					width="220"
+					height="220"
+					viewBox="0 0 100 100"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<circle
+						cx="50"
+						cy="50"
+						r="45"
+						stroke="var(--primary)"
+						stroke-width="10"
+						stroke-opacity="0.12"
+					/>
+				</svg>
 			</div>
-			<div class="flex items-center gap-4">
-				<div class="text-right">
-					<p class="text-sm text-base-content/60">{m['dashboard.quick_stats']()}</p>
-					<p class="text-2xl font-bold">
-						{#if projectsCount === null || blogsCount === null}...{:else}{projectsCount +
-								blogsCount}{/if}
-					</p>
+			<div class="relative z-10">
+				<div class="flex items-center gap-4">
+					<div
+						class="h-14 w-14 rounded-lg flex items-center justify-center text-white text-2xl font-bold"
+						style="background: linear-gradient(135deg, var(--primary), var(--secondary));"
+					>
+						VL
+					</div>
+					<div>
+						<h1 class="text-2xl font-extrabold">
+							{m['dashboard_extra.welcome_back']
+								? m['dashboard_extra.welcome_back']()
+								: 'Welcome back'}
+						</h1>
+						<p class="text-sm mt-1" style="color:var(--base-content);opacity:0.7">
+							{m['dashboard.manage_subheading']()}
+						</p>
+					</div>
 				</div>
-				<Icon icon="mdi:account-circle" class="text-5xl opacity-25" />
+
+				<div class="mt-6 flex flex-wrap gap-3">
+					<Button
+						href="/blogs/new"
+						variant="ghost"
+						class="px-4 py-2 shadow-sm"
+						style="background-color: var(--base-200); backdrop-filter: blur(4px);"
+					>
+						<Icon icon="mdi:plus" class="mr-2" />
+						{m['dashboard.add_blog_button']()}
+					</Button>
+					<Button href="/projects/new" variant="outline" class="px-4 py-2">
+						<Icon icon="mdi:rocket-launch" class="mr-2" />
+						{m['dashboard.add_project_button']()}
+					</Button>
+				</div>
+
+				<!-- theme-aware overlay to mute hero in dark modes -->
+				<div
+					class="absolute inset-0 pointer-events-none"
+					style="background: var(--hero-overlay); mix-blend-mode: overlay;"
+				></div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Modern Stats Cards -->
-	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-		<!-- Total Content Card -->
 		<div
-			class="group relative overflow-hidden rounded-2xl bg-base-100 p-5 shadow-lg ring-1 ring-base-content/5 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:ring-primary/20 dark:ring-white/10"
+			class="rounded-2xl p-6 shadow-md flex flex-col gap-3"
+			style="background-color:var(--base-100)"
 		>
-			<div
-				class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
-			></div>
-			<div class="relative z-10 flex items-center gap-4">
+			<div class="flex items-center justify-between">
+				<p class="text-sm" style="color:var(--base-content);opacity:0.75">
+					{m['dashboard.quick_stats']()}
+				</p>
+				<span class="text-xs" style="color:var(--base-content);opacity:0.5"
+					>{m['status.active']()}</span
+				>
+			</div>
+			<div class="flex items-center justify-between">
+				<div>
+					<p class="text-3xl font-bold">
+						{#if projectsCount === null || blogsCount === null}—{:else}{projectsCount +
+								blogsCount}{/if}
+					</p>
+					<p class="text-sm" style="color:var(--base-content);opacity:0.7">
+						{m['dashboard.total_items']()}
+					</p>
+				</div>
+				<Icon icon="mdi:chart-donut" style="font-size:2.2rem;color:var(--primary);opacity:0.85" />
+			</div>
+		</div>
+	</header>
+
+	<!-- Compact stat widgets -->
+	<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+		<article
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
+			style="background-color:var(--base-100)"
+		>
+			<div class="flex items-center gap-4">
 				<div
-					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-content"
+					class="p-3 rounded-lg"
+					style="background-color:var(--primary-light);color:var(--primary)"
 				>
 					<Icon icon="mdi:folder-multiple-plus" />
 				</div>
 				<div>
-					<p class="text-sm font-medium text-base-content/60">{m['dashboard.total_items']()}</p>
-					{#if projectsCount === null || blogsCount === null}
-						<div class="text-2xl font-bold">{m['tooltips.loading']()}</div>
-					{:else}
-						<div class="text-2xl font-bold">{projectsCount + blogsCount}</div>
-					{/if}
+					<div class="text-sm text-base-content/60">{m['dashboard.total_items']()}</div>
+					<div class="text-xl font-semibold">
+						{#if projectsCount === null || blogsCount === null}—{:else}{projectsCount +
+								blogsCount}{/if}
+					</div>
 				</div>
 			</div>
-		</div>
-
-		<!-- Projects Card -->
-		<div
-			class="group relative overflow-hidden rounded-2xl bg-base-100 p-5 shadow-lg ring-1 ring-base-content/5 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:ring-primary/20 dark:ring-white/10"
+		</article>
+		<article
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
+			style="background-color:var(--base-100)"
 		>
-			<div
-				class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
-			></div>
-			<div class="relative z-10 flex items-center gap-4">
+			<div class="flex items-center gap-4">
 				<div
-					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-content"
+					class="p-3 rounded-lg"
+					style="background-color:var(--secondary-light);color:var(--secondary)"
 				>
 					<Icon icon="mdi:folder-star" />
 				</div>
 				<div>
-					<p class="text-sm font-medium text-base-content/60">{m['dashboard.projects_count']()}</p>
+					<div class="text-sm text-base-content/60">{m['dashboard.projects_count']()}</div>
 					{#await data.projects}
-						<div class="text-2xl font-bold">Loading...</div>
+						<div class="text-xl font-semibold">—</div>
 					{:then projects}
-						<div class="text-2xl font-bold">{projects?.length ?? 0}</div>
+						<div class="text-xl font-semibold">{projects?.length ?? 0}</div>
 					{/await}
 				</div>
 			</div>
-		</div>
-
-		<!-- Blogs Card -->
-		<div
-			class="group relative overflow-hidden rounded-2xl bg-base-100 p-5 shadow-lg ring-1 ring-base-content/5 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:ring-secondary/20 dark:ring-white/10"
+		</article>
+		<article
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
+			style="background-color:var(--base-100)"
 		>
-			<div
-				class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
-			></div>
-			<div class="relative z-10 flex items-center gap-4">
+			<div class="flex items-center gap-4">
 				<div
-					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-secondary/10 text-secondary transition-colors group-hover:bg-secondary group-hover:text-secondary-content"
+					class="p-3 rounded-lg"
+					style="background-color:var(--accent-light);color:var(--accent)"
 				>
 					<Icon icon="mdi:file-document-multiple" />
 				</div>
 				<div>
-					<p class="text-sm font-medium text-base-content/60">{m['dashboard.blogs_count']()}</p>
+					<div class="text-sm text-base-content/60">{m['dashboard.blogs_count']()}</div>
 					{#await data.blogs}
-						<div class="text-2xl font-bold">Loading...</div>
+						<div class="text-xl font-semibold">—</div>
 					{:then blogs}
-						<div class="text-2xl font-bold">{blogs?.length ?? 0}</div>
+						<div class="text-xl font-semibold">{blogs?.length ?? 0}</div>
 					{/await}
 				</div>
 			</div>
-		</div>
-
-		<!-- Recent Activity Card -->
-		<div
-			class="group relative overflow-hidden rounded-2xl bg-base-100 p-5 shadow-lg ring-1 ring-base-content/5 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:ring-accent/20 dark:ring-white/10"
+		</article>
+		<article
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
+			style="background-color:var(--base-100)"
 		>
-			<div
-				class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
-			></div>
-			<div class="relative z-10 flex items-center gap-4">
+			<div class="flex items-center gap-4">
 				<div
-					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-content"
+					class="p-3 rounded-lg"
+					style="background-color:var(--accent-light);color:var(--accent)"
 				>
 					<Icon icon="mdi:clock-outline" />
 				</div>
 				<div>
-					<p class="text-sm font-medium text-base-content/60">{m['dashboard.recent_activity']()}</p>
-					<div class="mt-1 flex items-center gap-2">
-						<span class="inline-flex h-2 w-2 rounded-full bg-green-500"></span>
-						<span class="text-sm font-medium">Active</span>
-					</div>
+					<div class="text-sm text-base-content/60">{m['dashboard.recent_activity']()}</div>
+					<div class="text-xl font-semibold">{m['status.active']()}</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</article>
+	</section>
 
 	<!-- Content Tabs for Mobile -->
 	<div class="tabs tabs-boxed mb-6 md:hidden">

@@ -553,6 +553,32 @@
 	--border: #e2e8f0;
 }
 
+/* Theme-aware hero variables (used by manager header) */
+:root[data-theme='default-light'] {
+	--hero-gradient-start: rgba(59, 130, 246, 0.06); /* subtle primary tint */
+	--hero-gradient-end: rgba(139, 92, 246, 0.03); /* subtle secondary tint */
+	--hero-overlay: rgba(255, 255, 255, 0.6);
+}
+
+:root[data-theme='default-dark'] {
+	--hero-gradient-start: rgba(96, 165, 250, 0.06);
+	--hero-gradient-end: rgba(196, 181, 253, 0.03);
+	--hero-overlay: rgba(0, 0, 0, 0.45);
+}
+
+/* Fallbacks for other themes: pick a safe overlay and subtle tints */
+:root[data-theme$='-light'] {
+	--hero-gradient-start: rgba(0, 0, 0, 0.03);
+	--hero-gradient-end: rgba(0, 0, 0, 0.02);
+	--hero-overlay: rgba(255, 255, 255, 0.5);
+}
+
+:root[data-theme$='-dark'] {
+	--hero-gradient-start: rgba(0, 0, 0, 0.06);
+	--hero-gradient-end: rgba(0, 0, 0, 0.03);
+	--hero-overlay: rgba(0, 0, 0, 0.5);
+}
+
 @media (prefers-color-scheme: dark) {
 	:root {
 		color-scheme: dark;

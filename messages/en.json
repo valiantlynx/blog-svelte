@@ -258,6 +258,13 @@
 		"total_likes": "Total Likes",
 		"engagement_rate": "Engagement Rate"
 	},
+	"status": {
+		"active": "Active"
+	},
+	"dashboard_extra": {
+		"welcome_back": "Welcome back",
+		"create_content": "Create content"
+	},
 	"contact": {
 		"also_contact": "You can also contact us in our socials"
 	},
