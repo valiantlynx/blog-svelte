@@ -9,11 +9,12 @@
 
 	$effect(() => {
 		if (browser) {
-			currentTheme =
-				localStorage.getItem('theme') ??
-				(window.matchMedia('(prefers-color-scheme: dark)').matches
-					? 'default-dark'
-					: 'default-light');
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			const mode = prefersDark ? 'dark' : 'light';
+			const modeThemes = themes.filter((t) => t.mode === mode);
+			const randomTheme = modeThemes[Math.floor(Math.random() * modeThemes.length)].id;
+			console.log(`Detected ${mode} mode, applying random theme: ${randomTheme}`);
+			currentTheme = localStorage.getItem('theme') ?? randomTheme;
 			document.documentElement.setAttribute('data-theme', currentTheme);
 		}
 	});
