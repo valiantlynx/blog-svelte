@@ -34,10 +34,10 @@
 			</button>
 		</svelte:fragment>
 
-		<div class="py-2">
+		<div class="py-2 bg-base-200 text-base-content transition-colors">
 			<a
 				href="/dashboard/profile/preview"
-				class="block px-4 py-2 hover:bg-[var(--base-200)] transition-colors"
+				class="block px-4 py-2 hover:bg-[var(--primary)] hover:text-[var(--primary-content)]"
 				onclick={() => (dropdownOpen = false)}
 			>
 				<div class="flex items-center justify-between gap-2">
@@ -47,14 +47,14 @@
 			</a>
 			<a
 				href="/"
-				class="block px-4 py-2 hover:bg-[var(--base-200)] transition-colors"
+				class="block px-4 py-2 hover:bg-[var(--primary)] hover:text-[var(--primary-content)]"
 				onclick={() => (dropdownOpen = false)}
 			>
 				{m['header.home']()}
 			</a>
 			<a
 				href="/pricing"
-				class="block px-4 py-2 hover:bg-[var(--base-200)] transition-colors"
+				class="block px-4 py-2 hover:bg-[var(--primary)] hover:text-[var(--primary-content)]"
 				onclick={() => (dropdownOpen = false)}
 			>
 				<div class="flex items-center justify-between gap-2">
@@ -63,7 +63,7 @@
 			</a>
 			<a
 				href="/dashboard"
-				class="block px-4 py-2 hover:bg-[var(--base-200)] transition-colors"
+				class="block px-4 py-2 hover:bg-[var(--primary)] hover:text-[var(--primary-content)]"
 				onclick={() => (dropdownOpen = false)}
 			>
 				<div class="flex items-center justify-between gap-2">

@@ -138,7 +138,7 @@
 				class="border-l border-base-300 bg-base-200 hover:bg-base-300 transition-colors duration-200"
 			>
 				<select
-					class="bg-transparent text-base-content border-0 px-3 py-2 focus:outline-none cursor-pointer font-medium"
+					class="bg-base-200 text-base-content border-0 px-3 py-2 focus:outline-none cursor-pointer font-medium"
 					bind:value={selectedOption}
 				>
 					<option value={m['header.blogs']?.()}>{m['header.blogs']?.()}</option>
