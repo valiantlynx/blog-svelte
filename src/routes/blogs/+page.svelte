@@ -16,7 +16,11 @@
 <div class="w-full mt-4 p-4">
 	<h2 class="text-3xl font-bold mb-6">All Blogs</h2>
 
-	{#if data.blogs.items.length > 0}
+	{#if !data.blogs?.items || data.blogs.items.length === 0}
+		<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
+		<p class="text-center text-3xl">No blogs yet.</p>
+		<Button href="/blogs/new" variant="primary" class="max-w-md mt-4">Add One</Button>
+	{:else}
 		<MasonryGrid items={data.blogs.items} columnCount={4} gap="gap-4">
 			{#snippet children({ item: blog })}
 				<BlogCards {blog} />

@@ -7,11 +7,13 @@
 	const blogs = $page.data.blogs;
 </script>
 
-<MasonryGrid items={blogs.items} columnCount={4} gap="gap-6">
-	{#snippet children({ item: blog })}
-		<BlogCards {blog} />
-	{/snippet}
-</MasonryGrid>
+{#if blogs?.items?.length}
+	<MasonryGrid items={blogs.items} columnCount={4} gap="gap-6">
+		{#snippet children({ item: blog })}
+			<BlogCards {blog} />
+		{/snippet}
+	</MasonryGrid>
+{/if}
 
 <!-- if they want to see more available to go to the features page -->
 <div class="flex justify-center mb-8 mt-8">
