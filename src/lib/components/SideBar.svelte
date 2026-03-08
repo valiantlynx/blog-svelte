@@ -14,14 +14,13 @@
 	<a href="/dashboard/settings"
 		><SideBarIcon tooltip={m['tooltips.settings']()} icon="bx:bx-cog" /></a
 	>
+	<a href="/dashboard/manager"
+		><SideBarIcon tooltip={m['tooltips.manage']()} icon="material-symbols:bookmark-manager" /></a
+	>
+
 	{#if page.data.user?.role.includes('admin')}
 		<a href="/dashboard/admin"
 			><SideBarIcon tooltip={m['tooltips.admin']()} icon="bx:bx-shield" /></a
-		>
-	{/if}
-	{#if page.data.user?.role.includes('admin') || page.data.user?.role.includes('editor')}
-		<a href="/dashboard/manager"
-			><SideBarIcon tooltip={m['tooltips.manage']()} icon="material-symbols:bookmark-manager" /></a
 		>
 	{/if}
 
