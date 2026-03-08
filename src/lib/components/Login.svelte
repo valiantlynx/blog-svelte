@@ -46,6 +46,7 @@
 				<Input
 					type="email"
 					id="email"
+					name="email"
 					placeholder={m['placeholders.enter_email']()}
 					value={page.form?.data?.email ?? ''}
 					error={!!page.form?.errors?.email}
@@ -60,6 +61,7 @@
 				<Input
 					type="password"
 					id="password"
+					name="password"
 					minlength="8"
 					placeholder={m['placeholders.password']()}
 					error={!!page.form?.errors?.password}

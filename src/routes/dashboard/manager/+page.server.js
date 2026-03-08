@@ -7,9 +7,10 @@ export const load = ({ locals }) => {
 		throw redirect(303, '/login');
 	}
 
-	if (!locals.user.role.includes('editor')) {
-		throw redirect(303, '/pricing');
-	}
+	// Allow any logged-in user to view their blogs/projects
+	// Removed role check: if (!locals.user.role.includes('editor')) {
+	//     throw redirect(303, '/pricing');
+	// }
 
 	const getUsersProjects = async (userId) => {
 		try {

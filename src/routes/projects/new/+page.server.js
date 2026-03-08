@@ -5,9 +5,8 @@ export const load = ({ locals }) => {
 		throw redirect(303, '/login');
 	}
 
-	if (!locals.user.role.includes('editor')) {
-		throw redirect(303, '/pricing');
-	}
+	// Allow any logged-in user to create projects
+	// Removed role check
 };
 
 export const actions = {

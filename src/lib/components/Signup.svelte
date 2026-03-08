@@ -46,22 +46,25 @@
 		>
 			<Input
 				id="name"
+				name="name"
 				label={m['forms.name']()}
-				value={page.form?.data?.name}
+				value={page.form?.data?.name ?? ''}
 				errors={page.form?.errors?.name}
 				disabled={loading}
 			/>
 			<Input
 				type="email"
 				id="email"
+				name="email"
 				label={m['forms.email']()}
-				value={page.form?.data?.email}
+				value={page.form?.data?.email ?? ''}
 				errors={page.form?.errors?.email}
 				disabled={loading}
 			/>
 			<Input
 				type="password"
 				id="password"
+				name="password"
 				label={m['forms.password']()}
 				errors={page.form?.errors?.password}
 				disabled={loading}
@@ -69,6 +72,7 @@
 			<Input
 				type="password"
 				id="passwordConfirm"
+				name="passwordConfirm"
 				label={m['forms.password_confirm']()}
 				errors={page.form?.errors?.passwordConfirm}
 				disabled={loading}

@@ -5,7 +5,6 @@
 	import Icon from '@iconify/svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	let { data } = $props();
-	console.log('data', data);
 </script>
 
 <main class="flex flex-col w-full overflow-hidden m-4">
@@ -24,18 +23,24 @@
 			<h2 class="sm:text-3xl text-md3xl font-bold w-full">
 				{m['dashboard.my_projects_heading']()}
 			</h2>
-			{#if data.projects.length === 0}
-				<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
-				<p class="text-center sm:text-3xl text-md">{m['dashboard.no_projects']()}</p>
-				<Button href="/projects/new" variant="primary" class="max-w-md mt-4"
-					>{m['dashboard.add_project_button']()}</Button
-				>
-			{:else}
-				{#each data.projects as project}
-					<MyProjectItem {project} />
-					<div class="divider mt-0 mb-2"></div>
-				{/each}
-			{/if}
+			{#await data.projects}
+				<p>Loading...</p>
+			{:then projects}
+				{#if !projects || projects.length === 0}
+					<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
+					<p class="text-center sm:text-3xl text-md">{m['dashboard.no_projects']()}</p>
+					<Button href="/projects/new" variant="primary" class="max-w-md mt-4"
+						>{m['dashboard.add_project_button']()}</Button
+					>
+				{:else}
+					{#each projects as project}
+						<MyProjectItem {project} />
+						<div class="divider mt-0 mb-2"></div>
+					{/each}
+				{/if}
+			{:catch}
+				<p class="text-error">Error loading projects</p>
+			{/await}
 		</div>
 
 		<div class="w-full mt-4 flex flex-col items-center mx-3">
@@ -46,22 +51,28 @@
 			</Button>
 
 			<h2 class="text-3xl font-bold w-full">{m['dashboard.my_blogs_heading']()}</h2>
-			{#if data.blogs.length === 0}
-				<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
-				<p class="text-center text-xl">{m['dashboard.no_blogs']()}</p>
-				<Button href="/blogs/new" variant="primary" class="max-w-md mt-4"
-					>{m['dashboard.add_blog_button']()}</Button
-				>
-			{:else}
-				<div class="w-full">
-					{#each data.blogs as blog}
-						<div class="flex flex-col my-2">
-							<MyBlogItem {blog} />
-						</div>
-						<div class="divider"></div>
-					{/each}
-				</div>
-			{/if}
+			{#await data.blogs}
+				<p>Loading...</p>
+			{:then blogs}
+				{#if !blogs || blogs.length === 0}
+					<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
+					<p class="text-center text-xl">{m['dashboard.no_blogs']()}</p>
+					<Button href="/blogs/new" variant="primary" class="max-w-md mt-4"
+						>{m['dashboard.add_blog_button']()}</Button
+					>
+				{:else}
+					<div class="w-full">
+						{#each blogs as blog}
+							<div class="flex flex-col my-2">
+								<MyBlogItem {blog} />
+							</div>
+							<div class="divider"></div>
+						{/each}
+					</div>
+				{/if}
+			{:catch}
+				<p class="text-error">Error loading blogs</p>
+			{/await}
 		</div>
 	</div>
 </main>
