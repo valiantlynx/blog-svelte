@@ -1,6 +1,6 @@
 // stores.js
 import { writable } from 'svelte/store';
-
+import { themes } from '$lib/components/ui/styles/themes';
 // Initial cart state
 
 const initialCart: any = [];
@@ -111,7 +111,10 @@ function createThemeStore() {
 					}
 				} else {
 					const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-					set({ theme: 'default', mode: isDark ? 'dark' : 'light' });
+					const mode = isDark ? 'dark' : 'light';
+					const modeThemes = themes.filter((t) => t.mode === mode);
+					const randomTheme = modeThemes[Math.floor(Math.random() * modeThemes.length)].name;
+					set({ theme: randomTheme, mode });
 				}
 			}
 		},
