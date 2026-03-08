@@ -14,8 +14,7 @@
 	<!-- Fresh hero header -->
 	<header class="mb-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
 		<div
-			class="col-span-2 rounded-3xl p-8 shadow-md relative overflow-hidden"
-			style="background: linear-gradient(90deg, var(--hero-gradient-start), var(--hero-gradient-end));"
+			class="col-span-2 rounded-3xl p-8 shadow-md relative overflow-hidden bg-base-100"
 		>
 			<div class="absolute -right-24 -top-10 opacity-10 transform rotate-12">
 				<svg
@@ -58,14 +57,12 @@
 				<div class="mt-6 flex flex-wrap gap-3">
 					<Button
 						href="/blogs/new"
-						variant="ghost"
-						class="px-4 py-2 shadow-sm"
-						style="background-color: var(--base-200); backdrop-filter: blur(4px);"
+						variant="primary"
 					>
 						<Icon icon="mdi:plus" class="mr-2" />
 						{m['dashboard.add_blog_button']()}
 					</Button>
-					<Button href="/projects/new" variant="outline" class="px-4 py-2">
+					<Button href="/projects/new" variant="secondary" class="px-4 py-2">
 						<Icon icon="mdi:rocket-launch" class="mr-2" />
 						{m['dashboard.add_project_button']()}
 					</Button>
@@ -74,17 +71,15 @@
 				<!-- theme-aware overlay to mute hero in dark modes -->
 				<div
 					class="absolute inset-0 pointer-events-none"
-					style="background: var(--hero-overlay); mix-blend-mode: overlay;"
 				></div>
 			</div>
 		</div>
 
 		<div
-			class="rounded-2xl p-6 shadow-md flex flex-col gap-3"
-			style="background-color:var(--base-100)"
+			class="rounded-2xl p-6 shadow-md flex flex-col gap-3 bg-base-100 h-full"
 		>
 			<div class="flex items-center justify-between">
-				<p class="text-sm" style="color:var(--base-content);opacity:0.75">
+				<p class="text-sm">
 					{m['dashboard.quick_stats']()}
 				</p>
 				<span class="text-xs" style="color:var(--base-content);opacity:0.5"
@@ -109,13 +104,11 @@
 	<!-- Compact stat widgets -->
 	<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
 		<article
-			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
-			style="background-color:var(--base-100)"
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100"
 		>
 			<div class="flex items-center gap-4">
 				<div
 					class="p-3 rounded-lg"
-					style="background-color:var(--primary-light);color:var(--primary)"
 				>
 					<Icon icon="mdi:folder-multiple-plus" />
 				</div>
@@ -129,13 +122,11 @@
 			</div>
 		</article>
 		<article
-			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
-			style="background-color:var(--base-100)"
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100"
 		>
 			<div class="flex items-center gap-4">
 				<div
 					class="p-3 rounded-lg"
-					style="background-color:var(--secondary-light);color:var(--secondary)"
 				>
 					<Icon icon="mdi:folder-star" />
 				</div>
@@ -150,13 +141,11 @@
 			</div>
 		</article>
 		<article
-			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
-			style="background-color:var(--base-100)"
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100"
 		>
 			<div class="flex items-center gap-4">
 				<div
 					class="p-3 rounded-lg"
-					style="background-color:var(--accent-light);color:var(--accent)"
 				>
 					<Icon icon="mdi:file-document-multiple" />
 				</div>
@@ -171,13 +160,11 @@
 			</div>
 		</article>
 		<article
-			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow border"
-			style="background-color:var(--base-100)"
+			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100"
 		>
 			<div class="flex items-center gap-4">
 				<div
 					class="p-3 rounded-lg"
-					style="background-color:var(--accent-light);color:var(--accent)"
 				>
 					<Icon icon="mdi:clock-outline" />
 				</div>
