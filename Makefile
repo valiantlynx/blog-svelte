@@ -93,13 +93,6 @@ clean-all: clean ## Clean everything including dependencies
 db-migrate: ## Run PocketBase migrations
 	@echo "$(BLUE)Running database migrations...$(NC)"
 	@cd pocketbase && go run . migrate up
-
-db-admin: ## Show database admin credentials
-	@echo "$(BLUE)PocketBase Admin Credentials:$(NC)"
-	@echo "  URL:      http://localhost:8090/_/"
-	@echo "  Email:    admin@valiantlynx.com"
-	@echo "  Password: valiantlynx_admin_2025"
-
 db-backup: ## Backup PocketBase database
 	@echo "$(BLUE)Creating database backup...$(NC)"
 	@cd pocketbase && ./backups/backup.sh || echo "Backup script not found"
