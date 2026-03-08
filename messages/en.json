@@ -126,7 +126,7 @@
 		"comment_sent": "comment sent",
 		"comment_delivered": "comment delivered",
 		"no_search_results": "No search results",
-		"not_logged_in": "the user isnt logged in",
+		"not_logged_in": "the user isn't logged in",
 		"join_discussion": "Join the Discussion",
 		"coming_soon": "Coming Soon",
 		"browser_not_support_api": "Browser doesn't support this API"
