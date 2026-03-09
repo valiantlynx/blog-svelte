@@ -19,8 +19,8 @@ importers:
         specifier: ^2.13.2
         version: 2.13.2
       '@lucide/svelte':
-        specifier: 0.562.0
-        version: 0.562.0(svelte@5.53.8)
+        specifier: 0.577.0
+        version: 0.577.0(svelte@5.53.8)
       '@mythrantic/svelte-rich-text':
         specifier: ^1.1.0
         version: 1.1.0(@tiptap/extension-code-block@3.14.0(@tiptap/core@3.14.0(@tiptap/pm@3.14.0))(@tiptap/pm@3.14.0))(@tiptap/extension-floating-menu@3.14.0(@floating-ui/dom@1.7.4)(@tiptap/core@3.14.0(@tiptap/pm@3.14.0))(@tiptap/pm@3.14.0))(highlight.js@11.11.1)(svelte@5.53.8)
@@ -371,6 +371,11 @@ packages:
 
   '@lucide/svelte@0.562.0':
     resolution: {integrity: sha512-wDMULwtTFN2Sc/TFBm6gfuVCNb4Y5P9LDrwxNnUbV52+IEU7NXZmvxwXoz+vrrpad6Xupq+Hw5eUlqIHEGhouw==}
+    peerDependencies:
+      svelte: ^5
+
+  '@lucide/svelte@0.577.0':
+    resolution: {integrity: sha512-0P6mkySd2MapIEgq08tADPmcN4DHndC/02PWwaLkOerXlx5Sv9aT4BxyXLIY+eccr0g/nEyCYiJesqS61YdBZQ==}
     peerDependencies:
       svelte: ^5
 
@@ -2125,6 +2130,10 @@ snapshots:
   '@lix-js/server-protocol-schema@0.1.1': {}
 
   '@lucide/svelte@0.562.0(svelte@5.53.8)':
+    dependencies:
+      svelte: 5.53.8
+
+  '@lucide/svelte@0.577.0(svelte@5.53.8)':
     dependencies:
       svelte: 5.53.8
 
