@@ -106,7 +106,7 @@ INTEGRATION POINTS:
 ✅ Google Analytics and Clarity tracking
 ✅ Google AdSense integration
 ✅ OAuth2 providers (Google, GitHub)
-✅ Comment system (Commento)
+✅ Comment system (samlet-chat)
 ✅ File uploads for images and avatars
 
 DEPLOYMENT READY:

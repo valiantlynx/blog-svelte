@@ -218,7 +218,7 @@ pb.collection('comments').subscribe('*', function (e) {
 
 ### Comment System
 
-- Commento integration support
+- samlet-chat integration support
 - Native PocketBase comments
 
 ## Security
