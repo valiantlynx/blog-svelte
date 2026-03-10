@@ -270,10 +270,8 @@
 
 <Toaster />
 <Nav />
-<div class="bg-base-200">
-	{@render children?.()}
-</div>
-<div class="container mx-auto px-4">
+{@render children?.()}
+<div class="container mx-auto">
 	<script defer src="https://samlet-chat.valiantlynx.com/js/samlet-chat.js"></script>
 	<div id="samlet-chat"></div>
 </div>

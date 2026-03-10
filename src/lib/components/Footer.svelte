@@ -5,7 +5,7 @@
 	import LanguageSwitcher from './LanguageSwitcher.svelte';
 </script>
 
-<footer class="bg-base-200 text-base-content border-t border-base-300">
+<footer class="bg-base-100 text-base-content border-t border-base-300">
 	<div class="container mx-auto px-6 py-12 md:py-16">
 		<!-- Main Footer Grid -->
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-10">
