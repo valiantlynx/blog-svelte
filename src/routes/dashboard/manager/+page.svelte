@@ -10,7 +10,7 @@
 	let blogsCount = $state<number | null>(null);
 </script>
 
-<main class="w-full max-w-7xl mx-auto p-6 text-base-content">
+<main class="w-full max-w-7xl mx-auto p-6">
 	<!-- Fresh hero header -->
 	<header class="mb-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
 		<div

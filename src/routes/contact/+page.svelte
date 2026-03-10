@@ -27,7 +27,7 @@
 	<meta name="description" content={m['pages.contact_description']()} />
 </svelte:head>
 
-<div class="container my-24 mx-auto md:px-6">
+<div class="container my-24 mx-auto md:px-6 text-base-content">
 	<section class="mb-32 text-center">
 		<div class="py-12 md:px-12">
 			<div class="container mx-auto xl:px-32">

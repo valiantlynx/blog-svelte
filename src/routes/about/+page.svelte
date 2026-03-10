@@ -7,6 +7,6 @@
 	<meta name="description" content={m['pages.about_description']()} />
 </svelte:head>
 
-<div class="text-column">
+<div class="text-column text-base-content">
 	<h1>{m['pages.about_description']()}</h1>
 </div>

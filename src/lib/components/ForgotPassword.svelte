@@ -31,8 +31,8 @@
 	};
 </script>
 
-<div class="flex flex-col items-center h-full py-10 w-full">
-	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
+<div class="flex flex-col items-center h-full py-10 w-full text-base-content">
+	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight">
 		{m['forms.password_reset_title']()}
 	</h2>
 	<p class="text-center mt-1">{m['forms.password_reset_description']()}</p>
