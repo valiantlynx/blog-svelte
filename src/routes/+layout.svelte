@@ -270,7 +270,9 @@
 
 <Toaster />
 <Nav />
-{@render children?.()}
+<div class="bg-base-200">
+	{@render children?.()}
+</div>
 <div class="container mx-auto px-4 my-8">
 	<script defer src="https://commento.valiantlynx.com/js/commento.js"></script>
 	<div id="commento"></div>
