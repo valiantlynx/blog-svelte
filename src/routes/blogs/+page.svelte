@@ -6,7 +6,7 @@
 	let { data } = $props();
 </script>
 
-<div class="w-full mt-4 p-4">
+<div class="w-full mt-4 p-4 text-base-content">
 	<h2 class="text-3xl font-bold mb-6">My Blogs</h2>
 	<Icon icon="mdi:emoticon-sad-outline" width="40" height="40" class="mx-auto" />
 	<p class="text-center text-3xl">would you like to make a blog blogs.</p>

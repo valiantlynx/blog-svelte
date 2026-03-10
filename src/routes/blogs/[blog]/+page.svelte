@@ -61,7 +61,7 @@
 </script>
 
 <!-- Blog Container -->
-<div class="container mx-auto px-4 md:px-8 lg:px-12 py-4 md:py-8 lg:py-12">
+<div class="container mx-auto px-4 md:px-8 lg:px-12 py-4 md:py-8 lg:py-12 text-base-content">
 	<!-- Blog Header -->
 	<div class="mb-8">
 		<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{blog?.title}</h1>
