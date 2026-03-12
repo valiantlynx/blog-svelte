@@ -5,6 +5,7 @@
 .gallery--thumbs .splide__slide {
 	border-radius: 10px;
 	height: 100px;
+	max-width: 150px;
 	overflow: hidden;
 }
 
