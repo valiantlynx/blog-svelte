@@ -5,9 +5,12 @@
 	import { site } from '$lib/utils/config';
 	import * as m from '$lib/paraglide/messages.js';
 
-	const avatar = $page.data.user?.avatar
-		? `${site.pocketbase}/api/files/${$page.data.user?.collectionId}/${$page.data.user?.id}/${$page.data.user?.avatar}`
-		: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${$page.data.user?.username}`;
+	const avatar = $derived(  
+        $page.data.user?.avatar  
+            ? `${site.pocketbase}/api/files/${$page.data.user?.collectionId}/${$page.data.user?.id}/${$page.data.user?.avatar}`  
+            : `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${$page.data.user?.username}`  
+    );  
+
 
 	const userStats = [
 		{
@@ -34,24 +37,12 @@
 
 <div class="w-full min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200">
 	<div class="container mx-auto px-4 py-8 md:py-16">
-		<!-- Hero Section with Banner -->
-		<div class="mb-8">
-			<div
-				class="relative h-48 md:h-64 bg-gradient-to-r from-primary via-secondary to-primary rounded-2xl overflow-hidden shadow-xl"
-				style="background-size: 200% 200%; animation: gradient 8s ease infinite;"
-			>
-				<div class="absolute inset-0 opacity-20">
-					<div class="absolute inset-0 bg-noise"></div>
-				</div>
-			</div>
-		</div>
-
 		<!-- Main Profile Card -->
 		<div class="max-w-4xl mx-auto">
 			<!-- Profile Header -->
 			<div class="relative bg-base-100 rounded-2xl shadow-2xl overflow-hidden mb-8">
 				<!-- Negative margin to overlap banner -->
-				<div class="relative -mt-24 px-6 md:px-12 pt-4 pb-8">
+				<div class="relative  px-6 md:px-12 pt-4 pb-8">
 					<div class="flex flex-col md:flex-row md:items-end md:gap-8 mb-8">
 						<!-- Avatar -->
 						<div class="flex-shrink-0">
@@ -65,7 +56,7 @@
 						<!-- Name and Title -->
 						<div class="flex-1 pt-4 md:pt-0">
 							<h1
-								class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+								class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text"
 							>
 								{$page.data.user?.username || 'User'}
 							</h1>
