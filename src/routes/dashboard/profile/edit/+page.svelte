@@ -56,7 +56,7 @@
 		<!-- Header -->
 		<div class="mb-8">
 			<h1
-				class="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+				class="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text "
 			>
 				Edit Your Profile
 			</h1>
