@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "Home",
 		"blogs": "Blogs",
@@ -254,19 +255,6 @@
 	"auth": {
 		"or_separator": "hoặc"
 	},
-	"status": {
-		"active": "Hoạt động",
-		"published": "Đã xuất bản",
-		"draft": "Bản nháp"
-	},
-	"blog": {
-		"publish": "Xuất bản",
-		"unpublish": "Hủy xuất bản",
-		"draft_badge": "Bản nháp",
-		"published_message": "Blog xuất bản thành công",
-		"unpublished_message": "Blog được chuyển sang bản nháp",
-		"update_error": "Lỗi cập nhật trạng thái blog"
-	},
 	"errors": {
 		"go_back": "Quay lại"
 	},
@@ -286,7 +274,20 @@
 		"changes": "Thay đổi chính sách này",
 		"contact_us": "Liên hệ với chúng tôi"
 	},
+	"status": {
+		"active": "Hoạt động",
+		"published": "Đã xuất bản",
+		"draft": "Bản nháp"
+	},
+	"blog": {
+		"publish": "Xuất bản",
+		"unpublish": "Hủy xuất bản",
+		"draft_badge": "Bản nháp",
+		"published_message": "Blog xuất bản thành công",
+		"unpublished_message": "Blog được chuyển sang bản nháp",
+		"update_error": "Lỗi cập nhật trạng thái blog"
+	},
 	"home": {
-		"most_recent_blogs": "Blog mới nhất"
+		"most_recent_blogs": "Blog gần đây nhất"
 	}
 }

@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "Hjem",
 		"blogs": "Blogger",
@@ -254,19 +255,6 @@
 	"auth": {
 		"or_separator": "eller"
 	},
-	"status": {
-		"active": "Aktiv",
-		"published": "Publisert",
-		"draft": "Utkast"
-	},
-	"blog": {
-		"publish": "Publiser",
-		"unpublish": "Avpubliser",
-		"draft_badge": "Utkast",
-		"published_message": "Blog publisert",
-		"unpublished_message": "Blog flyttes til utkast",
-		"update_error": "Feil ved oppdatering av blogstatus"
-	},
 	"errors": {
 		"go_back": "Gå tilbake"
 	},
@@ -286,7 +274,20 @@
 		"changes": "Endringer i denne retningslinja",
 		"contact_us": "Kontakt oss"
 	},
-	"Home": {
-		"most_recent_blogs": "Mest recente blogger"
+	"status": {
+		"active": "Aktiv",
+		"published": "Publisert",
+		"draft": "Utkast"
+	},
+	"blog": {
+		"publish": "Publiser",
+		"unpublish": "Avpubliser",
+		"draft_badge": "Utkast",
+		"published_message": "Blog publisert",
+		"unpublished_message": "Blog flyttes til utkast",
+		"update_error": "Feil ved oppdatering av blogstatus"
+	},
+	"home": {
+		"most_recent_blogs": "Mest nylige blogger"
 	}
 }
