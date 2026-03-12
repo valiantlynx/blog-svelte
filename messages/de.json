@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "Startseite",
 		"blogs": "Blogs",
@@ -236,19 +237,6 @@
 	"auth": {
 		"or_separator": "oder"
 	},
-	"status": {
-		"active": "Aktiv",
-		"published": "Veröffentlicht",
-		"draft": "Entwurf"
-	},
-	"blog": {
-		"publish": "Veröffentlichen",
-		"unpublish": "Veröffentlichung aufheben",
-		"draft_badge": "Entwurf",
-		"published_message": "Blog erfolgreich veröffentlicht",
-		"unpublished_message": "Blog in Entwurf verschoben",
-		"update_error": "Fehler beim Aktualisieren des Blog-Status"
-	},
 	"errors": {
 		"go_back": "Zurück gehen"
 	},
@@ -267,5 +255,21 @@
 		"limits": "Grenzen unserer Richtlinie",
 		"changes": "Änderungen dieser Richtlinie",
 		"contact_us": "Kontaktieren Sie uns"
+	},
+	"status": {
+		"active": "Aktiv",
+		"published": "Veröffentlicht",
+		"draft": "Entwurf"
+	},
+	"blog": {
+		"publish": "Veröffentlichen",
+		"unpublish": "Veröffentlichung aufheben",
+		"draft_badge": "Entwurf",
+		"published_message": "Blog erfolgreich veröffentlicht",
+		"unpublished_message": "Blog in Entwurf verschoben",
+		"update_error": "Fehler beim Aktualisieren des Blog-Status"
+	},
+	"home": {
+		"most_recent_blogs": "Neueste Blogs"
 	}
 }

@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "首頁",
 		"blogs": "部落格",
@@ -254,19 +255,6 @@
 	"auth": {
 		"or_separator": "或"
 	},
-	"status": {
-		"active": "活躍",
-		"published": "已發佈",
-		"draft": "草稿"
-	},
-	"blog": {
-		"publish": "發佈",
-		"unpublish": "取消發佈",
-		"draft_badge": "草稿",
-		"published_message": "部落格發佈成功",
-		"unpublished_message": "部落格已移至草稿",
-		"update_error": "更新部落格狀態失敗"
-	},
 	"errors": {
 		"go_back": "返回"
 	},
@@ -285,5 +273,21 @@
 		"limits": "我們政策的限制",
 		"changes": "本政策的變更",
 		"contact_us": "聯繫我們"
+	},
+	"status": {
+		"active": "活躍",
+		"published": "已發佈",
+		"draft": "草稿"
+	},
+	"blog": {
+		"publish": "發佈",
+		"unpublish": "取消發佈",
+		"draft_badge": "草稿",
+		"published_message": "部落格發佈成功",
+		"unpublished_message": "部落格已移至草稿",
+		"update_error": "更新部落格狀態失敗"
+	},
+	"home": {
+		"most_recent_blogs": "最新部落格"
 	}
 }

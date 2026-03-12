@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "Halaman Utama",
 		"blogs": "Blog",
@@ -254,19 +255,6 @@
 	"auth": {
 		"or_separator": "atau"
 	},
-	"status": {
-		"active": "Aktif",
-		"published": "Diterbitkan",
-		"draft": "Draf"
-	},
-	"blog": {
-		"publish": "Terbitkan",
-		"unpublish": "Batal Terbitkan",
-		"draft_badge": "Draf",
-		"published_message": "Blog diterbitkan dengan berjaya",
-		"unpublished_message": "Blog dialihkan ke draf",
-		"update_error": "Gagal mengemaskini status blog"
-	},
 	"errors": {
 		"go_back": "Kembali"
 	},
@@ -285,5 +273,21 @@
 		"limits": "Had Dasar Kami",
 		"changes": "Perubahan Dasar Ini",
 		"contact_us": "Hubungi Kami"
+	},
+	"status": {
+		"active": "Aktif",
+		"published": "Diterbitkan",
+		"draft": "Draf"
+	},
+	"blog": {
+		"publish": "Terbitkan",
+		"unpublish": "Batal Terbitkan",
+		"draft_badge": "Draf",
+		"published_message": "Blog diterbitkan dengan berjaya",
+		"unpublished_message": "Blog dialihkan ke draf",
+		"update_error": "Gagal mengemaskini status blog"
+	},
+	"home": {
+		"most_recent_blogs": "Blog Terbaru"
 	}
 }

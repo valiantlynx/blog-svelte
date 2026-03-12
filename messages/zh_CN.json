@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "首页",
 		"blogs": "博客",
@@ -254,19 +255,6 @@
 	"auth": {
 		"or_separator": "或"
 	},
-	"status": {
-		"active": "活跃",
-		"published": "已发布",
-		"draft": "草稿"
-	},
-	"blog": {
-		"publish": "发布",
-		"unpublish": "取消发布",
-		"draft_badge": "草稿",
-		"published_message": "博客发布成功",
-		"unpublished_message": "博客已移至草稿",
-		"update_error": "更新博客状态失败"
-	},
 	"errors": {
 		"go_back": "返回"
 	},
@@ -285,5 +273,21 @@
 		"limits": "我们政策的限制",
 		"changes": "本政策的更改",
 		"contact_us": "联系我们"
+	},
+	"status": {
+		"active": "活跃",
+		"published": "已发布",
+		"draft": "草稿"
+	},
+	"blog": {
+		"publish": "发布",
+		"unpublish": "取消发布",
+		"draft_badge": "草稿",
+		"published_message": "博客发布成功",
+		"unpublished_message": "博客已移至草稿",
+		"update_error": "更新博客状态失败"
+	},
+	"home": {
+		"most_recent_blogs": "最新博客"
 	}
 }

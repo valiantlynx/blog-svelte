@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "Início",
 		"blogs": "Blogs",
@@ -236,19 +237,6 @@
 	"auth": {
 		"or_separator": "ou"
 	},
-	"status": {
-		"active": "Ativo",
-		"published": "Publicado",
-		"draft": "Rascunho"
-	},
-	"blog": {
-		"publish": "Publicar",
-		"unpublish": "Despublicar",
-		"draft_badge": "Rascunho",
-		"published_message": "Blog publicado com sucesso",
-		"unpublished_message": "Blog movido para rascunho",
-		"update_error": "Erro ao atualizar o status do blog"
-	},
 	"errors": {
 		"go_back": "Voltar"
 	},
@@ -267,5 +255,22 @@
 		"limits": "Limites de nossa política",
 		"changes": "Alterações nesta política",
 		"contact_us": "Contate-nos"
+	},
+	"status": {
+		"active": "Ativo",
+		"published": "Publicado",
+		"draft": "Rascunho"
+	},
+	"blog": {
+		"publish": "Publicar",
+		"unpublish": "Despublicar",
+		"draft_badge": "Rascunho",
+		"published_message": "Blog publicado com sucesso",
+		"unpublished_message": "Blog movido para rascunho",
+		"update_error": "Erro ao atualizar o status do blog"
+	},
+	"most_recent_blogs": "Blogs mais recentes",
+	"home": {
+		"most_recent_blogs": "Blogs mais recentes"
 	}
 }
