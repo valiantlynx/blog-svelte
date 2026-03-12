@@ -28,10 +28,10 @@
 			switch (result.type) {
 				case 'success':
 					await invalidateAll();
-					toast.success('Profile updated successfully!');
+					toast.success(m['messages.success_profile_updated']());
 					break;
 				case 'error':
-					toast.error('Failed to update profile');
+					toast.error(m['messages.error_profile_update_failed']());
 					break;
 				default:
 					await applyAction(result);
@@ -46,7 +46,7 @@
 </script>
 
 <svelte:head>
-	<title>Edit Profile</title>
+	<title>{m['profile.edit.page_title']()}</title>
 </svelte:head>
 
 <div
@@ -56,12 +56,12 @@
 		<!-- Header -->
 		<div class="mb-8">
 			<h1
-				class="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text "
+				class="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text"
 			>
-				Edit Your Profile
+				{m['profile.edit.page_heading']()}
 			</h1>
 			<p class="text-base-content/60 text-lg">
-				Update your personal information and profile details
+				{m['profile.edit.page_description']()}
 			</p>
 		</div>
 
@@ -77,7 +77,7 @@
 			<div class="bg-base-100 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
 				<h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
 					<i class="fas fa-image text-primary text-2xl"></i>
-					Profile Picture
+					{m['profile.edit.profile_picture_heading']()}
 				</h2>
 
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -95,10 +95,14 @@
 							<div
 								class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end justify-center pb-4"
 							>
-								<span class="text-white text-sm font-semibold">Click to change</span>
+								<span class="text-white text-sm font-semibold"
+									>{m['profile.edit.click_to_change']()}</span
+								>
 							</div>
 						</div>
-						<p class="text-center text-sm text-base-content/60">Current profile picture</p>
+						<p class="text-center text-sm text-base-content/60">
+							{m['profile.edit.current_profile_picture']()}
+						</p>
 					</div>
 
 					<!-- Upload Area -->
@@ -112,8 +116,10 @@
 									<i class="fas fa-cloud-upload-alt"></i>
 								</div>
 								<div>
-									<p class="text-lg font-semibold text-base-content">Click or drag image</p>
-									<p class="text-sm text-base-content/60">PNG, JPG, GIF up to 10MB</p>
+									<p class="text-lg font-semibold text-base-content">
+										{m['profile.edit.upload_instructions']()}
+									</p>
+									<p class="text-sm text-base-content/60">{m['profile.edit.file_format_info']()}</p>
 								</div>
 							</div>
 							<input
@@ -135,30 +141,32 @@
 			<div class="bg-base-100 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
 				<h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
 					<i class="fas fa-user text-primary text-2xl"></i>
-					Personal Information
+					{m['profile.edit.personal_info_heading']()}
 				</h2>
 
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div>
 						<label class="block text-sm font-semibold text-base-content mb-2">
 							<i class="fas fa-at text-primary/60 mr-2"></i>
-							Username
+							{m['profile.edit.username_label']()}
 						</label>
 						<div class="input input-bordered input-primary w-full bg-base-200 px-4 py-3 rounded-lg">
 							{$page.data?.user?.username}
 						</div>
-						<p class="text-xs text-base-content/50 mt-2">Username is managed in account settings</p>
+						<p class="text-xs text-base-content/50 mt-2">
+							{m['profile.edit.username_managed_note']()}
+						</p>
 					</div>
 
 					<div>
 						<label for="title" class="block text-sm font-semibold text-base-content mb-2">
 							<i class="fas fa-briefcase text-primary/60 mr-2"></i>
-							Professional Title
+							{m['profile.edit.professional_title_label']()}
 						</label>
 						<Input
 							id="title"
 							name="title"
-							placeholder="e.g., Full Stack Developer"
+							placeholder={m['profile.edit.professional_title_placeholder']()}
 							value={$page.data?.user?.title || ''}
 							disabled={loading}
 							class="input-primary"
@@ -168,12 +176,12 @@
 					<div>
 						<label for="language" class="block text-sm font-semibold text-base-content mb-2">
 							<i class="fas fa-globe text-primary/60 mr-2"></i>
-							Language
+							{m['profile.edit.language_label']()}
 						</label>
 						<Input
 							id="language"
 							name="language"
-							placeholder="e.g., English, Spanish"
+							placeholder={m['profile.edit.language_placeholder']()}
 							value={$page.data?.user?.language || ''}
 							disabled={loading}
 							class="input-primary"
@@ -183,13 +191,13 @@
 					<div>
 						<label for="address" class="block text-sm font-semibold text-base-content mb-2">
 							<i class="fas fa-map-marker-alt text-primary/60 mr-2"></i>
-							Location
+							{m['profile.edit.location_label']()}
 						</label>
 						<Input
 							type="text"
 							id="address"
 							name="address"
-							placeholder="e.g., San Francisco, CA"
+							placeholder={m['profile.edit.location_placeholder']()}
 							value={$page.data?.user?.address || ''}
 							disabled={loading}
 							class="input-primary"
@@ -202,23 +210,23 @@
 			<div class="bg-base-100 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
 				<h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
 					<i class="fas fa-pencil-alt text-primary text-2xl"></i>
-					About Yourself
+					{m['profile.edit.about_yourself_heading']()}
 				</h2>
 
 				<div>
 					<label for="about" class="block text-sm font-semibold text-base-content mb-3">
-						Bio
+						{m['profile.edit.bio_label']()}
 					</label>
 					<textarea
 						class="textarea textarea-primary w-full h-32 resize-none focus:outline-none rounded-xl"
 						name="about"
 						id="about"
-						placeholder="Tell us a bit about yourself..."
+						placeholder={m['profile.edit.bio_placeholder']()}
 						value={$page.data?.user?.about || ''}
 						disabled={loading}
 					></textarea>
 					<p class="text-xs text-base-content/50 mt-2">
-						Write a brief bio that will appear on your profile. Maximum 500 characters.
+						{m['profile.edit.bio_help_text']()}
 					</p>
 				</div>
 			</div>
@@ -227,7 +235,7 @@
 			<div class="bg-base-100 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
 				<h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
 					<i class="fas fa-shield-alt text-primary text-2xl"></i>
-					Roles & Permissions
+					{m['profile.edit.roles_permissions_heading']()}
 				</h2>
 
 				{#if $page.data?.user?.role && $page.data.user.role.length > 0}
@@ -241,13 +249,13 @@
 					</div>
 					<p class="text-sm text-base-content/60 mt-4">
 						<i class="fas fa-info-circle mr-2"></i>
-						Want to upgrade your permissions?
+						{m['profile.edit.upgrade_permissions_text']()}
 						<a href="/pricing" class="text-primary hover:underline font-semibold"
-							>Check our pricing plans</a
+							>{m['profile.edit.check_pricing_link']()}</a
 						>
 					</p>
 				{:else}
-					<p class="text-base-content/60">No roles assigned yet.</p>
+					<p class="text-base-content/60">{m['profile.edit.no_roles_assigned']()}</p>
 				{/if}
 			</div>
 
@@ -256,8 +264,10 @@
 				class="flex flex-col md:flex-row gap-4 justify-between items-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 border border-primary/20"
 			>
 				<div>
-					<p class="text-lg font-semibold text-base-content mb-1">Save your changes</p>
-					<p class="text-sm text-base-content/60">Your profile will be updated immediately</p>
+					<p class="text-lg font-semibold text-base-content mb-1">
+						{m['profile.edit.save_changes_heading']()}
+					</p>
+					<p class="text-sm text-base-content/60">{m['profile.edit.save_changes_description']()}</p>
 				</div>
 				<div class="flex gap-4 w-full md:w-auto">
 					<Button
@@ -267,7 +277,7 @@
 						href="/dashboard/profile/preview"
 					>
 						<i class="fas fa-times mr-2"></i>
-						Cancel
+						{m['profile.edit.cancel_button']()}
 					</Button>
 					<Button
 						type="submit"
@@ -277,10 +287,10 @@
 					>
 						{#if loading}
 							<i class="fas fa-spinner animate-spin mr-2"></i>
-							Saving...
+							{m['profile.edit.saving_button']()}
 						{:else}
 							<i class="fas fa-save mr-2"></i>
-							Save Changes
+							{m['profile.edit.save_button']()}
 						{/if}
 					</Button>
 				</div>

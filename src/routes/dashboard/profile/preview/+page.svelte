@@ -5,34 +5,33 @@
 	import { site } from '$lib/utils/config';
 	import * as m from '$lib/paraglide/messages.js';
 
-	const avatar = $derived(  
-        $page.data.user?.avatar  
-            ? `${site.pocketbase}/api/files/${$page.data.user?.collectionId}/${$page.data.user?.id}/${$page.data.user?.avatar}`  
-            : `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${$page.data.user?.username}`  
-    );  
-
+	const avatar = $derived(
+		$page.data.user?.avatar
+			? `${site.pocketbase}/api/files/${$page.data.user?.collectionId}/${$page.data.user?.id}/${$page.data.user?.avatar}`
+			: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${$page.data.user?.username}`
+	);
 
 	const userStats = [
 		{
 			icon: 'fas fa-book',
-			label: 'Blogs',
+			label: m['profile.preview.stat_blogs'](),
 			value: $page.data.user?.blogCount || 0
 		},
 		{
 			icon: 'fas fa-project-diagram',
-			label: 'Projects',
+			label: m['profile.preview.stat_projects'](),
 			value: $page.data.user?.projectCount || 0
 		},
 		{
 			icon: 'fas fa-heart',
-			label: 'Total Likes',
+			label: m['profile.preview.stat_total_likes'](),
 			value: $page.data.user?.totalLikes || 0
 		}
 	];
 </script>
 
 <svelte:head>
-	<title>Profile Preview</title>
+	<title>{m['profile.preview.page_title']()}</title>
 </svelte:head>
 
 <div class="w-full min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200">
@@ -42,7 +41,7 @@
 			<!-- Profile Header -->
 			<div class="relative bg-base-100 rounded-2xl shadow-2xl overflow-hidden mb-8">
 				<!-- Negative margin to overlap banner -->
-				<div class="relative  px-6 md:px-12 pt-4 pb-8">
+				<div class="relative px-6 md:px-12 pt-4 pb-8">
 					<div class="flex flex-col md:flex-row md:items-end md:gap-8 mb-8">
 						<!-- Avatar -->
 						<div class="flex-shrink-0">
@@ -74,11 +73,11 @@
 							<div class="flex gap-3 mt-6">
 								<Button href="/dashboard/profile/edit" variant="primary" class="font-semibold">
 									<i class="fas fa-edit mr-2"></i>
-									Edit Profile
+									{m['profile.preview.edit_button']()}
 								</Button>
 								<Button href="/dashboard/profile/account" variant="outline" class="font-semibold">
 									<i class="fas fa-cog mr-2"></i>
-									Account Settings
+									{m['profile.preview.account_settings_button']()}
 								</Button>
 							</div>
 						</div>
@@ -108,7 +107,7 @@
 				<div class="bg-base-100 rounded-xl shadow-lg p-8 mb-8">
 					<h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3">
 						<i class="fas fa-user-circle text-primary"></i>
-						About Me
+						{m['profile.preview.about_me_heading']()}
 					</h2>
 					<p class="text-base-content/70 leading-relaxed text-lg whitespace-pre-wrap">
 						{$page.data.user.about}
@@ -121,7 +120,7 @@
 				<div class="bg-base-100 rounded-xl shadow-lg p-8 mb-8">
 					<h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
 						<i class="fas fa-shield-alt text-primary"></i>
-						Roles & Permissions
+						{m['profile.preview.roles_permissions_heading']()}
 					</h2>
 					<div class="flex flex-wrap gap-3">
 						{#each $page.data.user.role as role}
@@ -140,24 +139,24 @@
 			>
 				<h2 class="text-2xl font-bold mb-4 flex items-center gap-3">
 					<i class="fas fa-bolt text-primary"></i>
-					Quick Actions
+					{m['profile.preview.quick_actions_heading']()}
 				</h2>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 					<Button href="/dashboard/manager" variant="outline" class="w-full font-semibold">
 						<i class="fas fa-tasks mr-2"></i>
-						Manage Content
+						{m['profile.preview.manage_content_button']()}
 					</Button>
 					<Button href="/dashboard/create/blog" variant="outline" class="w-full font-semibold">
 						<i class="fas fa-plus mr-2"></i>
-						Create Blog
+						{m['profile.preview.create_blog_button']()}
 					</Button>
 					<Button href="/dashboard/create/project" variant="outline" class="w-full font-semibold">
 						<i class="fas fa-plus mr-2"></i>
-						Create Project
+						{m['profile.preview.create_project_button']()}
 					</Button>
 					<Button href="/dashboard" variant="outline" class="w-full font-semibold">
 						<i class="fas fa-chart-line mr-2"></i>
-						View Dashboard
+						{m['profile.preview.view_dashboard_button']()}
 					</Button>
 				</div>
 			</div>

@@ -21,10 +21,10 @@
 				case 'success':
 					await invalidateAll();
 					emailModalOpen = false;
-					toast.success('Email change requested! Check your email for confirmation.');
+					toast.success(m['messages.success_email_change_requested']());
 					break;
 				case 'error':
-					toast.error('Failed to update email');
+					toast.error(m['messages.error_email_update_failed']());
 					break;
 				default:
 					await applyAction(result);
@@ -40,10 +40,10 @@
 				case 'success':
 					await invalidateAll();
 					usernameModalOpen = false;
-					toast.success('Username updated successfully!');
+					toast.success(m['messages.success_username_updated']());
 					break;
 				case 'error':
-					toast.error('Failed to update username');
+					toast.error(m['messages.error_username_update_failed']());
 					break;
 				default:
 					await applyAction(result);
@@ -57,11 +57,11 @@
 		return async ({ result }) => {
 			switch (result.type) {
 				case 'success':
-					toast.success('Password updated! Redirecting to login...');
+					toast.success(m['messages.success_password_updated']());
 					await invalidateAll();
 					break;
 				case 'error':
-					toast.error('Failed to update password');
+					toast.error(m['messages.error_password_update_failed']());
 					break;
 				default:
 					await applyAction(result);
@@ -72,7 +72,7 @@
 </script>
 
 <svelte:head>
-	<title>Account Settings</title>
+	<title>{m['profile.account.page_title']()}</title>
 </svelte:head>
 
 <div
@@ -84,10 +84,10 @@
 			<h1
 				class="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
 			>
-				Account Settings
+				{m['profile.account.page_heading']()}
 			</h1>
 			<p class="text-base-content/60 text-lg">
-				Manage your account security and authentication settings
+				{m['profile.account.page_description']()}
 			</p>
 		</div>
 
@@ -99,17 +99,19 @@
 					<div class="flex items-center justify-between mb-6">
 						<h2 class="text-2xl md:text-3xl font-bold flex items-center gap-3">
 							<i class="fas fa-envelope text-primary text-2xl"></i>
-							Email Address
+							{m['profile.account.email_section_heading']()}
 						</h2>
 						<i class="fas fa-lock text-primary/50 text-xl"></i>
 					</div>
 
 					<div class="space-y-4">
 						<div class="bg-base-200 rounded-lg p-4 border border-base-300">
-							<p class="text-sm text-base-content/60 mb-1">Current Email</p>
-							<p class="text-lg font-semibold text-base-content flex items-center gap-2 line-clamp-1">
+							<p class="text-sm text-base-content/60 mb-1">
+								{m['profile.account.current_username_label']()}
+							</p>
+							<p class="text-lg font-semibold text-base-content flex items-center gap-2">
 								<i class="fas fa-check-circle text-success"></i>
-								{$page.data?.user?.email}
+								@{$page.data?.user?.username}
 							</p>
 						</div>
 
@@ -117,14 +119,16 @@
 							{#snippet trigger()}
 								<Button variant="primary" class="w-full font-semibold">
 									<i class="fas fa-edit mr-2"></i>
-									Change Email
+									{m['profile.account.change_email_button']()}
 								</Button>
 							{/snippet}
 							{#snippet heading()}
 								<div>
-									<h3 class="text-2xl font-bold">Change Your Email</h3>
+									<h3 class="text-2xl font-bold">
+										{m['profile.account.change_email_modal_heading']()}
+									</h3>
 									<p class="text-sm text-base-content/60 mt-1">
-										A confirmation email will be sent to verify the change
+										{m['profile.account.change_email_modal_description']()}
 									</p>
 								</div>
 							{/snippet}
@@ -137,8 +141,8 @@
 								<Input
 									id="email"
 									type="email"
-									label="New Email Address"
-									placeholder="your-new-email@example.com"
+									label={m['profile.account.new_email_placeholder']()}
+									placeholder={m['profile.account.new_email_placeholder']()}
 									required={true}
 									value={$page.form?.data?.email || ''}
 									disabled={loading}
@@ -151,10 +155,10 @@
 								>
 									{#if loading}
 										<i class="fas fa-spinner animate-spin mr-2"></i>
-										Updating...
+										{m['profile.account.email_updating_button']()}
 									{:else}
 										<i class="fas fa-check mr-2"></i>
-										Change Email
+										{m['profile.account.email_update_button']()}
 									{/if}
 								</Button>
 							</form>
@@ -167,16 +171,20 @@
 					<div class="flex items-center justify-between mb-6">
 						<h2 class="text-2xl md:text-3xl font-bold flex items-center gap-3">
 							<i class="fas fa-at text-primary text-2xl"></i>
-							Username
+							{m['profile.account.username_section_heading']()}
 						</h2>
 					</div>
 
 					<div class="space-y-4">
 						<div class="bg-base-200 rounded-lg p-4 border border-base-300">
-							<p class="text-sm text-base-content/60 mb-1">Current Username</p>
-							<p class="text-lg font-semibold text-base-content flex items-center gap-2">
+							<p class="text-sm text-base-content/60 mb-1">
+								{m['profile.account.current_email_label']()}
+							</p>
+							<p
+								class="text-lg font-semibold text-base-content flex items-center gap-2 line-clamp-1"
+							>
 								<i class="fas fa-check-circle text-success"></i>
-								@{$page.data?.user?.username}
+								{$page.data?.user?.email}
 							</p>
 						</div>
 
@@ -184,14 +192,16 @@
 							{#snippet trigger()}
 								<Button variant="primary" class="w-full font-semibold">
 									<i class="fas fa-edit mr-2"></i>
-									Change Username
+									{m['profile.account.change_username_button']()}
 								</Button>
 							{/snippet}
 							{#snippet heading()}
 								<div>
-									<h3 class="text-2xl font-bold">Change Your Username</h3>
+									<h3 class="text-2xl font-bold">
+										{m['profile.account.change_username_modal_heading']()}
+									</h3>
 									<p class="text-sm text-base-content/60 mt-1">
-										Choose a unique username for your profile
+										{m['profile.account.change_username_modal_description']()}
 									</p>
 								</div>
 							{/snippet}
@@ -204,15 +214,15 @@
 								<Input
 									id="username"
 									type="text"
-									label="New Username"
-									placeholder="mynewusername"
+									label={m['profile.account.new_username_label']()}
+									placeholder={m['profile.account.new_username_placeholder']()}
 									required={true}
 									value={$page.form?.data?.username || ''}
 									disabled={loading}
 								/>
 								<p class="text-xs text-base-content/50">
 									<i class="fas fa-info-circle mr-1"></i>
-									Usernames can contain letters, numbers, and underscores
+									{m['profile.account.username_info_text']()}
 								</p>
 								<Button
 									type="submit"
@@ -222,10 +232,10 @@
 								>
 									{#if loading}
 										<i class="fas fa-spinner animate-spin mr-2"></i>
-										Updating...
+										{m['profile.account.username_updating_button']()}
 									{:else}
 										<i class="fas fa-check mr-2"></i>
-										Change Username
+										{m['profile.account.username_update_button']()}
 									{/if}
 								</Button>
 							</form>
@@ -240,7 +250,7 @@
 					<div class="flex items-center justify-between mb-6">
 						<h2 class="text-2xl md:text-3xl font-bold flex items-center gap-3">
 							<i class="fas fa-key text-primary text-2xl"></i>
-							Password
+							{m['profile.account.password_section_heading']()}
 						</h2>
 						<i class="fas fa-shield-alt text-warning text-xl"></i>
 					</div>
@@ -248,7 +258,7 @@
 					<div class="bg-warning/10 border border-warning/30 rounded-lg p-4 mb-6">
 						<p class="text-sm text-warning flex items-center gap-2">
 							<i class="fas fa-exclamation-triangle"></i>
-							For security, you'll be logged out after updating your password.
+							{m['profile.account.password_security_warning']()}
 						</p>
 					</div>
 
@@ -260,27 +270,27 @@
 					>
 						<Input
 							id="oldPassword"
-							label="Current Password"
+							label={m['profile.account.current_password_label']()}
 							type="password"
-							placeholder="Enter your current password"
+							placeholder={m['profile.account.current_password_placeholder']()}
 							required
 							disabled={loading}
 						/>
 
 						<Input
 							id="password"
-							label="New Password"
+							label={m['profile.account.new_password_label']()}
 							type="password"
-							placeholder="Enter your new password"
+							placeholder={m['profile.account.new_password_placeholder']()}
 							required
 							disabled={loading}
 						/>
 
 						<Input
 							id="passwordConfirm"
-							label="Confirm New Password"
+							label={m['profile.account.confirm_password_label']()}
 							type="password"
-							placeholder="Confirm your new password"
+							placeholder={m['profile.account.confirm_password_placeholder']()}
 							required
 							disabled={loading}
 						/>
@@ -294,10 +304,10 @@
 							>
 								{#if loading}
 									<i class="fas fa-spinner animate-spin mr-2"></i>
-									Updating...
+									{m['profile.account.password_updating_button']()}
 								{:else}
 									<i class="fas fa-save mr-2"></i>
-									Update Password
+									{m['profile.account.password_update_button']()}
 								{/if}
 							</Button>
 
@@ -306,7 +316,7 @@
 								class="block text-center text-primary hover:text-primary-focus hover:underline text-sm font-semibold"
 							>
 								<i class="fas fa-question-circle mr-1"></i>
-								Forgot your password?
+								{m['profile.account.forgot_password_link']()}
 							</a>
 						</div>
 					</form>
@@ -316,12 +326,10 @@
 			<!-- Sidebar: Roles and Upgrade -->
 			<div class="lg:col-span-1 space-y-6">
 				<!-- Current Roles -->
-				<div
-					class="bg-base-100 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow"
-				>
+				<div class="bg-base-100 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
 					<h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
 						<i class="fas fa-shield-alt text-primary text-2xl"></i>
-						Your Roles
+						{m['profile.account.your_roles_heading']()}
 					</h2>
 
 					{#if $page.data?.user?.role && $page.data.user.role.length > 0}
@@ -346,10 +354,10 @@
 						>
 							<p class="text-sm font-semibold text-base-content mb-2">
 								<i class="fas fa-star text-warning mr-2"></i>
-								Want more features?
+								{m['profile.account.want_more_features_text']()}
 							</p>
 							<p class="text-xs text-base-content/60 mb-4">
-								Upgrade to unlock premium features and advanced permissions.
+								{m['profile.account.upgrade_features_text']()}
 							</p>
 							<Button
 								href="/pricing"
@@ -358,7 +366,7 @@
 								size="sm"
 							>
 								<i class="fas fa-rocket mr-2"></i>
-								View Plans
+								{m['profile.account.view_plans_button']()}
 							</Button>
 						</div>
 					</div>
@@ -368,25 +376,26 @@
 				<div class="bg-base-100 rounded-2xl shadow-lg p-8">
 					<h2 class="text-lg font-bold mb-4 flex items-center gap-2">
 						<i class="fas fa-info-circle text-primary"></i>
-						Account Info
+						{m['profile.account.account_info_heading']()}
 					</h2>
 
 					<div class="space-y-3 text-sm">
 						<div class="flex items-center justify-between p-3 bg-base-200 rounded-lg">
-							<span class="text-base-content/60">Account Type</span>
+							<span class="text-base-content/60">{m['profile.account.account_type_label']()}</span>
 							<span class="font-semibold capitalize">{$page.data?.user?.role?.[0] || 'User'}</span>
 						</div>
 
 						<div class="flex items-center justify-between p-3 bg-base-200 rounded-lg">
-							<span class="text-base-content/60">Email Verified</span>
+							<span class="text-base-content/60">{m['profile.account.email_verified_label']()}</span
+							>
 							<span class="flex items-center gap-2">
 								<i class="fas fa-check-circle text-success"></i>
-								<span class="font-semibold">Yes</span>
+								<span class="font-semibold">{m['profile.account.email_verified_yes']()}</span>
 							</span>
 						</div>
 
 						<div class="text-xs text-base-content/50 pt-2 text-center">
-							For additional security options, please contact support.
+							{m['profile.account.support_contact_text']()}
 						</div>
 					</div>
 				</div>
