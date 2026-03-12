@@ -299,5 +299,8 @@
 		"limits": "Limits of Our Policy",
 		"changes": "Changes to This Policy",
 		"contact_us": "Contact Us"
+	},
+	"home": {
+		"most_recent_blogs": "Most Recent Blogs"
 	}
 }

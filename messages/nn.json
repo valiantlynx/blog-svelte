@@ -285,5 +285,8 @@
 		"limits": "Grenser for retningslinjane våre",
 		"changes": "Endringar i denne retningslinja",
 		"contact_us": "Kontakt oss"
+	},
+	"home": {
+		"most_recent_blogs": "Mest recente bloggar"
 	}
 }

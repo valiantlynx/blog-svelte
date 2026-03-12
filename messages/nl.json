@@ -285,5 +285,8 @@
 		"limits": "Beperkingen van ons beleid",
 		"changes": "Wijzigingen in dit beleid",
 		"contact_us": "Neem contact met ons op"
+	},
+	"home": {
+		"most_recent_blogs": "Meest recente blogs"
 	}
 }

@@ -285,5 +285,8 @@
 		"limits": "Had Dasar Kami",
 		"changes": "Perubahan Dasar Ini",
 		"contact_us": "Hubungi Kami"
+	},
+	"home": {
+		"most_recent_blogs": "Blog Terbaru"
 	}
 }

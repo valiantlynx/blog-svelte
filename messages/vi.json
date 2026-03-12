@@ -285,5 +285,8 @@
 		"limits": "Giới hạn của chính sách của chúng tôi",
 		"changes": "Thay đổi chính sách này",
 		"contact_us": "Liên hệ với chúng tôi"
+	},
+	"home": {
+		"most_recent_blogs": "Blog mới nhất"
 	}
 }

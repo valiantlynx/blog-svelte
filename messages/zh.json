@@ -285,5 +285,8 @@
 		"limits": "我們政策的限制",
 		"changes": "本政策的變更",
 		"contact_us": "聯繫我們"
+	},
+	"home": {
+		"most_recent_blogs": "最新部落格"
 	}
 }

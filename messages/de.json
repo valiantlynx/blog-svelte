@@ -267,5 +267,8 @@
 		"limits": "Grenzen unserer Richtlinie",
 		"changes": "Änderungen dieser Richtlinie",
 		"contact_us": "Kontaktieren Sie uns"
+	},
+	"home": {
+		"most_recent_blogs": "Neueste Blogs"
 	}
 }

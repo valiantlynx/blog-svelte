@@ -267,5 +267,8 @@
 		"limits": "Límites de nuestra política",
 		"changes": "Cambios en esta política",
 		"contact_us": "Contáctenos"
+	},
+	"home": {
+		"most_recent_blogs": "Blogs más recientes"
 	}
 }
