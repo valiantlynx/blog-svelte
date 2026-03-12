@@ -8,6 +8,7 @@
 	let { blog } = $props();
 
 	let loading = $state(false);
+	let isPublishing = $state(false);
 
 	let isModalOpen = $state(false);
 
@@ -29,6 +30,37 @@
 			loading = false;
 		};
 	};
+
+	const togglePublish = async () => {
+		const formData = new FormData();
+		formData.append('id', blog?.id);
+
+		isPublishing = true;
+		try {
+			const response = await fetch('?/toggleBlogPublish', {
+				method: 'POST',
+				body: formData
+			});
+
+			if (response.ok) {
+				const data = await response.json();
+				if (data.type === 'success') {
+					toast.success(data.data.message);
+					// Update local blog state to reflect new publish status
+					blog.published = data.data.published;
+				} else {
+					toast.error(data.error?.message || m['blog.update_error']());
+				}
+			} else {
+				toast.error(m['blog.update_error']());
+			}
+		} catch (err) {
+			console.error('Error:', err);
+			toast.error(m['blog.update_error']());
+		} finally {
+			isPublishing = false;
+		}
+	};
 </script>
 
 <div
@@ -46,15 +78,29 @@
 		</div>
 	</div>
 	<div class="flex-1 min-w-0">
-		<a
-			href="/blogs/{blog?.slug}"
-			class="font-semibold text-lg hover:text-primary transition-colors block truncate"
-		>
-			{blog?.title}
-		</a>
+		<div class="flex items-center gap-2">
+			<a
+				href="/blogs/{blog?.slug}"
+				class="font-semibold text-lg hover:text-primary transition-colors truncate"
+			>
+				{blog?.title}
+			</a>
+			{#if !blog?.published}
+				<div class="badge badge-warning badge-sm flex-shrink-0">{m['blog.status.draft']()}</div>
+			{/if}
+		</div>
 		<p class="text-sm text-base-content/70 line-clamp-2">{blog?.summary}</p>
 	</div>
 	<div class="flex items-center gap-2 flex-shrink-0">
+		<Button
+			type="button"
+			variant={blog?.published ? 'ghost' : 'primary'}
+			size="sm"
+			disabled={isPublishing}
+			onclick={togglePublish}
+		>
+			{isPublishing ? 'Updating...' : blog?.published ? m['blog.unpublish']() : m['blog.publish']()}
+		</Button>
 		<Button href="/blogs/{blog?.slug}/edit" variant="outline" size="sm"
 			>{m['buttons.edit_blog']()}</Button
 		>
