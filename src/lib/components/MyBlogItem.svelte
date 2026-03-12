@@ -5,6 +5,7 @@
 	import { getImageURL } from '$lib/utils/api';
 	import toast from 'svelte-french-toast';
 	import * as m from '$lib/paraglide/messages.js';
+	import { invalidateAll } from '$app/navigation';
 	let { blog } = $props();
 
 	let loading = $state(false);
@@ -59,6 +60,7 @@
 			toast.error(m['blog.update_error']());
 		} finally {
 			isPublishing = false;
+			await invalidateAll(); // Refresh data to ensure UI is up-to-date with server state
 		}
 	};
 </script>
