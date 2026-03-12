@@ -46,9 +46,13 @@
 			if (response.ok) {
 				const data = await response.json();
 				if (data.type === 'success') {
-					toast.success(data.data.message);
 					// Update local blog state to reflect new publish status
 					blog.published = data.data.published;
+					// Show appropriate success message based on new published status
+					const message = data.data.published
+						? m['blog.published_message']()
+						: m['blog.unpublished_message']();
+					toast.success(message);
 				} else {
 					toast.error(data.error?.message || m['blog.update_error']());
 				}
@@ -60,7 +64,6 @@
 			toast.error(m['blog.update_error']());
 		} finally {
 			isPublishing = false;
-			await invalidateAll(); // Refresh data to ensure UI is up-to-date with server state
 		}
 	};
 </script>
