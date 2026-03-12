@@ -15,17 +15,17 @@
 		{
 			icon: 'fas fa-book',
 			label: m['profile.preview.stat_blogs'](),
-			value: $page.data.user?.blogCount || 0
+			value: $page.data.stats?.blogCount || 0
 		},
 		{
 			icon: 'fas fa-project-diagram',
 			label: m['profile.preview.stat_projects'](),
-			value: $page.data.user?.projectCount || 0
+			value: $page.data.stats?.projectCount || 0
 		},
 		{
 			icon: 'fas fa-heart',
 			label: m['profile.preview.stat_total_likes'](),
-			value: $page.data.user?.totalLikes || 0
+			value: $page.data.stats?.totalLikes || 0
 		}
 	];
 </script>
