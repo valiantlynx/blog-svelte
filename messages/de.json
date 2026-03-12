@@ -264,7 +264,9 @@
 	"blog": {
 		"publish": "Veröffentlichen",
 		"unpublish": "Veröffentlichung aufheben",
-		"draft_badge": "Entwurf",
+		"status": {
+			"draft": "Entwurf"
+		},
 		"published_message": "Blog erfolgreich veröffentlicht",
 		"unpublished_message": "Blog in Entwurf verschoben",
 		"update_error": "Fehler beim Aktualisieren des Blog-Status"

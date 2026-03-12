@@ -264,7 +264,9 @@
 	"blog": {
 		"publish": "Publier",
 		"unpublish": "Dépublier",
-		"draft_badge": "Brouillon",
+		"status": {
+			"draft": "Brouillon"
+		},
 		"published_message": "Blog publié avec succès",
 		"unpublished_message": "Blog déplacé en brouillon",
 		"update_error": "Erreur lors de la mise à jour du statut du blog"

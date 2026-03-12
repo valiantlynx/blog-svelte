@@ -57,10 +57,10 @@
 <Carousel />
 
 <!-- Most Recent Blogs -->
- <div class="flex flex-col items-center justify-center m-5 pt-10 gap-4 text-base-content">
+<div class="flex flex-col items-center justify-center m-5 pt-10 gap-4 text-base-content">
 	<h2 class="text-4xl font-bold">{m['home.most_recent_blogs']()}</h2>
 	<Button href="/blogs" variant="primary">{m['buttons.show_more']()}</Button>
-</div>	
+</div>
 
 <BlogGrid />
 

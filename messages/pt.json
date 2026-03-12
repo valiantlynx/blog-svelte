@@ -264,12 +264,13 @@
 	"blog": {
 		"publish": "Publicar",
 		"unpublish": "Despublicar",
-		"draft_badge": "Rascunho",
+		"status": {
+			"draft": "Rascunho"
+		},
 		"published_message": "Blog publicado com sucesso",
 		"unpublished_message": "Blog movido para rascunho",
 		"update_error": "Erro ao atualizar o status do blog"
 	},
-	"most_recent_blogs": "Blogs mais recentes",
 	"home": {
 		"most_recent_blogs": "Blogs mais recentes"
 	}

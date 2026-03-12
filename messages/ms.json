@@ -282,7 +282,9 @@
 	"blog": {
 		"publish": "Terbitkan",
 		"unpublish": "Batal Terbitkan",
-		"draft_badge": "Draf",
+		"status": {
+			"draft": "Draf"
+		},
 		"published_message": "Blog diterbitkan dengan berjaya",
 		"unpublished_message": "Blog dialihkan ke draf",
 		"update_error": "Gagal mengemaskini status blog"

@@ -264,7 +264,9 @@
 	"blog": {
 		"publish": "Publicar",
 		"unpublish": "Despublicar",
-		"draft_badge": "Borrador",
+		"status": {
+			"draft": "Borrador"
+		},
 		"published_message": "Blog publicado correctamente",
 		"unpublished_message": "Blog movido a borrador",
 		"update_error": "Error al actualizar el estado del blog"

@@ -282,7 +282,9 @@
 	"blog": {
 		"publish": "Xuất bản",
 		"unpublish": "Hủy xuất bản",
-		"draft_badge": "Bản nháp",
+		"status": {
+			"draft": "Bản nháp"
+		},
 		"published_message": "Blog xuất bản thành công",
 		"unpublished_message": "Blog được chuyển sang bản nháp",
 		"update_error": "Lỗi cập nhật trạng thái blog"

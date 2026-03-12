@@ -282,7 +282,9 @@
 	"blog": {
 		"publish": "發佈",
 		"unpublish": "取消發佈",
-		"draft_badge": "草稿",
+		"status": {
+			"draft": "草稿"
+		},
 		"published_message": "部落格發佈成功",
 		"unpublished_message": "部落格已移至草稿",
 		"update_error": "更新部落格狀態失敗"

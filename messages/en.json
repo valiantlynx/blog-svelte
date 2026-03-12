@@ -296,7 +296,9 @@
 	"blog": {
 		"publish": "Publish",
 		"unpublish": "Unpublish",
-		"draft_badge": "Draft",
+		"status": {
+			"draft": "Draft"
+		},
 		"published_message": "Blog published successfully",
 		"unpublished_message": "Blog moved to draft",
 		"update_error": "Failed to update blog status"

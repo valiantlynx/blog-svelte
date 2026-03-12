@@ -282,7 +282,9 @@
 	"blog": {
 		"publish": "Publiser",
 		"unpublish": "Avpubliser",
-		"draft_badge": "Utkast",
+		"status": {
+			"draft": "Utkast"
+		},
 		"published_message": "Blogg publisert",
 		"unpublished_message": "Blogg flytta til utkast",
 		"update_error": "Feil ved oppdatering av bloggstatus"
