@@ -14,13 +14,13 @@
 </svelte:head>
 
 <div
-	class="w-full min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200 p-4 md:p-8"
+	class="w-full min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200 p-4 md:p-8 te"
 >
 	<div class="max-w-7xl mx-auto">
 		<!-- Header -->
 		<div class="mb-8">
 			<h1
-				class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+				class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text "
 			>
 				{m['admin.dashboard_title']()}
 			</h1>
@@ -150,7 +150,7 @@
 			<!-- Recent Users -->
 			<div class="bg-base-100 rounded-xl shadow-lg overflow-hidden">
 				<div class="bg-gradient-to-r from-primary to-secondary p-6">
-					<h2 class="text-2xl font-bold text-base-100 flex items-center gap-3">
+					<h2 class="text-2xl font-bold  flex items-center gap-3">
 						<i class="fas fa-user-plus"></i>
 						{m['admin.recent_signups']()}
 					</h2>
@@ -199,7 +199,7 @@
 			<!-- Most Popular Blogs -->
 			<div class="bg-base-100 rounded-xl shadow-lg overflow-hidden">
 				<div class="bg-gradient-to-r from-success to-info p-6">
-					<h2 class="text-2xl font-bold text-base-100 flex items-center gap-3">
+					<h2 class="text-2xl font-bold  flex items-center gap-3">
 						<i class="fas fa-fire"></i>
 						{m['admin.most_popular_blogs']()}
 					</h2>
@@ -246,7 +246,7 @@
 		<!-- Recent Activity -->
 		<div class="bg-base-100 rounded-xl shadow-lg overflow-hidden">
 			<div class="bg-gradient-to-r from-warning to-error p-6">
-				<h2 class="text-2xl font-bold text-base-100 flex items-center gap-3">
+				<h2 class="text-2xl font-bold  flex items-center gap-3">
 					<i class="fas fa-history"></i>
 					{m['admin.recent_blog_activity']()}
 				</h2>
@@ -289,7 +289,7 @@
 		<!-- All Users List -->
 		<div class="mt-8 bg-base-100 rounded-xl shadow-lg overflow-hidden">
 			<div class="bg-gradient-to-r from-info to-primary p-6">
-				<h2 class="text-2xl font-bold text-base-100 flex items-center gap-3">
+				<h2 class="text-2xl font-bold  flex items-center gap-3">
 					<i class="fas fa-list"></i>
 					{m['admin.all_users_directory']()}
 				</h2>
