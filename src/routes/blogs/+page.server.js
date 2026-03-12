@@ -5,8 +5,9 @@ export const load = ({ locals, params }) => {
 	const getBlogs = async () => {
 		try {
 			const blogs = await locals.pb.collection('blogs').getList(1, 50, {
-				sort: 'created',
-				expand: 'author'
+				sort: '-created',
+				expand: 'author',
+				filter: 'published = true'
 			});
 			for (const item of blogs.items) {
 				item.image = getImageURL(item.collectionId, item.id, item.image);

@@ -2,9 +2,32 @@
 	import { page } from '$app/stores';
 	import { site } from '$lib/utils/config';
 	import * as m from '$lib/paraglide/messages.js';
+
+	interface Blog {
+		id: string;
+		title: string;
+		slug: string;
+		image: string;
+		summary: string;
+		published: boolean;
+		author: string;
+		expand?: {
+			author: {
+				id: string;
+				username: string;
+				avatar?: string;
+				collectionId: string;
+			};
+		};
+	}
+
+	interface Props {
+		blog: Blog;
+	}
+
 	let { blog } = $props();
 
-	function shareButtonClick(blog) {
+	function shareButtonClick(blog: Blog) {
 		if (navigator.share) {
 			navigator
 				.share({
@@ -25,7 +48,15 @@
 	}
 </script>
 
-<div class="bg-primary border rounded-lg p-4 shadow-md hover:shadow-lg text-primary-content h-full">
+<div
+	class="bg-primary border rounded-lg p-4 shadow-md hover:shadow-lg text-primary-content h-full relative"
+>
+	{#if !blog?.published && $page.data.user && blog?.author && $page.data.user.id === blog.author}
+		<div class="absolute top-4 right-4 z-10">
+			<div class="badge badge-warning">{m['blog.status.draft']()}</div>
+		</div>
+	{/if}
+
 	<img src={blog?.image} alt={blog?.title} class="w-full h-48 object-cover rounded-lg" />
 	<h2 class="text-xl font-bold mt-4">
 		<a href="/blogs/{blog?.slug}" class="hover:cursor-pointer hover:underline hover:text-warning">

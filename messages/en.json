@@ -259,7 +259,17 @@
 		"engagement_rate": "Engagement Rate"
 	},
 	"status": {
-		"active": "Active"
+		"active": "Active",
+		"published": "Published",
+		"draft": "Draft"
+	},
+	"blog": {
+		"publish": "Publish",
+		"unpublish": "Unpublish",
+		"draft_badge": "Draft",
+		"published_message": "Blog published successfully",
+		"unpublished_message": "Blog moved to draft",
+		"update_error": "Failed to update blog status"
 	},
 	"dashboard_extra": {
 		"welcome_back": "Welcome back",

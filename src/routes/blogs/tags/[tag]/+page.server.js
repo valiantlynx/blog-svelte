@@ -7,7 +7,7 @@ export const load = async (event) => {
 	const blogs = await event.locals.pb.collection('blogs').getFullList({
 		sort: '-created',
 		expand: ['tags, author'],
-		filter: `tags~"${id}"`
+		filter: `tags~"${id}" && published = true`
 	});
 
 	blogs.forEach((blog) => {
