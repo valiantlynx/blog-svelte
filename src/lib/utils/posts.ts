@@ -4,9 +4,10 @@ import { pb, getImageURL } from './api';
 export const genPosts = async (page: number, origin: string) => {
 	const allPosts: any = [];
 
-	// fetch all the blogs	from pocketbase
+	// fetch all the blogs	from pocketbase (only published ones)
 	const blogs = await pb.collection('blogs').getFullList({
-		sort: '-created'
+		sort: '-created',
+		filter: 'published = true'
 	});
 
 	if (blogs) {

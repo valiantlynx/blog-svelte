@@ -87,5 +87,34 @@ export const actions = {
 		return {
 			success: true
 		};
+	},
+
+	toggleBlogPublish: async ({ request, locals }) => {
+		const { id } = Object.fromEntries(await request.formData());
+
+		try {
+			// Verify the blog exists and belongs to the current user
+			const blog = await locals.pb.collection('blogs').getOne(id);
+
+			if (blog.author !== locals.user.id) {
+				throw error(403, 'You can only update your own blogs');
+			}
+
+			// Toggle the published status
+			const updatedBlog = serializeNonPOJOs(
+				await locals.pb.collection('blogs').update(id, {
+					published: !blog.published
+				})
+			);
+
+			return {
+				success: true,
+				published: updatedBlog.published,
+				message: updatedBlog.published ? 'Blog published successfully' : 'Blog moved to draft'
+			};
+		} catch (err) {
+			console.error('Error: ', err);
+			throw error(err.status || 500, err.message || 'Failed to update blog status');
+		}
 	}
 };

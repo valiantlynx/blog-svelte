@@ -4,10 +4,17 @@
 
 .gallery--thumbs .splide__slide {
 	border-radius: 10px;
+	height: 100px;
+	max-width: 150px;
+	overflow: hidden;
 }
 
 .gallery--thumbs .splide__slide img {
 	border-radius: 7px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 
 .gallery--thumbs .splide__track--nav > .splide__list > .splide__slide.is-active {

@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "Startpagina",
 		"blogs": "Blogs",
@@ -272,5 +273,23 @@
 		"limits": "Beperkingen van ons beleid",
 		"changes": "Wijzigingen in dit beleid",
 		"contact_us": "Neem contact met ons op"
+	},
+	"status": {
+		"active": "Actief",
+		"published": "Gepubliceerd",
+		"draft": "Concept"
+	},
+	"blog": {
+		"publish": "Publiceren",
+		"unpublish": "Publicatie ongedaan maken",
+		"status": {
+			"draft": "Concept"
+		},
+		"published_message": "Blog succesvol gepubliceerd",
+		"unpublished_message": "Blog verplaatst naar concept",
+		"update_error": "Fout bij het bijwerken van blogstatus"
+	},
+	"home": {
+		"most_recent_blogs": "Meest recente blogs"
 	}
 }

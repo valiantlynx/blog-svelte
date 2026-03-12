@@ -6,6 +6,13 @@ export const load = async (event) => {
 	const blog = await event.locals.pb.collection('blogs').getFirstListItem(`slug="${slug}"`, {
 		expand: ['tags, author']
 	});
+
+	// Check if blog is published or if user is the author
+	const isAuthor = event.locals.user && event.locals.user.id === blog.author;
+	if (!blog.published && !isAuthor) {
+		throw error(404, 'Blog not found');
+	}
+
 	blog.image = getImageURL(blog?.collectionId, blog?.id, blog?.image, 'thumb=200x200');
 	return {
 		blog: serializeNonPOJOs(blog)

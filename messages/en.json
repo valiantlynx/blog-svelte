@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "Home",
 		"blogs": "Blogs",
@@ -259,7 +260,9 @@
 		"engagement_rate": "Engagement Rate"
 	},
 	"status": {
-		"active": "Active"
+		"active": "Active",
+		"published": "Published",
+		"draft": "Draft"
 	},
 	"dashboard_extra": {
 		"welcome_back": "Welcome back",
@@ -289,5 +292,18 @@
 		"limits": "Limits of Our Policy",
 		"changes": "Changes to This Policy",
 		"contact_us": "Contact Us"
+	},
+	"blog": {
+		"publish": "Publish",
+		"unpublish": "Unpublish",
+		"status": {
+			"draft": "Draft"
+		},
+		"published_message": "Blog published successfully",
+		"unpublished_message": "Blog moved to draft",
+		"update_error": "Failed to update blog status"
+	},
+	"home": {
+		"most_recent_blogs": "Most Recent Blogs"
 	}
 }

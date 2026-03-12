@@ -13,9 +13,7 @@
 <main class="w-full max-w-7xl mx-auto p-6">
 	<!-- Fresh hero header -->
 	<header class="mb-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-		<div
-			class="col-span-2 rounded-3xl p-8 shadow-md relative overflow-hidden bg-base-100"
-		>
+		<div class="col-span-2 rounded-3xl p-8 shadow-md relative overflow-hidden bg-base-100">
 			<div class="absolute -right-24 -top-10 opacity-10 transform rotate-12">
 				<svg
 					width="220"
@@ -55,10 +53,7 @@
 				</div>
 
 				<div class="mt-6 flex flex-wrap gap-3">
-					<Button
-						href="/blogs/new"
-						variant="primary"
-					>
+					<Button href="/blogs/new" variant="primary">
 						<Icon icon="mdi:plus" class="mr-2" />
 						{m['dashboard.add_blog_button']()}
 					</Button>
@@ -69,15 +64,11 @@
 				</div>
 
 				<!-- theme-aware overlay to mute hero in dark modes -->
-				<div
-					class="absolute inset-0 pointer-events-none"
-				></div>
+				<div class="absolute inset-0 pointer-events-none"></div>
 			</div>
 		</div>
 
-		<div
-			class="rounded-2xl p-6 shadow-md flex flex-col gap-3 bg-base-100 h-full"
-		>
+		<div class="rounded-2xl p-6 shadow-md flex flex-col gap-3 bg-base-100 h-full">
 			<div class="flex items-center justify-between">
 				<p class="text-sm">
 					{m['dashboard.quick_stats']()}
@@ -103,13 +94,9 @@
 
 	<!-- Compact stat widgets -->
 	<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-		<article
-			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100"
-		>
+		<article class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100">
 			<div class="flex items-center gap-4">
-				<div
-					class="p-3 rounded-lg"
-				>
+				<div class="p-3 rounded-lg">
 					<Icon icon="mdi:folder-multiple-plus" />
 				</div>
 				<div>
@@ -121,13 +108,9 @@
 				</div>
 			</div>
 		</article>
-		<article
-			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100"
-		>
+		<article class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100">
 			<div class="flex items-center gap-4">
-				<div
-					class="p-3 rounded-lg"
-				>
+				<div class="p-3 rounded-lg">
 					<Icon icon="mdi:folder-star" />
 				</div>
 				<div>
@@ -140,13 +123,9 @@
 				</div>
 			</div>
 		</article>
-		<article
-			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100"
-		>
+		<article class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100">
 			<div class="flex items-center gap-4">
-				<div
-					class="p-3 rounded-lg"
-				>
+				<div class="p-3 rounded-lg">
 					<Icon icon="mdi:file-document-multiple" />
 				</div>
 				<div>
@@ -159,13 +138,9 @@
 				</div>
 			</div>
 		</article>
-		<article
-			class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100"
-		>
+		<article class="p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-base-100">
 			<div class="flex items-center gap-4">
-				<div
-					class="p-3 rounded-lg"
-				>
+				<div class="p-3 rounded-lg">
 					<Icon icon="mdi:clock-outline" />
 				</div>
 				<div>

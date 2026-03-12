@@ -1,4 +1,5 @@
 {
+	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"header": {
 		"home": "Home",
 		"blogs": "Blogs",
@@ -272,5 +273,23 @@
 		"limits": "Giới hạn của chính sách của chúng tôi",
 		"changes": "Thay đổi chính sách này",
 		"contact_us": "Liên hệ với chúng tôi"
+	},
+	"status": {
+		"active": "Hoạt động",
+		"published": "Đã xuất bản",
+		"draft": "Bản nháp"
+	},
+	"blog": {
+		"publish": "Xuất bản",
+		"unpublish": "Hủy xuất bản",
+		"status": {
+			"draft": "Bản nháp"
+		},
+		"published_message": "Blog xuất bản thành công",
+		"unpublished_message": "Blog được chuyển sang bản nháp",
+		"update_error": "Lỗi cập nhật trạng thái blog"
+	},
+	"home": {
+		"most_recent_blogs": "Blog gần đây nhất"
 	}
 }

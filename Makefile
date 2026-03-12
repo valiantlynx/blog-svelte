@@ -93,9 +93,6 @@ clean-all: clean ## Clean everything including dependencies
 db-migrate: ## Run PocketBase migrations
 	@echo "$(BLUE)Running database migrations...$(NC)"
 	@cd pocketbase && go run . migrate up
-db-backup: ## Backup PocketBase database
-	@echo "$(BLUE)Creating database backup...$(NC)"
-	@cd pocketbase && ./backups/backup.sh || echo "Backup script not found"
 
 # Development helpers
 tmux-dev: ## Start all services in tmux session (uses window 4)

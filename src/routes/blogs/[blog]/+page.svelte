@@ -1,21 +1,22 @@
-<script>
+<script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import LikeButton from '$lib/components/blog/LikeButton.svelte';
 	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
 	import Share from '$lib/components/share/Share.svelte';
 	import { site } from '$lib/utils/config';
-	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
+	import * as m from '$lib/paraglide/messages.js';
 
 	const blog = page.data.blog;
 
 	// Load rich text component
-	let ValiantRichText = $state(null);
+	let ValiantRichText = $state<any>(null);
 	let isSaving = $state(false);
+	let isPublishing = $state(false);
 	let isLoading = $state(true);
 
-	onMount(() => {
+	$effect(() => {
 		import('@mythrantic/svelte-rich-text')
 			.then((module) => {
 				ValiantRichText = module.ValiantRichText;
@@ -42,7 +43,7 @@
 		return co;
 	});
 
-	let editor = $state();
+	let editor = $state<any>();
 	let contentJson = $state('');
 
 	function onUpdate() {
@@ -64,7 +65,12 @@
 <div class="container mx-auto px-4 md:px-8 lg:px-12 py-4 md:py-8 lg:py-12 text-base-content">
 	<!-- Blog Header -->
 	<div class="mb-8">
-		<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{blog?.title}</h1>
+		<div class="flex items-start justify-between gap-4 mb-4">
+			<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">{blog?.title}</h1>
+			{#if !blog?.published && page.data.user && blog?.author && page.data.user.id === blog.author}
+				<div class="badge badge-warning mt-2">{m['blog.status.draft']()}</div>
+			{/if}
+		</div>
 
 		<div class="flex items-center gap-4 mb-4">
 			<!-- Author Avatar -->
@@ -112,7 +118,7 @@
 						return async ({ result, update }) => {
 							isSaving = false;
 							if (result.type === 'success') {
-								toast.success('Blog post updated successfully');
+								toast.success(m['messages.success_changes_saved']());
 							} else if (result.type === 'error') {
 								toast.error(result.error?.message || 'Failed to update blog');
 							}
@@ -125,9 +131,56 @@
 
 					<ValiantRichText bind:editor {content} {onUpdate} editable={true} />
 
-					<Button type="submit" variant="primary" class="mt-4" disabled={isSaving}>
-						{isSaving ? 'Saving...' : 'Save'}
-					</Button>
+					<div class="flex gap-3 items-center mt-4">
+						<Button type="submit" variant="primary" disabled={isSaving}>
+							{isSaving ? 'Saving...' : m['buttons.save']()}
+						</Button>
+						<Button
+							type="button"
+							variant={blog?.published ? 'ghost' : 'primary'}
+							disabled={isPublishing}
+							onclick={() => {
+								const form = new FormData();
+								form.append('blogId', blog?.id);
+
+								const submitForm = async () => {
+									isPublishing = true;
+									try {
+										const response = await fetch('?/togglePublish', {
+											method: 'POST',
+											body: form
+										});
+
+										if (response.ok) {
+											const data = await response.json();
+											if (data.type === 'success') {
+												toast.success(data.data.message);
+												// Reload page to update UI
+												window.location.reload();
+											} else {
+												toast.error(data.error?.message || m['blog.update_error']());
+											}
+										} else {
+											toast.error(m['blog.update_error']());
+										}
+									} catch (err) {
+										console.error('Error:', err);
+										toast.error(m['blog.update_error']());
+									} finally {
+										isPublishing = false;
+									}
+								};
+
+								submitForm();
+							}}
+						>
+							{isPublishing
+								? 'Updating...'
+								: blog?.published
+									? m['blog.unpublish']()
+									: m['blog.publish']()}
+						</Button>
+					</div>
 				</form>
 			{:else}
 				<div class="border p-4 rounded bg-base-200">
