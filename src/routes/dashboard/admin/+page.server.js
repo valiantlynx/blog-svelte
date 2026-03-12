@@ -32,7 +32,7 @@ export const load = async ({ locals }) => {
 		const roleStats = {
 			admin: allUsers.filter((u) => u.role?.includes('admin')).length,
 			editor: allUsers.filter((u) => u.role?.includes('editor')).length,
-			user: allUsers.filter((u) => !u.role || u.role.length === 0).length
+			user: allUsers.filter((u) => u.role?.includes('user')).length
 		};
 
 		// Content Analytics - Get recent blogs

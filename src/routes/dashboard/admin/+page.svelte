@@ -146,190 +146,264 @@
 		</div>
 
 		<!-- Two Column Layout -->
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-			<!-- Recent Users -->
-			<div class="bg-base-100 rounded-xl shadow-lg overflow-hidden">
-				<div class="bg-gradient-to-r from-primary to-secondary p-6">
-					<h2 class="text-2xl font-bold flex items-center gap-3">
-						<i class="fas fa-user-plus"></i>
-						{m['admin.recent_signups']()}
-					</h2>
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+			<!-- Recent Signups -->
+			<div
+				class="bg-base-100 rounded-2xl shadow-xl overflow-hidden border border-primary/10 hover:shadow-2xl transition-shadow"
+			>
+				<div class="bg-gradient-to-r from-primary/80 to-secondary/80 backdrop-blur-sm p-8">
+					<div class="flex items-center gap-4">
+						<div class="bg-primary/20 rounded-lg p-3 ring-2 ring-primary/30">
+							<i class="fas fa-user-plus text-primary text-2xl"></i>
+						</div>
+						<div>
+							<h2 class="text-2xl font-bold text-white">{m['admin.recent_signups']()}</h2>
+							<p class="text-primary/80 text-sm mt-1">
+								{recentUsers.length}
+								{m['admin.total_users']()}
+							</p>
+						</div>
+					</div>
 				</div>
-				<div class="overflow-x-auto">
-					<table class="table table-zebra w-full">
-						<thead>
-							<tr>
-								<th>{m['admin.username']()}</th>
-								<th>{m['admin.email']()}</th>
-								<th>{m['admin.role']()}</th>
-								<th>{m['admin.joined']()}</th>
-							</tr>
-						</thead>
-						<tbody>
-							{#each recentUsers as user}
-								<tr>
-									<td class="font-semibold">{user.username}</td>
-									<td class="text-sm text-base-content/70">{user.email}</td>
-									<td>
+				<div class="p-6">
+					{#if recentUsers.length > 0}
+						<div class="space-y-4">
+							{#each recentUsers as user, idx}
+								<div
+									class="flex items-center justify-between p-4 rounded-lg bg-base-200/40 hover:bg-base-200/80 transition-colors border border-base-300/20 group"
+								>
+									<div class="flex-1">
+										<div class="flex items-center gap-3 mb-2">
+											<div
+												class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-semibold ring-2 ring-primary/20"
+											>
+												{user.username.charAt(0).toUpperCase()}
+											</div>
+											<div>
+												<p class="font-semibold text-base-content">{user.username}</p>
+												<p class="text-xs text-base-content/60">{user.email}</p>
+											</div>
+										</div>
+									</div>
+									<div class="text-right">
 										{#if user.role && user.role.length > 0}
-											<div class="flex gap-1 flex-wrap">
+											<div class="flex gap-1 flex-wrap justify-end mb-2">
 												{#each user.role as role}
-													<span class="badge badge-primary text-xs">{role}</span>
+													<span class="badge badge-sm badge-primary text-xs">{role}</span>
 												{/each}
 											</div>
 										{:else}
-											<span class="text-base-content/50 text-xs">User</span>
+											<span class="badge badge-sm badge-ghost text-xs mb-2">User</span>
 										{/if}
-									</td>
-									<td class="text-sm">
-										{new Date(user.created).toLocaleDateString()}
-									</td>
-								</tr>
+										<p class="text-xs text-base-content/50">
+											{new Date(user.created).toLocaleDateString()}
+										</p>
+									</div>
+								</div>
 							{/each}
-						</tbody>
-					</table>
-					{#if recentUsers.length === 0}
-						<div class="p-8 text-center text-base-content/60">
-							<p>{m['admin.no_recent_signups']()}</p>
+						</div>
+					{:else}
+						<div class="flex flex-col items-center justify-center py-12">
+							<i class="fas fa-inbox text-4xl text-base-content/20 mb-4"></i>
+							<p class="text-base-content/60">{m['admin.no_recent_signups']()}</p>
 						</div>
 					{/if}
 				</div>
 			</div>
 
 			<!-- Most Popular Blogs -->
-			<div class="bg-base-100 rounded-xl shadow-lg overflow-hidden">
-				<div class="bg-gradient-to-r from-success to-info p-6">
-					<h2 class="text-2xl font-bold flex items-center gap-3">
-						<i class="fas fa-fire"></i>
-						{m['admin.most_popular_blogs']()}
-					</h2>
+			<div
+				class="bg-base-100 rounded-2xl shadow-xl overflow-hidden border border-success/10 hover:shadow-2xl transition-shadow"
+			>
+				<div class="bg-gradient-to-r from-success/80 to-info/80 backdrop-blur-sm p-8">
+					<div class="flex items-center gap-4">
+						<div class="bg-success/20 rounded-lg p-3 ring-2 ring-success/30">
+							<i class="fas fa-fire text-success text-2xl"></i>
+						</div>
+						<div>
+							<h2 class="text-2xl font-bold text-white">{m['admin.most_popular_blogs']()}</h2>
+							<p class="text-success/80 text-sm mt-1">
+								{mostPopularBlogs.length}
+								{m['admin.total_blogs']()}
+							</p>
+						</div>
+					</div>
 				</div>
-				<div class="overflow-x-auto">
-					<table class="table table-zebra w-full">
-						<thead>
-							<tr>
-								<th>{m['admin.title']()}</th>
-								<th>{m['admin.likes']()}</th>
-								<th>{m['admin.status']()}</th>
-							</tr>
-						</thead>
-						<tbody>
-							{#each mostPopularBlogs as blog}
-								<tr>
-									<td class="font-semibold">
-										{blog.title}
-									</td>
-									<td>
-										<div class="flex items-center gap-2">
-											<i class="fas fa-heart text-error"></i>
-											{blog.likes}
+				<div class="p-6">
+					{#if mostPopularBlogs.length > 0}
+						<div class="space-y-4">
+							{#each mostPopularBlogs as blog, idx}
+								<div
+									class="flex items-center justify-between p-4 rounded-lg bg-base-200/40 hover:bg-base-200/80 transition-colors border border-base-300/20 group"
+								>
+									<div class="flex-1 min-w-0">
+										<p class="font-semibold text-base-content truncate">{blog.title}</p>
+										<p class="text-xs text-base-content/60 mt-1">
+											{blog.published ? m['status.published']() : m['status.draft']()}
+										</p>
+									</div>
+									<div class="text-right ml-4">
+										<div class="flex items-center gap-2 justify-end mb-2">
+											<i class="fas fa-heart text-error text-lg"></i>
+											<span class="font-bold text-lg text-base-content">{blog.likes}</span>
 										</div>
-									</td>
-									<td>
-										<span class={`badge ${blog.published ? 'badge-success' : 'badge-warning'}`}>
+										<span
+											class={`badge badge-sm ${blog.published ? 'badge-success' : 'badge-warning'}`}
+										>
 											{blog.published ? m['status.published']() : m['status.draft']()}
 										</span>
-									</td>
-								</tr>
+									</div>
+								</div>
 							{/each}
-						</tbody>
-					</table>
-					{#if mostPopularBlogs.length === 0}
-						<div class="p-8 text-center text-base-content/60">
-							<p>{m['admin.no_blogs']()}</p>
+						</div>
+					{:else}
+						<div class="flex flex-col items-center justify-center py-12">
+							<i class="fas fa-inbox text-4xl text-base-content/20 mb-4"></i>
+							<p class="text-base-content/60">{m['admin.no_blogs']()}</p>
 						</div>
 					{/if}
 				</div>
 			</div>
 		</div>
 
-		<!-- Recent Activity -->
-		<div class="bg-base-100 rounded-xl shadow-lg overflow-hidden">
-			<div class="bg-gradient-to-r from-warning to-error p-6">
-				<h2 class="text-2xl font-bold flex items-center gap-3">
-					<i class="fas fa-history"></i>
-					{m['admin.recent_blog_activity']()}
-				</h2>
+		<!-- Recent Blog Activity -->
+		<div
+			class="bg-base-100 rounded-2xl shadow-xl overflow-hidden border border-warning/10 hover:shadow-2xl transition-shadow mb-12"
+		>
+			<div class="bg-gradient-to-r from-warning/80 to-error/80 backdrop-blur-sm p-8">
+				<div class="flex items-center gap-4">
+					<div class="bg-warning/20 rounded-lg p-3 ring-2 ring-warning/30">
+						<i class="fas fa-history text-warning text-2xl"></i>
+					</div>
+					<div>
+						<h2 class="text-2xl font-bold text-white">{m['admin.recent_blog_activity']()}</h2>
+						<p class="text-warning/80 text-sm mt-1">
+							{recentBlogs.length}
+							{m['admin.total_blogs']()}
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="overflow-x-auto">
-				<table class="table table-zebra w-full">
-					<thead>
-						<tr>
-							<th>{m['admin.title']()}</th>
-							<th>{m['admin.author']()}</th>
-							<th>{m['status.published']()}</th>
-							<th>{m['admin.created']()}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each recentBlogs as blog}
-							<tr>
-								<td class="font-semibold">{blog.title}</td>
-								<td class="text-sm">{blog.author}</td>
-								<td>
-									<span class={`badge ${blog.published ? 'badge-success' : 'badge-warning'}`}>
-										{blog.published ? m['status.published']() : m['status.draft']()}
-									</span>
-								</td>
-								<td class="text-sm">
-									{new Date(blog.created).toLocaleDateString()}
-								</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-				{#if recentBlogs.length === 0}
-					<div class="p-8 text-center text-base-content/60">
-						<p>{m['admin.no_recent_blogs']()}</p>
+			<div class="p-6">
+				{#if recentBlogs.length > 0}
+					<div class="overflow-x-auto">
+						<table class="w-full">
+							<thead>
+								<tr class="border-b border-base-300/30">
+									<th
+										class="text-left py-3 px-4 font-semibold text-sm text-base-content/70 uppercase tracking-wide"
+										>{m['admin.title']()}</th
+									>
+									<th
+										class="text-left py-3 px-4 font-semibold text-sm text-base-content/70 uppercase tracking-wide"
+										>{m['admin.author']()}</th
+									>
+									<th
+										class="text-left py-3 px-4 font-semibold text-sm text-base-content/70 uppercase tracking-wide"
+										>{m['status.published']()}</th
+									>
+									<th
+										class="text-left py-3 px-4 font-semibold text-sm text-base-content/70 uppercase tracking-wide"
+										>{m['admin.created']()}</th
+									>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-base-300/20">
+								{#each recentBlogs as blog}
+									<tr class="hover:bg-base-200/30 transition-colors">
+										<td class="py-4 px-4 font-semibold text-base-content">{blog.title}</td>
+										<td class="py-4 px-4 text-sm text-base-content/70">{blog.author}</td>
+										<td class="py-4 px-4">
+											<span
+												class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${blog.published ? 'bg-success/20 text-success' : 'bg-warning/20 text-warning'}`}
+											>
+												{blog.published ? m['status.published']() : m['status.draft']()}
+											</span>
+										</td>
+										<td class="py-4 px-4 text-sm text-base-content/60"
+											>{new Date(blog.created).toLocaleDateString()}</td
+										>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
+					</div>
+				{:else}
+					<div class="flex flex-col items-center justify-center py-12">
+						<i class="fas fa-inbox text-4xl text-base-content/20 mb-4"></i>
+						<p class="text-base-content/60">{m['admin.no_recent_blogs']()}</p>
 					</div>
 				{/if}
 			</div>
 		</div>
 
-		<!-- All Users List -->
-		<div class="mt-8 bg-base-100 rounded-xl shadow-lg overflow-hidden">
-			<div class="bg-gradient-to-r from-info to-primary p-6">
-				<h2 class="text-2xl font-bold flex items-center gap-3">
-					<i class="fas fa-list"></i>
-					{m['admin.all_users_directory']()}
-				</h2>
+		<!-- All Users Directory -->
+		<div
+			class="bg-base-100 rounded-2xl shadow-xl overflow-hidden border border-info/10 hover:shadow-2xl transition-shadow"
+		>
+			<div class="bg-gradient-to-r from-info/80 to-primary/80 backdrop-blur-sm p-8">
+				<div class="flex items-center gap-4">
+					<div class="bg-info/20 rounded-lg p-3 ring-2 ring-info/30">
+						<i class="fas fa-list text-info text-2xl"></i>
+					</div>
+					<div>
+						<h2 class="text-2xl font-bold text-white">{m['admin.all_users_directory']()}</h2>
+						<p class="text-info/80 text-sm mt-1">{allUsers.length} {m['admin.total_users']()}</p>
+					</div>
+				</div>
 			</div>
-			<div class="overflow-x-auto">
-				<table class="table table-zebra w-full">
-					<thead>
-						<tr>
-							<th>{m['admin.username']()}</th>
-							<th>{m['admin.email']()}</th>
-							<th>{m['admin.role']()} (s)</th>
-							<th>{m['admin.joined']()}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each allUsers as user}
-							<tr>
-								<td class="font-semibold">{user.username}</td>
-								<td class="text-sm">{user.email}</td>
-								<td>
-									{#if user.role && user.role.length > 0}
-										<div class="flex gap-1 flex-wrap">
-											{#each user.role as role}
-												<span class="badge badge-primary text-xs">{role}</span>
-											{/each}
-										</div>
-									{:else}
-										<span class="text-base-content/50 text-xs">User</span>
-									{/if}
-								</td>
-								<td class="text-sm">
-									{new Date(user.created).toLocaleDateString()}
-								</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-				{#if allUsers.length === 0}
-					<div class="p-8 text-center text-base-content/60">
-						<p>{m['admin.no_users_found']()}</p>
+			<div class="p-6">
+				{#if allUsers.length > 0}
+					<div class="overflow-x-auto">
+						<table class="w-full">
+							<thead>
+								<tr class="border-b border-base-300/30">
+									<th
+										class="text-left py-3 px-4 font-semibold text-sm text-base-content/70 uppercase tracking-wide"
+										>{m['admin.username']()}</th
+									>
+									<th
+										class="text-left py-3 px-4 font-semibold text-sm text-base-content/70 uppercase tracking-wide"
+										>{m['admin.email']()}</th
+									>
+									<th
+										class="text-left py-3 px-4 font-semibold text-sm text-base-content/70 uppercase tracking-wide"
+										>{m['admin.role']()}</th
+									>
+									<th
+										class="text-left py-3 px-4 font-semibold text-sm text-base-content/70 uppercase tracking-wide"
+										>{m['admin.joined']()}</th
+									>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-base-300/20">
+								{#each allUsers as user}
+									<tr class="hover:bg-base-200/30 transition-colors">
+										<td class="py-4 px-4 font-semibold text-base-content">{user.username}</td>
+										<td class="py-4 px-4 text-sm text-base-content/70">{user.email}</td>
+										<td class="py-4 px-4">
+											{#if user.role && user.role.length > 0}
+												<div class="flex gap-1 flex-wrap">
+													{#each user.role as role}
+														<span class="badge badge-sm badge-primary text-xs">{role}</span>
+													{/each}
+												</div>
+											{:else}
+												<span class="badge badge-sm badge-ghost text-xs">User</span>
+											{/if}
+										</td>
+										<td class="py-4 px-4 text-sm text-base-content/60"
+											>{new Date(user.created).toLocaleDateString()}</td
+										>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
+					</div>
+				{:else}
+					<div class="flex flex-col items-center justify-center py-12">
+						<i class="fas fa-inbox text-4xl text-base-content/20 mb-4"></i>
+						<p class="text-base-content/60">{m['admin.no_users_found']()}</p>
 					</div>
 				{/if}
 			</div>
