@@ -64,6 +64,7 @@
 			toast.error(m['blog.update_error']());
 		} finally {
 			isPublishing = false;
+			await invalidateAll(); // Refresh data to reflect changes
 		}
 	};
 </script>
