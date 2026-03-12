@@ -107,7 +107,7 @@
 					<div class="space-y-4">
 						<div class="bg-base-200 rounded-lg p-4 border border-base-300">
 							<p class="text-sm text-base-content/60 mb-1">Current Email</p>
-							<p class="text-lg font-semibold text-base-content flex items-center gap-2">
+							<p class="text-lg font-semibold text-base-content flex items-center gap-2 line-clamp-1">
 								<i class="fas fa-check-circle text-success"></i>
 								{$page.data?.user?.email}
 							</p>
@@ -317,7 +317,7 @@
 			<div class="lg:col-span-1 space-y-6">
 				<!-- Current Roles -->
 				<div
-					class="bg-base-100 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow sticky top-8"
+					class="bg-base-100 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow"
 				>
 					<h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
 						<i class="fas fa-shield-alt text-primary text-2xl"></i>

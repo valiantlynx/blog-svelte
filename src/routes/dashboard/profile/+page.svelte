@@ -7,7 +7,7 @@
 </svelte:head>
 
 <div
-	class="flex flex-col items-center justify-center min-w-screen w-full bg-gradient-to-b from-secondary to-base-200"
+	class="flex flex-col items-center justify-center w-full bg-gradient-to-b from-secondary to-base-200"
 >
 	<div class="bg-base shadow-lg rounded-lg p-8 space-y-4">
 		<h1 class="text-3xl font-semibold text-center text-secondary-content">
