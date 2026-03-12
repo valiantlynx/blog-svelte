@@ -254,6 +254,19 @@
 	"auth": {
 		"or_separator": "hoặc"
 	},
+	"status": {
+		"active": "Hoạt động",
+		"published": "Đã xuất bản",
+		"draft": "Bản nháp"
+	},
+	"blog": {
+		"publish": "Xuất bản",
+		"unpublish": "Hủy xuất bản",
+		"draft_badge": "Bản nháp",
+		"published_message": "Blog xuất bản thành công",
+		"unpublished_message": "Blog được chuyển sang bản nháp",
+		"update_error": "Lỗi cập nhật trạng thái blog"
+	},
 	"errors": {
 		"go_back": "Quay lại"
 	},

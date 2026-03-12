@@ -254,6 +254,19 @@
 	"auth": {
 		"or_separator": "of"
 	},
+	"status": {
+		"active": "Actief",
+		"published": "Gepubliceerd",
+		"draft": "Concept"
+	},
+	"blog": {
+		"publish": "Publiceren",
+		"unpublish": "Publicatie ongedaan maken",
+		"draft_badge": "Concept",
+		"published_message": "Blog succesvol gepubliceerd",
+		"unpublished_message": "Blog verplaatst naar concept",
+		"update_error": "Fout bij het bijwerken van blogstatus"
+	},
 	"errors": {
 		"go_back": "Teruggaan"
 	},

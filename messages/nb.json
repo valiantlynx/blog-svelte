@@ -254,6 +254,19 @@
 	"auth": {
 		"or_separator": "eller"
 	},
+	"status": {
+		"active": "Aktiv",
+		"published": "Publisert",
+		"draft": "Utkast"
+	},
+	"blog": {
+		"publish": "Publiser",
+		"unpublish": "Avpubliser",
+		"draft_badge": "Utkast",
+		"published_message": "Blog publisert",
+		"unpublished_message": "Blog flyttes til utkast",
+		"update_error": "Feil ved oppdatering av blogstatus"
+	},
 	"errors": {
 		"go_back": "Gå tilbake"
 	},

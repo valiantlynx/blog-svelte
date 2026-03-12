@@ -236,6 +236,19 @@
 	"auth": {
 		"or_separator": "ou"
 	},
+	"status": {
+		"active": "Actif",
+		"published": "Publié",
+		"draft": "Brouillon"
+	},
+	"blog": {
+		"publish": "Publier",
+		"unpublish": "Dépublier",
+		"draft_badge": "Brouillon",
+		"published_message": "Blog publié avec succès",
+		"unpublished_message": "Blog déplacé en brouillon",
+		"update_error": "Erreur lors de la mise à jour du statut du blog"
+	},
 	"errors": {
 		"go_back": "Retourner en arrière"
 	},

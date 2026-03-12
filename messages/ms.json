@@ -254,6 +254,19 @@
 	"auth": {
 		"or_separator": "atau"
 	},
+	"status": {
+		"active": "Aktif",
+		"published": "Diterbitkan",
+		"draft": "Draf"
+	},
+	"blog": {
+		"publish": "Terbitkan",
+		"unpublish": "Batal Terbitkan",
+		"draft_badge": "Draf",
+		"published_message": "Blog diterbitkan dengan berjaya",
+		"unpublished_message": "Blog dialihkan ke draf",
+		"update_error": "Gagal mengemaskini status blog"
+	},
 	"errors": {
 		"go_back": "Kembali"
 	},

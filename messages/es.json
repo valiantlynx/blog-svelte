@@ -236,6 +236,19 @@
 	"auth": {
 		"or_separator": "o"
 	},
+	"status": {
+		"active": "Activo",
+		"published": "Publicado",
+		"draft": "Borrador"
+	},
+	"blog": {
+		"publish": "Publicar",
+		"unpublish": "Despublicar",
+		"draft_badge": "Borrador",
+		"published_message": "Blog publicado correctamente",
+		"unpublished_message": "Blog movido a borrador",
+		"update_error": "Error al actualizar el estado del blog"
+	},
 	"errors": {
 		"go_back": "Volver atrás"
 	},
