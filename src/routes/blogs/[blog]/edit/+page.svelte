@@ -7,6 +7,7 @@
 	import toast from 'svelte-french-toast';
 	import * as m from '$lib/paraglide/messages.js';
 	let loading = $state(false);
+	let isPublishing = $state(false);
 
 	const blog = page.data.blog;
 
@@ -182,8 +183,53 @@
 					{/if}
 				</div>
 
-				<div class="flex gap-3 items-center">
+				<div class="flex gap-3 items-center flex-wrap">
 					<Button type="submit" variant="primary" disabled={loading}>{m['buttons.save']()}</Button>
+					<Button
+						type="button"
+						variant={blog?.published ? 'ghost' : 'primary'}
+						disabled={isPublishing}
+						onclick={() => {
+							const form = new FormData();
+							form.append('blogId', blog?.id);
+
+							const submitForm = async () => {
+								isPublishing = true;
+								try {
+									const response = await fetch('?/togglePublish', {
+										method: 'POST',
+										body: form
+									});
+
+									if (response.ok) {
+										const data = await response.json();
+										if (data.type === 'success') {
+											toast.success(data.data.message);
+											// Reload page to update UI
+											window.location.reload();
+										} else {
+											toast.error(data.error?.message || m['blog.update_error']());
+										}
+									} else {
+										toast.error(m['blog.update_error']());
+									}
+								} catch (err) {
+									console.error('Error:', err);
+									toast.error(m['blog.update_error']());
+								} finally {
+									isPublishing = false;
+								}
+							};
+
+							submitForm();
+						}}
+					>
+						{isPublishing
+							? 'Updating...'
+							: blog?.published
+								? m['blog.unpublish']()
+								: m['blog.publish']()}
+					</Button>
 					<a href="/blogs" class="btn btn-ghost">{m['buttons.cancel']()}</a>
 				</div>
 			</div>
