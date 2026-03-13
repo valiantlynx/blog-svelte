@@ -64,6 +64,15 @@
 
 <BlogGrid />
 
+<!-- Navigation Section -->
+<div class="flex flex-col items-center justify-center m-5 pt-10 gap-4 text-base-content">
+	<h2 class="text-3xl font-bold">Explore More</h2>
+	<div class="flex flex-col sm:flex-row gap-4">
+		<Button href="/blogs" variant="outline" class="min-w-[200px]">📝 View All Blogs</Button>
+		<Button href="/projects" variant="outline" class="min-w-[200px]">🚀 View Projects</Button>
+	</div>
+</div>
+
 <button
 	class="transition cursor-pointer xl:mb-5 mr-5 xl:mr-0"
 	onclick={requestNotificationPermission}

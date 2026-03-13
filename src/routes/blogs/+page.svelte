@@ -13,6 +13,13 @@
 	<Button href="/blogs/new" variant="primary" class="max-w-md mt-4">Add One</Button>
 </div>
 
+<!-- Tags Navigation -->
+<div class="w-full p-4">
+	<Button href="/blogs/tags" variant="outline" class="flex items-center gap-2">
+		🏷️ Browse by Tags
+	</Button>
+</div>
+
 <div class="w-full mt-4 p-4">
 	<h2 class="text-3xl font-bold mb-6">All Blogs</h2>
 
