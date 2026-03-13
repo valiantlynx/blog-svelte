@@ -194,6 +194,12 @@
 
 		const response = await saveSubscription(subscription);
 	}
+
+	let loadingHref = $state('');
+
+	function handleNavClick(href: string) {
+		loadingHref = href;
+	}
 </script>
 
 <svelte:head>
@@ -291,41 +297,44 @@
 {/if}
 
 <!-- Mobile Dashboard Bottom Navigation — only on /dashboard/* routes, only on mobile -->
-{#if page.data.user && page.url.pathname.startsWith('/dashboard')}
+{#if page.data.user} 
 	<nav
 		class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-base-200 border-t border-base-300 shadow-lg"
 	>
 		<div class="flex items-center justify-around px-2 py-1">
-			<a
-				href="/"
-				class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0"
-			>
-				<Icon icon="bx:bx-home" width="22" height="22" />
-				<span class="text-xs truncate">{m['tooltips.home']()}</span>
-			</a>
-			<a
-				href="/dashboard/profile"
-				class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0"
-			>
-				<Icon icon="iconoir:profile-circle" width="22" height="22" />
-				<span class="text-xs truncate">{m['tooltips.profile']()}</span>
-			</a>
-			<a
-				href="/dashboard/manager"
-				class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0"
-			>
-				<Icon icon="material-symbols:bookmark-manager" width="22" height="22" />
-				<span class="text-xs truncate">{m['tooltips.manage']()}</span>
-			</a>
-			{#if page.data.user?.role.includes('admin')}
+			{#each [
+				{ href: '/', icon: 'bx:bx-home', label: m['tooltips.home']() },
+				{ href: '/dashboard/profile', icon: 'iconoir:profile-circle', label: m['tooltips.profile']() },
+				{ href: '/dashboard/manager', icon: 'material-symbols:bookmark-manager', label: m['tooltips.manage']() },
+				...(page.data.user?.role.includes('admin') ? [{ href: '/dashboard/admin', icon: 'bx:bx-shield', label: m['tooltips.admin']() }] : [])
+			] as item}
 				<a
-					href="/dashboard/admin"
-					class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0"
+					target="_self"
+					href={item.href}
+					onclick={() => handleNavClick(item.href)}
+					class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0 relative"
 				>
-					<Icon icon="bx:bx-shield" width="22" height="22" />
-					<span class="text-xs truncate">{m['tooltips.admin']()}</span>
+					{#if loadingHref === item.href}
+						<svg
+							class="animate-spin h-5 w-5"
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+						>
+							<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+							<path
+								class="opacity-75"
+								fill="currentColor"
+								d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+							/>
+						</svg>
+					{:else}
+						<Icon icon={item.icon} width="22" height="22" />
+					{/if}
+					<span class="text-xs truncate">{item.label}</span>
 				</a>
-			{/if}
+			{/each}
+
 			<form action="/api/logout" method="POST">
 				<button
 					type="submit"
