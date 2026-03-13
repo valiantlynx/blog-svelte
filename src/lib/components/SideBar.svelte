@@ -5,7 +5,7 @@
 </script>
 
 <div
-	class="relative top-0 left-0 w-16 h-screen bg-base-200 m-0 flex flex-col text-base-content shadow"
+	class="relative top-0 left-0 w-16 h-screen bg-base-200 m-0 hidden md:flex flex-col text-base-content shadow shrink-0"
 >
 	<a href="/"><SideBarIcon tooltip={m['tooltips.home']()} icon="bx:bx-home" /></a>
 	<a href="/dashboard/profile">

@@ -19,8 +19,7 @@
 	const mainOptions = {
 		pagination: true,
 		type: 'loop',
-		autoplay: true,
-		fixedHeight: 520
+		autoplay: true
 	};
 	const thumbsOptions = {
 		arrows: false,
@@ -56,12 +55,12 @@
 						<div class="blog-hero">
 							<img class="brightness-50" src={blog?.image} alt={blog?.alt} />
 							<div
-								class=" absolute p-10 bg-secondary text-secondary-content bg-opacity-75 bottom-5 left-5 right-5 rounded-md"
+								class=" absolute p-4 md:p-10 bg-secondary text-secondary-content bg-opacity-75 bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 rounded-md"
 							>
-								<h2 class="text-2xl font-bold text-secondary-content">
+								<h2 class="text-lg md:text-2xl font-bold text-secondary-content">
 									{blog?.title}
 								</h2>
-								<p class="text-base font-normal text-secondary-content my-4 line-clamp-2">
+								<p class="text-sm font-normal text-secondary-content my-2 md:my-4 line-clamp-2">
 									{blog?.summary}
 								</p>
 								<Button variant="primary">Read More</Button>
@@ -101,7 +100,25 @@
 
 	.blog-hero img {
 		width: 100%;
-		height: 520px; /* Set an appropriate height for your hero images */
+		height: 220px;
 		object-fit: cover;
+	}
+
+	@media (min-width: 640px) {
+		.blog-hero img {
+			height: 340px;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.blog-hero img {
+			height: 420px;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.blog-hero img {
+			height: 520px;
+		}
 	}
 </style>

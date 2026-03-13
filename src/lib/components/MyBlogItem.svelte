@@ -70,34 +70,36 @@
 </script>
 
 <div
-	class="w-full flex items-center gap-4 p-4 bg-base-200 rounded-lg hover:shadow-md transition-shadow"
+	class="w-full flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-base-200 rounded-lg hover:shadow-md transition-shadow"
 >
-	<div class="avatar flex-shrink-0">
-		<div class="w-16 h-16 rounded-lg overflow-hidden">
-			<img
-				src={blog?.image
-					? getImageURL(blog?.collectionId, blog?.id, blog?.image)
-					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${blog?.title}`}
-				alt="{blog?.image} blog image"
-				class="w-full h-full object-cover"
-			/>
+	<div class="flex items-center gap-4 flex-1 min-w-0">
+		<div class="avatar flex-shrink-0">
+			<div class="w-16 h-16 rounded-lg overflow-hidden">
+				<img
+					src={blog?.image
+						? getImageURL(blog?.collectionId, blog?.id, blog?.image)
+						: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${blog?.title}`}
+					alt="{blog?.image} blog image"
+					class="w-full h-full object-cover"
+				/>
+			</div>
+		</div>
+		<div class="flex-1 min-w-0">
+			<div class="flex items-center gap-2">
+				<a
+					href="/blogs/{blog?.slug}"
+					class="font-semibold text-lg hover:text-primary transition-colors truncate"
+				>
+					{blog?.title}
+				</a>
+				{#if !blog?.published}
+					<div class="badge badge-warning badge-sm flex-shrink-0">{m['blog.status.draft']()}</div>
+				{/if}
+			</div>
+			<p class="text-sm text-base-content/70 line-clamp-2">{blog?.summary}</p>
 		</div>
 	</div>
-	<div class="flex-1 min-w-0">
-		<div class="flex items-center gap-2">
-			<a
-				href="/blogs/{blog?.slug}"
-				class="font-semibold text-lg hover:text-primary transition-colors truncate"
-			>
-				{blog?.title}
-			</a>
-			{#if !blog?.published}
-				<div class="badge badge-warning badge-sm flex-shrink-0">{m['blog.status.draft']()}</div>
-			{/if}
-		</div>
-		<p class="text-sm text-base-content/70 line-clamp-2">{blog?.summary}</p>
-	</div>
-	<div class="flex items-center gap-2 flex-shrink-0">
+	<div class="flex items-center gap-2 flex-wrap flex-shrink-0">
 		<Button
 			type="button"
 			variant={blog?.published ? 'ghost' : 'primary'}

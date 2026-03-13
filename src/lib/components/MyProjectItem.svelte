@@ -32,29 +32,31 @@
 </script>
 
 <div
-	class="w-full flex items-center gap-4 p-4 bg-base-200 rounded-lg hover:shadow-md transition-shadow"
+	class="w-full flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-base-200 rounded-lg hover:shadow-md transition-shadow"
 >
-	<div class="avatar flex-shrink-0">
-		<div class="w-16 h-16 rounded-lg overflow-hidden">
-			<img
-				src={project?.thumbnail
-					? getImageURL(project.collectionId, project.id, project.thumbnail)
-					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${project.name}`}
-				alt="project thumbnail"
-				class="w-full h-full object-cover"
-			/>
+	<div class="flex items-center gap-4 flex-1 min-w-0">
+		<div class="avatar flex-shrink-0">
+			<div class="w-16 h-16 rounded-lg overflow-hidden">
+				<img
+					src={project?.thumbnail
+						? getImageURL(project.collectionId, project.id, project.thumbnail)
+						: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${project.name}`}
+					alt="project thumbnail"
+					class="w-full h-full object-cover"
+				/>
+			</div>
+		</div>
+		<div class="flex-1 min-w-0">
+			<a
+				href="/projects/{project.id}"
+				class="font-semibold text-lg hover:text-primary transition-colors block truncate"
+			>
+				{project.name}
+			</a>
+			<p class="text-sm text-base-content/70 line-clamp-2">{project.tagline}</p>
 		</div>
 	</div>
-	<div class="flex-1 min-w-0">
-		<a
-			href="/projects/{project.id}"
-			class="font-semibold text-lg hover:text-primary transition-colors block truncate"
-		>
-			{project.name}
-		</a>
-		<p class="text-sm text-base-content/70 line-clamp-2">{project.tagline}</p>
-	</div>
-	<div class="flex items-center gap-2 flex-shrink-0">
+	<div class="flex items-center gap-2 flex-wrap flex-shrink-0">
 		<Button href="/projects/{project.id}/edit" variant="outline" size="sm"
 			>{m['buttons.edit_project']()}</Button
 		>
