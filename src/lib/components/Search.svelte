@@ -99,6 +99,19 @@
 	}
 
 	/**
+	 * Handle Enter key to navigate to search page
+	 * @param {any} event
+	 */
+	function handleKeyDown(event) {
+		if (event.key === 'Enter') {
+			event.preventDefault();
+			if (searchTerm.trim() !== '') {
+				goto('/search');
+			}
+		}
+	}
+
+	/**
 	 * @param {any} url
 	 */
 	async function handleClick(url) {
@@ -158,26 +171,23 @@
 </script>
 
 <div class="max-w-screen mx-auto w-full">
-	<div class="relative w-full group">
-		<!-- Search Input Container with enhanced styling -->
+	<div class="relative w-full">
 		<div
-			class="flex flex-nowrap items-stretch gap-0 bg-gradient-to-r from-base-100 to-base-100/95 border border-base-300/60 rounded-lg overflow-hidden shadow-md hover:shadow-lg hover:border-base-300 transition-all duration-300"
+			class="flex flex-nowrap items-stretch gap-0 bg-base-100 border border-base-300 rounded-lg overflow-hidden shadow-sm"
 		>
-			<!-- Search Input with focus styling -->
 			<input
 				type="text"
 				value={searchTerm}
 				placeholder={m['placeholders.search']()}
 				oninput={handleSearch}
-				class="flex-1 min-w-0 bg-transparent text-base-content placeholder-base-content/40 px-4 py-2.5 focus:outline-none border-0 font-medium"
+				onkeydown={handleKeyDown}
+				class="flex-1 min-w-0 bg-base-100 text-base-content placeholder-base-content/50 px-4 py-2 focus:outline-none border-0"
 			/>
-
-			<!-- Filter Dropdown with enhanced styling -->
 			<div
-				class="border-l border-base-300/40 bg-gradient-to-r from-base-200/50 to-base-300/50 hover:from-base-200 hover:to-base-300 transition-all duration-200"
+				class="border-l border-base-300 bg-base-200 hover:bg-base-300 transition-colors duration-200"
 			>
 				<select
-					class="bg-transparent text-base-content border-0 px-3 py-2.5 focus:outline-none cursor-pointer font-semibold text-sm"
+					class="bg-base-200 text-base-content border-0 px-3 py-2 focus:outline-none cursor-pointer font-medium"
 					bind:value={selectedOption}
 				>
 					<option value={m['header.blogs']?.()}>{m['header.blogs']?.()}</option>
@@ -185,23 +195,22 @@
 				</select>
 			</div>
 
-			<!-- Search Button with enhanced styling -->
 			<button
 				type="button"
 				onclick={() => goto('/search')}
-				class="border-l border-base-300/40 bg-gradient-to-r from-primary/10 to-secondary/10 hover:from-primary/20 hover:to-secondary/20 active:from-primary/30 active:to-secondary/30 transition-all duration-200 px-4 py-2.5 text-base-content hover:text-primary font-semibold flex items-center gap-2 flex-shrink-0"
+				class="border-l border-base-300 bg-base-200 hover:bg-base-300 transition-colors duration-200 px-4 py-2 text-base-content hover:text-primary font-medium flex items-center gap-2 flex-shrink-0"
 			>
 				{m['buttons.search']?.()}
 			</button>
 		</div>
 
-		<!-- Small Search Results Dropdown with animations -->
 		{#if type === 'small' && searchResults.length > 0}
-			<div class="absolute top-full left-0 right-0 mt-2 z-50 animate-slide-in">
+			<div
+				class="absolute top-full left-0 right-0 mt-2 bg-base-100 border border-base-300 rounded-lg shadow-xl shadow-base-900/10 z-50 max-h-96 overflow-y-auto backdrop-blur-sm animate-in fade-in slide-in-from-top-1 duration-200"
+			>
 				<SmallSearchResults {searchResults} {handleClick} />
 			</div>
 		{:else if type === 'big' && searchResults.length > 0}
-			<!-- Big Search Results for search page -->
 			<div class="mt-2 bg-base-100 border border-base-300 rounded-lg shadow-lg overflow-y-auto">
 				<BigSearchResults {searchResults} {handleClick} />
 			</div>
