@@ -5,7 +5,7 @@
 	import BigSearchResults from '$lib/components/BigSearchResults.svelte';
 	import SmallSearchResults from '$lib/components/SmallSearchResults.svelte';
 	import { metaKeywords, searchQuery } from '$lib/utils/stores';
-	import { pb } from '$lib/utils/api';
+	import { pb, getImageURL } from '$lib/utils/api';
 	import * as m from '$lib/paraglide/messages.js';
 
 	interface Props {
@@ -31,18 +31,24 @@
 			const filter = `title~'${searchTerm}' || summary~'${searchTerm}'`;
 			const response = await pb.collection('blogs').getList(1, 10, {
 				filter: filter,
-				fields: 'id,title,slug,image,summary,author,expand'
+				expand: 'author',
+				fields: 'id,title,slug,image,summary,author,collectionId,expand'
 			});
 
-			searchResults = response.items.map((blog: any) => ({
-				title: blog.title,
-				img:
-					blog.image ||
-					'https://via.placeholder.com/300x200?text=' + encodeURIComponent(blog.title),
-				src: '/blogs/' + blog.slug,
-				author: blog.author,
-				slug: blog.slug
-			}));
+			searchResults = response.items.map((blog: any) => {
+				const authorName = blog.expand?.author?.username || 'Unknown Author';
+				const imageUrl = blog.image
+					? getImageURL(blog.collectionId, blog.id, blog.image)
+					: 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(blog.title);
+
+				return {
+					title: blog.title,
+					img: imageUrl,
+					src: '/blogs/' + blog.slug,
+					author: authorName,
+					slug: blog.slug
+				};
+			});
 		} catch (error) {
 			console.error('Blog search error:', error);
 		}
