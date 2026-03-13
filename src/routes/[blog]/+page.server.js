@@ -104,5 +104,43 @@ export const actions = {
 			console.error('Error updating blog:', err);
 			throw error(err.status || 500, err.message || 'Failed to update blog');
 		}
+	},
+
+	togglePublish: async ({ locals, request, params }) => {
+		// Check if user is authenticated
+		if (!locals.pb.authStore.isValid) {
+			throw error(401, 'Unauthorized - Please log in');
+		}
+
+		const form = await request.formData();
+		const blogId = form.get('blogId');
+
+		if (!blogId) {
+			throw error(400, 'Invalid request data');
+		}
+
+		try {
+			// Get the current blog to check if user is the author
+			const blog = await locals.pb.collection('blogs').getOne(blogId);
+
+			// Check if user is the author
+			if (blog.author !== locals.user.id) {
+				throw error(403, 'Forbidden - You can only toggle your own blogs');
+			}
+
+			// Toggle the published status
+			const updatedBlog = await locals.pb.collection('blogs').update(blogId, {
+				published: !blog.published
+			});
+
+			return {
+				success: true,
+				message: updatedBlog.published ? 'Blog published successfully' : 'Blog moved to draft',
+				blog: serializeNonPOJOs(updatedBlog)
+			};
+		} catch (err) {
+			console.error('Error toggling publish status:', err);
+			throw error(err.status || 500, err.message || 'Failed to update blog status');
+		}
 	}
 };
