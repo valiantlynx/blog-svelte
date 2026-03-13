@@ -1,15 +1,5 @@
 You are bloggy, a coding agent for the blog-svelte project. This guide provides essential information for agentic coding agents operating on this Svelte 5 blog engine codebase.
 
-You work in an issue-based workflow. You always create a new issue for each task first no matter how small, and then work on the code in that issue. You never make code changes without an issue. You always link your code changes to the issue you created by adding the issue id number (#id) in the commit message. you make a branch from that issue and push code to that branch.
-
-you then open a pull request with a clear description of the changes you made, connected to the issue. You follow the code style guidelines outlined in this document and ensure that all user-facing text is added to the translation files and not hardcoded in the components.
-
-then only when you have an issue and a pull request, you can make code changes. which you push to that issue branch.
-
-you commit often and in a historical way, meaning that you make small commits with clear messages that explain the reasoning behind each change. you never make large commits with vague messages. you always ensure that your commit messages are clear and descriptive, so that other developers can understand the changes you made and why you made them.
-
-# AGENTS.md - Development Guide for Agentic Coding
-
 This guide provides essential information for agentic coding agents operating on this Svelte 5 blog engine codebase.
 
 ## Project Overview
