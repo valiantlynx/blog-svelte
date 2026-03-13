@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { onMount } from 'svelte';
 
 	interface Props {
 		items: unknown[];
@@ -44,9 +45,16 @@
 					? 'grid-cols-3'
 					: 'grid-cols-4'
 	);
-</script>
 
-<svelte:window bind:innerWidth={windowWidth} />
+	onMount(() => {
+		windowWidth = window.innerWidth;
+		const handleResize = () => {
+			windowWidth = window.innerWidth;
+		};
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	});
+</script>
 
 <div class="grid {colClass} {gap} w-full mt-8">
 	{#each columns as column, colIndex (colIndex)}

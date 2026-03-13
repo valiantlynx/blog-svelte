@@ -1,12 +1,12 @@
 <script>
-	import { page } from '$app/stores';
-	import { m } from '$lib/paraglide/messages.js';
+	import { page } from '$app/state';
+	import * as m from '$lib/paraglide/messages.js';
 
-	const stats = $derived($page.data.stats);
-	const recentUsers = $derived($page.data.recentUsers);
-	const recentBlogs = $derived($page.data.recentBlogs);
-	const mostPopularBlogs = $derived($page.data.mostPopularBlogs);
-	const allUsers = $derived($page.data.allUsers);
+	const stats = $derived(page.data.stats);
+	const recentUsers = $derived(page.data.recentUsers);
+	const recentBlogs = $derived(page.data.recentBlogs);
+	const mostPopularBlogs = $derived(page.data.mostPopularBlogs);
+	const allUsers = $derived(page.data.allUsers);
 </script>
 
 <svelte:head>
@@ -14,7 +14,7 @@
 </svelte:head>
 
 <div
-	class="w-full min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200 p-4 md:p-8 te"
+	class="flex-1 min-w-0 min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200 p-4 md:p-8"
 >
 	<div class="max-w-7xl mx-auto">
 		<!-- Header -->
@@ -168,7 +168,7 @@
 				<div class="p-6">
 					{#if recentUsers.length > 0}
 						<div class="space-y-4">
-							{#each recentUsers as user, idx}
+							{#each recentUsers as user (user.id)}
 								<div
 									class="flex items-center justify-between p-4 rounded-lg bg-base-200/40 hover:bg-base-200/80 transition-colors border border-base-300/20 group"
 								>
@@ -186,11 +186,9 @@
 										</div>
 									</div>
 									<div class="text-right">
-										{#if user.role && user.role.length > 0}
+										{#if user.role}
 											<div class="flex gap-1 flex-wrap justify-end mb-2">
-												{#each user.role as role}
-													<span class="badge badge-sm badge-primary text-xs">{role}</span>
-												{/each}
+												<span class="badge badge-sm badge-primary text-xs">{user.role}</span>
 											</div>
 										{:else}
 											<span class="badge badge-sm badge-ghost text-xs mb-2">User</span>
@@ -232,7 +230,7 @@
 				<div class="p-6">
 					{#if mostPopularBlogs.length > 0}
 						<div class="space-y-4">
-							{#each mostPopularBlogs as blog, idx}
+							{#each mostPopularBlogs as blog (blog.id)}
 								<div
 									class="flex items-center justify-between p-4 rounded-lg bg-base-200/40 hover:bg-base-200/80 transition-colors border border-base-300/20 group"
 								>
@@ -309,7 +307,7 @@
 								</tr>
 							</thead>
 							<tbody class="divide-y divide-base-300/20">
-								{#each recentBlogs as blog}
+								{#each recentBlogs as blog (blog.id)}
 									<tr class="hover:bg-base-200/30 transition-colors">
 										<td class="py-4 px-4 font-semibold text-base-content">{blog.title}</td>
 										<td class="py-4 px-4 text-sm text-base-content/70">{blog.author}</td>
@@ -377,17 +375,13 @@
 								</tr>
 							</thead>
 							<tbody class="divide-y divide-base-300/20">
-								{#each allUsers as user}
+								{#each allUsers as user (user.id)}
 									<tr class="hover:bg-base-200/30 transition-colors">
 										<td class="py-4 px-4 font-semibold text-base-content">{user.username}</td>
 										<td class="py-4 px-4 text-sm text-base-content/70">{user.email}</td>
 										<td class="py-4 px-4">
-											{#if user.role && user.role.length > 0}
-												<div class="flex gap-1 flex-wrap">
-													{#each user.role as role}
-														<span class="badge badge-sm badge-primary text-xs">{role}</span>
-													{/each}
-												</div>
+											{#if user.role}
+												<span class="badge badge-sm badge-primary text-xs">{user.role}</span>
 											{:else}
 												<span class="badge badge-sm badge-ghost text-xs">User</span>
 											{/if}
