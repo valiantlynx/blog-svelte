@@ -1,6 +1,8 @@
 <script lang="ts">
 	import * as m from '$lib/paraglide/messages.js';
 	import { searchQuery } from '$lib/utils/stores';
+
+
 	interface Props {
 		searchResults?: any;
 		handleClick: any;
@@ -41,7 +43,7 @@
 >
 	{#if searchResults.length > 0}
 		<div
-			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 w-full p-4"
+			class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full p-4"
 		>
 			{#each searchResults as result}
 				<li>
@@ -55,7 +57,7 @@
 							class="h-full flex flex-col bg-gradient-to-br from-base-200 to-base-300 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border border-base-300 hover:border-primary/50"
 						>
 							<!-- Image Container -->
-							<div class="relative w-full h-56 overflow-hidden bg-base-100">
+							<div class="relative w-full h-40 overflow-hidden bg-base-100">
 								<img
 									src={result.img}
 									alt={result.title}
@@ -83,11 +85,15 @@
 								<div class="flex items-center gap-3 mt-4 pt-3 border-t border-base-content/10">
 									<!-- Author Avatar -->
 									{#if result.authorAvatar}
-										<div class="avatar placeholder flex-shrink-0">
-											<div class="w-10 rounded-full ring ring-primary ring-offset-base-100">
-												<img src={result.authorAvatar} alt={result.author} class="object-cover" />
+																<!-- Avatar -->
+								
+											<div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+												<img
+													class="rounded-full h-10 w-10 object-cover"
+													src={result.authorAvatar}
+													alt={result.author}
+												/>
 											</div>
-										</div>
 									{:else}
 										<div class="avatar placeholder flex-shrink-0">
 											<div

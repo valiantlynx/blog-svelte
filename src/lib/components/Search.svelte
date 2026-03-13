@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { run } from 'svelte/legacy';
+	import { page } from '$app/state';
+	import { site } from '$lib/utils/config';
 
 	import { goto } from '$app/navigation';
 	import BigSearchResults from '$lib/components/BigSearchResults.svelte';
@@ -37,9 +39,12 @@
 
 			searchResults = response.items.map((blog: any) => {
 				const authorName = blog.expand?.author?.username || 'Unknown Author';
-				const authorAvatar = blog.expand?.author?.avatar
-					? getAvatarURL('users_valiantlynx', blog.expand.author.id, blog.expand.author.avatar)
-					: '';
+			
+				const authorAvatar = $derived(
+					blog.expand?.author?.avatar
+						? `${site.pocketbase}/api/files/${blog.expand.author.collectionId}/${blog.expand.author.id}/${blog.expand.author.avatar}`
+						: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${blog.expand.author.username}`
+				);
 				const imageUrl = blog.image
 					? getImageURL(blog.collectionId, blog.id, blog.image)
 					: 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(blog.title);
@@ -190,7 +195,7 @@
 			</div>
 		{:else if type === 'big' && searchResults.length > 0}
 			<div
-				class="mt-2 bg-base-100 border border-base-300 rounded-lg shadow-lg max-h-96 overflow-y-auto"
+				class="mt-2 bg-base-100 border border-base-300 rounded-lg shadow-lg  overflow-y-auto"
 			>
 				<BigSearchResults {searchResults} {handleClick} />
 			</div>

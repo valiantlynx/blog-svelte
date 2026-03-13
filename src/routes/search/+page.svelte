@@ -9,11 +9,11 @@
 	<meta name="description" content={m['pages.search_description']()} />
 	<meta
 		name="keywords"
-		content={`manga, search, manga search, manga search engine, manga search site, manga search website, manga search app, manga search application, manga search online, manga search free, manga search unlimited, manga search for free, manga search for unlimited, manga search for everyone, manga search for anyone, manga search for all, manga search for all users, manga search for all visitors, manga search for isekai, manga search for shounen, manga search for shoujo, manga search for seinen, manga search for josei, manga search for seinen, manga search for yuri, manga search for yaoi, manga search for ecchi, manga search for harem, manga search for romance, manga search for comedy, manga search for action, manga search for adventure, manga search for fantasy, manga search for horror, manga search for mystery, manga search for psychological, manga search for drama, manga search for slice of life, manga search for sports, manga search for mecha, manga search for sci-fi ${$metaKeywords}`}
+		content={`blog, note, developers advice, coding ${$metaKeywords}`}
 	/>
 </svelte:head>
 
-<main class="min-h-screen bg-gradient-to-br from-base-100 via-base-100 to-base-200">
+<main class="min-h-screen text-base-content">
 	<!-- Decorative Background Elements -->
 	<div class="fixed inset-0 -z-10 opacity-5 pointer-events-none overflow-hidden">
 		<div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
@@ -23,7 +23,7 @@
 	<!-- Header Section -->
 	<div class="py-12 px-4 text-center">
 		<div class="mb-8 inline-block">
-			<div class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+			<div class="bg-gradient-to-r from-primary to-secondary bg-clip-text">
 				<h1 class="text-5xl md:text-6xl font-black tracking-tight">
 					{m['pages.search_heading']()}
 				</h1>
@@ -48,7 +48,5 @@
 </main>
 
 <style>
-	:global(body) {
-		background: linear-gradient(to bottom right, var(--fallback-b1), var(--fallback-b2)) !important;
-	}
+
 </style>
