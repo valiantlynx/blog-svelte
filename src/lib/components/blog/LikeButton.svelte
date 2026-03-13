@@ -85,7 +85,13 @@
 <form use:enhance={submitLike} action="/blogs/{blog?.slug}?/toggleLike" method="POST">
 	<input type="hidden" name="blogId" value={blog?.id} />
 	<input type="hidden" name="userId" value={$page.data.user?.id} />
-	<Button variant="outline" size="sm" class="flex items-center gap-2" disabled={loading} type="submit">
+	<Button
+		variant="outline"
+		size="sm"
+		class="flex items-center gap-2"
+		disabled={loading}
+		type="submit"
+	>
 		<i class="material-icons">{isLiked ? 'thumb_up' : 'thumb_up_off_alt'}</i>
 		{isLiked ? m['buttons.liked']() : m['buttons.like']()}
 		<span class="ml-2">({blogLikes.length})</span>
