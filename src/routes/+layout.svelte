@@ -2,6 +2,7 @@
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import { Toaster } from 'svelte-french-toast';
+	import Icon from '@iconify/svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import '../app.postcss';
 	import { page } from '$app/state';
@@ -270,6 +271,8 @@
 
 <Toaster />
 <Nav />
+<!-- Mobile spacer: compensates for the fixed top nav height (h-14 = 56px) -->
+<div class="h-14 md:hidden" aria-hidden="true"></div>
 {@render children?.()}
 <div class="container mx-auto">
 	<script defer src="https://samlet-chat.valiantlynx.com/js/samlet-chat.js"></script>
@@ -285,5 +288,54 @@
 		data-primary-color="#10b981"
 	>
 	</feedback-widget>
+{/if}
+
+<!-- Mobile Dashboard Bottom Navigation — only on /dashboard/* routes, only on mobile -->
+{#if page.data.user && page.url.pathname.startsWith('/dashboard')}
+	<nav
+		class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-base-200 border-t border-base-300 shadow-lg"
+	>
+		<div class="flex items-center justify-around px-2 py-1">
+			<a
+				href="/"
+				class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0"
+			>
+				<Icon icon="bx:bx-home" width="22" height="22" />
+				<span class="text-xs truncate">{m['tooltips.home']()}</span>
+			</a>
+			<a
+				href="/dashboard/profile"
+				class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0"
+			>
+				<Icon icon="iconoir:profile-circle" width="22" height="22" />
+				<span class="text-xs truncate">{m['tooltips.profile']()}</span>
+			</a>
+			<a
+				href="/dashboard/manager"
+				class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0"
+			>
+				<Icon icon="material-symbols:bookmark-manager" width="22" height="22" />
+				<span class="text-xs truncate">{m['tooltips.manage']()}</span>
+			</a>
+			{#if page.data.user?.role.includes('admin')}
+				<a
+					href="/dashboard/admin"
+					class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0"
+				>
+					<Icon icon="bx:bx-shield" width="22" height="22" />
+					<span class="text-xs truncate">{m['tooltips.admin']()}</span>
+				</a>
+			{/if}
+			<form action="/api/logout" method="POST">
+				<button
+					type="submit"
+					class="flex flex-col items-center gap-0.5 text-base-content hover:text-primary transition-colors p-2 min-w-0"
+				>
+					<Icon icon="bx:bx-log-out" width="22" height="22" />
+					<span class="text-xs truncate">{m['tooltips.logout']()}</span>
+				</button>
+			</form>
+		</div>
+	</nav>
 {/if}
 <Footer />
