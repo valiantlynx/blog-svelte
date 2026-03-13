@@ -22,6 +22,7 @@
 	let selectedSearchFunction: () => Promise<void> = searchBlogs;
 	let debouncedSearch = $state<NodeJS.Timeout | undefined>();
 	let lastSearchTerm = $state('');
+	let inputElement = $state<HTMLInputElement | undefined>();
 
 	async function searchBlogs() {
 		if (searchTerm.trim() === '') {
@@ -173,6 +174,13 @@
 		}
 	});
 
+	// Autofocus input for big search variant
+	$effect(() => {
+		if (type === 'big' && inputElement) {
+			inputElement.focus();
+		}
+	});
+
 	run(() => {
 		if (searchResults.length > 0) {
 			const keywords = searchResults.map((result) => result.title).join(', ');
@@ -188,6 +196,7 @@
 		>
 			<input
 				type="text"
+				bind:this={inputElement}
 				value={searchTerm}
 				placeholder={m['placeholders.search']()}
 				oninput={handleSearch}
