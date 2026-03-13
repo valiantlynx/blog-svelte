@@ -1,28 +1,25 @@
-<script>
+<script lang="ts">
 	import { run } from 'svelte/legacy';
 
 	import { goto } from '$app/navigation';
 	import BigSearchResults from '$lib/components/BigSearchResults.svelte';
 	import SmallSearchResults from '$lib/components/SmallSearchResults.svelte';
 	import { metaKeywords, searchQuery } from '$lib/utils/stores';
-	import { getPocketbase } from '$lib/utils/api';
+	import { pb } from '$lib/utils/api';
 	import * as m from '$lib/paraglide/messages.js';
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [type]
-	 */
+	interface Props {
+		type?: string;
+	}
 
-	/** @type {Props} */
-	let { type = 'small' } = $props();
+	let { type = 'small' }: Props = $props();
 
-	/**
-	 * @type {any[]}
-	 */
-	let searchResults = $state([]);
+	let searchResults = $state<any[]>([]);
 	let searchTerm = $state('');
 	let selectedOption = $state(m['header.blogs']?.());
-	let selectedSearchFunction = searchBlogs; // Initialize with the default search function
+	let selectedSearchFunction: () => Promise<void> = searchBlogs;
+	let debouncedSearch = $state<NodeJS.Timeout | undefined>();
+	let lastSearchTerm = $state('');
 
 	async function searchBlogs() {
 		if (searchTerm.trim() === '') {
@@ -31,13 +28,23 @@
 		}
 
 		try {
-			const dataPb = {
-				filter: `name~'${searchTerm}'`
-			};
-			const drivstoffpriser = await getPocketbase('norway_city', dataPb);
-			searchResults = drivstoffpriser.items;
+			const filter = `title~'${searchTerm}' || summary~'${searchTerm}'`;
+			const response = await pb.collection('blogs').getList(1, 10, {
+				filter: filter,
+				fields: 'id,title,slug,image,summary,author,expand'
+			});
+
+			searchResults = response.items.map((blog: any) => ({
+				title: blog.title,
+				img:
+					blog.image ||
+					'https://via.placeholder.com/300x200?text=' + encodeURIComponent(blog.title),
+				src: '/blogs/' + blog.slug,
+				author: blog.author,
+				slug: blog.slug
+			}));
 		} catch (error) {
-			console.error(error);
+			console.error('Blog search error:', error);
 		}
 	}
 
@@ -48,34 +55,33 @@
 		}
 
 		try {
-			const dataPb = {
-				filter: `station~'${searchTerm}'`
-			};
-			const drivstoffpriser = await getPocketbase('norway_stations', dataPb);
-			searchResults = drivstoffpriser.items;
+			const filter = `name~'${searchTerm}' || description~'${searchTerm}'`;
+			const response = await pb.collection('projects_valiantlynx').getList(1, 10, {
+				filter: filter,
+				fields: 'id,name,slug,thumbnail,description,expand'
+			});
+
+			searchResults = response.items.map((project: any) => ({
+				title: project.name,
+				img:
+					project.thumbnail ||
+					'https://via.placeholder.com/300x200?text=' + encodeURIComponent(project.name),
+				src: '/projects/' + project.slug,
+				author: project.name,
+				slug: project.slug
+			}));
 		} catch (error) {
-			console.error(error);
+			console.error('Project search error:', error);
 		}
 	}
 
-	/**
-	 * @type {number | undefined}
-	 */
-	let debouncedSearch = $state();
-	let lastSearchTerm = $state('');
-
-	/**
-	 * @param {any} event
-	 */
-	function handleSearch(event) {
-		searchTerm = event.target.value;
+	function handleSearch(event: Event) {
+		const target = event.target as HTMLInputElement;
+		searchTerm = target.value;
 		searchQuery.set(searchTerm);
 	}
 
-	/**
-	 * @param {any} url
-	 */
-	async function handleClick(url) {
+	async function handleClick(url: string) {
 		await goto(url);
 		window.location.reload();
 		searchTerm = '';
@@ -94,9 +100,9 @@
 					break;
 				case m['header.projects']?.():
 					selectedSearchFunction = searchProjects;
-
+					break;
 				default:
-					selectedSearchFunction = searchBlogs; // Default to 'searchBlogs'
+					selectedSearchFunction = searchBlogs;
 					break;
 			}
 
@@ -105,6 +111,7 @@
 			console.error(error);
 		}
 	}
+
 	run(() => {
 		if (searchTerm !== lastSearchTerm) {
 			if (debouncedSearch) {
@@ -114,6 +121,7 @@
 			lastSearchTerm = searchTerm;
 		}
 	});
+
 	run(() => {
 		if (searchResults.length > 0) {
 			const keywords = searchResults.map((result) => result.title).join(', ');
