@@ -9,5 +9,7 @@
 
 <div class="flex text-base-content">
 	<SideBar />
-	{@render children?.()}
+	<div class="flex-1 min-w-0 pb-16 md:pb-0">
+		{@render children?.()}
+	</div>
 </div>
