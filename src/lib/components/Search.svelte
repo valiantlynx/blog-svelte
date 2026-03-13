@@ -178,7 +178,6 @@
 	$effect(() => {
 		if (type === 'big' && inputElement) {
 			inputElement.focus();
-			inputElement.select();
 		}
 	});
 
