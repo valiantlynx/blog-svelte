@@ -162,6 +162,17 @@
 		selectedOption;
 	});
 
+	// Initialize search term from store for big search variant
+	$effect.pre(() => {
+		if (type === 'big') {
+			const storedQuery = $searchQuery;
+			if (storedQuery && storedQuery.trim() !== '') {
+				searchTerm = storedQuery;
+				lastSearchTerm = '';
+			}
+		}
+	});
+
 	run(() => {
 		if (searchResults.length > 0) {
 			const keywords = searchResults.map((result) => result.title).join(', ');
