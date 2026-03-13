@@ -6,6 +6,16 @@ export const load = async ({ locals, params }) => {
 		throw redirect(303, '/login');
 	}
 
+	// if its not the author, redirect to the blog view page instead of showing edit page
+	if (locals.user.id !== params.blog) {
+		const blog = await serializeNonPOJOs(
+			await locals.pb.collection('blogs').getFirstListItem(`slug="${params.blog}"`)
+		);
+		if (blog.author !== locals.user.id) {
+			throw redirect(303, `/blogs/${params.blog}`);
+		}
+	}
+
 	try {
 		// Look up blog by slug since URL uses slug
 		const blog = serializeNonPOJOs(
