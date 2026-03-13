@@ -1,28 +1,25 @@
-<script>
+<script lang="ts">
 	import { run } from 'svelte/legacy';
 
 	import { goto } from '$app/navigation';
 	import BigSearchResults from '$lib/components/BigSearchResults.svelte';
 	import SmallSearchResults from '$lib/components/SmallSearchResults.svelte';
 	import { metaKeywords, searchQuery } from '$lib/utils/stores';
-	import { getPocketbase } from '$lib/utils/api';
+	import { pb, getImageURL, getAvatarURL } from '$lib/utils/api';
 	import * as m from '$lib/paraglide/messages.js';
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} [type]
-	 */
+	interface Props {
+		type?: string;
+	}
 
-	/** @type {Props} */
-	let { type = 'small' } = $props();
+	let { type = 'small' }: Props = $props();
 
-	/**
-	 * @type {any[]}
-	 */
-	let searchResults = $state([]);
+	let searchResults = $state<any[]>([]);
 	let searchTerm = $state('');
 	let selectedOption = $state(m['header.blogs']?.());
-	let selectedSearchFunction = searchBlogs; // Initialize with the default search function
+	let selectedSearchFunction: () => Promise<void> = searchBlogs;
+	let debouncedSearch = $state<NodeJS.Timeout | undefined>();
+	let lastSearchTerm = $state('');
 
 	async function searchBlogs() {
 		if (searchTerm.trim() === '') {
@@ -31,13 +28,33 @@
 		}
 
 		try {
-			const dataPb = {
-				filter: `name~'${searchTerm}'`
-			};
-			const drivstoffpriser = await getPocketbase('norway_city', dataPb);
-			searchResults = drivstoffpriser.items;
+			const filter = `title~'${searchTerm}' || summary~'${searchTerm}'`;
+			const response = await pb.collection('blogs').getList(1, 10, {
+				filter: filter,
+				expand: 'author',
+				fields: 'id,title,slug,image,summary,author,collectionId,expand'
+			});
+
+			searchResults = response.items.map((blog: any) => {
+				const authorName = blog.expand?.author?.username || 'Unknown Author';
+				const authorAvatar = blog.expand?.author?.avatar
+					? getAvatarURL('users_valiantlynx', blog.expand.author.id, blog.expand.author.avatar)
+					: '';
+				const imageUrl = blog.image
+					? getImageURL(blog.collectionId, blog.id, blog.image)
+					: 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(blog.title);
+
+				return {
+					title: blog.title,
+					img: imageUrl,
+					src: '/blogs/' + blog.slug,
+					author: authorName,
+					authorAvatar: authorAvatar,
+					slug: blog.slug
+				};
+			});
 		} catch (error) {
-			console.error(error);
+			console.error('Blog search error:', error);
 		}
 	}
 
@@ -48,21 +65,32 @@
 		}
 
 		try {
-			const dataPb = {
-				filter: `station~'${searchTerm}'`
-			};
-			const drivstoffpriser = await getPocketbase('norway_stations', dataPb);
-			searchResults = drivstoffpriser.items;
+			const filter = `name~'${searchTerm}' || description~'${searchTerm}'`;
+			const response = await pb.collection('projects_valiantlynx').getList(1, 10, {
+				filter: filter,
+				fields: 'id,name,slug,thumbnail,description,expand'
+			});
+
+			searchResults = response.items.map((project: any) => ({
+				title: project.name,
+				img:
+					project.thumbnail ||
+					'https://via.placeholder.com/300x200?text=' + encodeURIComponent(project.name),
+				src: '/projects/' + project.slug,
+				author: project.name,
+				authorAvatar: '',
+				slug: project.slug
+			}));
 		} catch (error) {
-			console.error(error);
+			console.error('Project search error:', error);
 		}
 	}
 
 	/**
 	 * @type {number | undefined}
 	 */
-	let debouncedSearch = $state();
-	let lastSearchTerm = $state('');
+	let debouncedSearch2 = $state();
+	let lastSearchTerm2 = $state('');
 
 	/**
 	 * @param {any} event
@@ -77,7 +105,6 @@
 	 */
 	async function handleClick(url) {
 		await goto(url);
-		window.location.reload();
 		searchTerm = '';
 	}
 
