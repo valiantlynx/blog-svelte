@@ -17,11 +17,11 @@
 					onclick={handleClick(result.src)}
 					class="w-full px-4 py-3 hover:bg-base-200/50 transition-all duration-150 flex items-center gap-3 group text-left"
 				>
-					<!-- Avatar -->
+					<!-- Thumbnail -->
 					<div class="flex-shrink-0 relative">
 						<img
-							src={result.authorAvatar || result.img}
-							alt={result.author || result.title}
+							src={result.img}
+							alt={result.title}
 							class="w-10 h-10 rounded-lg object-cover ring-2 ring-base-300 group-hover:ring-primary/50 transition-all duration-150"
 						/>
 						<div
