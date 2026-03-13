@@ -3,7 +3,7 @@
 	let { data } = $props();
 </script>
 
-<div class="flex flex-col w-full mt-4">
+<div class="flex flex-col w-full mt-4 px-4 md:px-6 max-w-4xl mx-auto">
 	<div class="avatar">
 		<div class="w-20 rounded">
 			<img
@@ -14,9 +14,9 @@
 			/>
 		</div>
 	</div>
-	<h1 class="text-2xl font-bold mt-4">
+	<h1 class="text-2xl md:text-3xl font-bold mt-4">
 		{data.project.name}
 	</h1>
-	<p class="text-2xl font-light mt-2">{data.project.tagline}</p>
-	<p>{data.project.description}</p>
+	<p class="text-xl md:text-2xl font-light mt-2">{data.project.tagline}</p>
+	<p class="mt-4 text-base-content/80">{data.project.description}</p>
 </div>

@@ -51,7 +51,9 @@
 </nav>
 
 <!-- Mobile Header -->
-<div class="sticky top-0 z-40 md:hidden bg-base-100 border-b border-base-300 shadow-sm">
+<div
+	class="fixed top-0 left-0 right-0 z-50 md:hidden bg-base-100 border-b border-base-300 shadow-sm"
+>
 	<div class="flex items-center justify-between px-4 py-3">
 		<!-- Brand -->
 		<Button
