@@ -1,31 +1,31 @@
 <script>
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { site } from '$lib/utils/config';
 	import * as m from '$lib/paraglide/messages.js';
 
 	const avatar = $derived(
-		$page.data.user?.avatar
-			? `${site.pocketbase}/api/files/${$page.data.user?.collectionId}/${$page.data.user?.id}/${$page.data.user?.avatar}`
-			: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${$page.data.user?.username}`
+		page.data.user?.avatar
+			? `${site.pocketbase}/api/files/${page.data.user?.collectionId}/${page.data.user?.id}/${page.data.user?.avatar}`
+			: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${page.data.user?.username}`
 	);
 
 	const userStats = [
 		{
 			icon: 'fas fa-book',
 			label: m['profile.preview.stat_blogs'](),
-			value: $page.data.stats?.blogCount || 0
+			value: page.data.stats?.blogCount || 0
 		},
 		{
 			icon: 'fas fa-project-diagram',
 			label: m['profile.preview.stat_projects'](),
-			value: $page.data.stats?.projectCount || 0
+			value: page.data.stats?.projectCount || 0
 		},
 		{
 			icon: 'fas fa-heart',
 			label: m['profile.preview.stat_total_likes'](),
-			value: $page.data.stats?.totalLikes || 0
+			value: page.data.stats?.totalLikes || 0
 		}
 	];
 </script>
@@ -57,17 +57,17 @@
 							<h1
 								class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text"
 							>
-								{$page.data.user?.username || 'User'}
+								{page.data.user?.username || 'User'}
 							</h1>
-							{#if $page.data.user?.title}
+							{#if page.data.user?.title}
 								<p class="text-xl md:text-2xl text-base-content/70 mb-4 font-semibold">
-									{$page.data.user.title}
+									{page.data.user.title}
 								</p>
 							{/if}
-							{#if $page.data.user?.address}
+							{#if page.data.user?.address}
 								<div class="flex items-center gap-2 text-base-content/60 mb-3">
 									<i class="fas fa-map-marker-alt text-primary"></i>
-									<span>{$page.data.user.address}</span>
+									<span>{page.data.user.address}</span>
 								</div>
 							{/if}
 							<div class="flex gap-3 mt-6">
@@ -103,27 +103,27 @@
 			</div>
 
 			<!-- About Section -->
-			{#if $page.data.user?.about}
+			{#if page.data.user?.about}
 				<div class="bg-base-100 rounded-xl shadow-lg p-8 mb-8">
 					<h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3">
 						<i class="fas fa-user-circle text-primary"></i>
 						{m['profile.preview.about_me_heading']()}
 					</h2>
 					<p class="text-base-content/70 leading-relaxed text-lg whitespace-pre-wrap">
-						{$page.data.user.about}
+						{page.data.user.about}
 					</p>
 				</div>
 			{/if}
 
 			<!-- Roles and Permissions -->
-			{#if $page.data.user?.role && $page.data.user.role.length > 0}
+			{#if page.data.user?.role && page.data.user.role.length > 0}
 				<div class="bg-base-100 rounded-xl shadow-lg p-8 mb-8">
 					<h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
 						<i class="fas fa-shield-alt text-primary"></i>
 						{m['profile.preview.roles_permissions_heading']()}
 					</h2>
 					<div class="flex flex-wrap gap-3">
-						{#each $page.data.user.role as role}
+						{#each page.data.user.role as role}
 							<Badge variant="primary" size="lg">
 								<i class="fas fa-check-circle mr-2"></i>
 								{role}
