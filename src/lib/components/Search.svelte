@@ -7,7 +7,7 @@
 	import BigSearchResults from '$lib/components/BigSearchResults.svelte';
 	import SmallSearchResults from '$lib/components/SmallSearchResults.svelte';
 	import { metaKeywords, searchQuery } from '$lib/utils/stores';
-	import { pb, getImageURL, getAvatarURL } from '$lib/utils/api';
+	import { pb, getImageURL } from '$lib/utils/api';
 	import * as m from '$lib/paraglide/messages.js';
 
 	interface Props {
@@ -164,7 +164,7 @@
 		>
 			<input
 				type="text"
-				value={$searchQuery && type === 'big' ? $searchQuery : ''}
+				value={searchTerm}
 				placeholder={m['placeholders.search']()}
 				oninput={handleSearch}
 				class="flex-1 min-w-0 bg-base-100 text-base-content placeholder-base-content/50 px-4 py-2 focus:outline-none border-0"
