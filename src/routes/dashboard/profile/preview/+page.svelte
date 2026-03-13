@@ -146,11 +146,11 @@
 						<i class="fas fa-tasks mr-2"></i>
 						{m['profile.preview.manage_content_button']()}
 					</Button>
-					<Button href="/dashboard/create/blog" variant="outline" class="w-full font-semibold">
+					<Button href="/blogs/new" variant="outline" class="w-full font-semibold">
 						<i class="fas fa-plus mr-2"></i>
 						{m['profile.preview.create_blog_button']()}
 					</Button>
-					<Button href="/dashboard/create/project" variant="outline" class="w-full font-semibold">
+					<Button href="/projects/new" variant="outline" class="w-full font-semibold">
 						<i class="fas fa-plus mr-2"></i>
 						{m['profile.preview.create_project_button']()}
 					</Button>
