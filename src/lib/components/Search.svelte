@@ -39,12 +39,11 @@
 
 			searchResults = response.items.map((blog: any) => {
 				const authorName = blog.expand?.author?.username || 'Unknown Author';
-			
-				const authorAvatar = $derived(
-					blog.expand?.author?.avatar
-						? `${site.pocketbase}/api/files/${blog.expand.author.collectionId}/${blog.expand.author.id}/${blog.expand.author.avatar}`
-						: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${blog.expand.author.username}`
-				);
+
+				const authorAvatar = blog.expand?.author?.avatar
+					? `${site.pocketbase}/api/files/${blog.expand.author.collectionId}/${blog.expand.author.id}/${blog.expand.author.avatar}`
+					: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${blog.expand.author.username}`;
+
 				const imageUrl = blog.image
 					? getImageURL(blog.collectionId, blog.id, blog.image)
 					: 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(blog.title);
@@ -90,12 +89,6 @@
 			console.error('Project search error:', error);
 		}
 	}
-
-	/**
-	 * @type {number | undefined}
-	 */
-	let debouncedSearch2 = $state();
-	let lastSearchTerm2 = $state('');
 
 	/**
 	 * @param {any} event
@@ -146,6 +139,16 @@
 			lastSearchTerm = searchTerm;
 		}
 	});
+
+	// Re-run search when selected option changes
+	$effect(() => {
+		// Reference selectedOption to create dependency
+		if (searchTerm.trim() !== '') {
+			executeSelectedSearch();
+		}
+		selectedOption;
+	});
+
 	run(() => {
 		if (searchResults.length > 0) {
 			const keywords = searchResults.map((result) => result.title).join(', ');
@@ -194,9 +197,7 @@
 				<SmallSearchResults {searchResults} {handleClick} />
 			</div>
 		{:else if type === 'big' && searchResults.length > 0}
-			<div
-				class="mt-2 bg-base-100 border border-base-300 rounded-lg shadow-lg  overflow-y-auto"
-			>
+			<div class="mt-2 bg-base-100 border border-base-300 rounded-lg shadow-lg overflow-y-auto">
 				<BigSearchResults {searchResults} {handleClick} />
 			</div>
 		{/if}
