@@ -11,9 +11,6 @@
 	<a href="/dashboard/profile">
 		<SideBarIcon tooltip={m['tooltips.profile']()} icon="iconoir:profile-circle" /></a
 	>
-	<a href="/dashboard/settings"
-		><SideBarIcon tooltip={m['tooltips.settings']()} icon="bx:bx-cog" /></a
-	>
 	<a href="/dashboard/manager"
 		><SideBarIcon tooltip={m['tooltips.manage']()} icon="material-symbols:bookmark-manager" /></a
 	>

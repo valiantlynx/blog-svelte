@@ -153,8 +153,6 @@
 		text={`read ${blog?.title} by ${blog?.expand?.author?.username} at ${page.url.hostname} free online, high quality`}
 		hashtags={blog?.expand?.tags.map((tag) => tag.name)}
 	/>
-	<!-- Chat Component -->
-	<!-- <Chat class="mt-8" /> -->
 </div>
 
 <svelte:head>

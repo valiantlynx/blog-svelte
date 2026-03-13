@@ -133,9 +133,9 @@
 					break;
 				case m['header.projects']?.():
 					selectedSearchFunction = searchProjects;
-
+					break;
 				default:
-					selectedSearchFunction = searchBlogs; // Default to 'searchBlogs'
+					selectedSearchFunction = searchBlogs;
 					break;
 			}
 
@@ -144,6 +144,7 @@
 			console.error(error);
 		}
 	}
+
 	run(() => {
 		if (searchTerm !== lastSearchTerm) {
 			if (debouncedSearch) {
