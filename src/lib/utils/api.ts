@@ -12,6 +12,10 @@ export const getImageURL = (collectionId: string, recordId: string, fileName: st
 	return `${site.pocketbase}/api/files/${collectionId}/${recordId}/${fileName}`;
 };
 
+export const getAvatarURL = (collectionId: string, recordId: string, fileName: string) => {
+	return `${site.pocketbase}/api/files/${collectionId}/${recordId}/${fileName}`;
+};
+
 export const authPocketbase = async (user: string, password: string) => {
 	const res = await pb.collection('users_valiantlynx').authWithPassword(user, password);
 	authData.set(pb.authStore.model);
