@@ -6,6 +6,7 @@
 	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';
 	import * as m from '$lib/paraglide/messages.js';
+	import { goto, invalidateAll } from '$app/navigation';
 	let loading = $state(false);
 	let isPublishing = $state(false);
 
@@ -98,6 +99,8 @@
 				default:
 					await update();
 			}
+			console.log('Form result:', result);
+			await goto(`/blogs/${result.data.data.slug}`);
 			loading = false;
 		};
 	};

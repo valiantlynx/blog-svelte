@@ -82,9 +82,9 @@ export const actions = {
 		if (image && image.size === 0) {
 			formData.delete('image');
 		}
-
+		let updatedBlog = null;
 		try {
-			await locals.pb.collection('blogs').update(blogId, formData);
+			updatedBlog = await locals.pb.collection('blogs').update(blogId, formData);
 		} catch (err) {
 			console.error('Error: ', err);
 			console.error('Error.data: ', err.data);
@@ -105,7 +105,8 @@ export const actions = {
 		// Don't redirect - just return success so the toast shows and page stays
 		return {
 			success: true,
-			message: 'Blog updated successfully'
+			message: 'Blog updated successfully',
+			data: serializeNonPOJOs(updatedBlog)
 		};
 	},
 
