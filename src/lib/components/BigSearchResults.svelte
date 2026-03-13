@@ -2,7 +2,6 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import { searchQuery } from '$lib/utils/stores';
 
-
 	interface Props {
 		searchResults?: any;
 		handleClick: any;
@@ -42,9 +41,7 @@
 	hidden={$searchQuery === ''}
 >
 	{#if searchResults.length > 0}
-		<div
-			class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full p-4"
-		>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full p-4">
 			{#each searchResults as result}
 				<li>
 					<button
@@ -67,7 +64,7 @@
 								<!-- Overlay Gradient -->
 								<div
 									class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-								/>
+								></div>
 							</div>
 
 							<!-- Content Container -->
@@ -85,15 +82,17 @@
 								<div class="flex items-center gap-3 mt-4 pt-3 border-t border-base-content/10">
 									<!-- Author Avatar -->
 									{#if result.authorAvatar}
-																<!-- Avatar -->
-								
-											<div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-												<img
-													class="rounded-full h-10 w-10 object-cover"
-													src={result.authorAvatar}
-													alt={result.author}
-												/>
-											</div>
+										<!-- Avatar -->
+
+										<div
+											class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+										>
+											<img
+												class="rounded-full h-10 w-10 object-cover"
+												src={result.authorAvatar}
+												alt={result.author}
+											/>
+										</div>
 									{:else}
 										<div class="avatar placeholder flex-shrink-0">
 											<div
