@@ -3,8 +3,20 @@ import { serializeNonPOJOs } from '$lib/utils/api';
 
 export const load = async ({ locals, params }) => {
 	if (!locals.pb.authStore.isValid) {
-		throw error(401, 'Unauthorized');
+		throw redirect(303, '/login');
 	}
+
+	// redirect to project view page if user tries to access edit page of a project that doesn't belong to them
+	if (locals.user.id !== params.projectId) {
+		const project = await serializeNonPOJOs(
+			await locals.pb.collection('projects_valiantlynx').getOne(params.projectId)
+		);
+
+		if (project.user !== locals.user.id) {
+			throw redirect(303, `/projects/${params.projectId}`);
+		}
+	}
+	
 
 	try {
 		const project = serializeNonPOJOs(
