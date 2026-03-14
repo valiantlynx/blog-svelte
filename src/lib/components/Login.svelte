@@ -31,63 +31,11 @@
 	};
 </script>
 
-<div class="relative flex flex-col items-center justify-center h-auto overflow-hidden mt-10 mx-6">
+<div class="relative flex flex-col items-center justify-center h-auto overflow-hidden mt-10 mx-6 text-base-content">
 	<div class="w-full p-6 border-t-4 rounded-md shadow-md border-primary lg:max-w-lg">
 		<h1 class="text-3xl font-semibold text-center">
 			{page.data.siteName} | {m['navigation.login']()}
 		</h1>
-		<form
-			action="/login?/login"
-			method="POST"
-			class="flex flex-col items-center space-y-4 w-full pt-4"
-			use:enhance={submitLogin}
-		>
-			<FormControl label={m['forms.email']()} required>
-				<Input
-					type="email"
-					id="email"
-					name="email"
-					placeholder={m['placeholders.enter_email']()}
-					value={page.form?.data?.email ?? ''}
-					error={!!page.form?.errors?.email}
-					disabled={loading}
-				/>
-				{#if page.form?.errors?.email}
-					<p class="text-xs text-[var(--error)]">{page.form.errors.email}</p>
-				{/if}
-			</FormControl>
-
-			<FormControl label={m['forms.password']()} required>
-				<Input
-					type="password"
-					id="password"
-					name="password"
-					minlength="8"
-					placeholder={m['placeholders.password']()}
-					error={!!page.form?.errors?.password}
-					disabled={loading}
-				/>
-				{#if page.form?.errors?.password}
-					<p class="text-xs text-[var(--error)]">{page.form.errors.password}</p>
-				{/if}
-			</FormControl>
-
-			<div class="flex flex-row justify-between w-full">
-				<a href="/signup" class="text-sm text-[var(--primary)] hover:underline"
-					>{m['labels.not_registered']()} {m['buttons.register']()}</a
-				>
-				<a href="/forgot-password" class="text-sm text-[var(--primary)] hover:underline"
-					>{m['labels.forgot_password']()}</a
-				>
-			</div>
-
-			<div class="w-full pt-2">
-				<Button type="submit" variant="primary" class="w-full" {loading}
-					>{m['buttons.login']()}</Button
-				>
-			</div>
-		</form>
-		<p class="text-center text-[var(--muted-foreground)] my-4">{m['auth.or_separator']()}</p>
 		<Oauth2 />
 	</div>
 </div>

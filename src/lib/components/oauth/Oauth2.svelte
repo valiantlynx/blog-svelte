@@ -4,15 +4,23 @@
 </script>
 
 <div class="flex flex-col w-full">
-	<h3 class="text-center text-lg font-bold">{m['buttons.login']?.()}</h3>
 		<!-- auth with google -->
-	<div class="w-full block my-4">
+	<div class="w-full block my-10">
 		<Oauth2SingleServer
 			logo="https://avatars.githubusercontent.com/u/177398145?s=200&v=4"
 			provider="samletnorge"
 		/>
 	</div>
+	<div class="flex flex-row justify-between w-full">
+		<a href="/signup" class="text-sm text-[var(--primary)] hover:underline"
+			>{m['labels.not_registered']()} {m['buttons.register']()}</a
+		>
+		<a href="/forgot-password" class="text-sm text-[var(--primary)] hover:underline"
+			>{m['labels.forgot_password']()}</a
+		>
+	</div>
 
+	<h6 class="text-center font-bold mt-4">Other Providers</h6>
 	<!-- auth with google -->
 	<div class="w-full block my-4">
 		<Oauth2SingleServer

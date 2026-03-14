@@ -31,63 +31,13 @@
 	};
 </script>
 
-<div class="relative flex flex-col items-center justify-center h-full overflow-hidden m-4">
+<div class="relative flex flex-col items-center justify-center h-full overflow-hidden m-4 text-base-content">
 	<div
 		class="w-full p-6 bg-base-200 border-t-4 border-primary rounded-md shadow-md border-top lg:max-w-lg"
 	>
 		<h1 class="text-3xl font-semibold text-center">
 			{page.data.siteName} | {m['navigation.signup']()}
 		</h1>
-		<form
-			action="?/signup"
-			method="POST"
-			class="flex flex-col items-center space-y-2 w-full pt-4"
-			use:enhance={submitSignup}
-		>
-			<Input
-				id="name"
-				name="name"
-				label={m['forms.name']()}
-				value={page.form?.data?.name ?? ''}
-				errors={page.form?.errors?.name}
-				disabled={loading}
-			/>
-			<Input
-				type="email"
-				id="email"
-				name="email"
-				label={m['forms.email']()}
-				value={page.form?.data?.email ?? ''}
-				errors={page.form?.errors?.email}
-				disabled={loading}
-			/>
-			<Input
-				type="password"
-				id="password"
-				name="password"
-				label={m['forms.password']()}
-				errors={page.form?.errors?.password}
-				disabled={loading}
-			/>
-			<Input
-				type="password"
-				id="passwordConfirm"
-				name="passwordConfirm"
-				label={m['forms.password_confirm']()}
-				errors={page.form?.errors?.passwordConfirm}
-				disabled={loading}
-			/>
-			<br />
-			<a href="/login" class=" link link-hover font-bold text-1xl underline"
-				>{m['forms.already_have_account']()} {m['buttons.login']()} ({m['forms.click_here']()})</a
-			>
-			<div class="w-full max-w-lg pt-2">
-				<Button type="submit" variant="primary" class="w-full" disabled={loading}
-					>{m['buttons.register']()}</Button
-				>
-			</div>
-		</form>
-		<center class="text-center my-4">{m['auth.or_separator']()}</center>
 		<Oauth2 />
 	</div>
 </div>
