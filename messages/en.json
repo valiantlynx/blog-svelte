@@ -130,7 +130,15 @@
 		"not_logged_in": "the user isn't logged in",
 		"join_discussion": "Join the Discussion",
 		"coming_soon": "Coming Soon",
-		"browser_not_support_api": "Browser doesn't support this API"
+		"browser_not_support_api": "Browser doesn't support this API",
+		"success_profile_updated": "Profile updated successfully!",
+		"success_email_change_requested": "Email change requested! Check your email for confirmation.",
+		"success_username_updated": "Username updated successfully!",
+		"success_password_updated": "Password updated! Redirecting to login...",
+		"error_profile_update_failed": "Failed to update profile",
+		"error_email_update_failed": "Failed to update email",
+		"error_username_update_failed": "Failed to update username",
+		"error_password_update_failed": "Failed to update password"
 	},
 	"file_input": {
 		"files_selected": "{count} file(s) selected",
@@ -456,15 +464,5 @@
 		"database_records": "Database Records",
 		"storage_usage": "Storage Usage",
 		"performance": "Performance"
-	},
-	"messages": {
-		"success_profile_updated": "Profile updated successfully!",
-		"success_email_change_requested": "Email change requested! Check your email for confirmation.",
-		"success_username_updated": "Username updated successfully!",
-		"success_password_updated": "Password updated! Redirecting to login...",
-		"error_profile_update_failed": "Failed to update profile",
-		"error_email_update_failed": "Failed to update email",
-		"error_username_update_failed": "Failed to update username",
-		"error_password_update_failed": "Failed to update password"
 	}
 }

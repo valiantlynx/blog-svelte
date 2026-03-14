@@ -130,7 +130,15 @@
 		"not_logged_in": "brukeren er ikke logget inn",
 		"join_discussion": "Delta i diskusjonen",
 		"coming_soon": "Kommer snart",
-		"browser_not_support_api": "Nettleseren støtter ikke denne APIen"
+		"browser_not_support_api": "Nettleseren støtter ikke denne APIen",
+		"success_profile_updated": "Profil oppdatert!",
+		"success_email_change_requested": "E-postandring forespurt! Sjekk e-posten din for bekreftelse.",
+		"success_username_updated": "Brukernavn oppdatert!",
+		"success_password_updated": "Passord oppdatert! Omdirigerer til innlogging...",
+		"error_profile_update_failed": "Feil ved profiloppdat ering",
+		"error_email_update_failed": "Feil ved e-postoppdatering",
+		"error_username_update_failed": "Feil ved brukernavnoppdatering",
+		"error_password_update_failed": "Feil ved passordoppdatering"
 	},
 	"file_input": {
 		"files_selected": "{count} fil(er) valgt",
@@ -391,15 +399,5 @@
 			"email_verified_yes": "Ja",
 			"support_contact_text": "For flere sikkerhetsalternativer, kontakt oss."
 		}
-	},
-	"messages": {
-		"success_profile_updated": "Profil oppdatert!",
-		"success_email_change_requested": "E-postandring forespurt! Sjekk e-posten din for bekreftelse.",
-		"success_username_updated": "Brukernavn oppdatert!",
-		"success_password_updated": "Passord oppdatert! Omdirigerer til innlogging...",
-		"error_profile_update_failed": "Feil ved profiloppdat ering",
-		"error_email_update_failed": "Feil ved e-postoppdatering",
-		"error_username_update_failed": "Feil ved brukernavnoppdatering",
-		"error_password_update_failed": "Feil ved passordoppdatering"
 	}
 }

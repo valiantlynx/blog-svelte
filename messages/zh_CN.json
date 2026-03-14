@@ -130,7 +130,15 @@
 		"not_logged_in": "用户未登入",
 		"join_discussion": "加入讨论",
 		"coming_soon": "即将推出",
-		"browser_not_support_api": "浏览器不支持此 API"
+		"browser_not_support_api": "浏览器不支持此 API",
+		"success_profile_updated": "个人资料已成功更新！",
+		"success_email_change_requested": "电子邮件更改已请求！请检查您的电子邮件以进行确认。",
+		"success_username_updated": "用户名已成功更新！",
+		"success_password_updated": "密码已更新！正在重定向到登录...",
+		"error_profile_update_failed": "更新个人资料失败",
+		"error_email_update_failed": "电子邮件更新失败",
+		"error_username_update_failed": "更新用户名失败",
+		"error_password_update_failed": "密码更新失败"
 	},
 	"file_input": {
 		"files_selected": "已选择 {count} 个文件",
@@ -391,15 +399,5 @@
 			"email_verified_yes": "是",
 			"support_contact_text": "如需其他安全选项，请联系支持部门。"
 		}
-	},
-	"messages": {
-		"success_profile_updated": "个人资料已成功更新！",
-		"success_email_change_requested": "电子邮件更改已请求！请检查您的电子邮件以进行确认。",
-		"success_username_updated": "用户名已成功更新！",
-		"success_password_updated": "密码已更新！正在重定向到登录...",
-		"error_profile_update_failed": "更新个人资料失败",
-		"error_email_update_failed": "电子邮件更新失败",
-		"error_username_update_failed": "更新用户名失败",
-		"error_password_update_failed": "密码更新失败"
 	}
 }

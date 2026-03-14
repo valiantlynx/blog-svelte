@@ -112,7 +112,15 @@
 		"not_logged_in": "el usuario no está conectado",
 		"join_discussion": "Únete a la Discusión",
 		"coming_soon": "Próximamente",
-		"browser_not_support_api": "El navegador no admite esta API"
+		"browser_not_support_api": "El navegador no admite esta API",
+		"success_profile_updated": "¡Perfil actualizado exitosamente!",
+		"success_email_change_requested": "¡Cambio de correo solicitado! Revisa tu correo para confirmar.",
+		"success_username_updated": "¡Nombre de usuario actualizado exitosamente!",
+		"success_password_updated": "¡Contraseña actualizada! Redirigiendo al inicio de sesión...",
+		"error_profile_update_failed": "Error al actualizar perfil",
+		"error_email_update_failed": "Error al actualizar correo electrónico",
+		"error_username_update_failed": "Error al actualizar nombre de usuario",
+		"error_password_update_failed": "Error al actualizar contraseña"
 	},
 	"file_input": {
 		"files_selected": "{count} archivo(s) seleccionado(s)",
@@ -373,15 +381,5 @@
 			"email_verified_yes": "Sí",
 			"support_contact_text": "Para opciones de seguridad adicionales, contacta con soporte."
 		}
-	},
-	"messages": {
-		"success_profile_updated": "¡Perfil actualizado exitosamente!",
-		"success_email_change_requested": "¡Cambio de correo solicitado! Revisa tu correo para confirmar.",
-		"success_username_updated": "¡Nombre de usuario actualizado exitosamente!",
-		"success_password_updated": "¡Contraseña actualizada! Redirigiendo al inicio de sesión...",
-		"error_profile_update_failed": "Error al actualizar perfil",
-		"error_email_update_failed": "Error al actualizar correo electrónico",
-		"error_username_update_failed": "Error al actualizar nombre de usuario",
-		"error_password_update_failed": "Error al actualizar contraseña"
 	}
 }

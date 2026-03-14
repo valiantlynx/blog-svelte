@@ -130,7 +130,15 @@
 		"not_logged_in": "பயனர் உள்நுழையவில்லை",
 		"join_discussion": "விவாதத்தில் சேரவும்",
 		"coming_soon": "விரைவில் வரும்",
-		"browser_not_support_api": "பிரவுசர் இந்த API ஐ ஆதரிக்கவில்லை"
+		"browser_not_support_api": "பிரவுசர் இந்த API ஐ ஆதரிக்கவில்லை",
+		"success_profile_updated": "सुबिधादि सफलतापूर्वक अपडेट किया गया!",
+		"success_email_change_requested": "ईमेल परिवर्तन का अनुरोध किया गया! पुष्टि के लिए अपना ईमेल जांचें।",
+		"success_username_updated": "उपयोगकर्ता नाम सफलतापूर्वक अपडेट किया गया!",
+		"success_password_updated": "पासवर्ड अपडेट किया गया! लॉगिन पर पुनर्निर्देशित किया जा रहा है...",
+		"error_profile_update_failed": "सुबिधादि अपडेट करने में विफल",
+		"error_email_update_failed": "ईमेल अपडेट करने में विफल",
+		"error_username_update_failed": "उपयोगकर्ता नाम अपडेट करने में विफल",
+		"error_password_update_failed": "पासवर्ड अपडेट करने में विफल"
 	},
 	"file_input": {
 		"files_selected": "{count} கோப்பு(கள்) தேர்ந்தெடுக்கப்பட்டுள்ளன",
@@ -391,15 +399,5 @@
 			"email_verified_yes": "हाँ",
 			"support_contact_text": "अतिरिक्त सुरक्षा विकल्पों के लिए, कृपया सहायता से संपर्क करें।"
 		}
-	},
-	"messages": {
-		"success_profile_updated": "सुबिधादि सफलतापूर्वक अपडेट किया गया!",
-		"success_email_change_requested": "ईमेल परिवर्तन का अनुरोध किया गया! पुष्टि के लिए अपना ईमेल जांचें।",
-		"success_username_updated": "उपयोगकर्ता नाम सफलतापूर्वक अपडेट किया गया!",
-		"success_password_updated": "पासवर्ड अपडेट किया गया! लॉगिन पर पुनर्निर्देशित किया जा रहा है...",
-		"error_profile_update_failed": "सुबिधादि अपडेट करने में विफल",
-		"error_email_update_failed": "ईमेल अपडेट करने में विफल",
-		"error_username_update_failed": "उपयोगकर्ता नाम अपडेट करने में विफल",
-		"error_password_update_failed": "पासवर्ड अपडेट करने में विफल"
 	}
 }

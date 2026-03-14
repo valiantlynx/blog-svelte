@@ -130,7 +130,15 @@
 		"not_logged_in": "de gebruiker is niet ingelogd",
 		"join_discussion": "Doe mee aan de discussie",
 		"coming_soon": "Binnenkort",
-		"browser_not_support_api": "Browser ondersteunt deze API niet"
+		"browser_not_support_api": "Browser ondersteunt deze API niet",
+		"success_profile_updated": "Profiel succesvol bijgewerkt!",
+		"success_email_change_requested": "E-mailwijziging aangevraagd! Controleer uw e-mail voor bevestiging.",
+		"success_username_updated": "Gebruikersnaam succesvol bijgewerkt!",
+		"success_password_updated": "Wachtwoord bijgewerkt! Omleiden naar inloggen...",
+		"error_profile_update_failed": "Fout bij het bijwerken van profiel",
+		"error_email_update_failed": "Fout bij het bijwerken van e-mail",
+		"error_username_update_failed": "Fout bij het bijwerken van gebruikersnaam",
+		"error_password_update_failed": "Fout bij het bijwerken van wachtwoord"
 	},
 	"file_input": {
 		"files_selected": "{count} bestand(en) geselecteerd",
@@ -391,15 +399,5 @@
 			"email_verified_yes": "Ja",
 			"support_contact_text": "Voor aanvullende beveiligingsopties kunt u contact opnemen met de ondersteuning."
 		}
-	},
-	"messages": {
-		"success_profile_updated": "Profiel succesvol bijgewerkt!",
-		"success_email_change_requested": "E-mailwijziging aangevraagd! Controleer uw e-mail voor bevestiging.",
-		"success_username_updated": "Gebruikersnaam succesvol bijgewerkt!",
-		"success_password_updated": "Wachtwoord bijgewerkt! Omleiden naar inloggen...",
-		"error_profile_update_failed": "Fout bij het bijwerken van profiel",
-		"error_email_update_failed": "Fout bij het bijwerken van e-mail",
-		"error_username_update_failed": "Fout bij het bijwerken van gebruikersnaam",
-		"error_password_update_failed": "Fout bij het bijwerken van wachtwoord"
 	}
 }

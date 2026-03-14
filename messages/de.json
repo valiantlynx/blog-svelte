@@ -112,7 +112,15 @@
 		"not_logged_in": "Der Benutzer ist nicht angemeldet",
 		"join_discussion": "Treten Sie der Diskussion bei",
 		"coming_soon": "Demnächst",
-		"browser_not_support_api": "Der Browser unterstützt diese API nicht"
+		"browser_not_support_api": "Der Browser unterstützt diese API nicht",
+		"success_profile_updated": "Profil erfolgreich aktualisiert!",
+		"success_email_change_requested": "Änderung der E-Mail angefordert! Überprüfen Sie Ihre E-Mail auf Bestätigung.",
+		"success_username_updated": "Benutzername erfolgreich aktualisiert!",
+		"success_password_updated": "Passwort aktualisiert! Wird zur Anmeldung weitergeleitet...",
+		"error_profile_update_failed": "Fehler beim Aktualisieren des Profils",
+		"error_email_update_failed": "Fehler beim Aktualisieren der E-Mail",
+		"error_username_update_failed": "Fehler beim Aktualisieren des Benutzernamens",
+		"error_password_update_failed": "Fehler beim Aktualisieren des Passworts"
 	},
 	"file_input": {
 		"files_selected": "{count} Datei(en) ausgewählt",
@@ -373,15 +381,5 @@
 			"email_verified_yes": "Ja",
 			"support_contact_text": "Für zusätzliche Sicherheitsoptionen wenden Sie sich bitte an den Support."
 		}
-	},
-	"messages": {
-		"success_profile_updated": "Profil erfolgreich aktualisiert!",
-		"success_email_change_requested": "Änderung der E-Mail angefordert! Überprüfen Sie Ihre E-Mail auf Bestätigung.",
-		"success_username_updated": "Benutzername erfolgreich aktualisiert!",
-		"success_password_updated": "Passwort aktualisiert! Wird zur Anmeldung weitergeleitet...",
-		"error_profile_update_failed": "Fehler beim Aktualisieren des Profils",
-		"error_email_update_failed": "Fehler beim Aktualisieren der E-Mail",
-		"error_username_update_failed": "Fehler beim Aktualisieren des Benutzernamens",
-		"error_password_update_failed": "Fehler beim Aktualisieren des Passworts"
 	}
 }

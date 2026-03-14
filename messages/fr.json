@@ -112,7 +112,15 @@
 		"not_logged_in": "l'utilisateur n'est pas connecté",
 		"join_discussion": "Rejoignez la Discussion",
 		"coming_soon": "Bientôt",
-		"browser_not_support_api": "Le navigateur ne supporte pas cette API"
+		"browser_not_support_api": "Le navigateur ne supporte pas cette API",
+		"success_profile_updated": "Profil mis à jour avec succès!",
+		"success_email_change_requested": "Changement d'e-mail demandé! Vérifiez votre e-mail pour confirmer.",
+		"success_username_updated": "Nom d'utilisateur mis à jour avec succès!",
+		"success_password_updated": "Mot de passe mis à jour! Redirection vers la connexion...",
+		"error_profile_update_failed": "Échec de la mise à jour du profil",
+		"error_email_update_failed": "Échec de la mise à jour de l'e-mail",
+		"error_username_update_failed": "Échec de la mise à jour du nom d'utilisateur",
+		"error_password_update_failed": "Échec de la mise à jour du mot de passe"
 	},
 	"file_input": {
 		"files_selected": "{count} fichier(s) sélectionné(s)",
@@ -373,15 +381,5 @@
 			"email_verified_yes": "Oui",
 			"support_contact_text": "Pour des options de sécurité supplémentaires, veuillez contacter le support."
 		}
-	},
-	"messages": {
-		"success_profile_updated": "Profil mis à jour avec succès!",
-		"success_email_change_requested": "Changement d'e-mail demandé! Vérifiez votre e-mail pour confirmer.",
-		"success_username_updated": "Nom d'utilisateur mis à jour avec succès!",
-		"success_password_updated": "Mot de passe mis à jour! Redirection vers la connexion...",
-		"error_profile_update_failed": "Échec de la mise à jour du profil",
-		"error_email_update_failed": "Échec de la mise à jour de l'e-mail",
-		"error_username_update_failed": "Échec de la mise à jour du nom d'utilisateur",
-		"error_password_update_failed": "Échec de la mise à jour du mot de passe"
 	}
 }

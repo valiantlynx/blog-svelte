@@ -130,7 +130,15 @@
 		"not_logged_in": "使用者未登入",
 		"join_discussion": "加入討論",
 		"coming_soon": "即將推出",
-		"browser_not_support_api": "瀏覽器不支援此 API"
+		"browser_not_support_api": "瀏覽器不支援此 API",
+		"success_profile_updated": "個人檔案成功更新！",
+		"success_email_change_requested": "已要求電子郵件變更！檢查您的電子郵件以進行確認。",
+		"success_username_updated": "使用者名稱成功更新！",
+		"success_password_updated": "密碼已更新！正在重新導向至登入...",
+		"error_profile_update_failed": "更新個人檔案失敗",
+		"error_email_update_failed": "更新電子郵件失敗",
+		"error_username_update_failed": "更新使用者名稱失敗",
+		"error_password_update_failed": "更新密碼失敗"
 	},
 	"file_input": {
 		"files_selected": "已選擇 {count} 個檔案",
@@ -391,15 +399,5 @@
 			"email_verified_yes": "是",
 			"support_contact_text": "如需其他安全選項，請聯繫支援部門。"
 		}
-	},
-	"messages": {
-		"success_profile_updated": "個人檔案成功更新！",
-		"success_email_change_requested": "已要求電子郵件變更！檢查您的電子郵件以進行確認。",
-		"success_username_updated": "使用者名稱成功更新！",
-		"success_password_updated": "密碼已更新！正在重新導向至登入...",
-		"error_profile_update_failed": "更新個人檔案失敗",
-		"error_email_update_failed": "更新電子郵件失敗",
-		"error_username_update_failed": "更新使用者名稱失敗",
-		"error_password_update_failed": "更新密碼失敗"
 	}
 }

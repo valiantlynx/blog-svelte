@@ -130,7 +130,15 @@
 		"not_logged_in": "pengguna tidak daftar masuk",
 		"join_discussion": "Sertai Perbincangan",
 		"coming_soon": "Akan Datang",
-		"browser_not_support_api": "Penyemak imbas tidak menyokong API ini"
+		"browser_not_support_api": "Penyemak imbas tidak menyokong API ini",
+		"success_profile_updated": "Profil dikemaskini dengan berjaya!",
+		"success_email_change_requested": "Perubahan e-mel diminta! Periksa e-mel anda untuk pengesahan.",
+		"success_username_updated": "Nama pengguna dikemaskini dengan berjaya!",
+		"success_password_updated": "Kata laluan dikemaskini! Mengalih ke login...",
+		"error_profile_update_failed": "Gagal mengemaskini profil",
+		"error_email_update_failed": "Gagal mengemaskini e-mel",
+		"error_username_update_failed": "Gagal mengemaskini nama pengguna",
+		"error_password_update_failed": "Gagal mengemaskini kata laluan"
 	},
 	"file_input": {
 		"files_selected": "{count} fail dipilih",
@@ -391,15 +399,5 @@
 			"email_verified_yes": "Ya",
 			"support_contact_text": "Untuk pilihan keselamatan tambahan, sila hubungi sokongan."
 		}
-	},
-	"messages": {
-		"success_profile_updated": "Profil dikemaskini dengan berjaya!",
-		"success_email_change_requested": "Perubahan e-mel diminta! Periksa e-mel anda untuk pengesahan.",
-		"success_username_updated": "Nama pengguna dikemaskini dengan berjaya!",
-		"success_password_updated": "Kata laluan dikemaskini! Mengalih ke login...",
-		"error_profile_update_failed": "Gagal mengemaskini profil",
-		"error_email_update_failed": "Gagal mengemaskini e-mel",
-		"error_username_update_failed": "Gagal mengemaskini nama pengguna",
-		"error_password_update_failed": "Gagal mengemaskini kata laluan"
 	}
 }
