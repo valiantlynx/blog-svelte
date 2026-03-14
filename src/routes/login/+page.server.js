@@ -37,7 +37,7 @@ export const actions = {
 		}
 
 		const redirectUrl = `${event.url.origin}/api/oauth/google`;
-		const googleAuthProvider = authMethods.authProviders.find(
+		const googleAuthProvider = authMethods.oauth2.providers.find(
 			(provider) => provider.name === 'google'
 		);
 		const authProviderRedirect = `${googleAuthProvider?.authUrl}${redirectUrl}&googleAuthState=${googleAuthProvider?.state}`;
@@ -45,12 +45,13 @@ export const actions = {
 		const state = googleAuthProvider.state;
 		const verifier = googleAuthProvider.codeVerifier;
 
-		event.cookies.set('state', state);
-		event.cookies.set('verifier', verifier);
+		event.cookies.set('state', state, { path: '/' });
+		event.cookies.set('verifier', verifier, { path: '/' });
 		throw redirect(302, authProviderRedirect);
 	},
 	oauth2samletnorge: async (event) => {
 		const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
+		console.log('authMethods', authMethods.oauth2.providers);
 		if (!authMethods) {
 			return {
 				authProviders: ''
@@ -58,7 +59,7 @@ export const actions = {
 		}
 
 		const redirectUrl = `${event.url.origin}/api/oauth/samletnorge`;
-		const samletnorgeAuthProvider = authMethods.authProviders.find(
+		const samletnorgeAuthProvider = authMethods.oauth2.providers.find(
 			(provider) => provider.name === 'samletnorge'
 		);
 		const authProviderRedirect = `${samletnorgeAuthProvider?.authUrl}${redirectUrl}&samletnorgeAuthState=${samletnorgeAuthProvider?.state}`;
@@ -66,8 +67,8 @@ export const actions = {
 		const state = samletnorgeAuthProvider.state;
 		const verifier = samletnorgeAuthProvider.codeVerifier;
 
-		event.cookies.set('state', state);
-		event.cookies.set('verifier', verifier);
+		event.cookies.set('state', state, { path: '/' });
+		event.cookies.set('verifier', verifier, { path: '/' });
 		throw redirect(302, authProviderRedirect);
 	}
 };
