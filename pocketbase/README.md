@@ -268,3 +268,18 @@ pb.collection('comments').subscribe('*', function (e) {
 ---
 
 **Blog-Svelte** - Modern blog platform built with SvelteKit and PocketBase.
+
+### Setup
+```bash
+# Initialize Go module
+go mod init github.com/valiantlynx/blog-svelte-pocketbase
+
+# Install dependencies
+go mod tidy
+
+# Run database migrations
+go run main.go migrate up
+
+# Start the server
+go run main.go serve --http=0.0.0.0:8090
+```
