@@ -41,7 +41,7 @@ install-blog: ## Install blog dependencies (pnpm)
 
 install-database: ## Build database (Go)
 	@echo "$(BLUE)Building database...$(NC)"
-	@cd pocketbase && go mod download
+	@cd pocketbase && go mod tidy
 
 # Quality checks
 check: ## Run all quality checks
