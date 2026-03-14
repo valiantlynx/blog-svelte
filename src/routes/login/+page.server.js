@@ -48,5 +48,26 @@ export const actions = {
 		event.cookies.set('state', state);
 		event.cookies.set('verifier', verifier);
 		throw redirect(302, authProviderRedirect);
+	},
+	oauth2samletnorge: async (event) => {
+		const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
+		if (!authMethods) {
+			return {
+				authProviders: ''
+			};
+		}
+
+		const redirectUrl = `${event.url.origin}/api/oauth/samletnorge`;
+		const samletnorgeAuthProvider = authMethods.authProviders.find(
+			(provider) => provider.name === 'samletnorge'
+		);
+		const authProviderRedirect = `${samletnorgeAuthProvider?.authUrl}${redirectUrl}&samletnorgeAuthState=${samletnorgeAuthProvider?.state}`;
+		// Save the state and verifier in a cookie
+		const state = samletnorgeAuthProvider.state;
+		const verifier = samletnorgeAuthProvider.codeVerifier;
+
+		event.cookies.set('state', state);
+		event.cookies.set('verifier', verifier);
+		throw redirect(302, authProviderRedirect);
 	}
 };
