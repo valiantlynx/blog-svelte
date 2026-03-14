@@ -5,10 +5,18 @@
 
 <div class="flex flex-col w-full">
 	<h3 class="text-center text-lg font-bold">{m['buttons.login']?.()}</h3>
+		<!-- auth with google -->
+	<div class="w-full block my-4">
+		<Oauth2SingleServer
+			logo="https://avatars.githubusercontent.com/u/177398145?s=200&v=4"
+			provider="samletnorge"
+		/>
+	</div>
+
 	<!-- auth with google -->
 	<div class="w-full block my-4">
 		<Oauth2SingleServer
-			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/150px-Google_%22G%22_logo.svg.png"
+			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Google_Favicon_2025.svg/960px-Google_Favicon_2025.svg.png"
 			provider="google"
 		/>
 	</div>
@@ -17,7 +25,7 @@
 	<!-- auth with apple -->
 	<div class="w-full block my-4">
 		<Oauth2SingleServer
-			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/512px-Apple_logo_black.svg.png"
+			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/960px-Apple_logo_black.svg.png?_=20250629104141"
 			provider="apple"
 			active={false}
 		/>
@@ -26,7 +34,7 @@
 	<!-- auth with facebook -->
 	<div class="w-full block my-4">
 		<Oauth2SingleServer
-			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/512px-Facebook_Logo_%282019%29.png"
+			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/960px-2023_Facebook_icon.svg.png"
 			provider="facebook"
 			active={false}
 		/>
@@ -44,7 +52,7 @@
 	<!-- auth with instagram -->
 	<div class="w-full block my-4">
 		<Oauth2SingleServer
-			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram-Icon.png/512px-Instagram-Icon.png"
+			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/330px-Instagram_logo_2016.svg.png?_=20210403190622"
 			provider="instagram"
 			active={false}
 		/>
