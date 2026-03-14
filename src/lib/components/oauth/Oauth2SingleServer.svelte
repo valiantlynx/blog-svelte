@@ -37,7 +37,7 @@
 
 <form method="POST" action="?/oauth2{provider}" use:enhance={submitOauth}>
 	<Button type="submit" variant="primary" class="w-full" disabled={!active}>
-		<img src={logo} alt={`${provider} sign in`} class="w-10 h-10" />
+		<img src={logo} alt={`${provider} sign in`} class="w-10 h-10 m-2" />
 		{#if $page.url.pathname == '/login'}
 			Login with {provider}
 		{:else if $page.url.pathname == '/signup'}
