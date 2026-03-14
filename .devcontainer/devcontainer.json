@@ -24,7 +24,8 @@
 				"jpotterm.simple-vim",
 				"svelte.svelte-vscode",
 				"ardenivanov.svelte-intellisense",
-				"fivethree.vscode-svelte-snippets"
+				"fivethree.vscode-svelte-snippets",
+				"anseki.vscode-color"
 			],
 			"settings": {
 				"python.pythonPath": "/usr/local/bin/python",
