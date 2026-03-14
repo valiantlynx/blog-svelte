@@ -43,7 +43,7 @@
 	<!-- auth with microsoft -->
 	<div class="w-full block my-4">
 		<Oauth2SingleServer
-			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/512px-Microsoft_logo.svg.png"
+			logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1280px-Microsoft_logo.svg.png?_=20210729021049"
 			provider="microsoft"
 			active={false}
 		/>
