@@ -51,7 +51,6 @@ export const actions = {
 	},
 	oauth2samletnorge: async (event) => {
 		const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
-		console.log('authMethods', authMethods.oauth2.providers);
 		if (!authMethods) {
 			return {
 				authProviders: ''
@@ -60,7 +59,7 @@ export const actions = {
 
 		const redirectUrl = `${event.url.origin}/api/oauth/samletnorge`;
 		const samletnorgeAuthProvider = authMethods.oauth2.providers.find(
-			(provider) => provider.name === 'samletnorge'
+			(provider) => provider.name === 'oidc'
 		);
 		const authProviderRedirect = `${samletnorgeAuthProvider?.authUrl}${redirectUrl}&samletnorgeAuthState=${samletnorgeAuthProvider?.state}`;
 		// Save the state and verifier in a cookie
