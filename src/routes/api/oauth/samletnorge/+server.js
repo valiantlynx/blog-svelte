@@ -20,7 +20,7 @@ export const GET = async ({ locals, url, cookies }) => {
 	}
 
 	const samletnorgeAuthProvider = authMethods.oauth2.providers.find(
-		(provider) => provider.name === 'samletnorge'
+		(provider) => provider.name === 'oidc'
 	);
 	if (!samletnorgeAuthProvider) {
 		console.error('Provider not found');

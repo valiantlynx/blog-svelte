@@ -97,9 +97,10 @@ export const actions = {
 
 		const redirectUrl = `${event.url.origin}/api/oauth/samletnorge`;
 		const samletnorgeAuthProvider = authMethods.oauth2.providers.find(
-			(provider) => provider.name === 'samletnorge'
+			(provider) => provider.name === 'oidc'
 		);
 		const authProviderRedirect = `${samletnorgeAuthProvider?.authUrl}${redirectUrl}&samletnorgeAuthState=${samletnorgeAuthProvider?.state}`;
+		console.log('authProviderRedirect', authProviderRedirect);
 		// Save the state and verifier in a cookie
 		const state = samletnorgeAuthProvider.state;
 		const verifier = samletnorgeAuthProvider.codeVerifier;
