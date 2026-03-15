@@ -120,27 +120,35 @@
 		console.log('PWA is installed: ' + PWAisInstalled, relatedApps);
 	}
 
-	onMount(async () => {
-		detectServiceWorkerUpdate();
-		getInstalledApps();
+onMount(async () => {
+    detectServiceWorkerUpdate();
+    getInstalledApps();
 
-		// Auto-login to samlet-chat if already logged in
-		if (page.data.user) {
-			const observer = new MutationObserver(() => {
-				const loginBtn = document.querySelector('#samlet-chat-login');
-				if (loginBtn instanceof HTMLElement) {
-					loginBtn.click();
-					observer.disconnect();
-				}
-			});
-			observer.observe(document.getElementById('samlet-chat'), {
-				childList: true,
-				subtree: true
-			});
-			// Give up after 10 seconds
-			setTimeout(() => observer.disconnect(), 10000);
-		}
-	});
+    if (page.data.user) {
+        const tryClick = () => {
+            // Try inner text div first, fall back to outer
+            const loginBtn = document.querySelector('.samlet-chat-login-text') 
+                          ?? document.querySelector('#samlet-chat-login');
+            if (loginBtn instanceof HTMLElement) {
+                loginBtn.click();
+                return true;
+            }
+            return false;
+        };
+
+        // Check if button already exists before setting up observer
+        if (!tryClick()) {
+            const target = document.getElementById('samlet-chat');
+            if (target) {
+                const observer = new MutationObserver(() => {
+                    if (tryClick()) observer.disconnect();
+                });
+                observer.observe(target, { childList: true, subtree: true });
+                setTimeout(() => observer.disconnect(), 10000);
+            }
+        }
+    }
+});
 
 	function displayNotification() {
 		//Ask user if we show notifications
