@@ -124,30 +124,29 @@ onMount(async () => {
     detectServiceWorkerUpdate();
     getInstalledApps();
 
-    if (page.data.user) {
-        const tryClick = () => {
-            // Try inner text div first, fall back to outer
-            const loginBtn = document.querySelector('.samlet-chat-login-text') 
+if (page.data.user) {
+    const script = document.querySelector('script[src*="samlet-chat"]');
+    const init = () => {
+        const target = document.getElementById('samlet-chat');
+        if (!target) return;
+        const observer = new MutationObserver(() => {
+            const loginBtn = document.querySelector('.samlet-chat-login-text')
                           ?? document.querySelector('#samlet-chat-login');
             if (loginBtn instanceof HTMLElement) {
-                loginBtn.click();
-                return true;
+                setTimeout(() => loginBtn.click(), 100);
+                observer.disconnect();
             }
-            return false;
-        };
+        });
+        observer.observe(target, { childList: true, subtree: true });
+        setTimeout(() => observer.disconnect(), 10000);
+    };
 
-        // Check if button already exists before setting up observer
-        if (!tryClick()) {
-            const target = document.getElementById('samlet-chat');
-            if (target) {
-                const observer = new MutationObserver(() => {
-                    if (tryClick()) observer.disconnect();
-                });
-                observer.observe(target, { childList: true, subtree: true });
-                setTimeout(() => observer.disconnect(), 10000);
-            }
-        }
+    if (script) {
+        script.addEventListener('load', init);
+    } else {
+        init(); // script already loaded
     }
+}
 });
 
 	function displayNotification() {
