@@ -127,8 +127,8 @@
 		// Auto-login to samlet-chat if already logged in
 		if (page.data.user) {
 			const observer = new MutationObserver(() => {
-				const loginBtn = document.querySelector('#samlet-chat .samlet-chat-login-text');
-				if (loginBtn) {
+				const loginBtn = document.querySelector('#samlet-chat-login');
+				if (loginBtn instanceof HTMLElement) {
 					loginBtn.click();
 					observer.disconnect();
 				}
