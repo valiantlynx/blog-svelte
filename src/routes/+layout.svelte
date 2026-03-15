@@ -120,34 +120,10 @@
 		console.log('PWA is installed: ' + PWAisInstalled, relatedApps);
 	}
 
-onMount(async () => {
-    detectServiceWorkerUpdate();
-    getInstalledApps();
-
-if (page.data.user) {
-    const script = document.querySelector('script[src*="samlet-chat"]');
-    const init = () => {
-        const target = document.getElementById('samlet-chat');
-        if (!target) return;
-        const observer = new MutationObserver(() => {
-            const loginBtn = document.querySelector('.samlet-chat-login-text')
-                          ?? document.querySelector('#samlet-chat-login');
-            if (loginBtn instanceof HTMLElement) {
-                setTimeout(() => loginBtn.click(), 100);
-                observer.disconnect();
-            }
-        });
-        observer.observe(target, { childList: true, subtree: true });
-        setTimeout(() => observer.disconnect(), 10000);
-    };
-
-    if (script) {
-        script.addEventListener('load', init);
-    } else {
-        init(); // script already loaded
-    }
-}
-});
+	onMount(async () => {
+		detectServiceWorkerUpdate();
+		getInstalledApps();
+	});
 
 	function displayNotification() {
 		//Ask user if we show notifications
@@ -308,7 +284,6 @@ if (page.data.user) {
 	<script defer src="https://samlet-chat.valiantlynx.com/js/samlet-chat.js"></script>
 	<div id="samlet-chat"></div>
 </div>
-
 {#if page.data.feedbackToken}
 	<feedback-widget
 		data-repo="valiantlynx/blog-svelte"
