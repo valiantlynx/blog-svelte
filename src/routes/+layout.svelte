@@ -123,6 +123,23 @@
 	onMount(async () => {
 		detectServiceWorkerUpdate();
 		getInstalledApps();
+
+		// Auto-login to samlet-chat if already logged in
+		if (page.data.user) {
+			const observer = new MutationObserver(() => {
+				const loginBtn = document.querySelector('#samlet-chat .samlet-chat-login-text');
+				if (loginBtn) {
+					loginBtn.click();
+					observer.disconnect();
+				}
+			});
+			observer.observe(document.getElementById('samlet-chat'), {
+				childList: true,
+				subtree: true
+			});
+			// Give up after 10 seconds
+			setTimeout(() => observer.disconnect(), 10000);
+		}
 	});
 
 	function displayNotification() {
@@ -284,6 +301,7 @@
 	<script defer src="https://samlet-chat.valiantlynx.com/js/samlet-chat.js"></script>
 	<div id="samlet-chat"></div>
 </div>
+
 {#if page.data.feedbackToken}
 	<feedback-widget
 		data-repo="valiantlynx/blog-svelte"
