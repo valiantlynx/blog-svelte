@@ -39,9 +39,9 @@
 	<Button type="submit" variant="primary" class="w-full" disabled={!active}>
 		<img src={logo} alt={`${provider} sign in`} class="w-10 h-10 m-2" />
 		{#if $page.url.pathname == '/login'}
-			Login with {provider}
+			Go to Login
 		{:else if $page.url.pathname == '/signup'}
-			Signup with {provider}
+			Go to Signup
 		{/if}
 	</Button>
 </form>

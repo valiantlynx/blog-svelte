@@ -1,9 +1,5 @@
 <script>
 	import * as m from '$lib/paraglide/messages.js';
-	import { enhance } from '$app/forms';
-	import { Input } from '$lib/components/ui/input';
-	import { Button } from '$lib/components/ui/button';
-	import { FormControl } from '$lib/components/ui/form-control';
 	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
 	import { page } from '$app/state';
 	import toast from 'svelte-french-toast';

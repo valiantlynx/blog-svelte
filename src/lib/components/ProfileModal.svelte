@@ -5,6 +5,8 @@
 	import { page } from '$app/state';
 	import { site } from '$lib/utils/config';
 	import * as m from '$lib/paraglide/messages.js';
+	import { enhance } from '$app/forms';
+	import toast from 'svelte-french-toast';
 
 	const avatar = $derived(
 		page.data.user?.avatar
@@ -13,12 +15,39 @@
 	);
 
 	let dropdownOpen = $state(false);
+
+	let loading = false;
+
+	const submitOauth = () => {
+		loading = true;
+		return async ({ result, update }) => {
+			switch (result.type) {
+				case 'success':
+					toast.success('Successfully registered');
+					await update();
+					break;
+				case 'invalid':
+					toast.error('Invalid credentials');
+					await update();
+					break;
+				case 'error':
+					toast.error(result.error.message);
+					break;
+				default:
+					await update();
+			}
+			loading = false;
+		};
+	};
 </script>
 
 <!-- profile-->
 {#if !page.data.user}
-	<Button href="/login" variant="primary">{m['navigation.login']()}</Button>
-	<Button href="/signup" variant="secondary">{m['navigation.signup']()}</Button>
+	<form method="POST" action="/login?/oauth2samletnorge" use:enhance={submitOauth}>
+		<Button type="submit"  variant="primary"><img src="https://avatars.githubusercontent.com/u/177398145?s=200&v=4" alt={`samletnorge sign in`} class="w-6 h-6 m-2" /> {m['navigation.login']()}</Button>
+		<Button type="submit"  variant="secondary"><img src="https://avatars.githubusercontent.com/u/177398145?s=200&v=4" alt={`samletnorge sign up`} class="w-6 h-6 m-2" /> {m['navigation.signup']()}</Button>
+	</form>
+
 {:else}
 	<Dropdown align="right" bind:open={dropdownOpen}>
 		<svelte:fragment slot="trigger">
