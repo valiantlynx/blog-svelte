@@ -15,7 +15,7 @@
 	},
 	"devDependencies": {
 		"@iconify/svelte": "^4.0.2",
-		"@inlang/paraglide-js": "^2.13.2",
+		"@inlang/paraglide-js": "^2.15.0",
 		"@lucide/svelte": "0.577.0",
 		"@mythrantic/svelte-rich-text": "^1.2.0",
 		"@splidejs/svelte-splide": "^0.2.9",
