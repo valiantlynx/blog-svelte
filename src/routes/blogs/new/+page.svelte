@@ -142,7 +142,7 @@
 					<label class="label font-medium pb-1"><span class="label-text">Blog Content</span></label>
 					<input type="hidden" name="content_object" bind:value={contentJson} />
 					{#if ValiantRichText}
-						<ValiantRichText bind:editor {content} {onUpdate} editable={true} />
+						<ValiantRichText bind:editor {content} {onUpdate} editable={true} theme="inherit" />
 					{:else}
 						<div class="border p-4 rounded bg-base-200">
 							<p class="text-sm text-muted-foreground">{m['tooltips.loading']()}</p>

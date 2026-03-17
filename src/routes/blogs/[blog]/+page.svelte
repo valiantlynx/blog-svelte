@@ -129,7 +129,7 @@
 					<input type="hidden" name="blogId" value={blog?.id} />
 					<input type="hidden" name="content_object" bind:value={contentJson} />
 
-					<ValiantRichText bind:editor {content} {onUpdate} editable={true} />
+					<ValiantRichText bind:editor {content} {onUpdate} editable={true} theme="inherit" />
 
 					<div class="flex gap-3 items-center mt-4">
 						<Button type="submit" variant="primary" disabled={isSaving}>
@@ -188,7 +188,7 @@
 				</div>
 			{/if}
 		{:else if ValiantRichText && content}
-			<ValiantRichText {content} editable={false} />
+			<ValiantRichText {content} editable={false} theme="inherit" />
 		{:else}
 			<!-- Fallback: show plain text if no rich content -->
 			<div class="prose max-w-none">
